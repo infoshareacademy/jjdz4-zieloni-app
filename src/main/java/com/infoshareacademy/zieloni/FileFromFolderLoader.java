@@ -12,8 +12,9 @@ public class FileFromFolderLoader {
         for (final File fileEntry : folder.listFiles()) {
             if (fileEntry.isDirectory()) {
                 listFilesForFolder(fileEntry);
+                System.out.println(fileEntry.getAbsolutePath());
             } else {
-                System.out.println(fileEntry.getName());
+                System.out.println(fileEntry.getAbsolutePath());
             }
         }
     }
