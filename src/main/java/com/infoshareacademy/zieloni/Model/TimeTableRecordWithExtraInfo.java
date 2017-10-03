@@ -6,7 +6,7 @@ package com.infoshareacademy.zieloni.Model;
 
 
 /* Model dla pliku tabela.csv*/
-public class Additional_Info_Timetable {
+public class TimeTableRecordWithExtraInfo {
 
     /*  - nazwa katalogu z rozkładem, o którym napisano w punkcie 2.*/
     private String id;
@@ -14,17 +14,36 @@ public class Additional_Info_Timetable {
     /*- nazwa linii - informacja o rodzaju środka transportu (autobus, tramwaj, autobus nocny, tramwaj nocny, tramwaj wodny)*/
     private String lineNr;
 
+    /*informacja o rodzaju środka transportu (autobus, tramwaj, autobus nocny, tramwaj nocny, tramwaj wodny)*/
+    private String typeOfTransport;
+
     /* - sformatowany przy pomocy kodu HTML i CSS opis trasy przejazdu pojazdów realizujących zadania przewozowe linii*/
     private String infoAboutRouteInHTMLformat;
 
     /*- data rozpoczęcia obowiązywania rozkładu*/
-    private int isValidFrom;
+    private String isValidFrom;
+
+    public String getTypeOfTransport() {
+        return typeOfTransport;
+    }
+
+    public void setTypeOfTransport(String typeOfTransport) {
+        this.typeOfTransport = typeOfTransport;
+    }
+
+    public boolean isLowRider() {
+        return LowRider;
+    }
+
+    public void setLowRider(boolean lowRider) {
+        LowRider = lowRider;
+    }
 
     /* - data zakończenia obowiązywania rozkładu. Pole puste oznacza nieokreśloną datę zakończenia obowiązywania.*/
-    private int isValidTo;
+    private String isValidTo;
 
     /* - informacja o tym, czy wszystkie kursy linii są wykonywane pojazdami niskopodłogowymi (wartość „1”) czy nie („0”)*/
-    private Boolean isLowRider;
+    private boolean LowRider;
 
     /* - następne dwie kolumny zawierają sformatowane przy pomocy kodu HTML i CSS uwagi do rozkładu*/
     private String commentsHTML0;
@@ -57,28 +76,20 @@ public class Additional_Info_Timetable {
         this.infoAboutRouteInHTMLformat = infoAboutRouteInHTMLformat;
     }
 
-    public int getIsValidFrom() {
+    public String getIsValidFrom() {
         return isValidFrom;
     }
 
-    public void setIsValidFrom(int isValidFrom) {
+    public void setIsValidFrom(String isValidFrom) {
         this.isValidFrom = isValidFrom;
     }
 
-    public int getIsValidTo() {
+    public String getIsValidTo() {
         return isValidTo;
     }
 
-    public void setIsValidTo(int isValidTo) {
+    public void setIsValidTo(String isValidTo) {
         this.isValidTo = isValidTo;
-    }
-
-    public Boolean getLowRider() {
-        return isLowRider;
-    }
-
-    public void setLowRider(Boolean lowRider) {
-        isLowRider = lowRider;
     }
 
     public String getCommentsHTML0() {

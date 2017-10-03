@@ -4,7 +4,6 @@ package com.infoshareacademy.zieloni.Model;
  * @author Michał Stasiński
  */
 
-
 /* Model do sciezek w folderze z rozkładami jazdy csv*/
 
 public class PathToTimeTableCSVfile {

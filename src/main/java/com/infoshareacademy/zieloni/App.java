@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.Model.Additional_Info_Timetable;
+import com.infoshareacademy.zieloni.Model.TimeTableRecordWithExtraInfo;
 import com.infoshareacademy.zieloni.Model.PathToTimeTableCSVfile;
 
 import java.io.*;
@@ -38,22 +38,21 @@ public class App {
 
             }
         }
-        // System.out.println("current dirrrr = " + tabelaCSVPath);
 
+
+        /*pobranie pliku tabela.csv*/
         File csvFile = new File(tabelaCSVPath.toString());
-        //System.out.println(" fil = " + tabelaCSVPath);
 
-        ArrayList<String> recordsArray = CSVReader.readCSVRead(tabelaCSVPath.toString(), "\\|");
+        /*Wrzucenie poszczególnych linii tablei.csv do Array*/
+        ArrayList<String> recordsArray = CSVReader.readCSVfileAndConvertToRecordsArray(tabelaCSVPath.toString());
+        ArrayList<TimeTableRecordWithExtraInfo> tabelaCSVArray = CSVFileFormater.formatCSVToTimeTableWithExtraInfoRecords(recordsArray);
 
+        System.out.println(tabelaCSVArray.get(0).getId());
+        System.out.println(tabelaCSVArray.get(0).getLineNr());
+        System.out.println(tabelaCSVArray.get(0).getTypeOfTransport());
+        System.out.println(tabelaCSVArray.get(0).getIsValidFrom());
+        System.out.println(tabelaCSVArray.get(0).isLowRider());
 
-        for (String filer : recordsArray) {
-            String[] records= filer.split("\\|");
-            Additional_Info_Timetable additional_info_record = new Additional_Info_Timetable();
-            additional_info_record.setId(records[0]);
-           // System.out.println( rec[0]+"|"+rec[1]);
-
-
-        }
 
 
 
