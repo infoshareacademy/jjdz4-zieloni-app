@@ -13,8 +13,8 @@ public class CSVFileFormater {
 
         ArrayList<TimeTableRecordWithExtraInfo> formattedRecordsArray = new ArrayList<TimeTableRecordWithExtraInfo>();
 
-        for (String filer : stringArray) {
-            String[] records = filer.split("\\|");
+        for (String filter : stringArray) {
+            String[] records = filter.split("\\|");
             TimeTableRecordWithExtraInfo formattedRecord = new TimeTableRecordWithExtraInfo();
             formattedRecord.setId(records[0]);
             formattedRecord.setLineNr(records[1]);
