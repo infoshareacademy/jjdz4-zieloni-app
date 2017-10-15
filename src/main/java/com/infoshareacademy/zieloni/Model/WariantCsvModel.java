@@ -4,7 +4,7 @@ public class WariantCsvModel {
     private String idVariant;
     private String flags;
     private String nameOfTheMunicipality;
-    private String nameOfTheStopWithInformationIfItIsOnDemand;
+    private String nameOfBasStop;
     private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow0;
     private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow1;
     private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow2;
@@ -37,12 +37,12 @@ public class WariantCsvModel {
         this.nameOfTheMunicipality = nameOfTheMunicipality;
     }
 
-    public String getNameOfTheStopWithInformationIfItIsOnDemand() {
-        return nameOfTheStopWithInformationIfItIsOnDemand;
+    public String getNameOfBasStop() {
+        return nameOfBasStop;
     }
 
-    public void setNameOfTheStopWithInformationIfItIsOnDemand(String nameOfTheStopWithInformationIfItIsOnDemand) {
-        this.nameOfTheStopWithInformationIfItIsOnDemand = nameOfTheStopWithInformationIfItIsOnDemand;
+    public void setNameOfBasStop(String nameOfBasStop) {
+        this.nameOfBasStop = nameOfBasStop;
     }
 
     public String getTheColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow0() {
