@@ -1,6 +1,7 @@
 package com.infoshareacademy.zieloni;
 
 import com.infoshareacademy.zieloni.Model.TimeTableRecordWithExtraInfo;
+import com.infoshareacademy.zieloni.Model.VariantCsvModel;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,23 @@ public class CSVFileFormater {
 
         }
 
+        return formattedRecordsArray;
+    }
+
+    public static ArrayList<VariantCsvModel> formatCSVBus(ArrayList<String> stringArray) {
+
+        ArrayList<VariantCsvModel> formattedRecordsArray = new ArrayList<VariantCsvModel>();
+
+        for (int i = 1; i < stringArray.size(); i++) {
+            String[] records = stringArray.get(i).split("\\;");
+            VariantCsvModel formattedRecord = new VariantCsvModel();
+            formattedRecord.setIdVariant(records[0]);
+            formattedRecord.setFlags(records[1]);
+            formattedRecord.setNameOfTheMunicipality(records[2]);
+            formattedRecord.setNameOfBasStop(records[3]);
+
+            formattedRecordsArray.add(formattedRecord);
+        }
         return formattedRecordsArray;
     }
 }

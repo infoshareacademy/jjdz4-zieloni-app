@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @author Michal Stasiński
  */
 public class Coures {
+
     private String whenIsRunning;
     private ArrayList<ArrayList<String>> travelTimes;
 
