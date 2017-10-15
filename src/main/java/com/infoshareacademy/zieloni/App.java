@@ -13,8 +13,8 @@ public class App {
         /* MStasiński: bieżący katalog roboczy uzyskujemy  przez System.getProperty("user.dir");*/
         final String currentDirectory = System.getProperty("user.dir");
 
-        final File folder = new File(currentDirectory + "\\rozklady_2015-09-08_13.43.01");
-        final File tabelaCSVPath = new File(currentDirectory + "\\rozklady_2015-09-08_13.43.01\\tabela.csv");
+        final File folder = new File(currentDirectory + "//rozklady_2015-09-08_13.43.01");
+        final File tabelaCSVPath = new File(currentDirectory + "//rozklady_2015-09-08_13.43.01//tabela.csv");
         System.out.println("current dir4 = " + currentDirectory);
 
 
