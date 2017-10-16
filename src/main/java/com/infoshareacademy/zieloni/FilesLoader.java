@@ -3,7 +3,7 @@ package com.infoshareacademy.zieloni;
  * @author Michał Stasiński
  */
 
-import com.infoshareacademy.zieloni.Model.PathToTimeTableCSVfile;
+import com.infoshareacademy.zieloni.Model.TimeTableCSVfile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,14 +14,14 @@ public class FilesLoader {
 
    /*load csv files from folder and return ArrayList*/
 
-    public static ArrayList<PathToTimeTableCSVfile> addAllFilesPathToArrayList(final File folder) {
+    public static ArrayList<TimeTableCSVfile> addAllFilesPathToArrayList(final File folder) {
 
-        ArrayList<PathToTimeTableCSVfile> arrayWithFolderPath = new ArrayList<PathToTimeTableCSVfile>();
+        ArrayList<TimeTableCSVfile> arrayWithFolderPath = new ArrayList<TimeTableCSVfile>();
 
         /* lista folderów*/
         for (final File fileEntry : folder.listFiles()) {
 
-            PathToTimeTableCSVfile csvFile = new PathToTimeTableCSVfile();
+            TimeTableCSVfile csvFile = new TimeTableCSVfile();
             if (fileEntry.isDirectory()) {
 
                 csvFile.setFolderName(fileEntry.getAbsolutePath());

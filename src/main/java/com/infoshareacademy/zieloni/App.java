@@ -1,7 +1,7 @@
 package com.infoshareacademy.zieloni;
 
 import com.infoshareacademy.zieloni.Model.Bus;
-import com.infoshareacademy.zieloni.Model.PathToTimeTableCSVfile;
+import com.infoshareacademy.zieloni.Model.TimeTableCSVfile;
 import com.infoshareacademy.zieloni.Model.TimeTableRecordWithExtraInfo;
 import com.infoshareacademy.zieloni.Model.VariantCsvModel;
 
@@ -24,10 +24,9 @@ public class App {
 
 
         /* M.Stasiński: ArrayList ze wszystkimi scieżkami do katalogów i znajdujących się w nim plików z rozkładami jazdy */
-        ArrayList<PathToTimeTableCSVfile> filePath = FilesLoader.addAllFilesPathToArrayList(folder);
-        int j = 0;
+        ArrayList<TimeTableCSVfile> filePath = FilesLoader.addAllFilesPathToArrayList(folder);
 
-        for (PathToTimeTableCSVfile file : filePath) {
+        for (TimeTableCSVfile file : filePath) {
 
             if (file.getIsValidFrom() < 20150908) {
 
@@ -39,31 +38,27 @@ public class App {
                 System.out.println("plik zakonczone na  kursy2.csv:           " + file.getCourse2());
                 System.out.println("plik zakonczone na  opis1.csv:            " + file.getDescription1());
                 System.out.println("plik zakonczone na  opis2.csv:            " + file.getDescription2());*/
-                //TODO PRZECZYTAJ PLIK v1, v2 PARSER DLA PLIKÓW
 
 
-                //ODCZTYAĆ WATIANT 1  I ZAMIENIĆ NA ARRAI LIST RCORD NIE SPARSOWNA
-                //ODCZTYAĆ WATIANT 2  I ZAMIENIĆ NA ARRAI LIST RCORD NIE SPARSOWNA
-                //System.out.println(file.getId());
+                ArrayList<String> variant1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant1());
+                ArrayList<VariantCsvModel> variant1 = CSVFileFormater.formatCSVBus(variant1RecordArray);
 
-                //ArrayList<String> recordsArray = CSVReader.readCSVfileAndConvertToRecordsArray(tabelaCSVPath.toString());
-                //FORMATOWANIE  POPARSOWANE I POBRANIE ULICY
-
-                //ArrayList<TimeTableRecordWithExtraInfo> tabelaCSVArray = CSVFileFormater.formatCSVToTimeTableWithExtraInfoRecords(recordsArray);
-
-                //bus.setBusStopVariant1(tu sparsowanyv tabelaCsvArray1)->nazwy sparsowane
-                //bus.setBusStopVariant2(tu sparsowanyv tabelaCsvArray2)
-                //bus.setBusNumber(file.getId())
-
-                ArrayList<String> variant1RecordAr1 = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant1());
-                ArrayList<VariantCsvModel> tabelaCSVArray1 = CSVFileFormater.formatCSVBus(variant1RecordAr1);
                 Bus bus = new Bus();
-                bus.setBusStopVariant1(tabelaCSVArray1);
+
+                //TODO dodać variant 2
+                bus.setBusStopVariant1(variant1);
                 bus.setBusNumber(file.getId().split("_")[0]);
                 busDB.add(bus);
             }
 
         }
+
+        /*TODO
+        1) stworzyć klase np SearchBus do wyszukania autobusów ktore zatrzymuja sie na danych przystankach
+        2)  metoda klasy otrzymuje (przystanek poczatkowy , przytanek koncowy)  zwraca array autobusów zawierajacych te ulice
+        */
+
+
 
         for (int i = 0; i < busDB.size(); i++) {
             System.out.println("Autobus o numerze " + busDB.get(i).getBusNumber());
@@ -73,6 +68,8 @@ public class App {
             }
             System.out.println("______________________________________________________________");
         }
+
+
 
 
         /*pobranie pliku tabela.csv*/
