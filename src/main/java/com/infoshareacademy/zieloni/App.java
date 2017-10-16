@@ -1,9 +1,6 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.Model.Bus;
-import com.infoshareacademy.zieloni.Model.PathToTimeTableCSVfile;
-import com.infoshareacademy.zieloni.Model.TimeTableRecordWithExtraInfo;
-import com.infoshareacademy.zieloni.Model.VariantCsvModel;
+import com.infoshareacademy.zieloni.Model.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,6 +23,7 @@ public class App {
         /* M.Stasiński: ArrayList ze wszystkimi scieżkami do katalogów i znajdujących się w nim plików z rozkładami jazdy */
         ArrayList<PathToTimeTableCSVfile> filePath = FilesLoader.addAllFilesPathToArrayList(folder);
 
+
         for (PathToTimeTableCSVfile file : filePath) {
 
             if (file.getIsValidFrom() < 20150908) {
@@ -39,9 +37,10 @@ public class App {
                 System.out.println("plik zakonczone na  opis1.csv:            " + file.getDescription1());
                 System.out.println("plik zakonczone na  opis2.csv:            " + file.getDescription2());*/
 
-
                 ArrayList<String> variant1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant1());
                 ArrayList<VariantCsvModel> variant1 = CSVFileFormater.formatCSVBus(variant1RecordArray);
+                ArrayList<String> variant2RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant2());
+                ArrayList<VariantCsvModel> variant2 = CSVFileFormater.formatCSVBus(variant2RecordArray);
 
                 Bus bus = new Bus();
 
@@ -49,6 +48,7 @@ public class App {
                 bus.setBusStopVariant1(variant1);
                 bus.setBusNumber(file.getId().split("_")[0]);
                 busDB.add(bus);
+
             }
 
         }
@@ -58,18 +58,36 @@ public class App {
         2)  metoda klasy otrzymuje (przystanek poczatkowy , przytanek koncowy)  zwraca array autobusów zawierajacych te ulice
         */
 
+        ImputStreet input= new ImputStreet();
+        String street=input.getOdczyt();
+        //System.out.println( input.getOdczyt().toString());
+
+        for (int i = 0; i <= busDB.size(); i++) {
 
 
-        for (int i = 0; i < busDB.size(); i++) {
-            System.out.println("Autobus o numerze " + busDB.get(i).getBusNumber());
-            System.out.println("Zatrzymuje sie na ulicach_____________________________________");
-            for (int k = 0; k < busDB.get(i).getBusStopVariant1().size(); k++) {
-                System.out.println(k + "    " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
+            //System.out.println("Autobus o numerze " + busDB.get(i).getBusNumber());
+
+            //System.out.println("Zatrzymuje sie na ulicach"+  street);
+            for (int k = 0; k <= busDB.get(i).getBusStopVariant1().size(); k++) {
+                String busStop=(busDB.get(k).getBusStopVariant1().get(i).getNameOfBasStop());
+                if(street.equalsIgnoreCase(busStop) ){
+                    System.out.println(k + "    " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
+                    System.out.println("Autobus o numerze " + busDB.get(i).getBusNumber());
+                    break;
+                }
             }
-            System.out.println("______________________________________________________________");
+           // System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         }
+/*
+        for (int i = 0; i < busDB.size(); i++) {
+            System.out.println("Autobus o numerze w te     " + busDB.get(i).getBusNumber());
+            System.out.println("Zatrzymuje sie na ulicach_******************************************");
+            for (int k = 0; k < busDB.get(i).getBusStopVariant2().size(); k++) {
+                System.out.println(k + "    " + busDB.get(i).getBusStopVariant2().get(k).getNameOfBasStop());
 
-
+            }
+            System.out.println("********************************************************************");
+        }*/
 
 
         /*pobranie pliku tabela.csv*/
