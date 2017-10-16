@@ -6,7 +6,7 @@ package com.infoshareacademy.zieloni.Model;
 
 /* Model do sciezek w folderze z rozkładami jazdy csv*/
 
-public class TimeTableCSVfile {
+public class PathToTimeTableCSVfile {
 
     private String Id;
     private int isValidFrom;

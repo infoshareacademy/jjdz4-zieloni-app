@@ -1,7 +1,7 @@
 package com.infoshareacademy.zieloni;
 
 import com.infoshareacademy.zieloni.Model.Bus;
-import com.infoshareacademy.zieloni.Model.TimeTableCSVfile;
+import com.infoshareacademy.zieloni.Model.PathToTimeTableCSVfile;
 import com.infoshareacademy.zieloni.Model.TimeTableRecordWithExtraInfo;
 import com.infoshareacademy.zieloni.Model.VariantCsvModel;
 
@@ -24,9 +24,9 @@ public class App {
 
 
         /* M.Stasiński: ArrayList ze wszystkimi scieżkami do katalogów i znajdujących się w nim plików z rozkładami jazdy */
-        ArrayList<TimeTableCSVfile> filePath = FilesLoader.addAllFilesPathToArrayList(folder);
+        ArrayList<PathToTimeTableCSVfile> filePath = FilesLoader.addAllFilesPathToArrayList(folder);
 
-        for (TimeTableCSVfile file : filePath) {
+        for (PathToTimeTableCSVfile file : filePath) {
 
             if (file.getIsValidFrom() < 20150908) {
 

@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class CSVFileFormater {
 
+
     public static ArrayList<TimeTableRecordWithExtraInfo> formatCSVToTimeTableWithExtraInfoRecords(ArrayList<String> stringArray) {
 
         ArrayList<TimeTableRecordWithExtraInfo> formattedRecordsArray = new ArrayList<TimeTableRecordWithExtraInfo>();
