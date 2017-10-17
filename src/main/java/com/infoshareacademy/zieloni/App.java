@@ -61,22 +61,29 @@ public class App {
         ImputStreet input= new ImputStreet();
         String street=input.getOdczyt();
         //System.out.println( input.getOdczyt().toString());
-
-        for (int i = 0; i <= busDB.size(); i++) {
+int i=0;
+        for (i = 0; i <= busDB.size(); i++) {
 
 
             //System.out.println("Autobus o numerze " + busDB.get(i).getBusNumber());
 
             //System.out.println("Zatrzymuje sie na ulicach"+  street);
-            for (int k = 0; k <= busDB.get(i).getBusStopVariant1().size(); k++) {
-                String busStop=(busDB.get(k).getBusStopVariant1().get(i).getNameOfBasStop());
-                if(street.equalsIgnoreCase(busStop) ){
+            int k = 0;
+            try{
+            for (k = 0; k <= busDB.get(i).getBusStopVariant1().size(); k++) {
+                String busStop = (busDB.get(k).getBusStopVariant1().get(i).getNameOfBasStop());
+                if (street.equalsIgnoreCase(busStop)) {
                     System.out.println(k + "    " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
                     System.out.println("Autobus o numerze " + busDB.get(i).getBusNumber());
                     break;
                 }
             }
-           // System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        } catch (IndexOutOfBoundsException e){
+                System.out.println(" numer i ="+i+", numer k = "+k);
+                //System.out.println(k + "    " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
+
+            }
+            // System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         }
 /*
         for (int i = 0; i < busDB.size(); i++) {
@@ -84,7 +91,6 @@ public class App {
             System.out.println("Zatrzymuje sie na ulicach_******************************************");
             for (int k = 0; k < busDB.get(i).getBusStopVariant2().size(); k++) {
                 System.out.println(k + "    " + busDB.get(i).getBusStopVariant2().get(k).getNameOfBasStop());
-
             }
             System.out.println("********************************************************************");
         }*/
