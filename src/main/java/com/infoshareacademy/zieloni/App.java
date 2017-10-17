@@ -1,8 +1,8 @@
 package com.infoshareacademy.zieloni;
 
 import com.infoshareacademy.zieloni.Model.Bus;
-import com.infoshareacademy.zieloni.Model.PathToTimeTableCSVfile;
-import com.infoshareacademy.zieloni.Model.TimeTableRecordWithExtraInfo;
+import com.infoshareacademy.zieloni.Model.PathToCSVModel;
+import com.infoshareacademy.zieloni.Model.InfoFromTabelaCsv;
 import com.infoshareacademy.zieloni.Model.VariantCsvModel;
 
 import java.io.File;
@@ -24,9 +24,9 @@ public class App {
 
 
         /* M.Stasiński: ArrayList ze wszystkimi scieżkami do katalogów i znajdujących się w nim plików z rozkładami jazdy */
-        ArrayList<PathToTimeTableCSVfile> filePath = FilesLoader.addAllFilesPathToArrayList(folder);
+        ArrayList<PathToCSVModel> filePath = FilesPathReader.addAllFilesPathToArrayList(folder);
 
-        for (PathToTimeTableCSVfile file : filePath) {
+        for (PathToCSVModel file : filePath) {
 
             if (file.getIsValidFrom() < 20150908) {
 
@@ -77,7 +77,7 @@ public class App {
 
         /*Wrzucenie poszczególnych linii tablei.csv do Array*/
         ArrayList<String> recordsArray = CSVReader.readCSVfileAndConvertToRecordsArray(tabelaCSVPath.toString());
-        ArrayList<TimeTableRecordWithExtraInfo> tabelaCSVArray = CSVFileFormater.formatCSVToTimeTableWithExtraInfoRecords(recordsArray);
+        ArrayList<InfoFromTabelaCsv> tabelaCSVArray = CSVFileFormater.formatCSVToTimeTableWithExtraInfoRecords(recordsArray);
 
         /*System.out.println(tabelaCSVArray.get(0).getId());
         System.out.println(tabelaCSVArray.get(0).getLineNr());

@@ -1,27 +1,48 @@
 package com.infoshareacademy.zieloni;
-/**
- * @author Michał Stasiński
- */
 
-import com.infoshareacademy.zieloni.Model.PathToTimeTableCSVfile;
+import com.infoshareacademy.zieloni.Model.PathToCSVModel;
 
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * read and store in array  paths to all csv files in resource/rozklady_2015-09-08_13.43.01
+ * checks all folders and subfolders
+ * Also check the categories which the file belongs (opis, wariant, kurs)
+ * <p>
+ *
+ * Ta klasa pobiera folder resource/rozklady_2015-09-08_13.43.01  i przeszukuje podfoldery
+ * Sprawdza do której kategorii należą pliki w podfolderach  tzn czy jest to opis, kurs, czy wariant
+ * Tworzy obiekt typu PathToCSVModel który zawiera absolutne ściezki do poszczególnych plików w danym folderze
+ *
+ *   @see PathToCSVModel
+ *
+ *  " Rozkład obowiązuje                        " + file.getIsValidFrom());
+ *  " Nazwa folderu :                           " + file.getFolderName());
+ *  " plik zakonczone na  kursy1.csv:           " + file.getCourse1());
+ *  " plik zakonczone na  kursy2.csv:           " + file.getCourse2());
+ *  " plik zakonczone na  opis1.csv:            " + file.getDescription1());
+ *  " plik zakonczone na  opis2.csv:            " + file.getDescription2());
+ *
+ *
+ * @author Michal Stasiński
+ */
 
+public class FilesPathReader {
 
-public class FilesLoader {
+    /**
+     * @param @param folder  it is  folder in resource/rozklady_2015-09-08_13.43.01
+     * @return array with paths to all csv files in folder
+     */
 
-   /*load csv files from folder and return ArrayList*/
+    public static ArrayList<PathToCSVModel> addAllFilesPathToArrayList(final File folder) {
 
-    public static ArrayList<PathToTimeTableCSVfile> addAllFilesPathToArrayList(final File folder) {
-
-        ArrayList<PathToTimeTableCSVfile> arrayWithFolderPath = new ArrayList<PathToTimeTableCSVfile>();
+        ArrayList<PathToCSVModel> arrayWithFolderPath = new ArrayList<PathToCSVModel>();
 
         /* lista folderów*/
         for (final File fileEntry : folder.listFiles()) {
 
-            PathToTimeTableCSVfile csvFile = new PathToTimeTableCSVfile();
+            PathToCSVModel csvFile = new PathToCSVModel();
             if (fileEntry.isDirectory()) {
 
                 csvFile.setFolderName(fileEntry.getAbsolutePath());

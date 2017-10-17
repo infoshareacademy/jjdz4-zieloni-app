@@ -1,27 +1,57 @@
 package com.infoshareacademy.zieloni.Model;
 
 /**
+ * Entity - data from tablela.csv
+ * Model dla informacji zawartych w pilku tabela.csv
+ *
  * @author Michal Stasiński
  */
 
+public class InfoFromTabelaCsv {
 
-/* Model dla pliku tabela.csv*/
-public class TimeTableRecordWithExtraInfo {
-
-    /*  - nazwa katalogu z rozkładem, o którym napisano w punkcie 2.*/
+    /**
+     * nazwa katalogu z rozkładem, o którym napisano w punkcie 2.
+     */
     private String id;
 
-    /*- nazwa linii - informacja o rodzaju środka transportu (autobus, tramwaj, autobus nocny, tramwaj nocny, tramwaj wodny)*/
+    /**
+     * nazwa linii - informacja o rodzaju środka transportu (autobus, tramwaj, autobus nocny, tramwaj nocny, tramwaj wodny)
+     */
     private String lineNr;
 
-    /*informacja o rodzaju środka transportu (autobus, tramwaj, autobus nocny, tramwaj nocny, tramwaj wodny)*/
+    /**
+     * informacja o rodzaju środka transportu (autobus, tramwaj, autobus nocny, tramwaj nocny, tramwaj wodny)
+     */
     private String typeOfTransport;
 
-    /* - sformatowany przy pomocy kodu HTML i CSS opis trasy przejazdu pojazdów realizujących zadania przewozowe linii*/
+    /*
+    * sformatowany przy pomocy kodu HTML i CSS opis trasy przejazdu pojazdów realizujących zadania przewozowe linii
+    */
     private String infoAboutRouteInHTMLformat;
 
     /*- data rozpoczęcia obowiązywania rozkładu*/
     private String isValidFrom;
+
+    /**
+     * data zakończenia obowiązywania rozkładu. Pole puste oznacza nieokreśloną datę zakończenia obowiązywania.
+     */
+    private String isValidTo;
+
+    /**
+     * informacja o tym, czy wszystkie kursy linii są wykonywane pojazdami niskopodłogowymi (wartość „1”) czy nie („0”)
+     */
+    private boolean LowRider;
+
+    /**
+     * następne dwie kolumny zawierają sformatowane przy pomocy kodu HTML i CSS uwagi do rozkładu
+     */
+    private String commentsHTML0;
+    private String commentsHTML1;
+    /**
+     * ostatnia kolumna zawiera informację o przewoźniku (lub przewoźnikach) realizującym kursy danej linii.
+     */
+    private String carrier;
+
 
     public String getTypeOfTransport() {
         return typeOfTransport;
@@ -38,19 +68,6 @@ public class TimeTableRecordWithExtraInfo {
     public void setLowRider(boolean lowRider) {
         LowRider = lowRider;
     }
-
-    /* - data zakończenia obowiązywania rozkładu. Pole puste oznacza nieokreśloną datę zakończenia obowiązywania.*/
-    private String isValidTo;
-
-    /* - informacja o tym, czy wszystkie kursy linii są wykonywane pojazdami niskopodłogowymi (wartość „1”) czy nie („0”)*/
-    private boolean LowRider;
-
-    /* - następne dwie kolumny zawierają sformatowane przy pomocy kodu HTML i CSS uwagi do rozkładu*/
-    private String commentsHTML0;
-    private String commentsHTML1;
-    /* - ostatnia kolumna zawiera informację o przewoźniku (lub przewoźnikach) realizującym kursy danej linii.*/
-    private String carrier;
-
 
     public String getId() {
         return id;
