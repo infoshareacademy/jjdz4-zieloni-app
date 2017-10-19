@@ -11,8 +11,9 @@ import java.util.ArrayList;
 
 public class SearchBus {
 
-    public static void search(String startBusStop, String stopBusStop) {
+    public static void search(String startBusStop, String finalBusStop) {
 
+        System.out.println(startBusStop);
         /* bieżący katalog roboczy uzyskujemy  przez System.getProperty("user.dir");*/
         final String currentDirectory = System.getProperty("user.dir");
 
@@ -62,16 +63,20 @@ public class SearchBus {
                 //  System.out.println(k + "    " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
                 //  System.out.println(busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
                 String busStop = busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop();
+                String idbusStop = busDB.get(i).getBusStopVariant1().get(k).getIdVariant();
+                if (busStop.equals(startBusStop)) {
+                    System.out.println(idbusStop + " Na ulicy " + busStop + " zatrzymuje sie autobus nr: " + busDB.get(i).getBusNumber() + " tam");
+                }
 
-
-                if (busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop().equals(startBusStop)) {
-                    System.out.println("Na ulicy " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop() + " zatrzymuje sie autobus nr: " + busDB.get(i).getBusNumber() + " tam");
+                if (busStop.equals(finalBusStop)) {
+                    System.out.println(idbusStop + " Na ulicy " + busStop + " zatrzymuje sie autobus nr: " + busDB.get(i).getBusNumber() + " tam");
                 }
             }
+
             for (int z = 0; z < busDB.get(i).getBusStopVariant2().size(); z++) {
                 //  System.out.println(k + "    " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
                 if (busDB.get(i).getBusStopVariant2().get(z).getNameOfBasStop().equals(startBusStop)) {
-                    System.out.println("Na ulłicy " + busDB.get(i).getBusStopVariant2().get(z).getNameOfBasStop() + " zatrzymuje sie autobus nr: " + busDB.get(i).getBusNumber() + " z powrotem");
+                    System.out.println("Na ulicy " + busDB.get(i).getBusStopVariant2().get(z).getNameOfBasStop() + " zatrzymuje sie autobus nr: " + busDB.get(i).getBusNumber() + " z powrotem");
                 }
             }
         }

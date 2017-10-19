@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * get ArrayList of records (that are lines of text from a csv file) bind with object entity
  * records are converted into strnig[] by split method
  * and then each value of string [] is set in the object entity
- *
+ * <p>
  * Klasa ma dwie metody w zależności od tego czy otrzymamy plik tabela.csv czy plik csv z folderu z rozkładami
  * Plik jest wprowadzony w postaci stringów znajdujacych sie w ArrayListcie
  * Każdy string jest zamieniany metodą split (usuwajaca separator) na String[] i przypisywany
@@ -17,7 +17,6 @@ import java.util.ArrayList;
  * VariantCsvDTO(tu potrzbujemy na razie tylko ulic ale moziwe że bedziemy to roszerzać)
  *
  * @author Michal Stasiński
- *
  */
 
 public class CSVFileParser {
@@ -61,19 +60,19 @@ public class CSVFileParser {
          * and set value to VariantCsvDTO object
          * @return array with VariantCsvDTO objects
          */
-        ArrayList<VariantCsvDTO> formattedRecordsArray = new ArrayList<VariantCsvDTO>();
+        ArrayList<VariantCsvDTO> parseRecordsArray = new ArrayList<VariantCsvDTO>();
 
         for (int i = 1; i < stringArray.size(); i++) {
             String[] records = stringArray.get(i).split("\\;");
-            VariantCsvDTO formattedRecord = new VariantCsvDTO();
-            formattedRecord.setIdVariant(records[0]);
-            formattedRecord.setFlags(records[1]);
-            formattedRecord.setNameOfTheMunicipality(records[2]);
-            formattedRecord.setNameOfBasStop(records[3]);
+            VariantCsvDTO parseRecord = new VariantCsvDTO();
+            parseRecord.setIdVariant(records[0]);
+            parseRecord.setFlags(records[1]);
+            parseRecord.setNameOfTheMunicipality(records[2]);
+            parseRecord.setNameOfBasStop(records[3]);
 
-            formattedRecordsArray.add(formattedRecord);
+            parseRecordsArray.add(parseRecord);
         }
-        return formattedRecordsArray;
+        return parseRecordsArray;
     }
 }
 

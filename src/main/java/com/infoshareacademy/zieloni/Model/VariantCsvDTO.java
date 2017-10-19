@@ -6,6 +6,7 @@ public class VariantCsvDTO {
     private String nameOfTheMunicipality;
     private String nameOfBasStop;
 
+
   /*
     private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow0;
     private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow1;
