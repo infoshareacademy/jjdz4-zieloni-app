@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class CSVReader {
     /**
-     * @param path an absolute URL giving the base location of the csv file (FilesPathReader)
+     * @param path an absolute URL giving the base location of the csv file (FilesPathFinder)
      * @return ArrayList of records - record is single line of text from a csv file
      */
     public static ArrayList<String> readCSVfileAndConvertToRecordsArray(String path) {
