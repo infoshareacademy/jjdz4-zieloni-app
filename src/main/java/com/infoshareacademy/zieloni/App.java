@@ -68,8 +68,8 @@ public class App {
 
 
 
-
-        System.out.println("Na ulicy "+ street+" możesz odjechać  w tę " );
+SerchBus nr=new SerchBus();
+        System.out.println("Na ulicy "+ street+ nr +" możesz odjechać  w tę " );
 
         int i=0;
         for (i = 0; i <= busDB.size(); i++) {
