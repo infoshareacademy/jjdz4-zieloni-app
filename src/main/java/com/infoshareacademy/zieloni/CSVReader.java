@@ -1,8 +1,6 @@
 package com.infoshareacademy.zieloni;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -21,8 +19,12 @@ public class CSVReader {
         ArrayList<String> records = new ArrayList<String>();
         String line = "";
         try {
-            BufferedReader br = new BufferedReader(new FileReader(path));
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    new FileInputStream(path), "UTF-8"));
+
+            //BufferedReader br = new BufferedReader(new FileReader(path));
             while ((line = br.readLine()) != null) {
+               // System.out.println(line.getBytes("UTF-8") );
                 records.add(line);
             }
         } catch (IOException e) {

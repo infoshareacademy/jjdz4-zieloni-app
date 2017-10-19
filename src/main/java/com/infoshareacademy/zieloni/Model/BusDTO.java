@@ -2,9 +2,7 @@ package com.infoshareacademy.zieloni.Model;
 
 import java.util.ArrayList;
 
-/**
- * @author Michal Stasiński
- */
+
 public class BusDTO {
 
     private String busNumber;
