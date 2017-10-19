@@ -18,7 +18,7 @@ public class App {
 
         // towrzenie bazy danych z wszystkimi autobusami
         ArrayList<Bus> busDB = new ArrayList<Bus>();
-
+        ArrayList<Bus> busDB1 = new ArrayList<Bus>();
 
         /* M.Stasiński: ArrayList ze wszystkimi scieżkami do katalogów i znajdujących się w nim plików z rozkładami jazdy */
         ArrayList<PathToTimeTableCSVfile> filePath = FilesLoader.addAllFilesPathToArrayList(folder);
@@ -43,11 +43,15 @@ public class App {
                 ArrayList<VariantCsvModel> variant2 = CSVFileFormater.formatCSVBus(variant2RecordArray);
 
                 Bus bus = new Bus();
+                Bus bus1 = new Bus();
 
                 //TODO dodać variant 2
                 bus.setBusStopVariant1(variant1);
                 bus.setBusNumber(file.getId().split("_")[0]);
                 busDB.add(bus);
+                bus1.setBusStopVariant2(variant2);
+                bus1.setBusNumber(file.getId().split("_")[0]);
+                busDB1.add(bus1);
 
             }
 
@@ -57,11 +61,17 @@ public class App {
         1) stworzyć klase np SearchBus do wyszukania autobusów ktore zatrzymuja sie na danych przystankach
         2)  metoda klasy otrzymuje (przystanek poczatkowy , przytanek koncowy)  zwraca array autobusów zawierajacych te ulice
         */
-
+        System.out.println("Z jakiej ulicy jest odjazd" );
         ImputStreet input= new ImputStreet();
         String street=input.getOdczyt();
         //System.out.println( input.getOdczyt().toString());
-int i=0;
+
+
+
+
+        System.out.println("Na ulicy "+ street+" możesz odjechać  w tę " );
+
+        int i=0;
         for (i = 0; i <= busDB.size(); i++) {
 
 
@@ -71,20 +81,54 @@ int i=0;
             int k = 0;
             try{
             for (k = 0; k <= busDB.get(i).getBusStopVariant1().size(); k++) {
-                String busStop = (busDB.get(k).getBusStopVariant1().get(i).getNameOfBasStop());
-                if (street.equalsIgnoreCase(busStop)) {
-                    System.out.println(k + "    " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
+                String busStop = (busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
+                // String busStop = (busDB.get(k).getBusStopVariant1().get(i).getNameOfBasStop());
+                if (busStop.equalsIgnoreCase(street)) {
+                    //System.out.println("    " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
                     System.out.println("Autobus o numerze " + busDB.get(i).getBusNumber());
+                    k=0;
                     break;
                 }
             }
         } catch (IndexOutOfBoundsException e){
-                System.out.println(" numer i ="+i+", numer k = "+k);
+               // System.out.println(" numer i ="+i+", numer k = "+k);
                 //System.out.println(k + "    " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
 
             }
             // System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         }
+        System.out.println("********************************************************************");
+
+
+        System.out.println("Na ulicy "+ street+" możesz odjechać  w " );
+
+        int j=0;
+        for (j = 0; j <= busDB1.size(); j++) {
+
+
+            //System.out.println("Autobus o numerze " + busDB.get(i).getBusNumber());
+
+            //System.out.println("Zatrzymuje sie na ulicach"+  street);
+            int k = 0;
+            try{
+                for (k = 0; k <= busDB1.get(j).getBusStopVariant2().size(); k++) {
+                    String busStop2 = (busDB1.get(j).getBusStopVariant2().get(k).getNameOfBasStop());
+                    // String busStop = (busDB.get(k).getBusStopVariant1().get(i).getNameOfBasStop());
+                    if (busStop2.equalsIgnoreCase(street)) {
+                        //System.out.println("    " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
+                        System.out.println("Autobus o numerze " + busDB1.get(j).getBusNumber());
+                        k=0;
+                        break;
+                    }
+                }
+            } catch (IndexOutOfBoundsException e){
+                // System.out.println(" numer i ="+i+", numer k = "+k);
+                //System.out.println(k + "    " + busDB.get(i).getBusStopVariant1().get(k).getNameOfBasStop());
+
+            }
+            // System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        }
+        System.out.println("********************************************************************");
 /*
         for (int i = 0; i < busDB.size(); i++) {
             System.out.println("Autobus o numerze w te     " + busDB.get(i).getBusNumber());
