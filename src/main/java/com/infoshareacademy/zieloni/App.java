@@ -10,7 +10,18 @@ public class App {
     public static void main(String[] args) {
         System.setProperty("file.encoding", "UTF-8");
 
-        SearchBus.search("Uniwersytet Medyczny (n/ż)", "Jaśkowa Dolina (n/ż)");
+        SearchBus busResearcher = new SearchBus();
+
+        String starBusStop = "Jaśkowa Dolina (n/ż)";
+        String endBustop = "Uniwersytet Medyczny (n/ż)";
+        System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);
+        busResearcher.search(starBusStop, endBustop);
+
+        starBusStop = "Zamenhofa";
+        endBustop = "Uczniowska";
+        System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);
+        busResearcher.search(starBusStop, endBustop);
+
 
 
         /*---------------------------pobranie pliku tabela.csv   --moze sie to przyda może nie*/
