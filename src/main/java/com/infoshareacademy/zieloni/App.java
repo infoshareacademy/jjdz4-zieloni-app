@@ -9,6 +9,7 @@ public class App {
 
     public static void main(String[] args) {
         System.setProperty("file.encoding", "UTF-8");
+
         SearchBus.search("Uniwersytet Medyczny (n/ż)", "Jaśkowa Dolina (n/ż)");
 
 
