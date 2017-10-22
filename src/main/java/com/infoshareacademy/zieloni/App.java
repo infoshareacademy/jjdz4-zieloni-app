@@ -14,6 +14,8 @@ public class App
     public static void main( String[] args ) throws ParseException, ParserException, IOException {
         Events events = new Events();
         events.loadEvents();
-        System.out.println(events.getEvents().size());
+
+        Menu.displayEvents(events);
+
     }
 }

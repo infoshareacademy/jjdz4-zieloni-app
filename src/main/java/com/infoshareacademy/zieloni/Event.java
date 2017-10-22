@@ -16,4 +16,23 @@ public class Event {
         this.location = location;
         this.summary = summary;
     }
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
 }
