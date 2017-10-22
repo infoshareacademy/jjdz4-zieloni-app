@@ -9,6 +9,8 @@ public class BusDTO {
     private ArrayList<VariantCsvDTO> busStopVariant1;
     private ArrayList<VariantCsvDTO> busStopVariant2;
 
+
+
     /*private ArrayList<CouresDTO> typeOfCourse1;
     private ArrayList<CouresDTO> typeOfCourse2;*/
 

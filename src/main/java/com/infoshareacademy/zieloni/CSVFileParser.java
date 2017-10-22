@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * and then each value of string [] is set in the object entity
  * <p>
  * Klasa ma dwie metody w zależności od tego czy otrzymamy plik tabela.csv czy plik csv z folderu z rozkładami
- * Plik jest wprowadzony w postaci stringów znajdujacych sie w ArrayListcie
+ * Plik jest wprowadzony w postaci stringów znajdujacych sie w ArrayLiscie
  * Każdy string jest zamieniany metodą split (usuwajaca separator) na String[] i przypisywany
- * w zalezności od tego czy to tabela csv czy inny plik csw do obiektów ExtraTableCsvDTO
+ * w zalezności od tego czy to tabela csv czy inny plik csw do obiektów ExtraTableCsvDTO lub
  * VariantCsvDTO(tu potrzbujemy na razie tylko ulic ale moziwe że bedziemy to roszerzać)
  *
  * @author Michal Stasiński
@@ -60,16 +60,26 @@ public class CSVFileParser {
          * and set value to VariantCsvDTO object
          * @return array with VariantCsvDTO objects
          */
-        ArrayList<VariantCsvDTO> parseRecordsArray = new ArrayList<VariantCsvDTO>();
+        ArrayList<VariantCsvDTO> parseRecordsArray = new ArrayList<>();
 
         for (int i = 1; i < stringArray.size(); i++) {
             String[] records = stringArray.get(i).split("\\;");
+
             VariantCsvDTO parseRecord = new VariantCsvDTO();
+
             parseRecord.setIdVariant(records[0]);
             parseRecord.setFlags(records[1]);
-            parseRecord.setNameOfTheMunicipality(records[2]);
+            parseRecord.setNameOfTheCommunity(records[2]);
             parseRecord.setNameOfBasStop(records[3]);
+            ArrayList<String> time_X0XX_Array = new ArrayList<>();
 
+            for (int j = 4; j < records.length; j++) {
+               // System.out.println(records[j]);
+                time_X0XX_Array.add(records[j]);
+            }
+
+            parseRecord.setTimes_X0_XX(time_X0XX_Array);
+           // System.out.println(timeX0_XX_Array.size());
             parseRecordsArray.add(parseRecord);
         }
         return parseRecordsArray;

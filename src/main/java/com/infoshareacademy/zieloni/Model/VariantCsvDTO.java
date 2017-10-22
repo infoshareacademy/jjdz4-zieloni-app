@@ -1,20 +1,22 @@
 package com.infoshareacademy.zieloni.Model;
 
+import java.util.ArrayList;
+
 public class VariantCsvDTO {
+
     private String idVariant;
     private String flags;
-    private String nameOfTheMunicipality;
+    private String nameOfTheCommunity;
     private String nameOfBasStop;
+    private ArrayList<String> times_X0_XX;
 
+    public ArrayList<String> getTimes_X0_XX() {
+        return times_X0_XX;
+    }
 
-  /*
-    private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow0;
-    private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow1;
-    private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow2;
-    private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow3;
-    private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow4;
-    private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow5;
-    private String theColumnsInMinutesTravelTimeFromTheFirstLastNonBlankRow6;*/
+    public void setTimes_X0_XX(ArrayList<String> timeX0_XX_Array) {
+        this.times_X0_XX = times_X0_XX;
+    }
 
     public String getIdVariant() {
         return idVariant;
@@ -32,12 +34,12 @@ public class VariantCsvDTO {
         this.flags = flags;
     }
 
-    public String getNameOfTheMunicipality() {
-        return nameOfTheMunicipality;
+    public String getNameOfTheCommunity() {
+        return nameOfTheCommunity;
     }
 
-    public void setNameOfTheMunicipality(String nameOfTheMunicipality) {
-        this.nameOfTheMunicipality = nameOfTheMunicipality;
+    public void setNameOfTheCommunity(String nameOfTheCommunity) {
+        this.nameOfTheCommunity = nameOfTheCommunity;
     }
 
     public String getNameOfBasStop() {
