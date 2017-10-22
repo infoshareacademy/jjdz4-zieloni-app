@@ -51,5 +51,8 @@ public class App
         System.out.println(tabelaCSVArray.get(0).getIsValidFrom());
         System.out.println(tabelaCSVArray.get(0).isLowRider());*/
 
+
+        Menu.displayEvents(events);
+
     }
 }
