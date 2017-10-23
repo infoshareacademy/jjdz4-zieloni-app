@@ -8,15 +8,18 @@ public class VariantCsvDTO {
     private String flags;
     private String nameOfTheCommunity;
     private String nameOfBasStop;
-    private ArrayList<String> times_X0_XX;
+    private ArrayList<String> times_X0_XX = new ArrayList<>();
+
 
     public ArrayList<String> getTimes_X0_XX() {
         return times_X0_XX;
     }
 
-    public void setTimes_X0_XX(ArrayList<String> timeX0_XX_Array) {
+    public void setTimes_X0_XX(ArrayList<String> times_X0_XX) {
         this.times_X0_XX = times_X0_XX;
     }
+
+
 
     public String getIdVariant() {
         return idVariant;

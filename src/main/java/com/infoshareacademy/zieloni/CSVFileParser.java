@@ -74,12 +74,12 @@ public class CSVFileParser {
             ArrayList<String> time_X0XX_Array = new ArrayList<>();
 
             for (int j = 4; j < records.length; j++) {
-               // System.out.println(records[j]);
                 time_X0XX_Array.add(records[j]);
             }
 
+            //System.out.println( time_X0XX_Array);
             parseRecord.setTimes_X0_XX(time_X0XX_Array);
-           // System.out.println(timeX0_XX_Array.size());
+           // System.out.println( parseRecord.getTimes_X0_XX());
             parseRecordsArray.add(parseRecord);
         }
         return parseRecordsArray;
