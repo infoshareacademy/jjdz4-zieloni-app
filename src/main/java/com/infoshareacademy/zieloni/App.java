@@ -21,9 +21,6 @@ public class App {
         System.out.println(events.getEvents().size());
         // Menu.displayEvents(events);
 
-
-        //System.setProperty("file.encoding", "UTF-8");
-
         String starBusStop = "Jaśkowa Dolina (n/ż)";
         String endBustop = "Uniwersytet Medyczny (n/ż)";
         System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);

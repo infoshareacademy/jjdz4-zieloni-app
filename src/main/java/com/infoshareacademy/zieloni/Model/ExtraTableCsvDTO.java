@@ -1,5 +1,8 @@
 package com.infoshareacademy.zieloni.Model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Entity - data from tablela.csv
  * Model dla informacji zawartych w pilku tabela.csv
@@ -12,126 +15,67 @@ public class ExtraTableCsvDTO {
     /**
      * nazwa katalogu z rozkładem, o którym napisano w punkcie 2.
      */
+    @Getter
+    @Setter
     private String id;
 
     /**
      * nazwa linii - informacja o rodzaju środka transportu (autobus, tramwaj, autobus nocny, tramwaj nocny, tramwaj wodny)
      */
+    @Getter
+    @Setter
+
     private String lineNr;
 
     /**
      * informacja o rodzaju środka transportu (autobus, tramwaj, autobus nocny, tramwaj nocny, tramwaj wodny)
      */
+    @Getter
+    @Setter
     private String typeOfTransport;
 
     /*
     * sformatowany przy pomocy kodu HTML i CSS opis trasy przejazdu pojazdów realizujących zadania przewozowe linii
     */
+    @Getter
+    @Setter
     private String infoAboutRouteInHTMLformat;
 
     /*- data rozpoczęcia obowiązywania rozkładu*/
+    @Getter
+    @Setter
     private String isValidFrom;
 
     /**
      * data zakończenia obowiązywania rozkładu. Pole puste oznacza nieokreśloną datę zakończenia obowiązywania.
      */
+    @Getter
+    @Setter
     private String isValidTo;
 
     /**
      * informacja o tym, czy wszystkie kursy linii są wykonywane pojazdami niskopodłogowymi (wartość „1”) czy nie („0”)
      */
+    @Getter
+    @Setter
     private boolean LowRider;
 
     /**
      * następne dwie kolumny zawierają sformatowane przy pomocy kodu HTML i CSS uwagi do rozkładu
      */
+    @Getter
+    @Setter
     private String commentsHTML0;
+
+    @Getter
+    @Setter
     private String commentsHTML1;
     /**
      * ostatnia kolumna zawiera informację o przewoźniku (lub przewoźnikach) realizującym kursy danej linii.
      */
+
+    @Getter
+    @Setter
     private String carrier;
-
-
-    public String getTypeOfTransport() {
-        return typeOfTransport;
-    }
-
-    public void setTypeOfTransport(String typeOfTransport) {
-        this.typeOfTransport = typeOfTransport;
-    }
-
-    public boolean isLowRider() {
-        return LowRider;
-    }
-
-    public void setLowRider(boolean lowRider) {
-        LowRider = lowRider;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getLineNr() {
-        return lineNr;
-    }
-
-    public void setLineNr(String lineNr) {
-        this.lineNr = lineNr;
-    }
-
-    public String getInfoAboutRouteInHTMLformat() {
-        return infoAboutRouteInHTMLformat;
-    }
-
-    public void setInfoAboutRouteInHTMLformat(String infoAboutRouteInHTMLformat) {
-        this.infoAboutRouteInHTMLformat = infoAboutRouteInHTMLformat;
-    }
-
-    public String getIsValidFrom() {
-        return isValidFrom;
-    }
-
-    public void setIsValidFrom(String isValidFrom) {
-        this.isValidFrom = isValidFrom;
-    }
-
-    public String getIsValidTo() {
-        return isValidTo;
-    }
-
-    public void setIsValidTo(String isValidTo) {
-        this.isValidTo = isValidTo;
-    }
-
-    public String getCommentsHTML0() {
-        return commentsHTML0;
-    }
-
-    public void setCommentsHTML0(String commentsHTML0) {
-        this.commentsHTML0 = commentsHTML0;
-    }
-
-    public String getCommentsHTML1() {
-        return commentsHTML1;
-    }
-
-    public void setCommentsHTML1(String commentsHTML1) {
-        this.commentsHTML1 = commentsHTML1;
-    }
-
-    public String getCarrier() {
-        return carrier;
-    }
-
-    public void setCarrier(String carrier) {
-        this.carrier = carrier;
-    }
-
 
 }

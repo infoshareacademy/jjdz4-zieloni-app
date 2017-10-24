@@ -20,6 +20,9 @@ public class SearchBus {
         }
     }
 
+
+
+
     private static void checkBusForVaraint(BusDTO busDTO, ArrayList<VariantCsvDTO> busStopVariant, String start_bs, String end_bs, String info) {
 
         int find_startBusStop_index = -1;
@@ -30,7 +33,7 @@ public class SearchBus {
 
             String busStop = busStopVariant.get(z).getNameOfBasStop();
 
-            System.out.println(busStopVariant.get(z).getNameOfBasStop());
+           // System.out.println(busStopVariant.get(z).getTimes_X0_XX());
 
 
             if (busStop.equals(start_bs)) {
