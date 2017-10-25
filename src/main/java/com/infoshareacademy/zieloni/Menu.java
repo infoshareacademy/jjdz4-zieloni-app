@@ -1,5 +1,7 @@
 package com.infoshareacademy.zieloni;
 
+import java.time.LocalDate;
+
 class Menu {
 
     /**
@@ -35,4 +37,16 @@ class Menu {
         }
     }
 
+    /**
+     * Display
+     *
+     * @param events - kolekcja wydarzeń z których wyświetlamy daty wydarzeń
+     */
+    static void displayDatesWithEvents(Events events) {
+        int i = 1;
+        System.out.println("Masz zaplanowane wydarzenia w dniach:");
+        for (LocalDate ld : events.getEventDays()) {
+            System.out.println(i++ + ". " + ld + " (" + ld.getDayOfWeek() + ")");
+        }
+    }
 }

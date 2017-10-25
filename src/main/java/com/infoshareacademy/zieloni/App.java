@@ -8,6 +8,7 @@ import java.text.ParseException;
 import com.infoshareacademy.zieloni.Model.ExtraTableCsvDTO;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -18,14 +19,16 @@ public class App {
     public static void main(String[] args) throws ParseException, ParserException, IOException {
         Events events = new Events();
         events.loadEvents();
-        System.out.println(events.getEvents().size());
-        // Menu.displayEvents(events);
 
-        String starBusStop = "Jaśkowa Dolina (n/ż)";
-        String endBustop = "Uniwersytet Medyczny (n/ż)";
-        System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);
+        Menu.clearConsole();
+        Menu.displayEvents(events);
+        Menu.displayDatesWithEvents(events);
 
-        SearchBus.search(starBusStop, endBustop);
+//        String starBusStop = "Jaśkowa Dolina (n/ż)";
+//        String endBustop = "Uniwersytet Medyczny (n/ż)";
+//        System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);
+//
+//        SearchBus.search(starBusStop, endBustop);
 
         /*---------------------------pobranie pliku tabela.csv   --moze sie to przyda może nie*/
         /*final String currentDirectory = System.getProperty("user.dir");

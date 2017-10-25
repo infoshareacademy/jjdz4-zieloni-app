@@ -3,7 +3,6 @@ package com.infoshareacademy.zieloni;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
-import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.ComponentList;
 import net.fortuna.ical4j.model.Property;
 import net.fortuna.ical4j.model.component.CalendarComponent;
@@ -11,16 +10,30 @@ import net.fortuna.ical4j.model.component.CalendarComponent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 class Events {
+
+
+    private ArrayList<Event> events = new ArrayList<>();
+
+    /**
+     * Set keeps dates with Events
+     */
+    private Set<LocalDate> eventDays = new HashSet<>();
+
     ArrayList<Event> getEvents() {
         return events;
     }
 
-    private ArrayList<Event> events = new ArrayList<>();
+    Set<LocalDate> getEventDays() {
+        return eventDays;
+    }
 
     void loadEvents() throws IOException, ParserException, ParseException {
         FileInputStream icalFile = new FileInputStream("kalendarz.ics");
@@ -39,10 +52,9 @@ class Events {
     }
 
     private void add(String startTime, String endTime, String uid, String location, String summary) throws ParseException {
-        events.add(new Event(LocalDateTime.parse(startTime, DateTimeFormatter.ofPattern("yyyyMMddHHmmss")),
-                LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("yyyyMMddHHmmss")),
-                uid,
-                location,
-                summary));
+        LocalDateTime sT = LocalDateTime.parse(startTime, DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        LocalDateTime eT = LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        events.add(new Event(sT, eT, uid, location, summary));
+        eventDays.add(sT.toLocalDate()); // Zbieramy daty w których pojawiają się Wydarzenia
     }
 }
