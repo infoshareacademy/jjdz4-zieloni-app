@@ -24,8 +24,8 @@ public class Menu {
             for (Event event: events.getEvents()) {
                 System.out.println("-----------------------------------------------------");
                 System.out.println("Wydarzenie nr: " + i);
-                System.out.println("Początek wydarzenia: \t" + event.getStartTime());
-                System.out.println("Koniec wydarzenia: \t" + event.getEndTime());
+                System.out.println("Początek wydarzenia: \t" + event.getStartTime().toString().replace("T", ", "));
+                System.out.println("Koniec wydarzenia: \t" + event.getEndTime().toString().replace("T", ", "));
                 System.out.println("Miejsce wydarzenia: \t" + event.getLocation());
                 System.out.println("Opis wydarzenia: \t" + event.getSummary());
                 i++;
