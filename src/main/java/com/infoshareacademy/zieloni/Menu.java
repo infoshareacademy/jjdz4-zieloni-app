@@ -1,11 +1,11 @@
 package com.infoshareacademy.zieloni;
 
-public class Menu {
+class Menu {
 
     /**
      * Clears linux console
      */
-    public static void clearConsole() {
+    static void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
@@ -15,7 +15,7 @@ public class Menu {
      *
      * @param events collection of events to display
      */
-    public static void displayEvents(Events events) {
+    static void displayEvents(Events events) {
         if (events.getEvents().size() != 0) {
 
             System.out.println("Znaleziono: " + events.getEvents().size() + " wydarzeń:");
