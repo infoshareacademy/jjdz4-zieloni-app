@@ -1,5 +1,8 @@
 package com.infoshareacademy.zieloni.Model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Entity - path to files in folder rozklady_2015-09-08_13.43.01
  * Model dla scieżki która prowdzi do poszczególnych pilków w folderze rozklady_2015-09-08_13.43.01
@@ -8,104 +11,53 @@ package com.infoshareacademy.zieloni.Model;
  */
 
 
-
 public class PathToCsvDTO {
 
+    /**
+     * Age of the person. Water is wet.
+     *
+     * @param age New value for this person's age. Sky is blue.
+     * @return The current value of this person's age. Circles are round.
+     */
+    @Getter
+    @Setter
     private String Id;
+
+    @Getter
+    @Setter
     private int isValidFrom;
+
+    @Getter
+    @Setter
     private int isValidTo;
 
+    @Getter
+    @Setter
     private String folderName;
 
+    @Getter
+    @Setter
     private String course1;
+
+    @Getter
+    @Setter
     private String course2;
 
+    @Getter
+    @Setter
     private String description1;
+
+    @Getter
+    @Setter
     private String description2;
 
+    @Getter
+    @Setter
     private String variant1;
+
+    @Getter
+    @Setter
     private String variant2;
 
-
-    public String getId() {
-        return Id;
-    }
-
-    public int getIsValidFrom() {
-        int data = Integer.parseInt(getId().split("_")[1]);
-        return data;
-    }
-
-    public void setIsValidFrom(int isValidFrom) {
-        this.isValidFrom = isValidFrom;
-    }
-
-    public int getIsValidTo() {
-        return isValidTo;
-    }
-
-    public void setIsValidTo(int isValidTo) {
-        this.isValidTo = isValidTo;
-    }
-
-    public void setId(String id) {
-        Id = id;
-    }
-
-    public String getFolderName() {
-        return folderName;
-    }
-
-    public void setFolderName(String folderName) {
-        this.folderName = folderName;
-    }
-
-    public String getCourse1() {
-        return course1;
-    }
-
-    public void setCourse1(String course1) {
-        this.course1 = course1;
-    }
-
-    public String getCourse2() {
-        return course2;
-    }
-
-    public void setCourse2(String course2) {
-        this.course2 = course2;
-    }
-
-    public String getDescription1() {
-        return description1;
-    }
-
-    public void setDescription1(String description1) {
-        this.description1 = description1;
-    }
-
-    public String getDescription2() {
-        return description2;
-    }
-
-    public void setDescription2(String description2) {
-        this.description2 = description2;
-    }
-
-    public String getVariant1() {
-        return variant1;
-    }
-
-    public void setVariant1(String variant1) {
-        this.variant1 = variant1;
-    }
-
-    public String getVariant2() {
-        return variant2;
-    }
-
-    public void setVariant2(String variant2) {
-        this.variant2 = variant2;
-    }
 
 }

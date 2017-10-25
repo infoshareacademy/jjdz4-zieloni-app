@@ -45,9 +45,7 @@ public class CSVFileParser {
             parseRecord.setCommentsHTML0(records[7]);
             parseRecord.setCommentsHTML1(records[8]);
             parseRecord.setCarrier(records[9]);
-
             parseRecordsArray.add(parseRecord);
-
         }
 
         return parseRecordsArray;

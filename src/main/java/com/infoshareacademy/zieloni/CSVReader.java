@@ -1,6 +1,9 @@
 package com.infoshareacademy.zieloni;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +21,8 @@ public class CSVReader {
     public static ArrayList<String> readCSVfileAndConvertToRecordsArray(String path) {
         ArrayList<String> records = new ArrayList<String>();
         String line = "";
+
+
         try {
 
             /*kodowanie polskich znaków*/
@@ -30,6 +35,7 @@ public class CSVReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return records;
     }
 }
