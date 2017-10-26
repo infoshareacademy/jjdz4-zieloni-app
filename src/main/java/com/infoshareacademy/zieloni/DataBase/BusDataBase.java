@@ -4,6 +4,7 @@ import com.infoshareacademy.zieloni.CSVFileParser;
 import com.infoshareacademy.zieloni.CSVReader;
 import com.infoshareacademy.zieloni.FilesPathFinder;
 import com.infoshareacademy.zieloni.Model.BusDTO;
+import com.infoshareacademy.zieloni.Model.CourseDTO;
 import com.infoshareacademy.zieloni.Model.PathToCsvDTO;
 import com.infoshareacademy.zieloni.Model.VariantCsvDTO;
 
@@ -39,15 +40,25 @@ public class BusDataBase {
                 System.out.println("plik zakonczone na  opis1.csv:            " + file.getDescription1());
                 System.out.println("plik zakonczone na  opis2.csv:            " + file.getDescription2());*/
 
+           // System.out.println("ID :                                      " + file.getId());
+
             ArrayList<String> variant1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant1());
-            ArrayList<VariantCsvDTO> variant1 = CSVFileParser.formatCSVBus(variant1RecordArray);
+            ArrayList<VariantCsvDTO> variant1 = CSVFileParser.formatVarinatCSV(variant1RecordArray);
+            ArrayList<String> course1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getCourse1());
+            ArrayList<CourseDTO> course1 = CSVFileParser.formatCourseCSV(course1RecordArray);
+
             ArrayList<String> variant2RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant2());
-            ArrayList<VariantCsvDTO> variant2 = CSVFileParser.formatCSVBus(variant2RecordArray);
+            ArrayList<VariantCsvDTO> variant2 = CSVFileParser.formatVarinatCSV(variant2RecordArray);
+            ArrayList<String> course2RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getCourse2());
+            ArrayList<CourseDTO> course2 = CSVFileParser.formatCourseCSV(course2RecordArray);
 
             BusDTO bus = new BusDTO();
 
             bus.setBusStopVariant1(variant1);
             bus.setBusStopVariant2(variant2);
+            bus.setCourseVariant1(course1);
+            bus.setCourseVariant2(course2);
+
             bus.setBusNumber(file.getId().split("_")[0]);
             busDB.add(bus);
             // }

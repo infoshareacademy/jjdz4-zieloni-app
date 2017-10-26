@@ -5,14 +5,7 @@ import net.fortuna.ical4j.data.ParserException;
 import java.io.IOException;
 import java.text.ParseException;
 
-import com.infoshareacademy.zieloni.Model.ExtraTableCsvDTO;
 
-import java.io.File;
-import java.util.ArrayList;
-
-/**
- * Hello world!
- */
 public class App {
 
     public static void main(String[] args) throws ParseException, ParserException, IOException {
@@ -26,6 +19,10 @@ public class App {
         System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);
 
         SearchBus.search(starBusStop, endBustop);
+
+
+
+
 
         /*---------------------------pobranie pliku tabela.csv   --moze sie to przyda może nie*/
         /*final String currentDirectory = System.getProperty("user.dir");
