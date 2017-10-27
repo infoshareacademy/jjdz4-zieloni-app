@@ -1,5 +1,6 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.Model.CourseDTO;
 import com.infoshareacademy.zieloni.Model.ExtraTableCsvDTO;
 import com.infoshareacademy.zieloni.Model.VariantCsvDTO;
 
@@ -51,13 +52,22 @@ public class CSVFileParser {
         return parseRecordsArray;
     }
 
-    public static ArrayList<VariantCsvDTO> formatCSVBus(ArrayList<String> stringArray) {
+    public static ArrayList<VariantCsvDTO> formatVarinatCSV(ArrayList<String> stringArray) {
 
         /**
          * @param this method get other files csv (converted to ArrayList<String>) from resource\rozklady_2015-09-08_13.43.01
          * and set value to VariantCsvDTO object
          * @return array with VariantCsvDTO objects
          */
+
+        ArrayList<ArrayList<String>> timeX0_XX = new ArrayList<>();
+        String[] lengthRecord = stringArray.get(0).split("\\;");
+
+        for (int i = 4; i < lengthRecord.length; i++) {
+            timeX0_XX.add(new ArrayList<String>());
+        }
+
+
         ArrayList<VariantCsvDTO> parseRecordsArray = new ArrayList<>();
 
         for (int i = 1; i < stringArray.size(); i++) {
@@ -69,18 +79,45 @@ public class CSVFileParser {
             parseRecord.setFlags(records[1]);
             parseRecord.setNameOfTheCommunity(records[2]);
             parseRecord.setNameOfBasStop(records[3]);
-            ArrayList<String> time_X0XX_Array = new ArrayList<>();
 
-            for (int j = 4; j < records.length; j++) {
-                time_X0XX_Array.add(records[j]);
+            for (int j = 0; j < lengthRecord.length; j++) {
+                try {
+
+                    timeX0_XX.get(j).add(records[j + 4]);
+
+                } catch (Exception e) {
+
+                }
             }
-
-            //System.out.println( time_X0XX_Array);
-            parseRecord.setTimes_X0_XX(time_X0XX_Array);
-           // System.out.println( parseRecord.getTimes_X0_XX());
+            parseRecord.setTimes_X0_XX(timeX0_XX);
             parseRecordsArray.add(parseRecord);
         }
+
         return parseRecordsArray;
     }
+
+    public static ArrayList<CourseDTO> formatCourseCSV(ArrayList<String> stringArray) {
+
+
+        ArrayList<CourseDTO> parseRecordsArray = new ArrayList<>();
+
+        for (int i = 1; i < stringArray.size(); i++) {
+            String[] records = stringArray.get(i).split("\\;");
+            CourseDTO parseRecord = new CourseDTO();
+            try {
+
+                parseRecord.setDepartureTime(records[0]);
+                parseRecord.setTimeBetweenStops_X0_XX(records[1]);
+            } catch (Exception e) {
+                System.out.println("Brakuje rekordu dla " + i);
+            }
+
+
+            parseRecordsArray.add(parseRecord);
+        }
+
+        return parseRecordsArray;
+    }
+
 }
 

@@ -21,10 +21,7 @@ public class VariantCsvDTO {
     private String nameOfBasStop;
     @Getter
     @Setter
-    private ArrayList<String> times_X0_XX = new ArrayList<>();
+    private ArrayList<ArrayList<String>> times_X0_XX = new ArrayList<ArrayList<String>>();
 }
-
-
-
 
 
