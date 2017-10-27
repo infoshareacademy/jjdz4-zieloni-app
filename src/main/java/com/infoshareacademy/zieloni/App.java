@@ -12,16 +12,7 @@ public class App {
         Events events = new Events();
         events.loadEvents();
         System.out.println(events.getEvents().size());
-        // Menu.displayEvents(events);
-
-        String starBusStop = "Jaśkowa Dolina (n/ż)";
-        String endBustop = "Uniwersytet Medyczny (n/ż)";
-        System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);
-
-        SearchBus.search(starBusStop, endBustop);
-
-
-
+        Menu.displayEvents(events);
 
 
         /*---------------------------pobranie pliku tabela.csv   --moze sie to przyda może nie*/

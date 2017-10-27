@@ -58,10 +58,8 @@ public class BusDataBase {
             bus.setBusStopVariant2(variant2);
             bus.setCourseVariant1(course1);
             bus.setCourseVariant2(course2);
-
             bus.setBusNumber(file.getId().split("_")[0]);
             busDB.add(bus);
-            // }
         }
 
         return busDB;

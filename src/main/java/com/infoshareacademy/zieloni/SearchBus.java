@@ -44,11 +44,18 @@ public class SearchBus {
 
 
             System.out.println("zobacz autobus nr : " + busDTO.getBusNumber() + "    " + info);
+            int variantX0_XX = 0;
             if (info.equals("dla wariantu 1")) {
                 for (int i = 0; i < busDTO.getCourseVariant1().size(); i++) {
 
                     int minutes = 0;
-                    int variantX0_XX = Integer.valueOf(busDTO.getCourseVariant1().get(i).getTimeBetweenStops_X0_XX().split("X")[1]);
+                    try {
+                        variantX0_XX = Integer.valueOf(busDTO.getCourseVariant1().get(i).getTimeBetweenStops_X0_XX().split("X")[1]);
+                    } catch (Exception e) {
+                        //System.out.println("--------Nagłowek-------");
+                        variantX0_XX = 0;
+                    }
+
                     for (int j = 0; j < find_startBusStop_index; j++) {
 
                         //System.out.println(busStopVariant.get(busStopV).getTimes_X0_XX().get(vart).size());
@@ -58,25 +65,25 @@ public class SearchBus {
                             } else {
                                 minutes += Integer.valueOf(busStopVariant.get(busStopV).getTimes_X0_XX().get(variantX0_XX).get(j));
                             }
-                        }catch (Exception e){
-                            System.out.println("Wystąpił  problem z sumowaniem czasu przejazdu");
+                        } catch (Exception e) {
+                            //System.out.println("Wystąpił  problem z sumowaniem czasu przejazdu");
                         }
                     }
-                   // System.out.println(vart);
-                   // System.out.println(minutes);
-                  //  System.out.println(busStopVariant.get(busStopV).getTimes_X0_XX().get(1));
-                    System.out.println(busDTO.getCourseVariant1().get(i).getDepartureTime() + " " + busDTO.getCourseVariant1().get(i).getTimeBetweenStops_X0_XX());
+                    // System.out.println(vart);
+                    // System.out.println(minutes);
+                    //  System.out.println(busStopVariant.get(busStopV).getTimes_X0_XX().get(1));
+                    //TODO po odznaczeniu linni pozniżej pokaze czasu
+                    //System.out.println(busDTO.getCourseVariant1().get(i).getDepartureTime() + " " + busDTO.getCourseVariant1().get(i).getTimeBetweenStops_X0_XX());
                 }
-
             }
 
             if (info.equals("dla wariantu 2")) {
                 for (int i = 0; i < busDTO.getCourseVariant2().size(); i++) {
-                    System.out.println(busDTO.getCourseVariant2().get(i).getDepartureTime() + " " + busDTO.getCourseVariant2().get(i).getTimeBetweenStops_X0_XX());
+                    //System.out.println(busDTO.getCourseVariant2().get(i).getDepartureTime() + " " + busDTO.getCourseVariant2().get(i).getTimeBetweenStops_X0_XX());
                 }
 
             }
-             //TODO zrobić formater czasu np 27:51 zamienić na 03:51 a 26:80  na 03:20
+            //TODO zrobić formater czasu np 27:51 zamienić na 03:51 a 26:80  na 03:20
         }
 
     }
