@@ -72,7 +72,7 @@ public class SearchBus {
                     // System.out.println(vart);
                     // System.out.println(minutes);
                     //  System.out.println(busStopVariant.get(busStopV).getTimes_X0_XX().get(1));
-                    //TODO po odznaczeniu linni pozniżej pokaze czasu
+                    //TODO po odznaczeniu linii pozniżej pokaze czasu
                     //System.out.println(busDTO.getCourseVariant1().get(i).getDepartureTime() + " " + busDTO.getCourseVariant1().get(i).getTimeBetweenStops_X0_XX());
                 }
             }
@@ -81,7 +81,6 @@ public class SearchBus {
                 for (int i = 0; i < busDTO.getCourseVariant2().size(); i++) {
                     //System.out.println(busDTO.getCourseVariant2().get(i).getDepartureTime() + " " + busDTO.getCourseVariant2().get(i).getTimeBetweenStops_X0_XX());
                 }
-
             }
             //TODO zrobić formater czasu np 27:51 zamienić na 03:51 a 26:80  na 03:20
         }

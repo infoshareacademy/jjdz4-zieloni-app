@@ -40,7 +40,7 @@ public class BusDataBase {
                 System.out.println("plik zakonczone na  opis1.csv:            " + file.getDescription1());
                 System.out.println("plik zakonczone na  opis2.csv:            " + file.getDescription2());*/
 
-           // System.out.println("ID :                                      " + file.getId());
+            // System.out.println("ID :                                      " + file.getId());
 
             ArrayList<String> variant1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant1());
             ArrayList<VariantCsvDTO> variant1 = CSVFileParser.formatVarinatCSV(variant1RecordArray);
