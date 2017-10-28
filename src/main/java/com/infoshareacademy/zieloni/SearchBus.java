@@ -47,19 +47,22 @@ public class SearchBus {
             int variantX0_XX = 0;
             if (info.equals("dla wariantu 1")) {
                 for (int i = 0; i < busDTO.getCourseVariant1().size(); i++) {
-
                     int minutes = 0;
                     try {
+                        /* zmienna mówi o tym z którekgo wariantu X0,X1-XX pobierać minuty */
                         variantX0_XX = Integer.valueOf(busDTO.getCourseVariant1().get(i).getTimeBetweenStops_X0_XX().split("X")[1]);
+                        //System.out.println( variantX0_XX );
                     } catch (Exception e) {
-                        //System.out.println("--------Nagłowek-------");
-                        variantX0_XX = 0;
+                        System.out.println(busDTO.getCourseVariant1().get(i).getTimeBetweenStops_X0_XX());
+                        //  variantX0_XX = 0;
                     }
 
+                    /* pętla - dodawaj minuty aż nie dojdzie do  przystanku startowego  find_startBusStop_index*/
                     for (int j = 0; j < find_startBusStop_index; j++) {
 
                         //System.out.println(busStopVariant.get(busStopV).getTimes_X0_XX().get(vart).size());
                         try {
+                            /* jesli w bazie nie ma minuty a jest puste pole to dodaje  defaultowo 1 minut*/
                             if (busStopVariant.get(busStopV).getTimes_X0_XX().get(variantX0_XX).get(j).equals("")) {
                                 minutes += 1;
                             } else {
@@ -68,12 +71,16 @@ public class SearchBus {
                         } catch (Exception e) {
                             //System.out.println("Wystąpił  problem z sumowaniem czasu przejazdu");
                         }
+
                     }
-                    // System.out.println(vart);
+                        if(!busDTO.getCourseVariant1().get(i).getDepartureTime().equals("99"))
+                        System.out.println(busDTO.getCourseVariant1().get(i).getDepartureTime() + " + " + minutes + " minut ");
+
+                    //System.out.println("który wariant"+ busDTO.getCourseVariant1().get(i).getTimeBetweenStops_X0_XX());
                     // System.out.println(minutes);
-                    //  System.out.println(busStopVariant.get(busStopV).getTimes_X0_XX().get(1));
+                    // System.out.println(busStopVariant.get(busStopV).getTimes_X0_XX().get(1));
                     //TODO po odznaczeniu linii pozniżej pokaze czasu
-                    //System.out.println(busDTO.getCourseVariant1().get(i).getDepartureTime() + " " + busDTO.getCourseVariant1().get(i).getTimeBetweenStops_X0_XX());
+
                 }
             }
 

@@ -101,7 +101,7 @@ public class CSVFileParser {
 
         ArrayList<CourseDTO> parseRecordsArray = new ArrayList<>();
 
-        for (int i = 1; i < stringArray.size(); i++) {
+        for (int i = 0; i < stringArray.size(); i++) {
             String[] records = stringArray.get(i).split("\\;");
             CourseDTO parseRecord = new CourseDTO();
             try {
