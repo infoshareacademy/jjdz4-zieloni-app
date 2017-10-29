@@ -1,27 +1,29 @@
 package com.infoshareacademy.zieloni.Model;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class VariantCsvDTO {
+public class RecordVariantCsvDTO {
 
     @Getter
     @Setter
     private String idVariant;
+
     @Getter
     @Setter
     private String flags;
+
     @Getter
     @Setter
-    private String nameOfTheCommunity;
+    private String community;
+
     @Getter
     @Setter
-    private String nameOfBasStop;
-    @Getter
-    @Setter
-    private ArrayList<String> times_X0_XX = new ArrayList<String>();
+    private String nameOfBusStop;
+
 }
 
 

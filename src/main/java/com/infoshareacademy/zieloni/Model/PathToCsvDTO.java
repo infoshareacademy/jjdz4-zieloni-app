@@ -13,12 +13,6 @@ import lombok.Setter;
 
 public class PathToCsvDTO {
 
-    /**
-     * Age of the person. Water is wet.
-     *
-     * @param age New value for this person's age. Sky is blue.
-     * @return The current value of this person's age. Circles are round.
-     */
     @Getter
     @Setter
     private String Id;

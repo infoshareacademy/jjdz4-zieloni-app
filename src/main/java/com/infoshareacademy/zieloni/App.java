@@ -5,7 +5,6 @@ import net.fortuna.ical4j.data.ParserException;
 import java.io.IOException;
 import java.text.ParseException;
 
-import com.infoshareacademy.zieloni.Model.ExtraTableCsvDTO;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -19,7 +18,10 @@ public class App {
     public static void main(String[] args) throws ParseException, ParserException, IOException {
         Events events = new Events();
         events.loadEvents();
+        //System.out.println(events.getEvents().size());
+        Menu.displayEvents(events);
 
+        TimeTableMenu.show();
         Menu.clearConsole();
         Menu.displayEvents(events);
         Menu.displayDatesWithEvents(events);
@@ -29,6 +31,10 @@ public class App {
 //        System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);
 //
 //        SearchBus.search(starBusStop, endBustop);
+
+        // SearchBus.search("Sandomierska  (n/ż)","Elmet (n/ż)");
+
+
 
         /*---------------------------pobranie pliku tabela.csv   --moze sie to przyda może nie*/
         /*final String currentDirectory = System.getProperty("user.dir");

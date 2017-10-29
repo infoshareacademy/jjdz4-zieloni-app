@@ -10,22 +10,20 @@ import java.util.ArrayList;
  * checks all folders and subfolders
  * Also check the categories which the file belongs (opis, wariant, kurs)
  * <p>
- *
+ * <p>
  * Ta klasa pobiera folder resource/rozklady_2015-09-08_13.43.01  i przeszukuje podfoldery
  * Sprawdza do której kategorii należą pliki w podfolderach  tzn czy jest to opis, kurs, czy wariant
  * Tworzy obiekt typu PathToCsvDTO który zawiera absolutne ściezki do poszczególnych plików w danym folderze
  *
- *   @see PathToCsvDTO
- *
- *  " Rozkład obowiązuje                        " + file.getIsValidFrom());
- *  " Nazwa folderu :                           " + file.getFolderName());
- *  " plik zakonczone na  kursy1.csv:           " + file.getCourse1());
- *  " plik zakonczone na  kursy2.csv:           " + file.getCourse2());
- *  " plik zakonczone na  opis1.csv:            " + file.getDescription1());
- *  " plik zakonczone na  opis2.csv:            " + file.getDescription2());
- *
- *
  * @author Michal Stasiński
+ * @see PathToCsvDTO
+ * <p>
+ * " Rozkład obowiązuje                        " + file.getIsValidFrom());
+ * " Nazwa folderu :                           " + file.getFolderName());
+ * " plik zakonczone na  kursy1.csv:           " + file.getCourse1());
+ * " plik zakonczone na  kursy2.csv:           " + file.getCourse2());
+ * " plik zakonczone na  opis1.csv:            " + file.getDescription1());
+ * " plik zakonczone na  opis2.csv:            " + file.getDescription2());
  */
 
 public class FilesPathFinder {

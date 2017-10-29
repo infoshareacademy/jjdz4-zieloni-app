@@ -1,12 +1,12 @@
 package com.infoshareacademy.zieloni;
 
+import lombok.Getter;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.ComponentList;
 import net.fortuna.ical4j.model.Property;
 import net.fortuna.ical4j.model.component.CalendarComponent;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
@@ -20,7 +20,7 @@ import java.util.Set;
 class Events {
 
 
-    private ArrayList<Event> events = new ArrayList<>();
+    @Getter private ArrayList<Event> events = new ArrayList<>();
 
     /**
      * Set keeps dates with Events
@@ -40,8 +40,7 @@ class Events {
         CalendarBuilder builder = new CalendarBuilder();
         Calendar calendar = builder.build(icalFile);
 
-        ComponentList<CalendarComponent> components = calendar.getComponents();
-        for (CalendarComponent calendarComponent : components) {
+        for (CalendarComponent calendarComponent : calendar.getComponents()) {
             String eventStart = (String.valueOf(calendarComponent.getProperty(Property.DTSTART).getValue().replace("T", "").replace("Z", "")));
             String eventEnd = (String.valueOf(calendarComponent.getProperty(Property.DTEND).getValue().replace("T", "").replace("Z", "")));
             String eventLocation = (String.valueOf(calendarComponent.getProperty(Property.LOCATION).getValue()));

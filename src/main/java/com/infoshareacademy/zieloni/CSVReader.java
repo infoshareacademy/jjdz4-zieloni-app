@@ -22,7 +22,6 @@ public class CSVReader {
         ArrayList<String> records = new ArrayList<String>();
         String line = "";
 
-
         try {
 
             /*kodowanie polskich znaków*/
