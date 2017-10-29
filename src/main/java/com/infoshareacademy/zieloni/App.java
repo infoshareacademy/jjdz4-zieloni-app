@@ -11,8 +11,12 @@ public class App {
     public static void main(String[] args) throws ParseException, ParserException, IOException {
         Events events = new Events();
         events.loadEvents();
-        System.out.println(events.getEvents().size());
-        Menu.displayEvents(events);
+       System.out.println(events.getEvents().size());
+       Menu.displayEvents(events);
+
+
+       // SearchBus.search("Sandomierska  (n/ż)","Elmet (n/ż)");
+
 
 
         /*---------------------------pobranie pliku tabela.csv   --moze sie to przyda może nie*/

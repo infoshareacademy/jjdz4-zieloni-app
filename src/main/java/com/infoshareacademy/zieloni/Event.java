@@ -16,6 +16,7 @@ public class Event {
         this.location = location;
         this.summary = summary;
     }
+
     public Date getStartTime() {
         return startTime;
     }

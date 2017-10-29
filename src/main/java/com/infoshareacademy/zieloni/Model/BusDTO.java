@@ -13,20 +13,20 @@ public class BusDTO {
 
     @Getter
     @Setter
-    private ArrayList<VariantCsvDTO> busStopVariant1;
+    private ArrayList<RecordVariantCsvDTO> busStopVariant1;
 
     @Getter
     @Setter
-    private ArrayList<VariantCsvDTO> busStopVariant2;
+    private ArrayList<RecordVariantCsvDTO> busStopVariant2;
 
 
     @Getter
     @Setter
-    private ArrayList<CourseDTO> courseVariant1;
+    private ArrayList<RecordCourseDTO> courseVariant1;
 
     @Getter
     @Setter
-    private ArrayList<CourseDTO> courseVariant2;
+    private ArrayList<RecordCourseDTO> courseVariant2;
 
 
 
