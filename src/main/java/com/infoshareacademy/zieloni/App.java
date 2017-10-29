@@ -5,27 +5,21 @@ import net.fortuna.ical4j.data.ParserException;
 import java.io.IOException;
 import java.text.ParseException;
 
-import com.infoshareacademy.zieloni.Model.ExtraTableCsvDTO;
 
-import java.io.File;
-import java.util.ArrayList;
-
-/**
- * Hello world!
- */
 public class App {
 
     public static void main(String[] args) throws ParseException, ParserException, IOException {
         Events events = new Events();
         events.loadEvents();
-        System.out.println(events.getEvents().size());
-        // Menu.displayEvents(events);
+        //System.out.println(events.getEvents().size());
+        Menu.displayEvents(events);
 
-        String starBusStop = "Jaśkowa Dolina (n/ż)";
-        String endBustop = "Uniwersytet Medyczny (n/ż)";
-        System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);
+        TimeTableMenu.show();
 
-        SearchBus.search(starBusStop, endBustop);
+
+        // SearchBus.search("Sandomierska  (n/ż)","Elmet (n/ż)");
+
+
 
         /*---------------------------pobranie pliku tabela.csv   --moze sie to przyda może nie*/
         /*final String currentDirectory = System.getProperty("user.dir");
