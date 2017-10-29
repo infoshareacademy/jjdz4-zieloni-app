@@ -16,7 +16,6 @@ public class SearchBus {
         ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
 
         for (int i = 0; i < busDB.size(); i++) {
-
             checkBusForVaraint(busDB.get(i), busDB.get(i).getBusStops_v1(), busDB.get(i).getCourseRecords_v1(), busDB.get(i).getColumnsMap_v1(), start_BusStop, end_BusStop, "dla wariantu 1");
             checkBusForVaraint(busDB.get(i), busDB.get(i).getBusStops_v2(), busDB.get(i).getCourseRecords_v2(), busDB.get(i).getColumnsMap_v2(), start_BusStop, end_BusStop, "dla wariantu 2");
         }
@@ -53,27 +52,22 @@ public class SearchBus {
 
                     try {
                         minutes += Integer.valueOf(columnMap.get(symbolColumnX0XX).get(j));
-
                     } catch (Exception e) {
                         minutes += 1;
                     }
                 }
-
                 try {
                     if (courseRecords.get(i).getCourseX0_XX().split("X")[0].equals("")) {
-                        System.out.println(courseRecords.get(i).getDepartureTime() + " " + minutes + " " + symbolColumnX0XX + "" + columnMap.get(symbolColumnX0XX));
+                        //System.out.println(courseRecords.get(i).getDepartureTime() + " " + minutes + " minut ");
+                        //System.out.println("Tabela minut"+symbolColumnX0XX + "" + columnMap.get(symbolColumnX0XX));
                     }
 
                 } catch (Exception e) {
 
                 }
-
             }
-
-
         }
     }
-
 }
 
 

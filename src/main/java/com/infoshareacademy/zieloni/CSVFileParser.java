@@ -50,6 +50,14 @@ public class CSVFileParser {
          * @param this method get other files csv (converted to ArrayList<String>) from resource\rozklady_2015-09-08_13.43.01
          * and set value to RecordVariantCsvDTO object
          * @return array with RecordVariantCsvDTO objects
+         *
+         *
+         * Zwraca pojedynczy rekord (z trzech pierwszych kolumn) bez headera
+         *
+         * 11;Flagi;Gmina;Nazwa;X5(00:00-29:59);X6(00:00-29:59);X7(00:00-29:59);X8(00:00-29:59);X9(00:00-29:59);X10(00:00-29:59);X11(00:00-29:59)
+         * 1;B,P(203);ZTM;Zaspa;;;0;0;;;
+         * 2;P(2091);ZTM;Kołobrzeska;;;1;1;;;
+         * 3;P(2093);ZTM;Chłopska - Obrońców Wybrzeża;;;2;2;;;
          */
 
 
@@ -73,6 +81,20 @@ public class CSVFileParser {
 
     public static Map<String, ArrayList<String>> columns_X0XX_Map(ArrayList<String> stringArray) {
 
+        /**
+         * plik zkonczony warianty.csv
+         *
+         * Od 4 klumny(tu X5) sprawdza ile jest kolumn -
+         * Każda kolumna wrzucana jest do HasMAp  <String, ArrayList<String>> gdzie string to klucz X0,X2...X11  a ArrayList<String> to wysztkie minuty w kolumnie
+         *
+         * 11;Flagi;Gmina;Nazwa;X5(00:00-29:59);X6(00:00-29:59);X7(00:00-29:59);X8(00:00-29:59);X9(00:00-29:59);X10(00:00-29:59);X11(00:00-29:59)
+         *
+         * 1;B,P(203);ZTM;Zaspa;;;0;0;;;
+         * 2;P(2091);ZTM;Kołobrzeska;;;1;1;;;
+         * 3;P(2093);ZTM;Chłopska - Obrońców Wybrzeża;;;2;2;;;
+         */
+
+
         ArrayList<ArrayList<String>> columns_X0XX = new ArrayList<>();
         String[] lengthRecord = stringArray.get(0).split("\\;");
 
@@ -90,14 +112,13 @@ public class CSVFileParser {
 
             for (int j = 0; j < lengthRecord.length; j++) {
                 try {
-                   columns_X0XX.get(j).add(records[j + 4]);
+                    columns_X0XX.get(j).add(records[j + 4]);
 
                 } catch (Exception e) {
 
                 }
             }
         }
-
         for (int j = 0; j < columns_X0XX.size(); j++) {
             mapa.put(header[j + 4].replace("(00:00-29:59)", ""), columns_X0XX.get(j));
         }
@@ -107,6 +128,18 @@ public class CSVFileParser {
 
 
     public static ArrayList<RecordCourseDTO> formatCourseCSV(ArrayList<String> stringArray) {
+
+        /**
+         * 99;Dni powszednie;#EEEEEE
+            04:29;X0;;
+            05:11;X0;;
+            05:31;X0;;
+
+            departureTime -  04:29
+            courseX0_XX -  X0
+         */
+
+
         ArrayList<RecordCourseDTO> parseRecordsArray = new ArrayList<>();
 
         for (int i = 0; i < stringArray.size(); i++) {
