@@ -16,15 +16,16 @@ import java.util.ArrayList;
 public class App {
 
     public static void main(String[] args) throws ParseException, ParserException, IOException {
-        Events events = new Events();
-        events.loadEvents();
-        //System.out.println(events.getEvents().size());
-        Menu.displayEvents(events);
 
-        TimeTableMenu.show();
-        Menu.clearConsole();
-        Menu.displayEvents(events);
-        Menu.displayDatesWithEvents(events);
+        //System.out.println(events.getEvents().size());
+        Menu.startMenu();
+
+//        Menu.displayEvents(events);
+//
+//        TimeTableMenu.show();
+//        Menu.clearConsole();
+//        Menu.displayEvents(events);
+//        Menu.displayDatesWithEvents(events);
 
 //        String starBusStop = "Jaśkowa Dolina (n/ż)";
 //        String endBustop = "Uniwersytet Medyczny (n/ż)";

@@ -1,8 +1,50 @@
 package com.infoshareacademy.zieloni;
 
+import net.fortuna.ical4j.data.ParserException;
+
+import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 class Menu {
+
+    static void startMenu() throws ParseException, ParserException, IOException {
+        Events events = new Events();
+        events.loadEvents();
+
+        displayMainMenu();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            switch (scanner.nextLine()) {
+                case "1":
+                    displayDatesWithEvents(events);
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    break;
+                case "EXIT":
+                    return;
+                default:
+                    displayMainMenu();
+                    break;
+            }
+        }
+    }
+
+    static void displayMainMenu() {
+        clearConsole();
+        System.out.println("*** PLANER CLI ***");
+        System.out.println();
+        System.out.println("1\tWyświetl dni z wydarzeniami");
+        System.out.println("2\tWyświetl rozkład jazdy");
+        System.out.println("3\tWczytaj plik z kalendarzem");
+        System.out.println("EXIT\tWyjście z programu");
+        System.out.println();
+        System.out.print("Wpisz polecenie: ");
+    }
+
 
     /**
      * Clears linux console
@@ -58,10 +100,26 @@ class Menu {
      * @param events - kolekcja wydarzeń z których wyświetlamy daty wydarzeń
      */
     static void displayDatesWithEvents(Events events) {
-        int i = 1;
         System.out.println("Masz zaplanowane wydarzenia w dniach:");
-        for (LocalDate ld : events.getEventDays()) {
-            System.out.println(i++ + ". " + ld + " (" + ld.getDayOfWeek() + ")");
+        LocalDate eventDays[] = events.getEventDays().toArray(new LocalDate[(events.getEventDays().size())]);
+//        for (LocalDate ld : events.getEventDays()) {
+//            System.out.println(i++ + ". " + ld + " (" + ld.getDayOfWeek() + ")");
+        for (int i = 0; i < eventDays.length; i++) {
+            System.out.println(i+1 + "\t" + eventDays[i] + " (" + eventDays[i].getDayOfWeek() + ")");
+        }
+        System.out.println("UP\tPowrót do menu głównego");
+        System.out.println();
+        System.out.print("Wpisz polecenie: ");
+
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            switch (scanner.nextLine()) {
+
+                case "UP":
+                    return;
+                default:
+                    break;
+            }
         }
     }
 }
