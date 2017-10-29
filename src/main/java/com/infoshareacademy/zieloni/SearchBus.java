@@ -2,9 +2,11 @@ package com.infoshareacademy.zieloni;
 
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
+import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.Model.RecordVariantCsvDTO;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 
 public class SearchBus {
@@ -15,23 +17,20 @@ public class SearchBus {
 
         for (int i = 0; i < busDB.size(); i++) {
 
-            checkBusForVaraint(busDB.get(i), busDB.get(i).getBusStopVariant1(), start_BusStop, end_BusStop, "dla wariantu 1");
-            checkBusForVaraint(busDB.get(i), busDB.get(i).getBusStopVariant2(), start_BusStop, end_BusStop, "dla wariantu 2");
+            checkBusForVaraint(busDB.get(i), busDB.get(i).getBusStops_v1(), busDB.get(i).getCourseRecords_v1(), busDB.get(i).getColumnsMap_v1(), start_BusStop, end_BusStop, "dla wariantu 1");
+            checkBusForVaraint(busDB.get(i), busDB.get(i).getBusStops_v2(), busDB.get(i).getCourseRecords_v2(), busDB.get(i).getColumnsMap_v2(), start_BusStop, end_BusStop, "dla wariantu 2");
         }
     }
 
-    private static void checkBusForVaraint(BusDTO busDTO, ArrayList<RecordVariantCsvDTO> busStopVariant, String start_bs, String end_bs, String info) {
+    private static void checkBusForVaraint(BusDTO busDTO, ArrayList<RecordVariantCsvDTO> busStops, ArrayList<RecordCourseDTO> courseRecords, Map<String, ArrayList<String>> columnMap, String start_bs, String end_bs, String info) {
 
         int find_startBusStop_index = -1;
         int find_endBusStop_index = -1;
-        int busStopV = -1;
 
-        for (int z = 0; z < busStopVariant.size(); z++) {
+        for (int z = 0; z < busStops.size(); z++) {
 
-            String busStop = busStopVariant.get(z).getNameOfBasStop();
-            busStopV = z;
+            String busStop = busStops.get(z).getNameOfBusStop();
 
-            //System.out.println(busStopVariant.get(z).getTimes_X0_XX());
             if (busStop.equals(start_bs)) {
                 find_startBusStop_index = z;
             }
@@ -44,48 +43,31 @@ public class SearchBus {
 
 
             System.out.println("zobacz autobus nr : " + busDTO.getBusNumber() + "    " + info);
-            String symbol_X0_XX = null;
+            String symbolColumnX0XX = null;
 
-            if (info.equals("dla wariantu 1")) {
-                for (int i = 0; i < busDTO.getCourseVariant1().size(); i++) {
-                    int minutes = 0;
+            for (int i = 0; i < courseRecords.size(); i++) {
+                int minutes = 0;
+                symbolColumnX0XX = courseRecords.get(i).getCourseX0_XX();
 
-
-                    for (int j = 0; j < find_startBusStop_index; j++) {
-
-                        try {
-                            minutes += Integer.valueOf(busStopVariant.get(0).getMapTimes_X0_XX().get(symbol_X0_XX).get(j));
-
-                        } catch (Exception e) {
-                            // System.out.println("Wystąpił  problem z sumowaniem czasu przejazdu");
-                            minutes += 1;
-                        }
-
-                    }
+                for (int j = 0; j < find_startBusStop_index; j++) {
 
                     try {
-                        /* zmienna mówi o tym z którekgo wariantu X0,X1-XX pobierać minuty */
-                        if (busDTO.getCourseVariant1().get(i).getVariantSymbol_X0_XX().split("X")[0].equals("")) {
-                            symbol_X0_XX = busDTO.getCourseVariant1().get(i).getVariantSymbol_X0_XX();
-                            //System.out.println(busDTO.getCourseVariant1().get(i).getDepartureTime()+" "+minutes+ " "+symbol_X0_XX+""+ busStopVariant.get(0).getMapTimes_X0_XX().get(symbol_X0_XX));
-                        }
-                        //  System.out.println(variantX0_XX);
+                        minutes += Integer.valueOf(columnMap.get(symbolColumnX0XX).get(j));
+
                     } catch (Exception e) {
-                        //System.out.println(busDTO.getCourseVariant1().get(i).getVariantSymbol_X0_XX());
-                        //  variantX0_XX = 0;
+                        minutes += 1;
+                    }
+                }
+
+                try {
+                    if (courseRecords.get(i).getCourseX0_XX().split("X")[0].equals("")) {
+                        System.out.println(courseRecords.get(i).getDepartureTime() + " " + minutes + " " + symbolColumnX0XX + "" + columnMap.get(symbolColumnX0XX));
                     }
 
+                } catch (Exception e) {
 
-                  /*  try {
-                        System.out.println(busDTO.getCourseVariant1().get(i).getDepartureTime().equals("99"));
-                        if(!busDTO.getCourseVariant1().get(i).getDepartureTime().equals("99")) {
-                            System.out.println(busDTO.getCourseVariant1().get(i).getDepartureTime() + "   " + symbol_X0_XX + "" + busDTO.getBusStopVariant1().get(i).getMapTimes_X0_XX());
-                        }
-                        // System.out.println(busDTO.getCourseVariant1().get(i).getDepartureTime() + " " + minutes + "   " + symbol_X0_XX + "" + busDTO.getBusStopVariant1().get(i).getMapTimes_X0_XX().get(symbol_X0_XX));
-                    } catch (Exception e) {
-                        System.out.println("Wystąpił  problem z sumowaniem czasu przejazdu" +i);
-                    }*/
                 }
+
             }
 
 

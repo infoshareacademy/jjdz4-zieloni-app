@@ -9,16 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * get ArrayList of records (that are lines of text from a csv file) bind with object entity
- * records are converted into strnig[] by split method
- * and then each value of string [] is set in the object entity
- * <p>
- * Klasa ma dwie metody w zależności od tego czy otrzymamy plik tabela.csv czy plik csv z folderu z rozkładami
- * Plik jest wprowadzony w postaci stringów znajdujacych sie w ArrayLiscie
- * Każdy string jest zamieniany metodą split (usuwajaca separator) na String[] i przypisywany
- * w zalezności od tego czy to tabela csv czy inny plik csw do obiektów ExtraTableCsvDTO lub
- * RecordVariantCsvDTO(tu potrzbujemy na razie tylko ulic ale moziwe że bedziemy to roszerzać)
- *
  * @author Michal Stasiński
  */
 
@@ -62,76 +52,72 @@ public class CSVFileParser {
          * @return array with RecordVariantCsvDTO objects
          */
 
-        ArrayList<ArrayList<String>> timeX0_XX = new ArrayList<>();
-        String[] lengthRecord = stringArray.get(0).split("\\;");
-
-        Map<String, ArrayList<String>> mapa = new HashMap<String, ArrayList<String>>();
-
-
-        for (int i = 4; i < lengthRecord.length; i++) {
-            timeX0_XX.add(new ArrayList<String>());
-        }
-
 
         ArrayList<RecordVariantCsvDTO> parseRecordsArray = new ArrayList<>();
         String[] header = stringArray.get(0).split("\\;");
 
-        // System.out.println(header[4]);//.replace("(00:00-29:59)",""));
         for (int i = 1; i < stringArray.size(); i++) {
             String[] records = stringArray.get(i).split("\\;");
 
             RecordVariantCsvDTO parseRecord = new RecordVariantCsvDTO();
-
             parseRecord.setIdVariant(records[0]);
             parseRecord.setFlags(records[1]);
-            parseRecord.setNameOfTheCommunity(records[2]);
-            parseRecord.setNameOfBasStop(records[3]);
-
-            for (int j = 0; j < lengthRecord.length; j++) {
-                try {
-
-                    timeX0_XX.get(j).add(records[j + 4]);
-
-
-                } catch (Exception e) {
-
-                }
-            }
-          //  parseRecord.setTimes_X0_XX(timeX0_XX);
-
-            parseRecord.setMapTimes_X0_XX(mapa);
+            parseRecord.setCommunity(records[2]);
+            parseRecord.setNameOfBusStop(records[3]);
             parseRecordsArray.add(parseRecord);
-
         }
-
-       // System.out.println("___________________");
-        for (int j = 0; j < timeX0_XX.size(); j++) {
-          //  System.out.println(header[0]+"   "+header[j + 4]);
-            mapa.put(header[j + 4].replace("(00:00-29:59)", ""), timeX0_XX.get(j));
-        }
-
-        // mapa.put(header[j + 4].replace("(00:00-29:59)",""),timeX0_XX.get(j));
 
         return parseRecordsArray;
     }
 
 
+    public static Map<String, ArrayList<String>> columns_X0XX_Map(ArrayList<String> stringArray) {
+
+        ArrayList<ArrayList<String>> columns_X0XX = new ArrayList<>();
+        String[] lengthRecord = stringArray.get(0).split("\\;");
+
+        Map<String, ArrayList<String>> mapa = new HashMap<String, ArrayList<String>>();
+
+        for (int i = 4; i < lengthRecord.length; i++) {
+            columns_X0XX.add(new ArrayList<String>());
+        }
+
+        String[] header = stringArray.get(0).split("\\;");
+
+        for (int i = 1; i < stringArray.size(); i++) {
+            String[] records = stringArray.get(i).split("\\;");
+
+
+            for (int j = 0; j < lengthRecord.length; j++) {
+                try {
+                   columns_X0XX.get(j).add(records[j + 4]);
+
+                } catch (Exception e) {
+
+                }
+            }
+        }
+
+        for (int j = 0; j < columns_X0XX.size(); j++) {
+            mapa.put(header[j + 4].replace("(00:00-29:59)", ""), columns_X0XX.get(j));
+        }
+
+        return mapa;
+    }
+
+
     public static ArrayList<RecordCourseDTO> formatCourseCSV(ArrayList<String> stringArray) {
-
-
         ArrayList<RecordCourseDTO> parseRecordsArray = new ArrayList<>();
 
         for (int i = 0; i < stringArray.size(); i++) {
             String[] records = stringArray.get(i).split("\\;");
             RecordCourseDTO parseRecord = new RecordCourseDTO();
             try {
-
                 parseRecord.setDepartureTime(records[0]);
-                parseRecord.setVariantSymbol_X0_XX(records[1]);
+                parseRecord.setCourseX0_XX(records[1]);
             } catch (Exception e) {
                 System.out.println("Brakuje rekordu dla " + i);
             }
-
             parseRecordsArray.add(parseRecord);
         }
 

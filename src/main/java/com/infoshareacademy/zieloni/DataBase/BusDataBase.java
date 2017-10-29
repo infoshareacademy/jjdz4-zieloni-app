@@ -10,6 +10,7 @@ import com.infoshareacademy.zieloni.Model.RecordVariantCsvDTO;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * @author Michał Stasiński
@@ -46,18 +47,23 @@ public class BusDataBase {
             ArrayList<RecordVariantCsvDTO> variant1 = CSVFileParser.formatVarinatCSV(variant1RecordArray);
             ArrayList<String> course1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getCourse1());
             ArrayList<RecordCourseDTO> course1 = CSVFileParser.formatCourseCSV(course1RecordArray);
+            Map<String, ArrayList<String>> map1 = CSVFileParser.columns_X0XX_Map(variant1RecordArray);
 
             ArrayList<String> variant2RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant2());
             ArrayList<RecordVariantCsvDTO> variant2 = CSVFileParser.formatVarinatCSV(variant2RecordArray);
             ArrayList<String> course2RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getCourse2());
             ArrayList<RecordCourseDTO> course2 = CSVFileParser.formatCourseCSV(course2RecordArray);
+            Map<String, ArrayList<String>> map2 = CSVFileParser.columns_X0XX_Map(variant2RecordArray);
+
 
             BusDTO bus = new BusDTO();
 
-            bus.setBusStopVariant1(variant1);
-            bus.setBusStopVariant2(variant2);
-            bus.setCourseVariant1(course1);
-            bus.setCourseVariant2(course2);
+            bus.setBusStops_v1(variant1);
+            bus.setBusStops_v2(variant2);
+            bus.setCourseRecords_v1(course1);
+            bus.setCourseRecords_v2(course2);
+            bus.setColumnsMap_v1(map1);
+            bus.setColumnsMap_v2(map2);
             bus.setBusNumber(file.getId().split("_")[0]);
             busDB.add(bus);
         }

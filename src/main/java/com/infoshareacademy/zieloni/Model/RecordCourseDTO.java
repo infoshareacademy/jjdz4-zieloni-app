@@ -10,5 +10,5 @@ public class RecordCourseDTO {
 
     @Getter
     @Setter
-    private String variantSymbol_X0_XX;
+    private String courseX0_XX;
 }

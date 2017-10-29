@@ -18,15 +18,12 @@ public class RecordVariantCsvDTO {
 
     @Getter
     @Setter
-    private String nameOfTheCommunity;
+    private String community;
 
     @Getter
     @Setter
-    private String nameOfBasStop;
+    private String nameOfBusStop;
 
-    @Getter
-    @Setter
-    private Map<String, ArrayList<String>> mapTimes_X0_XX;
 }
 
 
