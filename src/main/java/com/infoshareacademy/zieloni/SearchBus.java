@@ -43,7 +43,7 @@ public class SearchBus {
 
 
             System.out.println("zobacz autobus nr : " + busDTO.getBusNumber() + "    " + info);
-            String symbolColumnX0XX = null;
+            String symbolColumnX0XX;
 
             for (int i = 0; i < courseRecords.size(); i++) {
                 int minutes = 0;
