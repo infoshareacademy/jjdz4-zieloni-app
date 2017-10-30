@@ -54,11 +54,7 @@ public class FormatTime {
             Ost1 = "0" + Ost1;
         }
         return (Ost + ":" + Ost1);
-
-
     }
-
-
 }
 
 

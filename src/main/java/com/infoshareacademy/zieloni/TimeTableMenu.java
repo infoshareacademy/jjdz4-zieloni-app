@@ -2,6 +2,7 @@ package com.infoshareacademy.zieloni;
 
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
+import com.infoshareacademy.zieloni.Model.FormatTime;
 import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
 
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class TimeTableMenu {
             }
             try {
                 if (courseRecord.get(i).getCourseX0_XX().split("X")[0].equals("")) {
-                    System.out.println(courseRecord.get(i).getDepartureTime() + " " + minutes + " minut ");
+                    System.out.println(courseRecord.get(i).getDepartureTime() + " " + minutes+"  "+FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes));
                     //System.out.println("Tabela minut"+symbolColumnX0XX + "" + map.get(symbolColumnX0XX));
                 }
 
