@@ -1,39 +1,42 @@
 package com.infoshareacademy.zieloni.Model;
 
 import java.util.ArrayList;
+import java.util.Map;
 
+import lombok.Getter;
+import lombok.Setter;
 
 public class BusDTO {
 
+    @Getter
+    @Setter
     private String busNumber;
-    private ArrayList<VariantCsvDTO> busStopVariant1;
-    private ArrayList<VariantCsvDTO> busStopVariant2;
 
-    /*private ArrayList<CouresDTO> typeOfCourse1;
-    private ArrayList<CouresDTO> typeOfCourse2;*/
+    @Getter
+    @Setter
+    private ArrayList<RecordVariantCsvDTO> busStops_v1;
+
+    @Getter
+    @Setter
+    private ArrayList<RecordVariantCsvDTO> busStops_v2;
 
 
-    public String getBusNumber() {
-        return busNumber;
-    }
+    @Getter
+    @Setter
+    private ArrayList<RecordCourseDTO> courseRecords_v1;
 
-    public void setBusNumber(String busNumber) {
-        this.busNumber = busNumber;
-    }
+    @Getter
+    @Setter
+    private ArrayList<RecordCourseDTO> courseRecords_v2;
 
-    public ArrayList<VariantCsvDTO> getBusStopVariant1() {
-        return busStopVariant1;
-    }
+    @Getter
+    @Setter
+    private Map<String, ArrayList<String>> columnsMap_v1;
 
-    public void setBusStopVariant1(ArrayList<VariantCsvDTO> busStopVariant1) {
-        this.busStopVariant1 = busStopVariant1;
-    }
+    @Getter
+    @Setter
+    private Map<String, ArrayList<String>> columnsMap_v2;
 
-    public ArrayList<VariantCsvDTO> getBusStopVariant2() {
-        return busStopVariant2;
-    }
 
-    public void setBusStopVariant2(ArrayList<VariantCsvDTO> busStopVariant2) {
-        this.busStopVariant2 = busStopVariant2;
-    }
+
 }

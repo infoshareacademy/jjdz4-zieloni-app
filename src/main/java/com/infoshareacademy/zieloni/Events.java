@@ -1,45 +1,59 @@
 package com.infoshareacademy.zieloni;
 
+import lombok.Getter;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
-import net.fortuna.ical4j.model.Component;
+import net.fortuna.ical4j.model.ComponentList;
 import net.fortuna.ical4j.model.Property;
-
+import net.fortuna.ical4j.model.component.CalendarComponent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Events {
-    public ArrayList<Event> getEvents() {
+class Events {
+
+
+    @Getter private ArrayList<Event> events = new ArrayList<>();
+
+    /**
+     * Set keeps dates with Events
+     */
+    private Set<LocalDate> eventDays = new HashSet<>();
+
+    ArrayList<Event> getEvents() {
         return events;
     }
 
-    private ArrayList<Event> events = new ArrayList<>();
+    Set<LocalDate> getEventDays() {
+        return eventDays;
+    }
 
-    public void loadEvents() throws IOException, ParserException, ParseException {
+    void loadEvents() throws IOException, ParserException, ParseException {
         FileInputStream icalFile = new FileInputStream("kalendarz.ics");
         CalendarBuilder builder = new CalendarBuilder();
         Calendar calendar = builder.build(icalFile);
 
-        for (Iterator  i = calendar.getComponents().iterator(); i.hasNext();) {
-            Component component = (Component) i.next();
-
-            String eventStart = (String.valueOf(component.getProperty(Property.DTSTART).getValue().replace("T", "").replace("Z", "")));
-            String eventEnd = (String.valueOf(component.getProperty(Property.DTEND).getValue().replace("T", "").replace("Z", "")));
-            String eventLocation = (String.valueOf(component.getProperty(Property.LOCATION).getValue()));
-            String eventUID = (String.valueOf(component.getProperty(Property.UID).getValue()));
-            String eventSummary = (String.valueOf(component.getProperty(Property.SUMMARY).getValue()));
+        for (CalendarComponent calendarComponent : calendar.getComponents()) {
+            String eventStart = (String.valueOf(calendarComponent.getProperty(Property.DTSTART).getValue().replace("T", "").replace("Z", "")));
+            String eventEnd = (String.valueOf(calendarComponent.getProperty(Property.DTEND).getValue().replace("T", "").replace("Z", "")));
+            String eventLocation = (String.valueOf(calendarComponent.getProperty(Property.LOCATION).getValue()));
+            String eventUID = (String.valueOf(calendarComponent.getProperty(Property.UID).getValue()));
+            String eventSummary = (String.valueOf(calendarComponent.getProperty(Property.SUMMARY).getValue()));
             add(eventStart, eventEnd, eventUID, eventLocation, eventSummary);
         }
-
     }
 
-    public void add(String startTime, String endTime, String uid, String location, String summary) throws ParseException {
-        SimpleDateFormat sf = new SimpleDateFormat("yyyyMMddHHmmss");
-        events.add(new Event(sf.parse(startTime), sf.parse(endTime), uid, location, summary));
+    private void add(String startTime, String endTime, String uid, String location, String summary) throws ParseException {
+        LocalDateTime sT = LocalDateTime.parse(startTime, DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        LocalDateTime eT = LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        events.add(new Event(sT, eT, uid, location, summary));
+        eventDays.add(sT.toLocalDate()); // Zbieramy daty w których pojawiają się Wydarzenia
     }
 }
