@@ -88,7 +88,7 @@ public class TimeTableMenu {
     private static void showTimesForBusStop(Integer integer) {
 
         street = integer;
-
+        level = 5;
         ArrayList<RecordCourseDTO> courseRecord = null;
         Map<String, ArrayList<String>> map = null;
 
