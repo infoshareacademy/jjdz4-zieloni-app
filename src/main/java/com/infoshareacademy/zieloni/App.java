@@ -32,9 +32,9 @@ public class App {
 //        String endBustop = "Uniwersytet Medyczny (n/ż)";
 //        System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);
 //
-//        SearchBus.search(starBusStop, endBustop);
+//        FindBus.search(starBusStop, endBustop);
 
-        // SearchBus.search("Sandomierska  (n/ż)","Elmet (n/ż)");
+        // FindBus.search("Sandomierska  (n/ż)","Elmet (n/ż)");
 
 
 

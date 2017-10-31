@@ -146,16 +146,16 @@ public class TimeTableMenu {
         if (variant == 1) {
             courseRecord = busDB.get(choiceBus).getCourseRecords_v1();
             map = busDB.get(choiceBus).getColumnsMap_v1();
-            System.out.println("Rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v1().get(street).getNameOfBusStop());
+            System.out.println("Rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v1().get(street).getNameOfBusStop().toUpperCase());
 
         } else if (variant == 2) {
             courseRecord = busDB.get(choiceBus).getCourseRecords_v2();
             map = busDB.get(choiceBus).getColumnsMap_v2();
-            System.out.println("Rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v2().get(street).getNameOfBusStop());
+            System.out.println("Rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v2().get(street).getNameOfBusStop().toUpperCase());
         }
 
         StringBuilder timeTableView = new StringBuilder();
-
+        int counter = 1;
         for (int i = 0; i < courseRecord.size(); i++) {
             int minutes = 0;
             String symbolColumnX0XX = courseRecord.get(i).getCourseX0_XX();
@@ -171,15 +171,16 @@ public class TimeTableMenu {
             try {
                 if (courseRecord.get(i).getCourseX0_XX().split("X")[0].equals("")) {
                     timeTableView.append(FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes) + " | ");
-                    if (i % 10 == 0) {
+                    if (counter % 10 == 0) {
                         timeTableView.append("\n");
                     }
+                    counter++;
                 } else {
-
+                    counter = 1;
                     timeTableView.append("\n");
-                    timeTableView.append("-------------------------------------------------------------------------\n");
+                    timeTableView.append("--------------------------------------------------------------------------------\n");
                     timeTableView.append("                                 " + courseRecord.get(i).getCourseX0_XX() + "\n");
-                    timeTableView.append("-------------------------------------------------------------------------\n");
+                    timeTableView.append("--------------------------------------------------------------------------------\n");
                 }
 
             } catch (Exception e) {

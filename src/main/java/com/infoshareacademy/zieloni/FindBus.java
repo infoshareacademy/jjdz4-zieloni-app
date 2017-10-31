@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-public class SearchBus {
+public class FindBus {
 
     public static void search(String start_BusStop, String end_BusStop) {
 
@@ -59,11 +59,13 @@ public class SearchBus {
                 try {
 
                     if (courseRecords.get(i).getCourseX0_XX().split("X")[0].equals("")) {
+                        //TODO wywietlić rzład dla zaproponowanych busów--odkomentowac
                         //System.out.println(courseRecords.get(i).getDepartureTime() + " " + minutes + " minut ");
                         //System.out.println("Tabela minut"+symbolColumnX0XX + "" + columnMap.get(symbolColumnX0XX));
-                    }else{
-                    //    System.out.println(courseRecords.get(i).getCourseX0_XX());
-                      //  System.out.println("            "+courseRecords.get(i).getCourseX0_XX()+"             ");
+                    } else {
+                        //TODO wywietlić rzład dla zaproponowanych busów--odkomentowac
+                        //System.out.println(courseRecords.get(i).getCourseX0_XX());
+                        //  System.out.println("            "+courseRecords.get(i).getCourseX0_XX()+"             ");
                     }
 
                 } catch (Exception e) {
