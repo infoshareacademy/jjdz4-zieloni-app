@@ -2,8 +2,8 @@ package com.infoshareacademy.zieloni;
 
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
-import com.infoshareacademy.zieloni.Model.FormatTime;
 import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
+import com.infoshareacademy.zieloni.Utils.FormatTime;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -29,6 +29,11 @@ public class TimeTableMenu {
 
         while (scanner.hasNextLine()) {
             text = scanner.nextLine();
+            if (text.equals("exit")) {
+                System.out.println("koniec");
+                break;
+            }
+
             if (level == 0) {
 
                 if (text.equals("1")) {
@@ -57,10 +62,6 @@ public class TimeTableMenu {
                 showTimesForBusStop(Integer.valueOf(text));
             }
 
-            if (text.equals("exit")) {
-                System.out.println("koniec");
-                break;
-            }
         }
     }
 
@@ -95,7 +96,7 @@ public class TimeTableMenu {
             }
             try {
                 if (courseRecord.get(i).getCourseX0_XX().split("X")[0].equals("")) {
-                    System.out.println(courseRecord.get(i).getDepartureTime() + " " + minutes+"  "+FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes));
+                    System.out.println(courseRecord.get(i).getDepartureTime() + " " + minutes + "  " + FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes));
                     //System.out.println("Tabela minut"+symbolColumnX0XX + "" + map.get(symbolColumnX0XX));
                 }
 
@@ -143,11 +144,13 @@ public class TimeTableMenu {
         System.out.println("#       Wpisz 'exit' aby wyjść z programu       #");
         System.out.println("#################################################");
         variant = integer;
+
         if (integer == 1) {
             for (int i = 0; i < busDB.get(choiceBus).getBusStops_v1().size(); i++) {
                 System.out.println(i + ") " + busDB.get(choiceBus).getBusStops_v1().get(i).getNameOfBusStop());
             }
         }
+
         if (integer == 2) {
             for (int i = 0; i < busDB.get(choiceBus).getBusStops_v2().size(); i++) {
                 System.out.println(i + ") " + busDB.get(choiceBus).getBusStops_v2().get(i).getNameOfBusStop());
