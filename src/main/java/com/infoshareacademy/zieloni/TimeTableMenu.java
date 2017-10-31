@@ -81,7 +81,6 @@ public class TimeTableMenu {
                     System.out.println("Wybierz od 0 do " + (busStopArrSize - 1));
                 }
             }
-
         }
     }
 
@@ -171,14 +170,12 @@ public class TimeTableMenu {
             }
             try {
                 if (courseRecord.get(i).getCourseX0_XX().split("X")[0].equals("")) {
-                    //  System.out.println(courseRecord.get(i).getDepartureTime() + " " + minutes + "  " + FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes));
-
                     timeTableView.append(FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes) + " | ");
                     if (i % 10 == 0) {
                         timeTableView.append("\n");
                     }
-                    //System.out.println("Tabela minut"+symbolColumnX0XX + "" + map.get(symbolColumnX0XX));
                 } else {
+
                     timeTableView.append("\n");
                     timeTableView.append("-------------------------------------------------------------------------\n");
                     timeTableView.append("                                 " + courseRecord.get(i).getCourseX0_XX() + "\n");
