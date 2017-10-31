@@ -38,20 +38,27 @@ public class TimeTableMenu {
 
                 if (text.equals("1")) {
                     choiceBus();
+                }else{
+                    System.out.println("Wpisz 1 lub exit");
                 }
             } else if (level == 2) {
                 try {
-                    //if(text.equals("1")||text.equals("2"))
-                    choiceVariant(Integer.valueOf(text));
+                    if (Integer.valueOf(text) > -1 && Integer.valueOf(text) < busDB.size()) {
+                        choiceVariant(Integer.valueOf(text));
+                    } else {
+                        System.out.println("Wybierz od 0 do " + (busDB.size() - 1));
+                    }
 
                 } catch (Exception e) {
 
                 }
-
             } else if (level == 3) {
                 try {
-                    if (text.equals("1") || text.equals("2"))
+                    if (text.equals("1") || text.equals("2")) {
                         showVariantStreet(Integer.valueOf(text));
+                    } else {
+                        System.out.println("Wybierz od 1 do 2");
+                    }
 
                 } catch (Exception e) {
 
@@ -59,14 +66,29 @@ public class TimeTableMenu {
 
             } else if (level == 4) {
 
-                showTimesForBusStop(Integer.valueOf(text));
+                int busStopArrSize = -1;
+                if (variant == 1) {
+                    busStopArrSize = busDB.get(choiceBus).getBusStops_v1().size();
+                }
+
+                if (variant == 2) {
+                    busStopArrSize = busDB.get(choiceBus).getBusStops_v2().size();
+                }
+
+                if (Integer.valueOf(text) > -1 && Integer.valueOf(text) < busStopArrSize) {
+                    showTimesForBusStop(Integer.valueOf(text));
+                } else {
+                    System.out.println("Wybierz od 0 do " + (busStopArrSize - 1));
+                }
             }
 
         }
     }
 
     private static void showTimesForBusStop(Integer integer) {
+
         street = integer;
+
         ArrayList<RecordCourseDTO> courseRecord = null;
         Map<String, ArrayList<String>> map = null;
 
@@ -79,7 +101,6 @@ public class TimeTableMenu {
             courseRecord = busDB.get(choiceBus).getCourseRecords_v2();
             map = busDB.get(choiceBus).getColumnsMap_v2();
             System.out.println("chce zobaczyc rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v2().get(street).getNameOfBusStop());
-
         }
 
         for (int i = 0; i < courseRecord.size(); i++) {

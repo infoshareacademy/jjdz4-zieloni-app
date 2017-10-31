@@ -62,8 +62,8 @@ public class SearchBus {
                         //System.out.println(courseRecords.get(i).getDepartureTime() + " " + minutes + " minut ");
                         //System.out.println("Tabela minut"+symbolColumnX0XX + "" + columnMap.get(symbolColumnX0XX));
                     }else{
-                        System.out.println(courseRecords.get(i).getCourseX0_XX());
-                        System.out.println("            courseRecords.get(i).getCourseX0_XX()             ");
+                    //    System.out.println(courseRecords.get(i).getCourseX0_XX());
+                        System.out.println("            "+courseRecords.get(i).getCourseX0_XX()+"             ");
                     }
 
                 } catch (Exception e) {
