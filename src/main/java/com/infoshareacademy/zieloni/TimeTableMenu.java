@@ -38,7 +38,7 @@ public class TimeTableMenu {
 
                 if (text.equals("1")) {
                     choiceBus();
-                }else{
+                } else {
                     System.out.println("Wpisz 1 lub exit");
                 }
             } else if (level == 2) {
@@ -85,47 +85,6 @@ public class TimeTableMenu {
         }
     }
 
-    private static void showTimesForBusStop(Integer integer) {
-
-        street = integer;
-        level = 5;
-        ArrayList<RecordCourseDTO> courseRecord = null;
-        Map<String, ArrayList<String>> map = null;
-
-        if (variant == 1) {
-            courseRecord = busDB.get(choiceBus).getCourseRecords_v1();
-            map = busDB.get(choiceBus).getColumnsMap_v1();
-            System.out.println("chce zobaczyc rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v1().get(street).getNameOfBusStop());
-
-        } else if (variant == 2) {
-            courseRecord = busDB.get(choiceBus).getCourseRecords_v2();
-            map = busDB.get(choiceBus).getColumnsMap_v2();
-            System.out.println("chce zobaczyc rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v2().get(street).getNameOfBusStop());
-        }
-
-        for (int i = 0; i < courseRecord.size(); i++) {
-            int minutes = 0;
-            String symbolColumnX0XX = courseRecord.get(i).getCourseX0_XX();
-
-            for (int j = 0; j < street; j++) {
-
-                try {
-                    minutes += Integer.valueOf(map.get(symbolColumnX0XX).get(j));
-                } catch (Exception e) {
-                    minutes += 1;
-                }
-            }
-            try {
-                if (courseRecord.get(i).getCourseX0_XX().split("X")[0].equals("")) {
-                    System.out.println(courseRecord.get(i).getDepartureTime() + " " + minutes + "  " + FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes));
-                    //System.out.println("Tabela minut"+symbolColumnX0XX + "" + map.get(symbolColumnX0XX));
-                }
-
-            } catch (Exception e) {
-
-            }
-        }
-    }
 
     private static void startMenu() {
         System.out.println("#################################################");
@@ -171,11 +130,65 @@ public class TimeTableMenu {
                 System.out.println(i + ") " + busDB.get(choiceBus).getBusStops_v1().get(i).getNameOfBusStop());
             }
         }
-
         if (integer == 2) {
             for (int i = 0; i < busDB.get(choiceBus).getBusStops_v2().size(); i++) {
                 System.out.println(i + ") " + busDB.get(choiceBus).getBusStops_v2().get(i).getNameOfBusStop());
             }
         }
+    }
+
+    private static void showTimesForBusStop(Integer integer) {
+
+        street = integer;
+        level = 5;
+        ArrayList<RecordCourseDTO> courseRecord = null;
+        Map<String, ArrayList<String>> map = null;
+
+        if (variant == 1) {
+            courseRecord = busDB.get(choiceBus).getCourseRecords_v1();
+            map = busDB.get(choiceBus).getColumnsMap_v1();
+            System.out.println("Rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v1().get(street).getNameOfBusStop());
+
+        } else if (variant == 2) {
+            courseRecord = busDB.get(choiceBus).getCourseRecords_v2();
+            map = busDB.get(choiceBus).getColumnsMap_v2();
+            System.out.println("Rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v2().get(street).getNameOfBusStop());
+        }
+
+        StringBuilder timeTableView = new StringBuilder();
+
+        for (int i = 0; i < courseRecord.size(); i++) {
+            int minutes = 0;
+            String symbolColumnX0XX = courseRecord.get(i).getCourseX0_XX();
+
+            for (int j = 0; j < street; j++) {
+
+                try {
+                    minutes += Integer.valueOf(map.get(symbolColumnX0XX).get(j));
+                } catch (Exception e) {
+                    minutes += 1;
+                }
+            }
+            try {
+                if (courseRecord.get(i).getCourseX0_XX().split("X")[0].equals("")) {
+                    //  System.out.println(courseRecord.get(i).getDepartureTime() + " " + minutes + "  " + FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes));
+
+                    timeTableView.append(FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes) + " | ");
+                    if (i % 10 == 0) {
+                        timeTableView.append("\n");
+                    }
+                    //System.out.println("Tabela minut"+symbolColumnX0XX + "" + map.get(symbolColumnX0XX));
+                } else {
+                    timeTableView.append("\n");
+                    timeTableView.append("-------------------------------------------------------------------------\n");
+                    timeTableView.append("                                 " + courseRecord.get(i).getCourseX0_XX() + "\n");
+                    timeTableView.append("-------------------------------------------------------------------------\n");
+                }
+
+            } catch (Exception e) {
+
+            }
+        }
+        System.out.println(timeTableView);
     }
 }
