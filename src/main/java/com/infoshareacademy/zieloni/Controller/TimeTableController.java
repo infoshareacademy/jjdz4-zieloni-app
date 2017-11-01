@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni;
+package com.infoshareacademy.zieloni.Controller;
 
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;

@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni;
+package com.infoshareacademy.zieloni.Controller;
 
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-public class FindBus {
+public class FindBusController {
 
     private static String start_BusStop;
     private static String end_BusStop;
@@ -47,7 +47,7 @@ public class FindBus {
 
         if (find_startBusStop_index < find_endBusStop_index && find_startBusStop_index > -1) {
 
-            System.out.println("zobacz autobus nr : " + busDTO.getBusNumber() + "    " + info);
+            //System.out.println("zobacz autobus nr : " + busDTO.getBusNumber() + "    " + info);
             TimeTableView.showTimesForBusStop(id,find_startBusStop_index,2);
 
         }

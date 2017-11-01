@@ -1,5 +1,7 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.Controller.FindBusController;
+
 import java.time.LocalDate;
 
 class Menu {
@@ -31,7 +33,7 @@ class Menu {
                 System.out.println("Opis wydarzenia: \t\t" + events.getEvents().get(i).getSummary());
                 if (i + 1 < events.getEvents().size()) {
                     System.out.println("Na kolejne wydarzenie dojedziesz następującymi autobusami:");
-                    FindBus.search(events.getEvents().get(i).getLocation(), events.getEvents().get(i + 1).getLocation());
+                    FindBusController.search(events.getEvents().get(i).getLocation(), events.getEvents().get(i + 1).getLocation());
                 } else {
                     System.out.println("To jest ostatnie wydarzenie");
                 }

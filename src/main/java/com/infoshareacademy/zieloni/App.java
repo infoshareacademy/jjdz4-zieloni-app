@@ -1,5 +1,6 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.Controller.TimeTableController;
 import net.fortuna.ical4j.data.ParserException;
 
 import java.io.IOException;
@@ -27,9 +28,9 @@ public class App {
 //        String endBustop = "Uniwersytet Medyczny (n/ż)";
 //        System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);
 //
-//        FindBus.search(starBusStop, endBustop);
+//        FindBusController.search(starBusStop, endBustop);
 
-        // FindBus.search("Sandomierska  (n/ż)","Elmet (n/ż)");
+        // FindBusController.search("Sandomierska  (n/ż)","Elmet (n/ż)");
 
 
 
