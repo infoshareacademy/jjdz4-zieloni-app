@@ -85,7 +85,22 @@ public class TimeTableView {
         return level;
     }
 
+    public static int showTimesForBusStop(int addBus ,Integer addInteger,int addVariant) {
+        street = addInteger;
+        choiceBus=addBus;
+        variant=addVariant;
+        showTimeTable(street);
+        return 0;
+    }
+
     public static int showTimesForBusStop(Integer integer) {
+        street = integer;
+        showTimeTable(street);
+        return level;
+    }
+
+
+    private static void showTimeTable(Integer integer){
         int busStopArrSize = -1;
         if (variant == 1) {
             busStopArrSize = busDB.get(choiceBus).getBusStops_v1().size();
@@ -96,7 +111,7 @@ public class TimeTableView {
         }
 
         if (integer > -1 && integer < busStopArrSize) {
-            street = integer;
+
             level = 5;
             ArrayList<RecordCourseDTO> courseRecord = null;
             Map<String, ArrayList<String>> map = null;
@@ -116,12 +131,12 @@ public class TimeTableView {
             int counter = 1;
             for (int i = 0; i < courseRecord.size(); i++) {
                 int minutes = 0;
-                String symbolColumnX0XX = courseRecord.get(i).getCourseX0_XX();
+                String symbolOfVariant = courseRecord.get(i).getCourseX0_XX();
 
                 for (int j = 0; j < street; j++) {
 
                     try {
-                        minutes += Integer.valueOf(map.get(symbolColumnX0XX).get(j));
+                        minutes += Integer.valueOf(map.get(symbolOfVariant).get(j));
                     } catch (Exception e) {
                         minutes += 1;
                     }
@@ -149,6 +164,5 @@ public class TimeTableView {
         } else {
             System.out.println("Wybierz od 0 do " + (busStopArrSize - 1));
         }
-        return level;
     }
 }

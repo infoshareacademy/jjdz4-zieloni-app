@@ -2,12 +2,9 @@ package com.infoshareacademy.zieloni;
 
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
-import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
-import com.infoshareacademy.zieloni.Utils.FormatTime;
 import com.infoshareacademy.zieloni.View.TimeTableView;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -17,9 +14,7 @@ import java.util.Scanner;
 public class TimeTableController {
     private static final ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
     private static int level = 0;
-    private static int choiceBus = -1;
-    private static int street = -1;
-    private static int variant = -1;
+
 
     public static void show() {
 
