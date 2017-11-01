@@ -32,7 +32,7 @@ class Menu {
                 System.out.println("Miejsce wydarzenia: \t" + events.getEvents().get(i).getLocation());
                 System.out.println("Opis wydarzenia: \t\t" + events.getEvents().get(i).getSummary());
                 if (i + 1 < events.getEvents().size()) {
-                    //TODO włayć tą opcje jak menu  bedzie
+                    //TODO włączyć tę opcje jak menu  bedzie
                     // System.out.println("Na kolejne wydarzenie dojedziesz następującymi autobusami:");
                     //  FindBusController.search(events.getEvents().get(i).getLocation(), events.getEvents().get(i + 1).getLocation());
                 } else {

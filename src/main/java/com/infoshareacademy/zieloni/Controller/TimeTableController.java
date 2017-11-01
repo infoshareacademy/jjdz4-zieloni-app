@@ -29,13 +29,26 @@ public class TimeTableController {
                 break;
             }
             if (level == 0) {
-               // level = TimeTableView.choiceBus(text);
+                // level = TimeTableView.choiceBus(text);
             } else if (level == 2) {
-                level = TimeTableView.choiceVariant(Integer.valueOf(text));
+                try {
+                    level = TimeTableView.choiceVariant(Integer.valueOf(text));
+                } catch (Exception e) {
+                    System.out.println("Musisz wpisać liczbę");
+                }
+
             } else if (level == 3) {
-                level = TimeTableView.showVariantStreet(Integer.valueOf(text));
+                try {
+                    level = TimeTableView.showVariantStreet(Integer.valueOf(text));
+                } catch (Exception e) {
+                    System.out.println("Musisz wpisać liczbę");
+                }
             } else if (level == 4) {
-                level = TimeTableView.showTimesForBusStop(Integer.valueOf(text));
+                try {
+                    level = TimeTableView.showTimesForBusStop(Integer.valueOf(text));
+                } catch (Exception e) {
+                    System.out.println("Musisz wpisać liczbę");
+                }
             } else if (level == 5) {
                 break;
             }
