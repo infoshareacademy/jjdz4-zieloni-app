@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni;
+package com.infoshareacademy.zieloni.Loaders;
 
 import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.Model.ExtraTableCsvDTO;

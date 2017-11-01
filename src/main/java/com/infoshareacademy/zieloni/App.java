@@ -5,11 +5,6 @@ import net.fortuna.ical4j.data.ParserException;
 import java.io.IOException;
 import java.text.ParseException;
 
-
-import java.io.File;
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 /**
  * Hello world!
  */
@@ -23,7 +18,7 @@ public class App {
         //System.out.println(events.getEvents().size());
         Menu.displayEvents(events);
 
-        TimeTableMenu.show();
+        TimeTableController.show();
         Menu.clearConsole();
         Menu.displayEvents(events);
         Menu.displayDatesWithEvents(events);

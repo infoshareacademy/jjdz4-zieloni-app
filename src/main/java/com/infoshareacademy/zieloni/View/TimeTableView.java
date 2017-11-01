@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni;
+package com.infoshareacademy.zieloni.View;
 
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
@@ -7,47 +7,17 @@ import com.infoshareacademy.zieloni.Utils.FormatTime;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Scanner;
 
-/**
- * @author Michal Stasiński
- */
+public class TimeTableView {
 
-public class TimeTableMenu {
     private static final ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
+
     private static int level = 0;
     private static int choiceBus = -1;
     private static int street = -1;
     private static int variant = -1;
 
-    public static void show() {
-
-        String text;
-        Scanner scanner = new Scanner(System.in);
-
-        startMenu();
-
-        while (scanner.hasNextLine()) {
-            text = scanner.nextLine();
-            if (text.equals("exit")) {
-                System.out.println("koniec");
-                break;
-            }
-
-            if (level == 0) {
-                choiceBus(text);
-            } else if (level == 2) {
-                choiceVariant(Integer.valueOf(text));
-            } else if (level == 3) {
-                showVariantStreet(Integer.valueOf(text));
-            } else if (level == 4) {
-                showTimesForBusStop(Integer.valueOf(text));
-            }
-        }
-    }
-
-
-    private static void startMenu() {
+    public static void startMenu() {
         System.out.println("#################################################");
         // System.out.println("# Wpisz '1' jeśli chcesz zobaczyć wydarzenia    #");
         System.out.println("# Wpisz '1' jeśli chcesz zobaczyć rozkład jazdy #");
@@ -55,7 +25,7 @@ public class TimeTableMenu {
         System.out.println("#################################################");
     }
 
-    private static void choiceBus(String text) {
+    public static int choiceBus(String text) {
         if (text.equals("1")) {
             level = 2;
             System.out.println("#################################################");
@@ -68,11 +38,11 @@ public class TimeTableMenu {
         } else {
             System.out.println("Wpisz 1 lub exit");
         }
-
+        return level;
 
     }
 
-    private static void choiceVariant(Integer integer) {
+    public static int choiceVariant(Integer integer) {
         if (integer > -1 && integer < busDB.size()) {
             level = 3;
             System.out.println("#################################################");
@@ -83,11 +53,12 @@ public class TimeTableMenu {
             System.out.println("#################################################");
             choiceBus = integer;
         } else {
-            System.out.println("Wybierz od 1 do 2");
+            System.out.println("Wybierz od 0 do " + (busDB.size() - 1));
         }
+        return level;
     }
 
-    private static void showVariantStreet(Integer integer) {
+    public static int showVariantStreet(Integer integer) {
         if (integer.toString().equals("1") || integer.toString().equals("2")) {
             level = 4;
             System.out.println("#################################################");
@@ -110,9 +81,11 @@ public class TimeTableMenu {
         } else {
             System.out.println("Wybierz od 1 do 2");
         }
+
+        return level;
     }
 
-    private static void showTimesForBusStop(Integer integer) {
+    public static int showTimesForBusStop(Integer integer) {
         int busStopArrSize = -1;
         if (variant == 1) {
             busStopArrSize = busDB.get(choiceBus).getBusStops_v1().size();
@@ -176,5 +149,6 @@ public class TimeTableMenu {
         } else {
             System.out.println("Wybierz od 0 do " + (busStopArrSize - 1));
         }
+        return level;
     }
 }

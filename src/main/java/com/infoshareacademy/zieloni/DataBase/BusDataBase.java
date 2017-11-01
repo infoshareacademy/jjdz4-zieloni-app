@@ -1,11 +1,11 @@
 package com.infoshareacademy.zieloni.DataBase;
 
-import com.infoshareacademy.zieloni.CSVFileParser;
-import com.infoshareacademy.zieloni.CSVReader;
-import com.infoshareacademy.zieloni.FilesPathFinder;
+import com.infoshareacademy.zieloni.Loaders.CSVFileParser;
+import com.infoshareacademy.zieloni.Loaders.CSVReader;
+import com.infoshareacademy.zieloni.Loaders.PathFinder;
 import com.infoshareacademy.zieloni.Model.BusDTO;
-import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.Model.PathToCsvDTO;
+import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.Model.RecordVariantCsvDTO;
 
 import java.io.File;
@@ -25,10 +25,10 @@ public class BusDataBase {
         //System.out.println("current dir = " + folder);
 
         // towrzenie bazy danych z wszystkimi autobusami
-        ArrayList<BusDTO> busDB = new ArrayList<BusDTO>();
+        ArrayList<BusDTO> busDB = new ArrayList<>();
 
     /* M.Stasiński: ArrayList ze wszystkimi scieżkami do katalogów i znajdujących się w nim plików z rozkładami jazdy */
-        ArrayList<PathToCsvDTO> filePath = FilesPathFinder.addAllFilesPathToArrayList(folder);
+        ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList(folder);
         for (PathToCsvDTO file : filePath) {
 
             // if (file.getIsValidFrom() < 20150908) {

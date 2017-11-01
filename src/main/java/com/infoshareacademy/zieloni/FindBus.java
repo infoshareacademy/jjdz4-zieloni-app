@@ -11,17 +11,23 @@ import java.util.Map;
 
 public class FindBus {
 
-    public static void search(String start_BusStop, String end_BusStop) {
+    private static String start_BusStop;
+    private static String end_BusStop;
+
+    public static void search(String startBusStop, String endBusStop) {
+
+        end_BusStop = endBusStop;
+        start_BusStop = startBusStop;
 
         ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
 
         for (int i = 0; i < busDB.size(); i++) {
-            checkBusForVaraint(busDB.get(i), busDB.get(i).getBusStops_v1(), busDB.get(i).getCourseRecords_v1(), busDB.get(i).getColumnsMap_v1(), start_BusStop, end_BusStop, "dla wariantu 1");
-            checkBusForVaraint(busDB.get(i), busDB.get(i).getBusStops_v2(), busDB.get(i).getCourseRecords_v2(), busDB.get(i).getColumnsMap_v2(), start_BusStop, end_BusStop, "dla wariantu 2");
+            checkBusForVaraint(busDB.get(i), busDB.get(i).getBusStops_v1(), busDB.get(i).getCourseRecords_v1(), busDB.get(i).getColumnsMap_v1(), "dla wariantu 1");
+            checkBusForVaraint(busDB.get(i), busDB.get(i).getBusStops_v2(), busDB.get(i).getCourseRecords_v2(), busDB.get(i).getColumnsMap_v2(), "dla wariantu 2");
         }
     }
 
-    private static void checkBusForVaraint(BusDTO busDTO, ArrayList<RecordVariantCsvDTO> busStops, ArrayList<RecordCourseDTO> courseRecords, Map<String, ArrayList<String>> columnMap, String start_bs, String end_bs, String info) {
+    private static void checkBusForVaraint(BusDTO busDTO, ArrayList<RecordVariantCsvDTO> busStops, ArrayList<RecordCourseDTO> courseRecords, Map<String, ArrayList<String>> columnMap, String info) {
 
         int find_startBusStop_index = -1;
         int find_endBusStop_index = -1;
@@ -30,10 +36,10 @@ public class FindBus {
 
             String busStop = busStops.get(z).getNameOfBusStop();
 
-            if (busStop.equals(start_bs)) {
+            if (busStop.equals(start_BusStop)) {
                 find_startBusStop_index = z;
             }
-            if (busStop.equals(end_bs)) {
+            if (busStop.equals(end_BusStop)) {
                 find_endBusStop_index = z;
             }
         }
@@ -59,11 +65,11 @@ public class FindBus {
                 try {
 
                     if (courseRecords.get(i).getCourseX0_XX().split("X")[0].equals("")) {
-                        //TODO wywietlić rzład dla zaproponowanych busów--odkomentowac
+                        //TODO wywietlić zaproponowane autobusy--odkomentowac
                         //System.out.println(courseRecords.get(i).getDepartureTime() + " " + minutes + " minut ");
                         //System.out.println("Tabela minut"+symbolColumnX0XX + "" + columnMap.get(symbolColumnX0XX));
                     } else {
-                        //TODO wywietlić rzład dla zaproponowanych busów--odkomentowac
+                        //TODO wywietlić zaproponowane autobusy
                         //System.out.println(courseRecords.get(i).getCourseX0_XX());
                         //  System.out.println("            "+courseRecords.get(i).getCourseX0_XX()+"             ");
                     }
