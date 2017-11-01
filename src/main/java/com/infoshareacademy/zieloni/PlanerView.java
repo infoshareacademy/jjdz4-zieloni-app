@@ -21,7 +21,7 @@ public class PlanerView {
         System.out.println("#             Wpisz '1' WYDARZENIA              #");
         System.out.println("#             Wpisz '2' ROZKŁAD JAZDY           #");
         System.out.println("#             Wpisz '3' O AUTORACH              #");
-        System.out.println("#             Wpisz '4' IDE NA PIWO             #");
+        System.out.println("#             Wpisz '4' NA PIWO                 #");
         System.out.println("#                                               #");
         System.out.println("#       Wpisz 'exit' aby wyjść z programu       #");
         System.out.println("#################################################");
