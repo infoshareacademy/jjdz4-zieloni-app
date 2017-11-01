@@ -23,12 +23,12 @@ public class FindBusController {
         ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
 
         for (int i = 0; i < busDB.size(); i++) {
-            checkBusForVaraint(i,busDB.get(i), busDB.get(i).getBusStops_v1(), busDB.get(i).getCourseRecords_v1(), busDB.get(i).getColumnsMap_v1(), "dla wariantu 1");
-            checkBusForVaraint(i,busDB.get(i), busDB.get(i).getBusStops_v2(), busDB.get(i).getCourseRecords_v2(), busDB.get(i).getColumnsMap_v2(), "dla wariantu 2");
+            checkBusForVaraint(i,busDB.get(i), busDB.get(i).getBusStops_v1(), busDB.get(i).getCourseRecords_v1(), busDB.get(i).getColumnsMap_v1(), 1);
+            checkBusForVaraint(i,busDB.get(i), busDB.get(i).getBusStops_v2(), busDB.get(i).getCourseRecords_v2(), busDB.get(i).getColumnsMap_v2(), 2);
         }
     }
 
-    private static void checkBusForVaraint(int id,BusDTO busDTO, ArrayList<RecordVariantCsvDTO> busStops, ArrayList<RecordCourseDTO> courseRecords, Map<String, ArrayList<String>> columnMap, String info) {
+    private static void checkBusForVaraint(int id,BusDTO busDTO, ArrayList<RecordVariantCsvDTO> busStops, ArrayList<RecordCourseDTO> courseRecords, Map<String, ArrayList<String>> columnMap, int variant) {
 
         int find_startBusStop_index = -1;
         int find_endBusStop_index = -1;
@@ -46,10 +46,9 @@ public class FindBusController {
         }
 
         if (find_startBusStop_index < find_endBusStop_index && find_startBusStop_index > -1) {
-
-            //System.out.println("zobacz autobus nr : " + busDTO.getBusNumber() + "    " + info);
-            TimeTableView.showTimesForBusStop(id,find_startBusStop_index,2);
-
+            System.out.println("------------------------------------------------------\n");
+            System.out.println("Proponowany autobus nr "+busDTO.getBusNumber());
+            TimeTableView.showTimesForBusStop(id,find_startBusStop_index,variant);
         }
     }
 }

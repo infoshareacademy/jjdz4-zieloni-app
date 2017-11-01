@@ -119,12 +119,14 @@ public class TimeTableView {
             if (variant == 1) {
                 courseRecord = busDB.get(choiceBus).getCourseRecords_v1();
                 map = busDB.get(choiceBus).getColumnsMap_v1();
-                System.out.println("Rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v1().get(street).getNameOfBusStop().toUpperCase());
+                System.out.println("___________________________________________________________________\n");
+                System.out.println("                     Rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v1().get(street).getNameOfBusStop().toUpperCase());
 
             } else if (variant == 2) {
                 courseRecord = busDB.get(choiceBus).getCourseRecords_v2();
                 map = busDB.get(choiceBus).getColumnsMap_v2();
-                System.out.println("Rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v2().get(street).getNameOfBusStop().toUpperCase());
+                System.out.println("___________________________________________________________________\n");
+                System.out.println("                     Rozkład autobusu nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v2().get(street).getNameOfBusStop().toUpperCase());
             }
 
             StringBuilder timeTableView = new StringBuilder();

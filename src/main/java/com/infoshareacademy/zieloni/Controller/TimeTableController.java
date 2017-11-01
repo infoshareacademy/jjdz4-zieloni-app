@@ -12,9 +12,9 @@ import java.util.Scanner;
  */
 
 public class TimeTableController {
+
     private static final ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
     private static int level = 0;
-
 
     public static void show() {
 
