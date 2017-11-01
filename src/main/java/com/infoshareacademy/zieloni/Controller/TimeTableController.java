@@ -2,10 +2,10 @@ package com.infoshareacademy.zieloni.Controller;
 
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
+import com.infoshareacademy.zieloni.PlanerView;
 import com.infoshareacademy.zieloni.View.TimeTableView;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * @author Michal Stasiński
@@ -14,24 +14,22 @@ import java.util.Scanner;
 public class TimeTableController {
 
     private static final ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
-    private static int level = 0;
+    private static int level = 2;
 
     public static void show() {
 
         String text;
-        Scanner scanner = new Scanner(System.in);
 
-        TimeTableView.startMenu();
-
-        while (scanner.hasNextLine()) {
-            text = scanner.nextLine();
+        //TimeTableView.startMenu();
+        TimeTableView.choiceBus("1");
+        while (PlanerView.scanner.hasNextLine()) {
+            text = PlanerView.scanner.nextLine();
             if (text.equals("exit")) {
                 System.out.println("koniec");
                 break;
             }
-
             if (level == 0) {
-                level = TimeTableView.choiceBus(text);
+               // level = TimeTableView.choiceBus(text);
             } else if (level == 2) {
                 level = TimeTableView.choiceVariant(Integer.valueOf(text));
             } else if (level == 3) {

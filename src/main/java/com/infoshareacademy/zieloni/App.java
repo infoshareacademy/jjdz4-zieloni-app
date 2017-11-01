@@ -1,6 +1,5 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.Controller.TimeTableController;
 import net.fortuna.ical4j.data.ParserException;
 
 import java.io.IOException;
@@ -13,8 +12,10 @@ public class App {
 
     public static void main(String[] args) throws ParseException, ParserException, IOException {
 
+        PlanerView planer = new PlanerView();
+        planer.startMenu();
 
-        Events events = new Events();
+       /* Events events = new Events();
         events.loadEvents();
         //System.out.println(events.getEvents().size());
         Menu.displayEvents(events);
@@ -23,15 +24,6 @@ public class App {
         Menu.clearConsole();
         Menu.displayEvents(events);
         Menu.displayDatesWithEvents(events);
-
-//        String starBusStop = "Jaśkowa Dolina (n/ż)";
-//        String endBustop = "Uniwersytet Medyczny (n/ż)";
-//        System.out.println("Chce dojechac z " + starBusStop + " do " + endBustop);
-//
-//        FindBusController.search(starBusStop, endBustop);
-
-        // FindBusController.search("Sandomierska  (n/ż)","Elmet (n/ż)");
-
 
 
         /*---------------------------pobranie pliku tabela.csv   --moze sie to przyda może nie*/
