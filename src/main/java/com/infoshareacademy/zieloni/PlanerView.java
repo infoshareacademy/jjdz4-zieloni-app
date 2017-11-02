@@ -12,9 +12,9 @@ import java.util.Scanner;
 
 public class PlanerView {
     public static Scanner scanner = new Scanner(System.in);
-    private static Logger logger = LogManager.getLogger( PlanerView.class.getName());
+    private static Logger logger = LogManager.getLogger(PlanerView.class.getName());
 
-    public void startMenu() throws ParseException, ParserException, IOException {
+    public static void startMenu() throws ParseException, ParserException, IOException {
 
         String text;
 
@@ -24,7 +24,6 @@ public class PlanerView {
         System.out.println("#             Wpisz '1' WYDARZENIA              #");
         System.out.println("#             Wpisz '2' ROZKŁAD JAZDY           #");
         System.out.println("#             Wpisz '3' O AUTORACH              #");
-        System.out.println("#             Wpisz '4' NA PIWO                 #");
         System.out.println("#                                               #");
         System.out.println("#       Wpisz 'exit' aby wyjść z programu       #");
         System.out.println("#################################################");
@@ -45,13 +44,11 @@ public class PlanerView {
                 break;
             } else if (text.equals("2")) {
                 /*Rozkład Jazdy*/
-                if(BusDataBase.getDataBase().size()>0) {
+                if (BusDataBase.getDataBase().size() > 0) {
                     TimeTableController.show();
-                }else{
+                } else {
                     logger.fatal("Baza danych jest pusta");
                 }
-
-
                 break;
             } else if (text.equals("3")) {
                 System.out.println("TEAM ZIELONI\n");
@@ -59,9 +56,6 @@ public class PlanerView {
                 System.out.println("Adam Kosała");
                 System.out.println("Marcin Kruszyński");
                 System.out.println("Michał Stasiński");
-                break;
-            } else if (text.equals("4")) {
-                System.out.println("Wyszliśmy na dosłownie jedno piwo");
                 break;
             } else {
                 System.out.println("Wybierz jedną z dostępnych opcji lub wpisz exit");

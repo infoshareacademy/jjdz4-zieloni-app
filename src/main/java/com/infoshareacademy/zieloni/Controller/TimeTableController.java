@@ -4,9 +4,12 @@ import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
 import com.infoshareacademy.zieloni.PlanerView;
 import com.infoshareacademy.zieloni.View.TimeTableView;
+import net.fortuna.ical4j.data.ParserException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 
@@ -17,9 +20,10 @@ import java.util.ArrayList;
 public class TimeTableController {
 
     private static final ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
-    private static int level = 2;
+    private static int level = 1;
     private static Logger logger = LogManager.getLogger(TimeTableController.class.getName());
-    public static void show() {
+
+    public static void show() throws ParseException, ParserException, IOException {
 
         String text;
 
@@ -31,33 +35,40 @@ public class TimeTableController {
                 System.out.println("koniec");
                 break;
             }
-            if (level == 0) {
-                // level = TimeTableView.choiceBus(text);
-            } else if (level == 2) {
-                try {
-                    level = TimeTableView.choiceVariant(Integer.valueOf(text));
-                } catch (Exception e) {
 
-                    System.out.println("Musisz wpisać liczbę");
-                    logger.info("Użytkownik nie wpisał liczby w poziomie 2");
-                }
+            if (text.equals("cofnij")) {
+                level = 1;
+                PlanerView.startMenu();
+                System.out.println(level);
 
-            } else if (level == 3) {
-                try {
-                    level = TimeTableView.showVariantStreet(Integer.valueOf(text));
-                } catch (Exception e) {
-                    System.out.println("Musisz wpisać liczbę");
-                    logger.info("Użytkownik nie wpisał liczby w poziomie 3");
+            } else {
+
+                if (level == 1) {
+                    try {
+                        level = TimeTableView.choiceVariant(Integer.valueOf(text));
+                    } catch (Exception e) {
+
+                        System.out.println("Musisz wpisać liczbę");
+                        logger.info("Użytkownik nie wpisał liczby w poziomie 2");
+                    }
+
+                } else if (level == 2) {
+                    try {
+                        level = TimeTableView.showVariantStreet(Integer.valueOf(text));
+                    } catch (Exception e) {
+                        System.out.println("Musisz wpisać liczbę");
+                        logger.info("Użytkownik nie wpisał liczby w poziomie 3");
+                    }
+                } else if (level == 3) {
+                    try {
+                        level = TimeTableView.showTimesForBusStop(Integer.valueOf(text));
+                    } catch (Exception e) {
+                        System.out.println("Musisz wpisać liczbę");
+                        logger.info("Użytkownik nie wpisał liczby w poziomie 4");
+                    }
+                } else if (level == 4) {
+                    break;
                 }
-            } else if (level == 4) {
-                try {
-                    level = TimeTableView.showTimesForBusStop(Integer.valueOf(text));
-                } catch (Exception e) {
-                    System.out.println("Musisz wpisać liczbę");
-                    logger.info("Użytkownik nie wpisał liczby w poziomie 4");
-                }
-            } else if (level == 5) {
-                break;
             }
         }
     }

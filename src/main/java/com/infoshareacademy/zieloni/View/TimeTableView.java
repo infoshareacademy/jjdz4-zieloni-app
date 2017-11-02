@@ -27,9 +27,11 @@ public class TimeTableView {
 
     public static int choiceBus(String text) {
         if (text.equals("1")) {
-            level = 2;
+            level = 1;
             System.out.println("#################################################");
             System.out.println("#          Wpisz nr porzadkowy autobusu         #");
+            System.out.println("#                                               #");
+            System.out.println("#   Wpisz 'cofnij' aby wrócić do głownego menu  #");
             System.out.println("#       Wpisz 'exit' aby wyjść z programu       #");
             System.out.println("#################################################");
             for (int i = 0; i < busDB.size(); i++) {
@@ -44,12 +46,13 @@ public class TimeTableView {
 
     public static int choiceVariant(Integer integer) {
         if (integer > -1 && integer < busDB.size()) {
-            level = 3;
+            level = 2;
             System.out.println("#################################################");
             System.out.println("#          Wybrałeś autobus nr " + busDB.get(integer).getBusNumber() + "              #");
             System.out.println("#                                               #");
             System.out.println("#     Wpisz 1) jeśli chcesz jechać 'tam'        #");
             System.out.println("#     Wpisz 2) jeśli chcesz jechać 'z powrotem' #");
+            System.out.println("#   Wpisz 'cofnij' aby wrócić do głownego menu  #");
             System.out.println("#################################################");
             choiceBus = integer;
         } else {
@@ -60,11 +63,12 @@ public class TimeTableView {
 
     public static int showVariantStreet(Integer integer) {
         if (integer.toString().equals("1") || integer.toString().equals("2")) {
-            level = 4;
+            level = 3;
             System.out.println("#################################################");
             // System.out.println("# Wpisz '1' jeśli chcesz zobaczyć wydarzenia  #");
             System.out.println("#       Wybierz nr porzadkowy przystanku        #");
             System.out.println("#       Wpisz 'exit' aby wyjść z programu       #");
+            System.out.println("#   Wpisz 'cofnij' aby wrócić do głownego menu  #");
             System.out.println("#################################################");
             variant = integer;
 
@@ -79,7 +83,7 @@ public class TimeTableView {
                 }
             }
         } else {
-            System.out.println("Wybierz od 1 do 2");
+            System.out.println("Wybierz od 11 do 2");
         }
 
         return level;
@@ -112,7 +116,7 @@ public class TimeTableView {
 
         if (integer > -1 && integer < busStopArrSize) {
 
-            level = 5;
+            level = 4;
             ArrayList<RecordCourseDTO> courseRecord = null;
             Map<String, ArrayList<String>> map = null;
 

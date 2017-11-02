@@ -4,7 +4,6 @@ import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
 import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.Model.RecordVariantCsvDTO;
-import com.infoshareacademy.zieloni.View.TimeTableView;
 
 import java.util.ArrayList;
 import java.util.Map;
