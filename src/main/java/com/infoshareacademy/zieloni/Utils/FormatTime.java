@@ -1,9 +1,6 @@
 package com.infoshareacademy.zieloni.Utils;
 
-
-
 import java.util.ArrayList;
-
 
 public class FormatTime {
 
@@ -15,7 +12,7 @@ public class FormatTime {
     private static String Ost1;
 
     public static String dateFromTo(String a) {
-        ArrayList<Integer> timeStringInt = new ArrayList<Integer>();
+        ArrayList<Integer> timeStringInt = new ArrayList<>();
 
 
         for (int i = 0; i < a.length(); i++) {
@@ -28,10 +25,7 @@ public class FormatTime {
                 }
                 timeStringInt.add(Integer.parseInt(num));
             }
-
-
         }
-
 
         m = (timeStringInt.get(1) + timeStringInt.get(2) + (timeStringInt.get(0) * 60));
 

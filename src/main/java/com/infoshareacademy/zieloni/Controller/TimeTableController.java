@@ -4,8 +4,11 @@ import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
 import com.infoshareacademy.zieloni.PlanerView;
 import com.infoshareacademy.zieloni.View.TimeTableView;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+
 
 /**
  * @author Michal Stasiński
@@ -15,7 +18,7 @@ public class TimeTableController {
 
     private static final ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
     private static int level = 2;
-
+    private static Logger logger = LogManager.getLogger(TimeTableController.class.getName());
     public static void show() {
 
         String text;
@@ -34,7 +37,9 @@ public class TimeTableController {
                 try {
                     level = TimeTableView.choiceVariant(Integer.valueOf(text));
                 } catch (Exception e) {
+
                     System.out.println("Musisz wpisać liczbę");
+                    logger.info("Użytkownik nie wpisał liczby w poziomie 2");
                 }
 
             } else if (level == 3) {
@@ -42,12 +47,14 @@ public class TimeTableController {
                     level = TimeTableView.showVariantStreet(Integer.valueOf(text));
                 } catch (Exception e) {
                     System.out.println("Musisz wpisać liczbę");
+                    logger.info("Użytkownik nie wpisał liczby w poziomie 3");
                 }
             } else if (level == 4) {
                 try {
                     level = TimeTableView.showTimesForBusStop(Integer.valueOf(text));
                 } catch (Exception e) {
                     System.out.println("Musisz wpisać liczbę");
+                    logger.info("Użytkownik nie wpisał liczby w poziomie 4");
                 }
             } else if (level == 5) {
                 break;

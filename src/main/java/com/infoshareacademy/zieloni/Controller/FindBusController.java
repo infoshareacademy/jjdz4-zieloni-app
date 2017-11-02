@@ -48,7 +48,7 @@ public class FindBusController {
         if (find_startBusStop_index < find_endBusStop_index && find_startBusStop_index > -1) {
             System.out.println("------------------------------------------------------\n");
             System.out.println("Proponowany autobus nr "+busDTO.getBusNumber());
-            TimeTableView.showTimesForBusStop(id,find_startBusStop_index,variant);
+           // TimeTableView.showTimesForBusStop(id,find_startBusStop_index,variant);
         }
     }
 }

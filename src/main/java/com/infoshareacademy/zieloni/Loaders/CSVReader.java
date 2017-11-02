@@ -19,7 +19,7 @@ public class CSVReader {
      * @return ArrayList of records - record is single line of text from a csv file
      */
     public static ArrayList<String> readCSVfileAndConvertToRecordsArray(String path) {
-        ArrayList<String> records = new ArrayList<String>();
+        ArrayList<String> records = new ArrayList<>();
         String line = "";
 
         try {

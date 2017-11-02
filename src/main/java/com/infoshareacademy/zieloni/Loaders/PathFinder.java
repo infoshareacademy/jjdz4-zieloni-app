@@ -35,7 +35,7 @@ public class PathFinder {
 
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(final File folder) {
 
-        ArrayList<PathToCsvDTO> arrayWithFolderPath = new ArrayList<PathToCsvDTO>();
+        ArrayList<PathToCsvDTO> arrayWithFolderPath = new ArrayList<>();
 
         /* lista folderów*/
         for (final File fileEntry : folder.listFiles()) {
