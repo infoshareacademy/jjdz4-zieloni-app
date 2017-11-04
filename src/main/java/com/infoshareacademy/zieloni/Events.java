@@ -1,10 +1,10 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.Model.Event;
 import lombok.Getter;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
-import net.fortuna.ical4j.model.ComponentList;
 import net.fortuna.ical4j.model.Property;
 import net.fortuna.ical4j.model.component.CalendarComponent;
 import java.io.FileInputStream;

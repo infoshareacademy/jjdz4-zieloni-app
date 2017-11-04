@@ -1,5 +1,7 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.Controller.TimeTableController;
+import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import net.fortuna.ical4j.data.ParserException;
 
 import java.io.IOException;
@@ -18,15 +20,23 @@ class Menu {
         displayMainMenu();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
-            switch (scanner.nextLine()) {
+            switch (scanner.nextLine().toLowerCase()) {
                 case "1":
-                    displayDatesWithEvents(events);
+//                    displayDatesWithEvents(events);
+                    displayEvents(events);
                     break;
                 case "2":
+                    /*Rozkład Jazdy*/
+                    if (BusDataBase.getDataBase().size() > 0) {
+                        TimeTableController.show();
+                    } else {
+                        //logger.fatal("Baza danych jest pusta");
+                    }
+                    displayMainMenu();
                     break;
                 case "3":
                     break;
-                case "EXIT":
+                case "exit":
                     return;
                 default:
                     displayMainMenu();
@@ -41,7 +51,7 @@ class Menu {
         System.out.println();
         System.out.println("1\tWyświetl dni z wydarzeniami");
         System.out.println("2\tWyświetl rozkład jazdy");
-        System.out.println("3\tWczytaj plik z kalendarzem");
+//        System.out.println("3\tWczytaj plik z kalendarzem");
         System.out.println("EXIT\tWyjście z programu");
         System.out.println();
         System.out.print("Wpisz polecenie: ");
@@ -69,8 +79,8 @@ class Menu {
             for (int i = 0; i < events.getEvents().size(); i++) {
                 System.out.println("-----------------------------------------------------");
                 System.out.println("Wydarzenie nr: " + i);
-                System.out.println("Początek wydarzenia: \t" + events.getEvents().get(i).getStartTime());
-                System.out.println("Koniec wydarzenia: \t\t" + events.getEvents().get(i).getEndTime());
+                System.out.println("Początek wydarzenia: \t" + events.getEvents().get(i).getStartTime().toString().replace("T",", "));
+                System.out.println("Koniec wydarzenia: \t\t" + events.getEvents().get(i).getEndTime().toString().replace("T",", "));
                 System.out.println("Miejsce wydarzenia: \t" + events.getEvents().get(i).getLocation());
                 System.out.println("Opis wydarzenia: \t\t" + events.getEvents().get(i).getSummary());
                 if (i + 1 < events.getEvents().size()) {

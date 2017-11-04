@@ -38,8 +38,9 @@ public class TimeTableController {
 
             if (text.equals("cofnij")) {
                 level = 1;
-                PlanerView.startMenu();
-                System.out.println(level);
+                return;
+                //PlanerView.startMenu();
+               // System.out.println(level);
 
             } else {
 
