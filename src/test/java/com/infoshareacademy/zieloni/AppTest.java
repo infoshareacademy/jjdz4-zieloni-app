@@ -3,6 +3,7 @@ package com.infoshareacademy.zieloni;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Unit test for simple App.

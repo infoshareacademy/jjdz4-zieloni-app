@@ -4,19 +4,22 @@ import net.fortuna.ical4j.data.ParserException;
 
 import java.io.IOException;
 import java.text.ParseException;
-
-
-import java.io.File;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Hello world!
  */
 public class App {
 
+    Logger logger = Logger.getLogger(App.class.getName());
+
     public static void main(String[] args) throws ParseException, ParserException, IOException {
 
+        PlanerView planer = new PlanerView();
+        planer.startMenu();
+
+       /* Events events = new Events();
+        events.loadEvents();
         //System.out.println(events.getEvents().size());
         Menu.startMenu();
 

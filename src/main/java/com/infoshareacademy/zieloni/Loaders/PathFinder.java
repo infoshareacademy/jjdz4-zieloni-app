@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni;
+package com.infoshareacademy.zieloni.Loaders;
 
 import com.infoshareacademy.zieloni.Model.PathToCsvDTO;
 
@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * " plik zakonczone na  opis2.csv:            " + file.getDescription2());
  */
 
-public class FilesPathFinder {
+public class PathFinder {
 
     /**
      * @param @param folder  it is  folder in resource/rozklady_2015-09-08_13.43.01
@@ -35,7 +35,7 @@ public class FilesPathFinder {
 
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(final File folder) {
 
-        ArrayList<PathToCsvDTO> arrayWithFolderPath = new ArrayList<PathToCsvDTO>();
+        ArrayList<PathToCsvDTO> arrayWithFolderPath = new ArrayList<>();
 
         /* lista folderów*/
         for (final File fileEntry : folder.listFiles()) {

@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni;
+package com.infoshareacademy.zieloni.Loaders;
 
 import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.Model.ExtraTableCsvDTO;
@@ -18,8 +18,9 @@ public class CSVFileParser {
     public static ArrayList<ExtraTableCsvDTO> formatCSVToTimeTableWithExtraInfoRecords(ArrayList<String> stringArray) {
 
         /**
-         * @param this method get file tabela.csv(converted to ArrayList<String>) from  resource\rozklady_2015-09-08_13.43.01
-         * and set value to ExtraTableCsvDTO object
+         * this method get file tabela.csv(converted to ArrayList<String>) from  resource\rozklady_2015-09-08_13.43.01
+         * and set value to @see ExtraTableCsvDTO object
+         *
          * @return array with ExtraTableCsvDTO objects
          */
 
