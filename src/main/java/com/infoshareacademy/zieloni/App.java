@@ -15,13 +15,14 @@ public class App {
 
     public static void main(String[] args) throws ParseException, ParserException, IOException {
 
-        PlanerView planer = new PlanerView();
-        planer.startMenu();
+        Menu.startMenu();
+
+//        PlanerView planer = new PlanerView();
+//        planer.startMenu();
 
        /* Events events = new Events();
         events.loadEvents();
         //System.out.println(events.getEvents().size());
-        Menu.startMenu();
 
 //        Menu.displayEvents(events);
 //
