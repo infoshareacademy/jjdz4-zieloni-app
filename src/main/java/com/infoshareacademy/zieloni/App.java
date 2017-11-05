@@ -17,10 +17,10 @@ public class App {
 
     public static void main(String[] args) throws ParseException, ParserException, IOException, InterruptedException {
 
-        startMenu();
+      //  startMenu();
 
-//        PlanerView planer = new PlanerView();
-//        planer.startMenu();
+        PlanerView planer = new PlanerView();
+       planer.startMenu();
 
        /* Events events = new Events();
         events.loadEvents();

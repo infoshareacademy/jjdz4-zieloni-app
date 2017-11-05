@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
 
+import static com.infoshareacademy.zieloni.DataBase.BusDataBase.DB;
+
 public class PlanerView {
     public static Scanner scanner = new Scanner(System.in);
     private static Logger logger = LogManager.getLogger(PlanerView.class.getName());
@@ -44,7 +46,7 @@ public class PlanerView {
                 break;
             } else if (text.equals("2")) {
                 /*Rozkład Jazdy*/
-                if (BusDataBase.getDataBase().size() > 0) {
+                if (DB.size() > 0) {
                     TimeTableController.show();
                 } else {
                     logger.fatal("Baza danych jest pusta");

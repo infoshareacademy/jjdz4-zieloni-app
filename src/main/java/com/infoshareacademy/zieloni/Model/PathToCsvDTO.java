@@ -17,13 +17,13 @@ public class PathToCsvDTO {
     @Setter
     private String Id;
 
-    @Getter
+   /* @Getter
     @Setter
     private int isValidFrom;
 
     @Getter
     @Setter
-    private int isValidTo;
+    private int isValidTo;*/
 
     @Getter
     @Setter

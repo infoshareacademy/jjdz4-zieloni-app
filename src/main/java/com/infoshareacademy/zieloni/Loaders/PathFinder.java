@@ -3,7 +3,9 @@ package com.infoshareacademy.zieloni.Loaders;
 import com.infoshareacademy.zieloni.Model.PathToCsvDTO;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * read and store in array  paths to all csv files in resource/rozklady_2015-09-08_13.43.01
@@ -34,10 +36,69 @@ public class PathFinder {
      */
 
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(final File folder) {
-
+        // public static final File folder = new File("rozklady_2015-09-08_13.43.01");
         ArrayList<PathToCsvDTO> arrayWithFolderPath = new ArrayList<>();
 
+        String pathMain = "rozklady_2015-09-08_13.43.01/";
+        InputStream activitiesStream = PathFinder.class.getClassLoader().getResourceAsStream("rozklady_2015-09-08_13.43.01");
+
+
+        Scanner scanner = new Scanner(activitiesStream).useDelimiter("\n");
+        boolean isHeader = true;
+
+        while (scanner.hasNext()) {
+
+            PathToCsvDTO csvFile = new PathToCsvDTO();
+            String record = scanner.next();
+            // System.out.println("rozklady_2015-09-08_13.43.01/" + record);
+            //System.out.println(record);
+
+            csvFile.setFolderName("rozklady_2015-09-08_13.43.01/" + record);
+            csvFile.setId(record);
+            arrayWithFolderPath.add(csvFile);
+
+            InputStream activitiesStream1 = PathFinder.class.getClassLoader().getResourceAsStream("rozklady_2015-09-08_13.43.01//" + record);
+            try {
+                Scanner scanner1 = new Scanner(activitiesStream1).useDelimiter("\n");
+                while (scanner1.hasNext()) {
+                    String record1 = scanner1.next();
+
+                    //  System.out.println(paaaa + record1);
+                    if (record1.indexOf("kursy1") > -1) {
+                        csvFile.setCourse1(pathMain + record + "/" + record1);
+                    }
+
+                    if (record1.indexOf("kursy2") > -1) {
+                        csvFile.setCourse2(pathMain + record + "/" + record1);
+                    }
+
+                    if (record1.indexOf("opisy1") > -1) {
+                        csvFile.setDescription1(pathMain + record + "/" + record1);
+                    }
+
+                    if (record1.indexOf("opisy2") > -1) {
+                        csvFile.setDescription2(pathMain + record + "/" + record1);
+                    }
+
+                    if (record1.indexOf("warianty1") > -1) {
+                        csvFile.setVariant1(pathMain + record + "/" + record1);
+                    }
+
+                    if (record1.indexOf("warianty2") > -1) {
+                        csvFile.setVariant2(pathMain + record + "/" + record1);
+                    }
+                }
+            } catch (Exception e) {
+            }
+
+        }
+
+
+        return arrayWithFolderPath;
+
         /* lista folderów*/
+
+/*
         for (final File fileEntry : folder.listFiles()) {
 
             PathToCsvDTO csvFile = new PathToCsvDTO();
@@ -45,10 +106,12 @@ public class PathFinder {
 
                 csvFile.setFolderName(fileEntry.getAbsolutePath());
                 csvFile.setId(fileEntry.getName());
+                // System.out.println(fileEntry.getAbsolutePath());
+                //  System.out.println(fileEntry.getName());
                 arrayWithFolderPath.add(csvFile);
 
                 /*  lista plików w folderze*/
-                File[] contentInFolder = fileEntry.listFiles();
+               /* File[] contentInFolder = fileEntry.listFiles();
 
                 for (int i = 0; i < contentInFolder.length; i++) {
                     if (contentInFolder[i].getName().indexOf("kursy1") > -1) {
@@ -76,8 +139,8 @@ public class PathFinder {
                     }
                 }
             }
-        }
-        return arrayWithFolderPath;
+        }*/
+
     }
 }
 

@@ -18,21 +18,24 @@ import java.util.Map;
  * @author Michał Stasiński
  */
 public class BusDataBase {
+
     private static Logger logger = LogManager.getLogger(BusDataBase.class.getName());
     private static final String currentDirectory = System.getProperty("user.dir");
     public static final File folder = new File(currentDirectory + "//src//main//resource//rozklady_2015-09-08_13.43.01");
+    public static ArrayList<BusDTO> DB =  BusDataBase.getDataBase();
 
     public static ArrayList<BusDTO> getDataBase() {
-
+        System.out.println("getDataBase()");
         ArrayList<BusDTO> busDB = new ArrayList<>();
-
+        ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList(folder);
         try {
-            ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList(folder);
+
+            System.out.println(filePath.size());
 
             for (PathToCsvDTO file : filePath) {
 
                /* System.out.println("ID :                                      " + file.getId());
-                System.out.println("Rozkład obowiązuje od :                   " + file.getIsValidFrom());
+
                 System.out.println("Nazwa folderu :                           " + file.getFolderName());
                 System.out.println("plik zakonczone na  kursy1.csv:           " + file.getCourse1());
                 System.out.println("plik zakonczone na  kursy2.csv:           " + file.getCourse2());
@@ -53,7 +56,7 @@ public class BusDataBase {
                 Map<String, ArrayList<String>> map2 = CSVFileParser.columns_X0XX_Map(variant2RecordArray);
 
 
-                BusDTO bus = new BusDTO();
+               BusDTO bus = new BusDTO();
 
                 bus.setBusStops_v1(variant1);
                 bus.setBusStops_v2(variant2);
@@ -71,7 +74,6 @@ public class BusDataBase {
             logger.fatal("Brak folderu z danymi");
         }
         return busDB;
-
     }
 }
 

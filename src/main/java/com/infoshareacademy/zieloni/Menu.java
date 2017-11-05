@@ -27,11 +27,11 @@ class Menu {
                     break;
                 case "2":
                     /*Rozkład Jazdy*/
-                    if (BusDataBase.getDataBase().size() > 0) {
-                        TimeTableController.show();
+                    if (BusDataBase.DB.size() > 0) {
+                        //TimeTableController.show();
                     } else {
                         //logger.fatal("Baza danych jest pusta");
-                    }
+                   }
                     displayMainMenu();
                     break;
                 case "3":

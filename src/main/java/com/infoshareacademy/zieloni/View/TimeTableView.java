@@ -8,9 +8,11 @@ import com.infoshareacademy.zieloni.Utils.FormatTime;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static com.infoshareacademy.zieloni.DataBase.BusDataBase.DB;
+
 public class TimeTableView {
 
-    private static final ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
+    private static final ArrayList<BusDTO> busDB = DB ;
 
     private static int level = 0;
     private static int choiceBus = -1;
