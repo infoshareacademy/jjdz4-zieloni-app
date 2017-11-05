@@ -81,11 +81,10 @@ class Menu {
                 System.out.println("-----------------------------------------------------");
                 System.out.println("Wydarzenie nr: " + i + 1);
                 System.out.println("Początek wydarzenia: \t" + events.getEvents().get(i).getStartTime().toString().replace("T",", "));
-                System.out.println("Koniec wydarzenia: \t\t" + events.getEvents().get(i).getEndTime().toString().replace("T",", "));
+                System.out.println("Koniec wydarzenia: \t" + events.getEvents().get(i).getEndTime().toString().replace("T",", "));
                 System.out.println("Miejsce wydarzenia: \t" + events.getEvents().get(i).getLocation());
-                System.out.println("Opis wydarzenia: \t\t" + events.getEvents().get(i).getSummary());
+                System.out.println("Opis wydarzenia: \t" + events.getEvents().get(i).getSummary());
                 if (i + 1 < events.getEvents().size()) {
-                    //TODO włączyć tę opcje jak menu  bedzie
                       System.out.println("Na kolejne wydarzenie dojedziesz następującymi autobusami:");
                       FindBusController.search(events.getEvents().get(i).getLocation(), events.getEvents().get(i + 1).getLocation());
                 } else {
