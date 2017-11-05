@@ -71,14 +71,15 @@ class Menu {
      *
      * @param events collection of events to display
      */
-    static void displayEvents(Events events) {
+    static void displayEvents(Events events) throws InterruptedException {
         if (events.getEvents().size() != 0) {
 
+            clearConsole();
             System.out.println("Znaleziono: " + events.getEvents().size() + " wydarzeń:");
 
             for (int i = 0; i < events.getEvents().size(); i++) {
                 System.out.println("-----------------------------------------------------");
-                System.out.println("Wydarzenie nr: " + i);
+                System.out.println("Wydarzenie nr: " + i + 1);
                 System.out.println("Początek wydarzenia: \t" + events.getEvents().get(i).getStartTime().toString().replace("T",", "));
                 System.out.println("Koniec wydarzenia: \t\t" + events.getEvents().get(i).getEndTime().toString().replace("T",", "));
                 System.out.println("Miejsce wydarzenia: \t" + events.getEvents().get(i).getLocation());
@@ -103,7 +104,12 @@ class Menu {
                 i++;
             }*/
         } else {
-            System.out.println("Nie znaleziono żadnego wydarzenia!");
+            System.out.println("\n" +
+                    "\u001B[31m" +
+                    "Nie znaleziono żadnego wydarzenia!" +
+                    "\u001B[0m" +
+                    "\n");
+            Thread.sleep(3000);
         }
     }
 
