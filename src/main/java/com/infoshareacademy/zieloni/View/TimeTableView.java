@@ -83,7 +83,7 @@ public class TimeTableView {
                 }
             }
         } else {
-            System.out.println("Wybierz od 11 do 2");
+            System.out.println("Wybierz od 1 do 2");
         }
 
         return level;

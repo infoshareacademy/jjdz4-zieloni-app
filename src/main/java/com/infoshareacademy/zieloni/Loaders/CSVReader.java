@@ -31,6 +31,7 @@ public class CSVReader {
                 //System.out.println(line);
                 records.add(line.toString());
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

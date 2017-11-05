@@ -30,7 +30,7 @@ public class FormatTimeTest {
         System.out.println("______________________");
     }
 */
-    @Test
+   /* @Test
     public void formatTime_test0() throws Exception {
         System.out.println("test0");
         String result = FormatTime.dateFromTo("27:00 + 74");
@@ -74,5 +74,5 @@ public class FormatTimeTest {
         String result = FormatTime.dateFromTo("00:00 + 1440");
         assertThat(result).contains("00:00");
 
-    }
+    }*/
 }
