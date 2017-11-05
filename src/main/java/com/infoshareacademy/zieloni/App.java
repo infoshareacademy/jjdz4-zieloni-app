@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Logger;
 
+import static com.infoshareacademy.zieloni.Menu.startMenu;
+
 /**
  * Hello world!
  */
@@ -13,9 +15,9 @@ public class App {
 
     Logger logger = Logger.getLogger(App.class.getName());
 
-    public static void main(String[] args) throws ParseException, ParserException, IOException {
+    public static void main(String[] args) throws ParseException, ParserException, IOException, InterruptedException {
 
-        Menu.startMenu();
+        startMenu();
 
 //        PlanerView planer = new PlanerView();
 //        planer.startMenu();

@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 class Menu {
 
-    static void startMenu() throws ParseException, ParserException, IOException {
+    static void startMenu() throws ParseException, ParserException, IOException, InterruptedException {
         Events events = new Events();
         events.loadEvents();
 

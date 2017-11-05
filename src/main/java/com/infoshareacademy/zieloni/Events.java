@@ -36,7 +36,7 @@ class Events {
         return eventDays;
     }
 
-    void loadEvents() throws ParserException, ParseException {
+    void loadEvents() throws ParserException, ParseException, InterruptedException {
         FileInputStream icalFile = null;
         try {
             icalFile = new FileInputStream("kalendarz.ics");
@@ -44,8 +44,9 @@ class Events {
             System.out.println("\n" +
                     "\u001B[31m" +
                     "Kalendarz - brak pliku z wydarzeniami!" +
-                    "\u001B[30m" +
+                    "\u001B[0m" +
                     "\n");
+            Thread.sleep(3000);
             return;
         }
         CalendarBuilder builder = new CalendarBuilder();
@@ -56,15 +57,17 @@ class Events {
             System.out.println("\n" +
                     "\u001B[31m" +
                     "Kalendarz - Błąd systemu I/O!" +
-                    "\u001B[30m" +
+                    "\u001B[0m" +
                     "\n");
+            Thread.sleep(3000);
             return;
         } catch (ParserException p) {
             System.out.println("\n" +
                     "\u001B[31m" +
                     "Kalendarz - nieprawidłowy format danych!" +
-                    "\u001B[30m" +
+                    "\u001B[0m" +
                     "\n");
+            Thread.sleep(3000);
             return;
         }
 

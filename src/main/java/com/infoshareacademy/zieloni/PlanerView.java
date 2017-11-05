@@ -14,7 +14,7 @@ public class PlanerView {
     public static Scanner scanner = new Scanner(System.in);
     private static Logger logger = LogManager.getLogger(PlanerView.class.getName());
 
-    public static void startMenu() throws ParseException, ParserException, IOException {
+    public static void startMenu() throws ParseException, ParserException, IOException, InterruptedException {
 
         String text;
 
