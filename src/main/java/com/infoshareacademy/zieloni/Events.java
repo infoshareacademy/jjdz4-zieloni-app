@@ -8,6 +8,7 @@ import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Property;
 import net.fortuna.ical4j.model.component.CalendarComponent;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -27,18 +28,45 @@ class Events {
      */
     private Set<LocalDate> eventDays = new HashSet<>();
 
-    ArrayList<Event> getEvents() {
-        return events;
-    }
+//    ArrayList<Event> getEvents() {
+//        return events;
+//    }
 
     Set<LocalDate> getEventDays() {
         return eventDays;
     }
 
-    void loadEvents() throws IOException, ParserException, ParseException {
-        FileInputStream icalFile = new FileInputStream("kalendarz.ics");
+    void loadEvents() throws ParserException, ParseException {
+        FileInputStream icalFile = null;
+        try {
+            icalFile = new FileInputStream("kalendarz.ics");
+        } catch (FileNotFoundException e) {
+            System.out.println("\n" +
+                    "\u001B[31m" +
+                    "Kalendarz - brak pliku z wydarzeniami!" +
+                    "\u001B[30m" +
+                    "\n");
+            return;
+        }
         CalendarBuilder builder = new CalendarBuilder();
-        Calendar calendar = builder.build(icalFile);
+        Calendar calendar = null;
+        try {
+            calendar = builder.build(icalFile);
+        } catch (IOException e) {
+            System.out.println("\n" +
+                    "\u001B[31m" +
+                    "Kalendarz - Błąd systemu I/O!" +
+                    "\u001B[30m" +
+                    "\n");
+            return;
+        } catch (ParserException p) {
+            System.out.println("\n" +
+                    "\u001B[31m" +
+                    "Kalendarz - nieprawidłowy format danych!" +
+                    "\u001B[30m" +
+                    "\n");
+            return;
+        }
 
         for (CalendarComponent calendarComponent : calendar.getComponents()) {
             String eventStart = (String.valueOf(calendarComponent.getProperty(Property.DTSTART).getValue().replace("T", "").replace("Z", "")));
