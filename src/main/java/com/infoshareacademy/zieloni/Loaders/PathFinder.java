@@ -1,11 +1,16 @@
 package com.infoshareacademy.zieloni.Loaders;
 
 import com.infoshareacademy.zieloni.Model.PathToCsvDTO;
+import sun.misc.Launcher;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.*;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 /**
  * read and store in array  paths to all csv files in resource/rozklady_2015-09-08_13.43.01
@@ -37,11 +42,120 @@ public class PathFinder {
 
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(final File folder) {
         // public static final File folder = new File("rozklady_2015-09-08_13.43.01");
+
+
+        String path = "rozklady_2015-09-08_13.43.01";
+        File folder1 = new File(PathFinder.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+
         ArrayList<PathToCsvDTO> arrayWithFolderPath = new ArrayList<>();
+        // System.out.println("folder "+folder);
+
+        if (folder1.isFile()) {  // Run with JAR file
+
+            Set<String> directory = new HashSet<>();
+            ArrayList<String> files = new ArrayList<>();
+            System.out.println("to jest jar");
+
+            final JarFile jar;
+            try {
+                jar = new JarFile(folder1);
+                final Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
+                while (entries.hasMoreElements()) {
+                    final String name = entries.nextElement().getName();
+                    if (name.startsWith(path + "/")) { //filter according to the path
+                        try {
+                            // System.out.println(name.split("/")[1]);
+                            directory.add(name.split("/")[1]);
+
+                        } catch (Exception e) {
+                            System.out.println("gowny folder");
+
+                        }
+
+                        try {
+                            files.add(name.split("/")[2]);
+                           // System.out.println("plik"+name.split("/")[2]);
+
+                        } catch (Exception e) {
+
+                        }
+
+
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            for (String die : directory) {
+
+               // System.out.println("rozklady_2015-09-08_13.43.01/" + die);
+                PathToCsvDTO csvFile = new PathToCsvDTO();
+                csvFile.setFolderName("rozklady_2015-09-08_13.43.01/" + die);
+                csvFile.setId(die);
+                arrayWithFolderPath.add(csvFile);
+
+
+                for (int i = 0; i < files.size(); i++) {
+
+
+
+                    if (files.get(i).indexOf(die) > -1) {
+                        System.out.println(die);
+                        System.out.println(files.get(i));
+                        //System.out.println(files.get(i));
+
+
+
+                        if (files.get(i).indexOf("kursy1") > -1) {
+                            csvFile.setCourse1("rozklady_2015-09-08_13.43.01/" + die + "/"  + files.get(i));
+                        }
+
+                        if (files.get(i).indexOf("kursy2") > -1) {
+                            csvFile.setCourse2("rozklady_2015-09-08_13.43.01/" + die + "/"  + files.get(i));
+                        }
+
+                        if (files.get(i).indexOf("opisy1") > -1) {
+                            csvFile.setDescription1("rozklady_2015-09-08_13.43.01/" + die + "/"  + files.get(i));
+                        }
+
+                        if (files.get(i).indexOf("opisy2") > -1) {
+                            csvFile.setDescription2("rozklady_2015-09-08_13.43.01/" + "/"  + die + files.get(i));
+                        }
+
+                        if (files.get(i).indexOf("warianty1") > -1) {
+                            csvFile.setVariant1("rozklady_2015-09-08_13.43.01/" + die+ "/"  + files.get(i));
+                        }
+
+                        if (files.get(i).indexOf("warianty2") > -1) {
+                            csvFile.setVariant2("rozklady_2015-09-08_13.43.01/" + die+ "/"  +  files.get(i));
+                        }
+                    }
+
+                }
+            }
+
+
+        } else { // Run with IDE
+            final URL url = Launcher.class.getResource("/" + path);
+            if (url != null) {
+                try {
+                    final File apps = new File(url.toURI());
+                    for (File app : apps.listFiles()) {
+                        // System.out.println(app);
+                    }
+                } catch (URISyntaxException ex) {
+                    // never happens
+                }
+            }
+
+        }
+
 
         String pathMain = "rozklady_2015-09-08_13.43.01/";
         InputStream activitiesStream = PathFinder.class.getClassLoader().getResourceAsStream("rozklady_2015-09-08_13.43.01");
-
+       // System.out.println("activitiesStream " + activitiesStream);
 
         Scanner scanner = new Scanner(activitiesStream).useDelimiter("\n");
         boolean isHeader = true;
@@ -104,7 +218,7 @@ public class PathFinder {
             PathToCsvDTO csvFile = new PathToCsvDTO();
             if (fileEntry.isDirectory()) {
 
-                csvFile.setFolderName(fileEntry.getAbsolutePath());
+                csvFile.setFolderName(fileEntry.getPath());
                 csvFile.setId(fileEntry.getName());
                 // System.out.println(fileEntry.getAbsolutePath());
                 //  System.out.println(fileEntry.getName());
@@ -115,27 +229,27 @@ public class PathFinder {
 
                 for (int i = 0; i < contentInFolder.length; i++) {
                     if (contentInFolder[i].getName().indexOf("kursy1") > -1) {
-                        csvFile.setCourse1(contentInFolder[i].getAbsolutePath());
+                        csvFile.setCourse1(contentInFolder[i].getPath());
                     }
 
                     if (contentInFolder[i].getName().indexOf("kursy2") > -1) {
-                        csvFile.setCourse2(contentInFolder[i].getAbsolutePath());
+                        csvFile.setCourse2(contentInFolder[i].getPath());
                     }
 
                     if (contentInFolder[i].getName().indexOf("opisy1") > -1) {
-                        csvFile.setDescription1(contentInFolder[i].getAbsolutePath());
+                        csvFile.setDescription1(contentInFolder[i].getPath());
                     }
 
                     if (contentInFolder[i].getName().indexOf("opisy2") > -1) {
-                        csvFile.setDescription2(contentInFolder[i].getAbsolutePath());
+                        csvFile.setDescription2(contentInFolder[i].getPath());
                     }
 
                     if (contentInFolder[i].getName().indexOf("warianty1") > -1) {
-                        csvFile.setVariant1(contentInFolder[i].getAbsolutePath());
+                        csvFile.setVariant1(contentInFolder[i].getPath());
                     }
 
                     if (contentInFolder[i].getName().indexOf("warianty2") > -1) {
-                        csvFile.setVariant2(contentInFolder[i].getAbsolutePath());
+                        csvFile.setVariant2(contentInFolder[i].getPath());
                     }
                 }
             }

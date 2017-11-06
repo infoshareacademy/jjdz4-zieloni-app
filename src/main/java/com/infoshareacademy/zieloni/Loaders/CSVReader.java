@@ -19,7 +19,7 @@ public class CSVReader {
     public static ArrayList<String> readCSVfileAndConvertToRecordsArray(String path) {
         ArrayList<String> records = new ArrayList<>();
         String line = "";
-        System.out.println("Reader   "  +path);
+        //System.out.println("Reader   "  +path);
         try{
             //InputStream activitiesStream = PathFinder.class.getClassLoader().getResourceAsStream("//rozklady_2015-09-08_13.43.01//622_20150501warianty1.csv");
             InputStream activitiesStream = PathFinder.class.getClassLoader().getResourceAsStream(path);
