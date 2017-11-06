@@ -28,7 +28,7 @@ class Menu {
                 case "2":
                     /*Rozkład Jazdy*/
                     if (BusDataBase.DB.size() > 0) {
-                        //TimeTableController.show();
+                        TimeTableController.show();
                     } else {
                         //logger.fatal("Baza danych jest pusta");
                    }

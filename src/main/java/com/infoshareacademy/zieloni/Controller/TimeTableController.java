@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class TimeTableController {
 
-    private static final ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
     private static int level = 1;
     private static Logger logger = LogManager.getLogger(TimeTableController.class.getName());
 
@@ -40,7 +39,7 @@ public class TimeTableController {
                 level = 1;
                 return;
                 //PlanerView.startMenu();
-               // System.out.println(level);
+                // System.out.println(level);
 
             } else {
 

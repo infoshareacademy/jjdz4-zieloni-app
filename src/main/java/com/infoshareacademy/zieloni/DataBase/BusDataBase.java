@@ -22,15 +22,13 @@ public class BusDataBase {
     private static Logger logger = LogManager.getLogger(BusDataBase.class.getName());
     private static final String currentDirectory = System.getProperty("user.dir");
     public static final File folder = new File(currentDirectory + "//src//main//resource//rozklady_2015-09-08_13.43.01");
-    public static ArrayList<BusDTO> DB =  BusDataBase.getDataBase();
+    public static ArrayList<BusDTO> DB = BusDataBase.getDataBase();
 
     public static ArrayList<BusDTO> getDataBase() {
-        System.out.println("getDataBase()");
         ArrayList<BusDTO> busDB = new ArrayList<>();
         ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList(folder);
         try {
-            int count =0;
-            System.out.println(filePath.size());
+            int count = 0;
 
             for (PathToCsvDTO file : filePath) {
 
@@ -56,7 +54,7 @@ public class BusDataBase {
                 Map<String, ArrayList<String>> map2 = CSVFileParser.columns_X0XX_Map(variant2RecordArray);
 
 
-               BusDTO bus = new BusDTO();
+                BusDTO bus = new BusDTO();
 
                 bus.setBusStops_v1(variant1);
                 bus.setBusStops_v2(variant2);

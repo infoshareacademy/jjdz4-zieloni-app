@@ -41,20 +41,18 @@ public class PathFinder {
      */
 
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(final File folder) {
-        // public static final File folder = new File("rozklady_2015-09-08_13.43.01");
-
 
         String path = "rozklady_2015-09-08_13.43.01";
         File folder1 = new File(PathFinder.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 
         ArrayList<PathToCsvDTO> arrayWithFolderPath = new ArrayList<>();
-        // System.out.println("folder "+folder);
+
 
         if (folder1.isFile()) {  // Run with JAR file
 
             Set<String> directory = new HashSet<>();
             ArrayList<String> files = new ArrayList<>();
-            System.out.println("to jest jar");
+
 
             final JarFile jar;
             try {
@@ -68,7 +66,7 @@ public class PathFinder {
                             directory.add(name.split("/")[1]);
 
                         } catch (Exception e) {
-                            System.out.println("gowny folder");
+
 
                         }
 
