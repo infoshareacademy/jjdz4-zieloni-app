@@ -29,20 +29,19 @@ public class BusDataBase {
 
         ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");
 
-        System.out.println("cooo"+filePath.size());
 
         try {
             int count = 0;
 
             for (PathToCsvDTO file : filePath) {
 
-                System.out.println(count+"ID :                                      " + file.getId());
+               /* System.out.println(count+"ID :                                      " + file.getId());
 
                 System.out.println("Nazwa folderu :                           " + file.getFolderName());
                 System.out.println("plik zakonczone na  kursy1.csv:           " + file.getCourse1());
                 System.out.println("plik zakonczone na  kursy2.csv:           " + file.getCourse2());
                 System.out.println("plik zakonczone na  opis1.csv:            " + file.getDescription1());
-                System.out.println("plik zakonczone na  opis2.csv:            " + file.getDescription2());
+                System.out.println("plik zakonczone na  opis2.csv:            " + file.getDescription2());*/
 
                 count++;
                 ArrayList<String> variant1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant1());

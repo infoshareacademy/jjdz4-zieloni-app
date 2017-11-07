@@ -94,11 +94,11 @@ public class PathFinder {
                 InputStream activitiesStream1 = PathFinder.class.getClassLoader().getResourceAsStream(path + "/" + record);
 
                 try {
+
                     Scanner scanner1 = new Scanner(activitiesStream1).useDelimiter("\n");
                     while (scanner1.hasNext()) {
                         String record1 = scanner1.next();
                         files.add(record1);
-                        System.out.println(record1);
                     }
 
                 } catch (Exception e) {
