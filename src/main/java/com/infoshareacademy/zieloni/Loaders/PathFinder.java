@@ -1,16 +1,12 @@
 package com.infoshareacademy.zieloni.Loaders;
 
-import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.PathToCsvDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import sun.misc.Launcher;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -23,7 +19,7 @@ import java.util.jar.JarFile;
  * <p>
  * Ta klasa sprawdza do której kategorii należą pliki w podfolderach  tzn czy jest to opis, kurs, czy wariant
  * Tworzy obiekt typu PathToCsvDTO który zawiera  ściezki do poszczególnych plików w danym folderze.
- *
+ * <p>
  * Klasa sprawdza czy App zosta uruchomiony z IDE czy z Jara i w zaleznosci od  wybranej opcji odczytuje sciezki
  *
  * @author Michal Stasiński
@@ -44,6 +40,7 @@ public class PathFinder {
      * @return array with paths to all csv files in folder
      */
     private static Logger logger = LogManager.getLogger(PathFinder.class.getName());
+
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(String path) {
 
 
