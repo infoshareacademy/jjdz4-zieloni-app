@@ -21,9 +21,10 @@ import java.util.jar.JarFile;
  * Also check the categories which the file belongs (opis, wariant, kurs)
  * <p>
  * <p>
- * Ta klasa pobiera folder resource/rozklady_2015-09-08_13.43.01  i przeszukuje podfoldery
- * Sprawdza do której kategorii należą pliki w podfolderach  tzn czy jest to opis, kurs, czy wariant
- * Tworzy obiekt typu PathToCsvDTO który zawiera absolutne ściezki do poszczególnych plików w danym folderze
+ * Ta klasa sprawdza do której kategorii należą pliki w podfolderach  tzn czy jest to opis, kurs, czy wariant
+ * Tworzy obiekt typu PathToCsvDTO który zawiera  ściezki do poszczególnych plików w danym folderze.
+ *
+ * Klasa sprawdza czy App zosta uruchomiony z IDE czy z Jara i w zaleznosci od  wybranej opcji odczytuje sciezki
  *
  * @author Michal Stasiński
  * @see PathToCsvDTO
@@ -61,7 +62,7 @@ public class PathFinder {
                 final Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
                 while (entries.hasMoreElements()) {
                     final String name = entries.nextElement().getName();
-                    if (name.startsWith(path + "/")) { //filter according to the path
+                    if (name.startsWith(path + "/")) {
                         try {
                             directory.add(name.split("/")[1]);
 
