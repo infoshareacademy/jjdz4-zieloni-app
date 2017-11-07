@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.assertThat;
 public class FormatTimeTest {
 
-    /*@BeforeClass
+    @BeforeClass
     public static void beforeClass() {
         System.out.println("Rozpoczęcie testów before class");
     }
@@ -29,7 +29,7 @@ public class FormatTimeTest {
         System.out.println("after po każdym tescie");
         System.out.println("______________________");
     }
-*/
+
    @Test
     public void formatTime_test0() throws Exception {
         System.out.println("test0");
@@ -61,7 +61,7 @@ public class FormatTimeTest {
     }*/
 
     @Test
-    public void  formatTime_test4() throws Exception {
+    public void  formatTime_test3() throws Exception {
         System.out.println("test3");
         String result = FormatTime.dateFromTo("08:00 + 10");
        assertThat(result).contains("08:10");
@@ -69,7 +69,7 @@ public class FormatTimeTest {
     }
 
     @Test
-    public void  formatTime_test5() throws Exception {
+    public void  formatTime_test4() throws Exception {
         System.out.println("test3");
         String result = FormatTime.dateFromTo("00:00 + 1440");
         assertThat(result).contains("00:00");

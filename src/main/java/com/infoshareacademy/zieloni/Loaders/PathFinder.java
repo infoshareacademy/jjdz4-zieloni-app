@@ -1,6 +1,9 @@
 package com.infoshareacademy.zieloni.Loaders;
 
+import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.PathToCsvDTO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import sun.misc.Launcher;
 
 import java.io.File;
@@ -39,7 +42,7 @@ public class PathFinder {
      * @param @param folder  it is  folder in resource/rozklady_2015-09-08_13.43.01
      * @return array with paths to all csv files in folder
      */
-
+    private static Logger logger = LogManager.getLogger(PathFinder.class.getName());
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(String path) {
 
 
@@ -63,21 +66,23 @@ public class PathFinder {
                             directory.add(name.split("/")[1]);
 
                         } catch (Exception e) {
-
+                            logger.info("Run with JAR fileproblem with add item to Set<String> directory ");
                         }
 
                         try {
                             files.add(name.split("/")[2]);
 
                         } catch (Exception e) {
-
+                            logger.info("Run with JAR file-problem with add item to  ArrayList<String> files");
                         }
 
 
                     }
                 }
             } catch (IOException e) {
+                logger.info("Run with JAR file-jar loading problem !!!");
                 e.printStackTrace();
+
             }
 
 
@@ -102,7 +107,7 @@ public class PathFinder {
                     }
 
                 } catch (Exception e) {
-
+                    logger.info("Run with IDE file-problem  with scanner!!!");
                 }
 
             }
