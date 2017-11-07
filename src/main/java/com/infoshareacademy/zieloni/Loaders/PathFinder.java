@@ -40,23 +40,17 @@ public class PathFinder {
      * @return array with paths to all csv files in folder
      */
 
-    public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(final File folder) {
+    public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(String path) {
 
-        String path = "rozklady_2015-09-08_13.43.01";
+
         File folder1 = new File(PathFinder.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 
-        ArrayList<PathToCsvDTO> arrayWithFolderPath = new ArrayList<>();
 
         Set<String> directory = new HashSet<>();
         ArrayList<String> files = new ArrayList<>();
 
 
-
-
-
-
         if (folder1.isFile()) {  // Run with JAR file
-
 
             final JarFile jar;
             try {
@@ -66,17 +60,14 @@ public class PathFinder {
                     final String name = entries.nextElement().getName();
                     if (name.startsWith(path + "/")) { //filter according to the path
                         try {
-                             System.out.println("Direc"+name.split("/")[1]);
                             directory.add(name.split("/")[1]);
 
                         } catch (Exception e) {
-
 
                         }
 
                         try {
                             files.add(name.split("/")[2]);
-                           // System.out.println("plik"+name.split("/")[2]);
 
                         } catch (Exception e) {
 
@@ -90,80 +81,48 @@ public class PathFinder {
             }
 
 
-
-
-
         } else { // Run with IDE
-            InputStream activitiesStream = PathFinder.class.getClassLoader().getResourceAsStream(path);
-            // System.out.println("activitiesStream " + activitiesStream);
 
+            InputStream activitiesStream = PathFinder.class.getClassLoader().getResourceAsStream(path);
             Scanner scanner = new Scanner(activitiesStream).useDelimiter("\n");
             boolean isHeader = true;
 
             while (scanner.hasNext()) {
 
-                //PathToCsvDTO csvFile = new PathToCsvDTO();
                 String record = scanner.next();
-                // System.out.println("rozklady_2015-09-08_13.43.01/" + record);
-                System.out.println("dir "+record);
-
                 directory.add(record);
-
-
-              //  csvFile.setFolderName(path + "/" + record);
-               // csvFile.setId(record);
-               // arrayWithFolderPath.add(csvFile);
-
                 InputStream activitiesStream1 = PathFinder.class.getClassLoader().getResourceAsStream(path + "/" + record);
+
                 try {
                     Scanner scanner1 = new Scanner(activitiesStream1).useDelimiter("\n");
                     while (scanner1.hasNext()) {
                         String record1 = scanner1.next();
                         files.add(record1);
                         System.out.println(record1);
-
-
-                       /* if (record1.indexOf("kursy1") > -1) {
-                            csvFile.setCourse1(path + "/" + record + "/" + record1);
-                        }
-
-                        if (record1.indexOf("kursy2") > -1) {
-                            csvFile.setCourse2(path + "/" + record + "/" + record1);
-                        }
-
-                        if (record1.indexOf("opisy1") > -1) {
-                            csvFile.setDescription1(path + "/" + record + "/" + record1);
-                        }
-
-                        if (record1.indexOf("opisy2") > -1) {
-                            csvFile.setDescription2(path + "/" + record + "/" + record1);
-                        }
-
-                        if (record1.indexOf("warianty1") > -1) {
-                            csvFile.setVariant1(path + "/" + record + "/" + record1);
-                        }
-
-                        if (record1.indexOf("warianty2") > -1) {
-                            csvFile.setVariant2(path + "/" + record + "/" + record1);
-                        }*/
                     }
+
                 } catch (Exception e) {
+
                 }
 
             }
 
-
         }
 
-        for (String die : directory) {
 
-            // System.out.println("rozklady_2015-09-08_13.43.01/" + die);
+        return assignPathToDTO(directory, files, path);
+    }
+
+
+    private static ArrayList<PathToCsvDTO> assignPathToDTO(Set<String> directory, ArrayList<String> files, String path) {
+
+        ArrayList<PathToCsvDTO> arrayWithFolderPath = new ArrayList<>();
+        for (String dir : directory) {
+
             PathToCsvDTO csvFile = new PathToCsvDTO();
 
-            csvFile.setFolderName(path + "/" + die);
-            csvFile.setId(die);
-
-
+            csvFile.setFolderName(path + "/" + dir);
+            csvFile.setId(dir);
 
             arrayWithFolderPath.add(csvFile);
 
@@ -171,47 +130,39 @@ public class PathFinder {
             for (int i = 0; i < files.size(); i++) {
 
 
-                if (files.get(i).indexOf(die) > -1) {
-                   // System.out.println("dir    "+die);
-                    //System.out.println("filll  "+files.get(i));
-                    //System.out.println(files.get(i));
+                if (files.get(i).indexOf(dir) > -1) {
 
+                    String finalPath = path + "/" + dir + "/" + files.get(i);
 
                     if (files.get(i).indexOf("kursy1") > -1) {
-
-                        csvFile.setCourse1(path + "/" + die + "/" + files.get(i));
+                        csvFile.setCourse1(finalPath);
                     }
 
                     if (files.get(i).indexOf("kursy2") > -1) {
-
-                        csvFile.setCourse2(path + "/" + die + "/" + files.get(i));
-
+                        csvFile.setCourse2(finalPath);
                     }
 
                     if (files.get(i).indexOf("opisy1") > -1) {
-                        csvFile.setDescription1(path + "/" + die + "/" + files.get(i));
+                        csvFile.setDescription1(finalPath);
                     }
 
                     if (files.get(i).indexOf("opisy2") > -1) {
-                        csvFile.setDescription2(path + "/" + "/" + die + files.get(i));
+                        csvFile.setDescription2(finalPath);
                     }
 
                     if (files.get(i).indexOf("warianty1") > -1) {
-                        csvFile.setVariant1(path + "/" + die + "/" + files.get(i));
+                        csvFile.setVariant1(finalPath);
                     }
 
                     if (files.get(i).indexOf("warianty2") > -1) {
-                        csvFile.setVariant2(path + "/" + die + "/" + files.get(i));
+                        csvFile.setVariant2(finalPath);
                     }
                 }
 
             }
         }
 
-
         return arrayWithFolderPath;
-
-
     }
 }
 
