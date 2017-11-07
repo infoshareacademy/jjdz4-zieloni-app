@@ -10,7 +10,6 @@ import com.infoshareacademy.zieloni.Model.RecordVariantCsvDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 

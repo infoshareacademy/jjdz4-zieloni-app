@@ -1,16 +1,12 @@
 package com.infoshareacademy.zieloni.Loaders;
 
-import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.PathToCsvDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import sun.misc.Launcher;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -43,6 +39,7 @@ public class PathFinder {
      * @return array with paths to all csv files in folder
      */
     private static Logger logger = LogManager.getLogger(PathFinder.class.getName());
+
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(String path) {
 
 
