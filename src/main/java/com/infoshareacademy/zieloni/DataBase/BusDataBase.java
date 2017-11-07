@@ -26,7 +26,11 @@ public class BusDataBase {
 
     public static ArrayList<BusDTO> getDataBase() {
         ArrayList<BusDTO> busDB = new ArrayList<>();
+
         ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList(folder);
+
+        System.out.println("cooo"+filePath.size());
+
         try {
             int count = 0;
 
