@@ -90,7 +90,7 @@ public class PathFinder {
 
                // System.out.println("rozklady_2015-09-08_13.43.01/" + die);
                 PathToCsvDTO csvFile = new PathToCsvDTO();
-                csvFile.setFolderName("rozklady_2015-09-08_13.43.01/" + die);
+                csvFile.setFolderName(path + "/" + die);
                 csvFile.setId(die);
                 arrayWithFolderPath.add(csvFile);
 
@@ -107,27 +107,27 @@ public class PathFinder {
 
 
                         if (files.get(i).indexOf("kursy1") > -1) {
-                            csvFile.setCourse1("rozklady_2015-09-08_13.43.01/" + die + "/"  + files.get(i));
+                            csvFile.setCourse1(path + "/" + die + "/"  + files.get(i));
                         }
 
                         if (files.get(i).indexOf("kursy2") > -1) {
-                            csvFile.setCourse2("rozklady_2015-09-08_13.43.01/" + die + "/"  + files.get(i));
+                            csvFile.setCourse2(path + "/" + die + "/"  + files.get(i));
                         }
 
                         if (files.get(i).indexOf("opisy1") > -1) {
-                            csvFile.setDescription1("rozklady_2015-09-08_13.43.01/" + die + "/"  + files.get(i));
+                            csvFile.setDescription1(path + "/" + die + "/"  + files.get(i));
                         }
 
                         if (files.get(i).indexOf("opisy2") > -1) {
-                            csvFile.setDescription2("rozklady_2015-09-08_13.43.01/" + "/"  + die + files.get(i));
+                            csvFile.setDescription2(path + "/" + "/"  + die + files.get(i));
                         }
 
                         if (files.get(i).indexOf("warianty1") > -1) {
-                            csvFile.setVariant1("rozklady_2015-09-08_13.43.01/" + die+ "/"  + files.get(i));
+                            csvFile.setVariant1(path + "/" + die+ "/"  + files.get(i));
                         }
 
                         if (files.get(i).indexOf("warianty2") > -1) {
-                            csvFile.setVariant2("rozklady_2015-09-08_13.43.01/" + die+ "/"  +  files.get(i));
+                            csvFile.setVariant2(path + "/" + die+ "/"  +  files.get(i));
                         }
                     }
 
@@ -151,8 +151,8 @@ public class PathFinder {
         }
 
 
-        String pathMain = "rozklady_2015-09-08_13.43.01/";
-        InputStream activitiesStream = PathFinder.class.getClassLoader().getResourceAsStream("rozklady_2015-09-08_13.43.01");
+
+        InputStream activitiesStream = PathFinder.class.getClassLoader().getResourceAsStream(path);
        // System.out.println("activitiesStream " + activitiesStream);
 
         Scanner scanner = new Scanner(activitiesStream).useDelimiter("\n");
@@ -169,7 +169,7 @@ public class PathFinder {
             csvFile.setId(record);
             arrayWithFolderPath.add(csvFile);
 
-            InputStream activitiesStream1 = PathFinder.class.getClassLoader().getResourceAsStream("rozklady_2015-09-08_13.43.01//" + record);
+            InputStream activitiesStream1 = PathFinder.class.getClassLoader().getResourceAsStream(path + "/" + record);
             try {
                 Scanner scanner1 = new Scanner(activitiesStream1).useDelimiter("\n");
                 while (scanner1.hasNext()) {
@@ -177,27 +177,27 @@ public class PathFinder {
 
                     //  System.out.println(paaaa + record1);
                     if (record1.indexOf("kursy1") > -1) {
-                        csvFile.setCourse1(pathMain + record + "/" + record1);
+                        csvFile.setCourse1(path + "/" + record + "/" + record1);
                     }
 
                     if (record1.indexOf("kursy2") > -1) {
-                        csvFile.setCourse2(pathMain + record + "/" + record1);
+                        csvFile.setCourse2(path + "/" + record + "/" + record1);
                     }
 
                     if (record1.indexOf("opisy1") > -1) {
-                        csvFile.setDescription1(pathMain + record + "/" + record1);
+                        csvFile.setDescription1(path + "/" + record + "/" + record1);
                     }
 
                     if (record1.indexOf("opisy2") > -1) {
-                        csvFile.setDescription2(pathMain + record + "/" + record1);
+                        csvFile.setDescription2(path + "/" + record + "/" + record1);
                     }
 
                     if (record1.indexOf("warianty1") > -1) {
-                        csvFile.setVariant1(pathMain + record + "/" + record1);
+                        csvFile.setVariant1(path + "/" + record + "/" + record1);
                     }
 
                     if (record1.indexOf("warianty2") > -1) {
-                        csvFile.setVariant2(pathMain + record + "/" + record1);
+                        csvFile.setVariant2(path + "/" + record + "/" + record1);
                     }
                 }
             } catch (Exception e) {
