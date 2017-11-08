@@ -40,10 +40,10 @@ public class BusDataBase {
         try {
             for (int i = 0; i < filePath.size() ; i++) {
                 PathToCsvDTO file = filePath.get(i);
-                System.out.println("ID :                                      " + file.getId());
 
+               /* System.out.println("ID :                                      " + file.getId());
                 System.out.println(tabelaCSVArray.get(i).getId());
-               /* System.out.println("Nazwa folderu :                           " + file.getFolderName());
+                System.out.println("Nazwa folderu :                           " + file.getFolderName());
                 System.out.println("plik zakonczone na  kursy1.csv:           " + file.getCourse1());
                 System.out.println("plik zakonczone na  kursy2.csv:           " + file.getCourse2());
                 System.out.println("plik zakonczone na  opis1.csv:            " + file.getDescription1());

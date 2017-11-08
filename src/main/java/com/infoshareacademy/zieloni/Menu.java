@@ -30,7 +30,7 @@ class Menu {
                     if (BusDataBase.DB.size() > 0) {
                         TimeTableController.show();
                     } else {
-                        //logger.fatal("Baza danych jest pusta");
+                        //ogger.fatal("Baza danych jest pusta");
                    }
                     displayMainMenu();
                     break;

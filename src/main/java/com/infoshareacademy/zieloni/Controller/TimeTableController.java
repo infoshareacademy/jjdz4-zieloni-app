@@ -45,10 +45,10 @@ public class TimeTableController {
 
                 if (level == 1) {
                     try {
-                        level = TimeTableView.choiceVariant(Integer.valueOf(text));
+                        level = TimeTableView.choiceVariant(text);
                     } catch (Exception e) {
 
-                        System.out.println("Musisz wpisać liczbę");
+                        System.out.println("Wpisz nr srodka transportu");
                         logger.info("Użytkownik nie wpisał liczby w poziomie 2");
                     }
 
