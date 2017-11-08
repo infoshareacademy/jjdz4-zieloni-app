@@ -11,48 +11,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CSVReaderTest {
 
-    /*@BeforeClass
-    public static void csvReader_filePathExist() throws Exception {
-        assertThat(BusDataBase.folder).exists();
-    }
 
     @Test
     public void csvReader_variant1() throws Exception {
-        ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList(BusDataBase.folder);
-        for (int i = 0; i < filePath.size(); i++) {
-            ArrayList<String> result = CSVReader.readCSVfileAndConvertToRecordsArray(filePath.get(i).getVariant1());
-            assertThat(result).isNotEmpty();
-        }
+        ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");
+        ArrayList<String> variant1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(filePath.get(0).getVariant1());
+        assertThat(variant1RecordArray).isNotEmpty();
     }
 
     @Test
     public void csvReader_variant2() throws Exception {
-        ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList(BusDataBase.folder);
-        for (int i = 0; i < filePath.size(); i++) {
-            ArrayList<String> result = CSVReader.readCSVfileAndConvertToRecordsArray(filePath.get(i).getVariant2());
-            assertThat(result).isNotEmpty();
-        }
-
+        ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");
+        ArrayList<String> variant2RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(filePath.get(0).getVariant2());
+        assertThat(variant2RecordArray).isNotEmpty();
     }
-
-    @Test
-    public void csvReader_course1() throws Exception {
-        ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList(BusDataBase.folder);
-        for (int i = 0; i < filePath.size(); i++) {
-            ArrayList<String> result = CSVReader.readCSVfileAndConvertToRecordsArray(filePath.get(i).getCourse1());
-            assertThat(result).isNotEmpty();
-        }
-
-    }
-
-    @Test
-    public void csvReader_course2() throws Exception {
-        ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList(BusDataBase.folder);
-        for (int i = 0; i < filePath.size(); i++) {
-            ArrayList<String> result = CSVReader.readCSVfileAndConvertToRecordsArray(filePath.get(i).getCourse2());
-            assertThat(result).isNotEmpty();
-        }
-
-    }*/
 
 }
