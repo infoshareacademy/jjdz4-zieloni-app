@@ -49,13 +49,13 @@ public class TimeTableView {
     public static int choiceVariant(Integer integer) {
         if (integer > -1 && integer < busDB.size()) {
             level = 2;
-            System.out.println("#################################################");
-            System.out.println("#   "+busDB.get(integer).getTypeOfTransport()+"  nr " + busDB.get(integer).getBusNumber() + "              #");
-            System.out.println("#                                               #");
-            System.out.println("#     Wpisz 1) jeśli chcesz jechać 'tam'        #");
-            System.out.println("#     Wpisz 2) jeśli chcesz jechać 'z powrotem' #");
-            System.out.println("#   Wpisz 'cofnij' aby wrócić do głownego menu  #");
-            System.out.println("#################################################");
+            System.out.println("########################################################################################");
+            System.out.println("         Wybrałeś autobus nr " + busDB.get(integer).getBusNumber()                       );
+            System.out.println("                                                                                        ");
+            System.out.println("    Wpisz 1) jeśli chcesz jechać w kierunku: " +busDB.get(integer).getBusStops_v2().get(0).getNameOfBusStop());
+            System.out.println("    Wpisz 2) jeśli chcesz jechać w kierunku: " +busDB.get(integer).getBusStops_v1().get(0).getNameOfBusStop());
+            System.out.println("    Wpisz 'cofnij' aby wrócić do głownego menu                                            ");
+            System.out.println("########################################################################################");
             choiceBus = integer;
         } else {
             System.out.println("Wybierz od 0 do " + (busDB.size() - 1));
