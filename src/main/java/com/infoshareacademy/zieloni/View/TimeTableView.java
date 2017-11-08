@@ -50,7 +50,7 @@ public class TimeTableView {
         if (integer > -1 && integer < busDB.size()) {
             level = 2;
             System.out.println("#################################################");
-            System.out.println("#          Wybrałeś autobus nr " + busDB.get(integer).getBusNumber() + "              #");
+            System.out.println("#   "+busDB.get(integer).getTypeOfTransport()+"  nr " + busDB.get(integer).getBusNumber() + "              #");
             System.out.println("#                                               #");
             System.out.println("#     Wpisz 1) jeśli chcesz jechać 'tam'        #");
             System.out.println("#     Wpisz 2) jeśli chcesz jechać 'z powrotem' #");

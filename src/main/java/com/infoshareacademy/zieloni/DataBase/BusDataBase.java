@@ -3,14 +3,12 @@ package com.infoshareacademy.zieloni.DataBase;
 import com.infoshareacademy.zieloni.Loaders.CSVFileParser;
 import com.infoshareacademy.zieloni.Loaders.CSVReader;
 import com.infoshareacademy.zieloni.Loaders.PathFinder;
-import com.infoshareacademy.zieloni.Model.BusDTO;
-import com.infoshareacademy.zieloni.Model.PathToCsvDTO;
-import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
-import com.infoshareacademy.zieloni.Model.RecordVariantCsvDTO;
+import com.infoshareacademy.zieloni.Model.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -25,15 +23,27 @@ public class BusDataBase {
         ArrayList<BusDTO> busDB = new ArrayList<>();
 
         ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");
+        filePath.sort((o1, o2) -> {
+            String s1 = o1.getId();
+            String s2 = o2.getId();
+            return s1.compareToIgnoreCase(s2);
+        });
 
+        ArrayList<String> extraTabel = CSVReader.readCSVfileAndConvertToRecordsArray("tabela.csv");
+        ArrayList<ExtraTableCsvDTO> tabelaCSVArray = CSVFileParser.formatCSVToTimeTableWithExtraInfoRecords(extraTabel);
+        tabelaCSVArray.sort((o1, o2) -> {
+            String s1 = o1.getId();
+            String s2 = o2.getId();
+            return s1.compareToIgnoreCase(s2);
+        });
 
         try {
+            for (int i = 0; i < filePath.size() ; i++) {
+                PathToCsvDTO file = filePath.get(i);
+                System.out.println("ID :                                      " + file.getId());
 
-            for (PathToCsvDTO file : filePath) {
-
-               /* System.out.println(count+"ID :                                      " + file.getId());
-
-                System.out.println("Nazwa folderu :                           " + file.getFolderName());
+                System.out.println(tabelaCSVArray.get(i).getId());
+               /* System.out.println("Nazwa folderu :                           " + file.getFolderName());
                 System.out.println("plik zakonczone na  kursy1.csv:           " + file.getCourse1());
                 System.out.println("plik zakonczone na  kursy2.csv:           " + file.getCourse2());
                 System.out.println("plik zakonczone na  opis1.csv:            " + file.getDescription1());
@@ -62,6 +72,7 @@ public class BusDataBase {
                 bus.setColumnsMap_v1(map1);
                 bus.setColumnsMap_v2(map2);
                 bus.setBusNumber(file.getId().split("_")[0]);
+                bus.setTypeOfTransport(tabelaCSVArray.get(i).getTypeOfTransport());
                 busDB.add(bus);
             }
 

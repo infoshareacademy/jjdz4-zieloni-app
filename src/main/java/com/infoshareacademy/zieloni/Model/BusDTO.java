@@ -38,5 +38,10 @@ public class BusDTO {
     private Map<String, ArrayList<String>> columnsMap_v2;
 
 
+    @Getter
+    @Setter
+    private String typeOfTransport;
+
+
 
 }

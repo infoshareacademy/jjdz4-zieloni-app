@@ -12,9 +12,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
- * read and store in array  paths to all csv files in resource/rozklady_2015-09-08_13.43.01
- * checks all folders and subfolders
- * Also check the categories which the file belongs (opis, wariant, kurs)
+ * read and store (in ArrayList<PathToCsvDTO>) the paths to all csv files from resource/rozklady_2015-09-08_13.43.01
+ * Assign file path to proper categor (opis, wariant, kurs)
  * <p>
  * <p>
  * Ta klasa pobiera folder resource/rozklady_2015-09-08_13.43.01  i przeszukuje podfoldery
@@ -42,13 +41,9 @@ public class PathFinder {
 
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(String path) {
 
-
         File folder1 = new File(PathFinder.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-
-
         Set<String> directory = new HashSet<>();
         ArrayList<String> files = new ArrayList<>();
-
 
         if (folder1.isFile()) {  // Run with JAR file
 
@@ -61,27 +56,21 @@ public class PathFinder {
                     if (name.startsWith(path + "/")) { //filter according to the path
                         try {
                             directory.add(name.split("/")[1]);
-
                         } catch (Exception e) {
-                            logger.info("Run with JAR fileproblem with add item to Set<String> directory ");
+                            logger.info("Run with JAR file - problem with add item to Set<String> directory ");
                         }
-
                         try {
                             files.add(name.split("/")[2]);
 
                         } catch (Exception e) {
-                            logger.info("Run with JAR file-problem with add item to  ArrayList<String> files");
+                            logger.info("Run with JAR file - problem with add item to  ArrayList<String> files");
                         }
-
-
                     }
                 }
             } catch (IOException e) {
                 logger.info("Run with JAR file-jar loading problem !!!");
                 e.printStackTrace();
-
             }
-
 
         } else { // Run with IDE
 
@@ -90,7 +79,6 @@ public class PathFinder {
             boolean isHeader = true;
 
             while (scanner.hasNext()) {
-
                 String record = scanner.next();
                 directory.add(record);
                 InputStream activitiesStream1 = PathFinder.class.getClassLoader().getResourceAsStream(path + "/" + record);
@@ -104,17 +92,12 @@ public class PathFinder {
                     }
 
                 } catch (Exception e) {
-                    logger.info("Run with IDE file-problem  with scanner!!!");
+                    logger.info("Run with IDE file - problem  with scanner!!!");
                 }
-
             }
-
         }
-
-
         return assignPathToDTO(directory, files, path);
     }
-
 
     private static ArrayList<PathToCsvDTO> assignPathToDTO(Set<String> directory, ArrayList<String> files, String path) {
 
@@ -122,20 +105,14 @@ public class PathFinder {
         for (String dir : directory) {
 
             PathToCsvDTO csvFile = new PathToCsvDTO();
-
             csvFile.setFolderName(path + "/" + dir);
             csvFile.setId(dir);
-
             arrayWithFolderPath.add(csvFile);
-
 
             for (int i = 0; i < files.size(); i++) {
 
-
                 if (files.get(i).indexOf(dir) > -1) {
-
                     String finalPath = path + "/" + dir + "/" + files.get(i);
-
                     if (files.get(i).indexOf("kursy1") > -1) {
                         csvFile.setCourse1(finalPath);
                     }
@@ -160,10 +137,8 @@ public class PathFinder {
                         csvFile.setVariant2(finalPath);
                     }
                 }
-
             }
         }
-
         return arrayWithFolderPath;
     }
 }
