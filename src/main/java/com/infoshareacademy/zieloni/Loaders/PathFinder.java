@@ -57,18 +57,18 @@ public class PathFinder {
                         try {
                             directory.add(name.split("/")[1]);
                         } catch (Exception e) {
-                            logger.info("Run with JAR file - problem with add item to Set<String> directory ");
+                            logger.warn("Run with JAR file - problem with add item to Set<String> directory ");
                         }
                         try {
                             files.add(name.split("/")[2]);
 
                         } catch (Exception e) {
-                            logger.info("Run with JAR file - problem with add item to  ArrayList<String> files");
+                            logger.warn("Run with JAR file - problem with add item to  ArrayList<String> files");
                         }
                     }
                 }
             } catch (IOException e) {
-                logger.info("Run with JAR file-jar loading problem !!!");
+                logger.warn("Run with JAR file-jar loading problem !!!");
                 e.printStackTrace();
             }
 
@@ -92,7 +92,7 @@ public class PathFinder {
                     }
 
                 } catch (Exception e) {
-                    logger.info("Run with IDE file - problem  with scanner!!!");
+                    logger.warn("Run with IDE file - problem  with scanner!!!");
                 }
             }
         }
