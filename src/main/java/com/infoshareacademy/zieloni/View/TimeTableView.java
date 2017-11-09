@@ -13,7 +13,6 @@ import static com.infoshareacademy.zieloni.DataBase.BusDataBase.DB;
 public class TimeTableView {
 
     private static final ArrayList<BusDTO> busDB = DB;
-
     private static int level = 0;
     private static int choiceBus = -1;
     private static int street = -1;
@@ -117,10 +116,10 @@ public class TimeTableView {
         return level;
     }
 
-
     private static void showTimeTable(Integer integer) {
         int busStopArrSize = -1;
         String busStopName = "";
+
         if (variant == 1) {
             busStopArrSize = busDB.get(choiceBus).getBusStops_v1().size();
         }
@@ -192,6 +191,4 @@ public class TimeTableView {
         System.out.println("                     Rozkład " + type + " nr " + busNr + " na ulicy " + busStopName);
         System.out.println(timeTableView);
     }
-
-
 }

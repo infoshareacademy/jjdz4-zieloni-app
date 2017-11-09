@@ -2,8 +2,10 @@ package com.infoshareacademy.zieloni.Controller;
 
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
+import com.infoshareacademy.zieloni.Model.ProposedBusDTO;
 import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.Model.RecordVariantCsvDTO;
+import com.infoshareacademy.zieloni.View.TimeTableView;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -13,6 +15,7 @@ public class FindBusController {
 
     private static String start_BusStop;
     private static String end_BusStop;
+    private static ArrayList<ProposedBusDTO> proposedBusArr = new ArrayList<>();
 
     public static void search(String startBusStop, String endBusStop) {
 
@@ -22,12 +25,12 @@ public class FindBusController {
         ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
 
         for (int i = 0; i < busDB.size(); i++) {
-            checkBusForVaraint(i,busDB.get(i), busDB.get(i).getBusStops_v1(), busDB.get(i).getCourseRecords_v1(), busDB.get(i).getColumnsMap_v1(), 1);
-            checkBusForVaraint(i,busDB.get(i), busDB.get(i).getBusStops_v2(), busDB.get(i).getCourseRecords_v2(), busDB.get(i).getColumnsMap_v2(), 2);
+            checkBusForVaraint(i, busDB.get(i), busDB.get(i).getBusStops_v1(), busDB.get(i).getCourseRecords_v1(), busDB.get(i).getColumnsMap_v1(), 1);
+            checkBusForVaraint(i, busDB.get(i), busDB.get(i).getBusStops_v2(), busDB.get(i).getCourseRecords_v2(), busDB.get(i).getColumnsMap_v2(), 2);
         }
     }
 
-    private static void checkBusForVaraint(int id,BusDTO busDTO, ArrayList<RecordVariantCsvDTO> busStops, ArrayList<RecordCourseDTO> courseRecords, Map<String, ArrayList<String>> columnMap, int variant) {
+    private static void checkBusForVaraint(int id, BusDTO busDTO, ArrayList<RecordVariantCsvDTO> busStops, ArrayList<RecordCourseDTO> courseRecords, Map<String, ArrayList<String>> columnMap, int variant) {
 
         int find_startBusStop_index = -1;
         int find_endBusStop_index = -1;
@@ -46,10 +49,28 @@ public class FindBusController {
 
         if (find_startBusStop_index < find_endBusStop_index && find_startBusStop_index > -1) {
             System.out.println("------------------------------------------------------\n");
-            System.out.println("Proponowany autobus nr "+busDTO.getBusNumber());
-           // TimeTableView.showTimesForBusStop(id,find_startBusStop_index,variant);
+            System.out.println("Proponowany autobus nr " + busDTO.getBusNumber());
+            ProposedBusDTO proposedBus = new ProposedBusDTO();
+            proposedBus.setId(id);
+            proposedBus.setBus(busDTO);
+            proposedBus.setBusStopIndex(find_startBusStop_index);
+            proposedBus.setVairiant(variant);
+
+            proposedBusArr.add(proposedBus);
+
+            //TimeTableView.showTimesForBusStop(id,find_startBusStop_index,variant);
+
         }
     }
+
+    public static ArrayList<ProposedBusDTO> getProposedBusArr() {
+        return proposedBusArr;
+    }
+
+    public static void setProposedBusArr(ArrayList<ProposedBusDTO> proposedBus) {
+        FindBusController.proposedBusArr = proposedBus;
+    }
+
 }
 
 
