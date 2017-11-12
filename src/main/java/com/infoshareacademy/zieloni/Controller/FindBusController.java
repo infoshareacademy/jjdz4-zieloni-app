@@ -5,7 +5,6 @@ import com.infoshareacademy.zieloni.Model.BusDTO;
 import com.infoshareacademy.zieloni.Model.ProposedBusDTO;
 import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.Model.RecordVariantCsvDTO;
-import com.infoshareacademy.zieloni.View.TimeTableView;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -15,12 +14,14 @@ public class FindBusController {
 
     private static String start_BusStop;
     private static String end_BusStop;
-    private static ArrayList<ProposedBusDTO> proposedBusArr = new ArrayList<>();
+    private static ArrayList<ProposedBusDTO> proposedBusArr;
 
     public static void search(String startBusStop, String endBusStop) {
 
         end_BusStop = endBusStop;
         start_BusStop = startBusStop;
+        proposedBusArr = new ArrayList<>();
+
 
         ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
 
@@ -38,7 +39,6 @@ public class FindBusController {
         for (int z = 0; z < busStops.size(); z++) {
 
             String busStop = busStops.get(z).getNameOfBusStop();
-
             if (busStop.equals(start_BusStop)) {
                 find_startBusStop_index = z;
             }
@@ -48,18 +48,14 @@ public class FindBusController {
         }
 
         if (find_startBusStop_index < find_endBusStop_index && find_startBusStop_index > -1) {
-            System.out.println("------------------------------------------------------\n");
-            System.out.println("Proponowany autobus nr " + busDTO.getBusNumber());
+
             ProposedBusDTO proposedBus = new ProposedBusDTO();
             proposedBus.setId(id);
             proposedBus.setBus(busDTO);
             proposedBus.setBusStopIndex(find_startBusStop_index);
             proposedBus.setVairiant(variant);
-
             proposedBusArr.add(proposedBus);
-
             //TimeTableView.showTimesForBusStop(id,find_startBusStop_index,variant);
-
         }
     }
 

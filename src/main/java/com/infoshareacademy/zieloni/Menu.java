@@ -1,11 +1,14 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.Controller.FindBusInterchangesController;
 import com.infoshareacademy.zieloni.Controller.TimeTableController;
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
+import com.infoshareacademy.zieloni.Model.ProposedBusDTO;
 import net.fortuna.ical4j.data.ParserException;
 
 import java.io.IOException;
 import java.text.ParseException;
+
 import com.infoshareacademy.zieloni.Controller.FindBusController;
 
 import java.time.LocalDate;
@@ -31,7 +34,7 @@ class Menu {
                         TimeTableController.show();
                     } else {
                         //ogger.fatal("Baza danych jest pusta");
-                   }
+                    }
                     displayMainMenu();
                     break;
                 case "3":
@@ -80,13 +83,29 @@ class Menu {
             for (int i = 0; i < events.getEvents().size(); i++) {
                 System.out.println("-----------------------------------------------------");
                 System.out.println("Wydarzenie nr: " + i + 1);
-                System.out.println("Początek wydarzenia: \t" + events.getEvents().get(i).getStartTime().toString().replace("T",", "));
-                System.out.println("Koniec wydarzenia: \t" + events.getEvents().get(i).getEndTime().toString().replace("T",", "));
+                System.out.println("Początek wydarzenia: \t" + events.getEvents().get(i).getStartTime().toString().replace("T", ", "));
+                System.out.println("Koniec wydarzenia: \t" + events.getEvents().get(i).getEndTime().toString().replace("T", ", "));
                 System.out.println("Miejsce wydarzenia: \t" + events.getEvents().get(i).getLocation());
                 System.out.println("Opis wydarzenia: \t" + events.getEvents().get(i).getSummary());
                 if (i + 1 < events.getEvents().size()) {
-                      System.out.println("Na kolejne wydarzenie dojedziesz następującymi autobusami:");
-                      FindBusController.search(events.getEvents().get(i).getLocation(), events.getEvents().get(i + 1).getLocation());
+                    FindBusController.search(events.getEvents().get(i).getLocation(), events.getEvents().get(i + 1).getLocation());
+                    System.out.println("------------------------------------------------------\n");
+
+                    if (FindBusController.getProposedBusArr().size() > 0) {
+                        String busNr = FindBusController.getProposedBusArr().get(0).getBus().getBusNumber();
+                        String type = FindBusController.getProposedBusArr().get(0).getBus().getTypeOfTransport();
+                        System.out.println("Proponowany " + type + " nr: " + busNr);
+                    } else {
+                        FindBusInterchangesController.search(events.getEvents().get(i).getLocation(), events.getEvents().get(i + 1).getLocation());
+
+                        String type0 = FindBusInterchangesController.getInterChangeArray().get(0).getBus0().getTypeOfTransport();
+                        String type1 = FindBusInterchangesController.getInterChangeArray().get(0).getBus1().getTypeOfTransport();
+                        String busNr0 = FindBusInterchangesController.getInterChangeArray().get(0).getBus0().getBusNumber();
+                        String busNr1 = FindBusInterchangesController.getInterChangeArray().get(0).getBus1().getBusNumber();
+                        String connectionbusStop = FindBusInterchangesController.getInterChangeArray().get(0).getConnectionBusStop();
+                        System.out.println("Proponowany " + type0 + " nr: " + busNr0 + " przesiadka na przystanku " + connectionbusStop + " w " + type1 + " nr " + busNr1);
+                    }
+
                 } else {
                     System.out.println("To jest ostatnie wydarzenie");
                 }
@@ -123,7 +142,7 @@ class Menu {
 //        for (LocalDate ld : events.getEventDays()) {
 //            System.out.println(i++ + ". " + ld + " (" + ld.getDayOfWeek() + ")");
         for (int i = 0; i < eventDays.length; i++) {
-            System.out.println(i+1 + "\t" + eventDays[i] + " (" + eventDays[i].getDayOfWeek() + ")");
+            System.out.println(i + 1 + "\t" + eventDays[i] + " (" + eventDays[i].getDayOfWeek() + ")");
         }
         System.out.println("UP\tPowrót do menu głównego");
         System.out.println();
