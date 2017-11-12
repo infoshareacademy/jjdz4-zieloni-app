@@ -14,25 +14,39 @@ public class FindBusController {
 
     private static String start_BusStop;
     private static String end_BusStop;
+
+    /*Lista z proponowanymi autobusami*/
     private static ArrayList<ProposedBusDTO> proposedBusArr;
 
+
+    /**
+     * @param startBusStop - przystanek początkowy
+     * @param endBusStop   - przystanek końcowy
+     */
     public static void search(String startBusStop, String endBusStop) {
 
         end_BusStop = endBusStop;
         start_BusStop = startBusStop;
         proposedBusArr = new ArrayList<>();
 
-
-        ArrayList<BusDTO> busDB = BusDataBase.getDataBase();
+        /*baza wszystkich autobusów*/
+        ArrayList<BusDTO> busDB = BusDataBase.DB;
 
         for (int i = 0; i < busDB.size(); i++) {
-            checkBusForVaraint(i, busDB.get(i), busDB.get(i).getBusStops_v1(), busDB.get(i).getCourseRecords_v1(), busDB.get(i).getColumnsMap_v1(), 1);
-            checkBusForVaraint(i, busDB.get(i), busDB.get(i).getBusStops_v2(), busDB.get(i).getCourseRecords_v2(), busDB.get(i).getColumnsMap_v2(), 2);
+            checkBusForVariant(i, busDB.get(i), 1);
+            checkBusForVariant(i, busDB.get(i), 2);
         }
     }
 
-    private static void checkBusForVaraint(int id, BusDTO busDTO, ArrayList<RecordVariantCsvDTO> busStops, ArrayList<RecordCourseDTO> courseRecords, Map<String, ArrayList<String>> columnMap, int variant) {
+    /*spawdzamy czy rozkład jazdy danego autobusu zawiera przystanek poczatkowy i koncowy*/
+    private static void checkBusForVariant(int id, BusDTO busDTO,  int variant) {
 
+        ArrayList<RecordVariantCsvDTO> busStops;
+        if(variant ==1){
+            busStops = busDTO.getBusStops_v1();
+        }else {
+            busStops = busDTO.getBusStops_v2();
+        }
         int find_startBusStop_index = -1;
         int find_endBusStop_index = -1;
 

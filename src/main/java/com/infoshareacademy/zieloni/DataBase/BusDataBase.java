@@ -8,18 +8,22 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Map;
 
 /**
  * @author Michał Stasiński
  */
+
+
+/*Klasa w której tworzymy baze danych wszystkich autobusów*/
 public class BusDataBase {
 
     private static Logger logger = LogManager.getLogger(BusDataBase.class.getName());
-    public static ArrayList<BusDTO> DB = BusDataBase.getDataBase();
 
-    public static ArrayList<BusDTO> getDataBase() {
+    public static ArrayList<BusDTO> DB = BusDataBase.createDataBase();
+
+    /* tworzymy baze danych*/
+    public static ArrayList<BusDTO> createDataBase() {
         ArrayList<BusDTO> busDB = new ArrayList<>();
 
         ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");

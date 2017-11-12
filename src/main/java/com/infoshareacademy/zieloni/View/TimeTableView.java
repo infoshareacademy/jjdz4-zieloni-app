@@ -10,6 +10,7 @@ import java.util.Map;
 
 import static com.infoshareacademy.zieloni.DataBase.BusDataBase.DB;
 
+
 public class TimeTableView {
 
     private static final ArrayList<BusDTO> busDB = DB;

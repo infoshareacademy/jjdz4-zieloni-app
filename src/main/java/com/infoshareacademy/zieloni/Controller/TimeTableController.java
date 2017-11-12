@@ -1,7 +1,5 @@
 package com.infoshareacademy.zieloni.Controller;
 
-import com.infoshareacademy.zieloni.DataBase.BusDataBase;
-import com.infoshareacademy.zieloni.Model.BusDTO;
 import com.infoshareacademy.zieloni.PlanerView;
 import com.infoshareacademy.zieloni.View.TimeTableView;
 import net.fortuna.ical4j.data.ParserException;
@@ -10,13 +8,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 
 
 /**
  * @author Michal Stasiński
  */
 
+/* mechanika przechodzenia menu miedzy widokami opcji 2 -"Rozkład jazdy"*/
 public class TimeTableController {
 
     private static int level = 1;

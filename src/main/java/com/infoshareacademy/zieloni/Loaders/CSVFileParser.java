@@ -85,7 +85,7 @@ public class CSVFileParser {
         /**
          * plik zkonczony warianty.csv
          *
-         * Od 4 klumny(tu X5) sprawdza ile jest kolumn -
+         * Od 4 kolumny(tu X5) sprawdza ile jest kolumn -
          * Każda kolumna wrzucana jest do HasMAp  <String, ArrayList<String>> gdzie string to klucz X0,X2...X11  a ArrayList<String> to wysztkie minuty w kolumnie
          *
          * 11;Flagi;Gmina;Nazwa;X5(00:00-29:59);X6(00:00-29:59);X7(00:00-29:59);X8(00:00-29:59);X9(00:00-29:59);X10(00:00-29:59);X11(00:00-29:59)

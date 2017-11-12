@@ -3,6 +3,8 @@ package com.infoshareacademy.zieloni.Model;
 import lombok.Getter;
 import lombok.Setter;
 
+
+/* Model dla proponowanego aoutobusu*/
 public class ProposedBusDTO {
     @Getter
     @Setter
