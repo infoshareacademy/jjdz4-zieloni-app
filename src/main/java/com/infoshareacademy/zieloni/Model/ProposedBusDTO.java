@@ -3,24 +3,23 @@ package com.infoshareacademy.zieloni.Model;
 import lombok.Getter;
 import lombok.Setter;
 
-public class RecordVariantCsvDTO {
+
+/* Model dla proponowanego aoutobusu*/
+public class ProposedBusDTO {
+    @Getter
+    @Setter
+    private int id;
 
     @Getter
     @Setter
-    private String idVariant;
+    private BusDTO bus;
 
     @Getter
     @Setter
-    private String flags;
+    private int vairiant;
 
     @Getter
     @Setter
-    private String community;
-
-    @Getter
-    @Setter
-    private String nameOfBusStop;
+    private int busStopIndex;
 
 }
-
-
