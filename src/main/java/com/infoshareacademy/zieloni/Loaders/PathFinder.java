@@ -42,7 +42,11 @@ public class PathFinder {
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(String path) {
 
         File folder1 = new File(PathFinder.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+
+        /*Set wszystkich folderów z autobusami*/
         Set<String> directory = new HashSet<>();
+
+        /*ArrayList z plikami csv dla każdego folderu directory*/
         ArrayList<String> files = new ArrayList<>();
 
         if (folder1.isFile()) {  // Run with JAR file
@@ -75,16 +79,23 @@ public class PathFinder {
         } else { // Run with IDE
 
             InputStream activitiesStream = PathFinder.class.getClassLoader().getResourceAsStream(path);
+
+            /*Klasa Scanner służy do odczytywania danych *
+            useDelimiter -łamie linie po napotkaniu znaku z parametru*/
+
             Scanner scanner = new Scanner(activitiesStream).useDelimiter("\n");
             boolean isHeader = true;
 
+            /*szukamy w głłownym folderze*/
             while (scanner.hasNext()) {
                 String record = scanner.next();
+
+                /*znajdujemy podfoldery z nazwami autobusów*/
                 directory.add(record);
+
+                /*przeszukujemy podfolder*/
                 InputStream activitiesStream1 = PathFinder.class.getClassLoader().getResourceAsStream(path + "/" + record);
-
                 try {
-
                     Scanner scanner1 = new Scanner(activitiesStream1).useDelimiter("\n");
                     while (scanner1.hasNext()) {
                         String record1 = scanner1.next();

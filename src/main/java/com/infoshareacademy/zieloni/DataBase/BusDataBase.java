@@ -13,9 +13,8 @@ import java.util.Map;
 /**
  * @author Michał Stasiński
  */
-
-
 /*Klasa w której tworzymy baze danych wszystkich autobusów*/
+
 public class BusDataBase {
 
     private static Logger logger = LogManager.getLogger(BusDataBase.class.getName());
@@ -23,10 +22,14 @@ public class BusDataBase {
 
     /* tworzymy baze danych*/
     public static ArrayList<BusDTO> createDataBase() {
-        System.out.println("Tworzymy baze");
+        logger.info("Tworzymy bazę danych");
         ArrayList<BusDTO> busDB = new ArrayList<>();
 
+        /*znajdujemy wszystkie ścieżki do plików */
         ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");
+
+
+        /*sortujemy je względem id*/
         filePath.sort((o1, o2) -> {
             String s1 = o1.getId();
             String s2 = o2.getId();
@@ -35,6 +38,7 @@ public class BusDataBase {
 
         ArrayList<String> extraTabel = CSVReader.readCSVfileAndConvertToRecordsArray("tabela.csv");
         ArrayList<ExtraTableCsvDTO> tabelaCSVArray = CSVFileParser.formatCSVToTimeTableWithExtraInfoRecords(extraTabel);
+
         tabelaCSVArray.sort((o1, o2) -> {
             String s1 = o1.getId();
             String s2 = o2.getId();
