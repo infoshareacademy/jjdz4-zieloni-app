@@ -10,10 +10,10 @@ import java.util.Map;
 
 import static com.infoshareacademy.zieloni.DataBase.BusDataBase.DB;
 
+
 public class TimeTableView {
 
     private static final ArrayList<BusDTO> busDB = DB;
-
     private static int level = 0;
     private static int choiceBus = -1;
     private static int street = -1;
@@ -44,22 +44,17 @@ public class TimeTableView {
                     allTransportBoard.append("\n");
                     allTransportBoard.append("__________________________________________________________________\n");
                     allTransportBoard.append("\n");
-                }else{
-                    allTransportBoard.append(busDB.get(i).getBusNumber()+ " | ");
-
+                } else {
+                    allTransportBoard.append(busDB.get(i).getBusNumber() + " | ");
                 }
                 counter++;
             }
-
             System.out.println(allTransportBoard);
-
-
 
         } else {
             System.out.println("Wpisz 1 lub exit");
         }
         return level;
-
     }
 
     public static int choiceVariant(String txt) {
@@ -82,6 +77,7 @@ public class TimeTableView {
     }
 
     public static int showVariantStreet(Integer integer) {
+
         if (integer.toString().equals("1") || integer.toString().equals("2")) {
             level = 3;
             System.out.println("#################################################");
@@ -104,7 +100,6 @@ public class TimeTableView {
         } else {
             System.out.println("Wybierz od 1 do 2");
         }
-
         return level;
     }
 
@@ -122,13 +117,13 @@ public class TimeTableView {
         return level;
     }
 
-
     private static void showTimeTable(Integer integer) {
         int busStopArrSize = -1;
+        String busStopName = "";
+
         if (variant == 1) {
             busStopArrSize = busDB.get(choiceBus).getBusStops_v1().size();
         }
-
         if (variant == 2) {
             busStopArrSize = busDB.get(choiceBus).getBusStops_v2().size();
         }
@@ -142,54 +137,59 @@ public class TimeTableView {
             if (variant == 1) {
                 courseRecord = busDB.get(choiceBus).getCourseRecords_v1();
                 map = busDB.get(choiceBus).getColumnsMap_v1();
-                System.out.println("___________________________________________________________________\n");
-                System.out.println("                     Rozkład " + busDB.get(integer).getTypeOfTransport() + " nr " + busDB.get(choiceBus).getBusNumber() + " na ulicy " + busDB.get(choiceBus).getBusStops_v1().get(street).getNameOfBusStop().toUpperCase());
+                busStopName = busDB.get(choiceBus).getBusStops_v1().get(street).getNameOfBusStop().toUpperCase();
 
             } else if (variant == 2) {
                 courseRecord = busDB.get(choiceBus).getCourseRecords_v2();
                 map = busDB.get(choiceBus).getColumnsMap_v2();
-                System.out.println("___________________________________________________________________\n");
-                System.out.println("                     Rozkład " + busDB.get(integer).getTypeOfTransport() + " nr" + busDB.get(choiceBus).getBusNumber() + "na ulicy" + busDB.get(choiceBus).getBusStops_v2().get(street).getNameOfBusStop().toUpperCase());
+                busStopName = busDB.get(choiceBus).getBusStops_v2().get(street).getNameOfBusStop().toUpperCase();
             }
 
-            StringBuilder timeTableView = new StringBuilder();
-            int counter = 1;
-            for (int i = 0; i < courseRecord.size(); i++) {
-                int minutes = 0;
-                String symbolOfVariant = courseRecord.get(i).getCourseX0_XX();
+            timeTableStringBuilder(courseRecord, map, busStopName, integer);
 
-                for (int j = 0; j < street; j++) {
-
-                    try {
-                        minutes += Integer.valueOf(map.get(symbolOfVariant).get(j));
-                    } catch (Exception e) {
-                        minutes += 1;
-                    }
-                }
-
-                try {
-                    if (courseRecord.get(i).getCourseX0_XX().split("X")[0].equals("")) {
-                        timeTableView.append(FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes) + " | ");
-                        if (counter % 10 == 0) {
-                            timeTableView.append("\n");
-                        }
-                        counter++;
-                    } else {
-                        counter = 1;
-                        timeTableView.append("\n");
-                        timeTableView.append("--------------------------------------------------------------------------------\n");
-                        timeTableView.append("                                 " + courseRecord.get(i).getCourseX0_XX() + "\n");
-                        timeTableView.append("--------------------------------------------------------------------------------\n");
-                    }
-
-                } catch (Exception e) {
-
-                }
-            }
-
-            System.out.println(timeTableView);
         } else {
             System.out.println("Wybierz od 0 do " + (busStopArrSize - 1));
         }
+
+    }
+
+    private static void timeTableStringBuilder(ArrayList<RecordCourseDTO> courseRecord, Map<String, ArrayList<String>> map, String busStopName, Integer id) {
+
+        String type = busDB.get(id).getTypeOfTransport();
+        String busNr = busDB.get(choiceBus).getBusNumber();
+        StringBuilder timeTableView = new StringBuilder();
+        int counter = 1;
+        for (int i = 0; i < courseRecord.size(); i++) {
+            int minutes = 0;
+            String symbolOfVariant = courseRecord.get(i).getCourseX0_XX();
+
+            for (int j = 0; j < street; j++) {
+                try {
+                    minutes += Integer.valueOf(map.get(symbolOfVariant).get(j));
+                } catch (Exception e) {
+                    minutes += 1;
+                }
+            }
+            try {
+                if (courseRecord.get(i).getCourseX0_XX().split("X")[0].equals("")) {
+                    timeTableView.append(FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes) + " | ");
+                    if (counter % 10 == 0) {
+                        timeTableView.append("\n");
+                    }
+                    counter++;
+                } else {
+                    counter = 1;
+                    timeTableView.append("\n");
+                    timeTableView.append("--------------------------------------------------------------------------------\n");
+                    timeTableView.append("                                 " + courseRecord.get(i).getCourseX0_XX() + "\n");
+                    timeTableView.append("--------------------------------------------------------------------------------\n");
+                }
+            } catch (Exception e) {
+
+            }
+        }
+        System.out.println("________________________________________________________________________________\n");
+        System.out.println("                     Rozkład " + type + " nr " + busNr + " na ulicy " + busStopName);
+        System.out.println(timeTableView);
     }
 }

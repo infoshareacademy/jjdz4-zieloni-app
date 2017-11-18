@@ -17,14 +17,6 @@ public class PathToCsvDTO {
     @Setter
     private String Id;
 
-   /* @Getter
-    @Setter
-    private int isValidFrom;
-
-    @Getter
-    @Setter
-    private int isValidTo;*/
-
     @Getter
     @Setter
     private String folderName;
