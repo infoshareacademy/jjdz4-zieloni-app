@@ -42,6 +42,8 @@ public class PathFinder {
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(String path) {
 
         File folder1 = new File(PathFinder.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+         /*/home/michalstasinski/Desktop/Kurs1/jjdz4-zieloni-app/target/planer-cli-1.0-SNAPSHOT-jar-with-dependencies.jar*/
+        System.out.printf("fol   "+folder1);
 
         /*Set wszystkich folderów z autobusami*/
         Set<String> directory = new HashSet<>();
@@ -65,9 +67,10 @@ public class PathFinder {
                         }
                         try {
                             files.add(name.split("/")[2]);
+                            //logger.warn(name.split("/")[2]);
 
                         } catch (Exception e) {
-                            logger.warn("Run with JAR file - problem with add item to  ArrayList<String> files");
+                            //logger.warn("Run with JAR file - problem with add item to  ArrayList<String> files");
                         }
                     }
                 }
