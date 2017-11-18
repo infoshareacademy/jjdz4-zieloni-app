@@ -62,7 +62,7 @@ public class FindBusChangesController {
                                            ArrayList<ProposedBusDTO> busArray,
                                            int variant) {
 
-        ArrayList<RecordVariantCsvDTO> busStops;
+        ArrayList<RecordVariantDTO> busStops;
 
         if (variant == 1) {
             busStops = busDTO.getBusStops_v1();
@@ -98,7 +98,7 @@ public class FindBusChangesController {
         if (!b0.getBus().getBusNumber().toString().equals(b1.getBus().getBusNumber().toString())) {
 
             int variant = b0.getVairiant();
-            ArrayList<RecordVariantCsvDTO> listBusStop;
+            ArrayList<RecordVariantDTO> listBusStop;
             if (b0.getVairiant() == 1) {
                 listBusStop = b0.getBus().getBusStops_v1();
             } else {
@@ -107,7 +107,7 @@ public class FindBusChangesController {
 
             for (int i = b0.getBusStopIndex(); i < listBusStop.size(); i++) {
                 int variant1 = b1.getVairiant();
-                ArrayList<RecordVariantCsvDTO> listBusStop1;
+                ArrayList<RecordVariantDTO> listBusStop1;
                 if (b1.getVairiant() == 1) {
                     listBusStop1 = b1.getBus().getBusStops_v1();
                 } else {

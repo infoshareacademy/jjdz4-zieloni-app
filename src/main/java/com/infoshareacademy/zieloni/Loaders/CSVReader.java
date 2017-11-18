@@ -25,7 +25,7 @@ public class CSVReader {
         String line = "";
         try {
 
-            InputStream activitiesStream = PathFinder.class.getClassLoader().getResourceAsStream(path);
+            InputStream activitiesStream = CSVReader.class.getClassLoader().getResourceAsStream(path);
             BufferedReader br = new BufferedReader(new InputStreamReader(activitiesStream, "windows-1250"));
             while ((line = br.readLine()) != null) {
 

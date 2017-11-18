@@ -2,7 +2,7 @@ package com.infoshareacademy.zieloni.Loaders;
 
 import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.Model.ExtraTableCsvDTO;
-import com.infoshareacademy.zieloni.Model.RecordVariantCsvDTO;
+import com.infoshareacademy.zieloni.Model.RecordVariantDTO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,12 +45,12 @@ public class CSVFileParser {
         return parseRecordsArray;
     }
 
-    public static ArrayList<RecordVariantCsvDTO> formatVarinatCSV(ArrayList<String> stringArray) {
+    public static ArrayList<RecordVariantDTO> formatVarinatCSV(ArrayList<String> stringArray) {
 
         /**
          * @param this method get other files csv (converted to ArrayList<String>) from resource\rozklady_2015-09-08_13.43.01
-         * and set value to RecordVariantCsvDTO object
-         * @return array with RecordVariantCsvDTO objects
+         * and set value to RecordVariantDTO object
+         * @return array with RecordVariantDTO objects
          *
          *
          * Zwraca pojedynczy rekord (z trzech pierwszych kolumn) bez headera
@@ -62,13 +62,13 @@ public class CSVFileParser {
          */
 
 
-        ArrayList<RecordVariantCsvDTO> parseRecordsArray = new ArrayList<>();
+        ArrayList<RecordVariantDTO> parseRecordsArray = new ArrayList<>();
         String[] header = stringArray.get(0).split("\\;");
 
         for (int i = 1; i < stringArray.size(); i++) {
             String[] records = stringArray.get(i).split("\\;");
 
-            RecordVariantCsvDTO parseRecord = new RecordVariantCsvDTO();
+            RecordVariantDTO parseRecord = new RecordVariantDTO();
             parseRecord.setIdVariant(records[0]);
             parseRecord.setFlags(records[1]);
             parseRecord.setCommunity(records[2]);

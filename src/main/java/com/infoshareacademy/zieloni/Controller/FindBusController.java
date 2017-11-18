@@ -3,11 +3,9 @@ package com.infoshareacademy.zieloni.Controller;
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import com.infoshareacademy.zieloni.Model.BusDTO;
 import com.infoshareacademy.zieloni.Model.ProposedBusDTO;
-import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
-import com.infoshareacademy.zieloni.Model.RecordVariantCsvDTO;
+import com.infoshareacademy.zieloni.Model.RecordVariantDTO;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 
 public class FindBusController {
@@ -39,12 +37,12 @@ public class FindBusController {
     }
 
     /*spawdzamy czy rozkład jazdy danego autobusu zawiera przystanek poczatkowy i koncowy*/
-    private static void checkBusForVariant(int id, BusDTO busDTO,  int variant) {
+    private static void checkBusForVariant(int id, BusDTO busDTO, int variant) {
 
-        ArrayList<RecordVariantCsvDTO> busStops;
-        if(variant ==1){
+        ArrayList<RecordVariantDTO> busStops;
+        if (variant == 1) {
             busStops = busDTO.getBusStops_v1();
-        }else {
+        } else {
             busStops = busDTO.getBusStops_v2();
         }
         int find_startBusStop_index = -1;

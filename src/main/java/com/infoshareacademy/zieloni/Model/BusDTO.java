@@ -14,11 +14,11 @@ public class BusDTO {
 
     @Getter
     @Setter
-    private ArrayList<RecordVariantCsvDTO> busStops_v1;
+    private ArrayList<RecordVariantDTO> busStops_v1;
 
     @Getter
     @Setter
-    private ArrayList<RecordVariantCsvDTO> busStops_v2;
+    private ArrayList<RecordVariantDTO> busStops_v2;
 
 
     @Getter

@@ -19,11 +19,11 @@ import java.util.Map;
 public class BusDataBase {
 
     private static Logger logger = LogManager.getLogger(BusDataBase.class.getName());
-
-    public static ArrayList<BusDTO> DB = BusDataBase.createDataBase();
+    public  static ArrayList<BusDTO> DB = null;
 
     /* tworzymy baze danych*/
     public static ArrayList<BusDTO> createDataBase() {
+        System.out.println("Tworzymy baze");
         ArrayList<BusDTO> busDB = new ArrayList<>();
 
         ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");
@@ -55,13 +55,13 @@ public class BusDataBase {
 
 
                 ArrayList<String> variant1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant1());
-                ArrayList<RecordVariantCsvDTO> variant1 = CSVFileParser.formatVarinatCSV(variant1RecordArray);
+                ArrayList<RecordVariantDTO> variant1 = CSVFileParser.formatVarinatCSV(variant1RecordArray);
                 ArrayList<String> course1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getCourse1());
                 ArrayList<RecordCourseDTO> course1 = CSVFileParser.formatCourseCSV(course1RecordArray);
                 Map<String, ArrayList<String>> map1 = CSVFileParser.columns_X0XX_Map(variant1RecordArray);
 
                 ArrayList<String> variant2RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant2());
-                ArrayList<RecordVariantCsvDTO> variant2 = CSVFileParser.formatVarinatCSV(variant2RecordArray);
+                ArrayList<RecordVariantDTO> variant2 = CSVFileParser.formatVarinatCSV(variant2RecordArray);
                 ArrayList<String> course2RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getCourse2());
                 ArrayList<RecordCourseDTO> course2 = CSVFileParser.formatCourseCSV(course2RecordArray);
                 Map<String, ArrayList<String>> map2 = CSVFileParser.columns_X0XX_Map(variant2RecordArray);
