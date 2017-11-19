@@ -10,7 +10,16 @@ import lombok.Setter;
  * @see  com.infoshareacademy.zieloni.Loaders.PathFinder
  * @author Michał Stasiński
  */
-
+/*
+ * id - 124_20150905
+ * folderName - rozklady_2015-09-08_13.43.01/124_20150905
+ * course1 - rozklady_2015-09-08_13.43.01/N13_20140726/N13_20140726kursy1.csv
+ * course2 - rozklady_2015-09-08_13.43.01/N13_20140726/N13_20140726kursy2.csv
+ * description1 - rozklady_2015-09-08_13.43.01/N13_20140726/N13_20140726opisy1.csv
+ * description2 - rozklady_2015-09-08_13.43.01/N13_20140726/N13_20140726opisy2.csv
+ * variant1 - rozklady_2015-09-08_13.43.01/N13_20140726/N13_20140726warianty1.csv
+ * variant2 -rozklady_2015-09-08_13.43.01/N13_20140726/N13_20140726warianty2.csv
+ */
 
 public class PathToCsvDTO {
 

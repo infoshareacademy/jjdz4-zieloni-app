@@ -26,11 +26,11 @@ public class BusDataBase {
         ArrayList<BusDTO> busDB = new ArrayList<>();
 
         /*znajdujemy wszystkie ścieżki do plików */
-        ArrayList<PathToCsvDTO> filePath = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");
+        ArrayList<PathToCsvDTO> filePaths = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");
 
 
         /*sortujemy je względem id*/
-        filePath.sort((o1, o2) -> {
+        filePaths.sort((o1, o2) -> {
             String s1 = o1.getId();
             String s2 = o2.getId();
             return s1.compareToIgnoreCase(s2);
@@ -46,8 +46,8 @@ public class BusDataBase {
         });
 
         try {
-            for (int i = 0; i < filePath.size() ; i++) {
-                PathToCsvDTO file = filePath.get(i);
+            for (int i = 0; i < filePaths.size() ; i++) {
+                PathToCsvDTO file = filePaths.get(i);
 
                /* System.out.println("ID :                                      " + file.getId());
                 System.out.println(tabelaCSVArray.get(i).getId());

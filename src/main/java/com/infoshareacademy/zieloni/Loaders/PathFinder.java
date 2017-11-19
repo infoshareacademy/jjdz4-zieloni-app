@@ -13,7 +13,7 @@ import java.util.jar.JarFile;
 
 /**
  * read and store (in ArrayList<PathToCsvDTO>) the paths to all csv files from resource/rozklady_2015-09-08_13.43.01
- * Assign file path to proper categor (opis, wariant, kurs)
+ * Assign file path to proper category (opis, wariant, kurs)
  * <p>
  * <p>
  * Ta klasa pobiera folder resource/rozklady_2015-09-08_13.43.01  i przeszukuje podfoldery
@@ -41,9 +41,11 @@ public class PathFinder {
 
     public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(String path) {
 
-        File folder1 = new File(PathFinder.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-         /*/home/michalstasinski/Desktop/Kurs1/jjdz4-zieloni-app/target/planer-cli-1.0-SNAPSHOT-jar-with-dependencies.jar*/
-        System.out.printf("fol   "+folder1);
+        File folder = new File(PathFinder.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+
+        System.out.println(PathFinder.class.getProtectionDomain().getCodeSource());
+        // DLA JAR jjdz4-zieloni-app/target/planer-cli-1.0-SNAPSHOT-jar-with-dependencies.jar*/
+        // DLA IDE znaleziona sicezka jjdz4-zieloni-app\target\classes
 
         /*Set wszystkich folderów z autobusami*/
         Set<String> directory = new HashSet<>();
@@ -51,12 +53,12 @@ public class PathFinder {
         /*ArrayList z plikami csv dla każdego folderu directory*/
         ArrayList<String> files = new ArrayList<>();
 
-        if (folder1.isFile()) {  // Run with JAR file
+        if (folder.isFile()) {  // Run with JAR file
 
             final JarFile jar;
             try {
-                jar = new JarFile(folder1);
-                final Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
+                jar = new JarFile(folder);
+                final Enumeration<JarEntry> entries = jar.entries();
                 while (entries.hasMoreElements()) {
                     final String name = entries.nextElement().getName();
                     if (name.startsWith(path + "/")) { //filter according to the path
@@ -114,8 +116,9 @@ public class PathFinder {
     }
 
     private static ArrayList<PathToCsvDTO> assignPathToDTO(Set<String> directory, ArrayList<String> files, String path) {
-
+        /* ArrayList ze wszyskimi ścieżkami */
         ArrayList<PathToCsvDTO> arrayWithFolderPath = new ArrayList<>();
+
         for (String dir : directory) {
 
             PathToCsvDTO csvFile = new PathToCsvDTO();
