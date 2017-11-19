@@ -8,7 +8,7 @@ import com.infoshareacademy.zieloni.Model.RecordVariantDTO;
 
 import java.util.ArrayList;
 
-public class FindBusChangesController {
+public class FindBusWithChangeController {
     private static String initialBusStop;
     private static String finalBusStop;
 
@@ -34,6 +34,7 @@ public class FindBusChangesController {
         /* baza wszystkich autobusów*/
         ArrayList<BusDTO> busDB = BusDataBase.DB;
 
+        /* szukam odpowiednich busów i rozdzialam  do odpowiednich Array uwzględniajac ich wariant*/
         for (int i = 0; i < busDB.size(); i++) {
             checkBusForVariant(i, busDB.get(i), initialBusStop, busesContainInitialStop, 1);
             checkBusForVariant(i, busDB.get(i), initialBusStop, busesContainInitialStop, 2);
@@ -140,6 +141,6 @@ public class FindBusChangesController {
     }
 
     public static void setChangeConnectionArray(ArrayList<ChangeConnectionDTO> changeConnectionArray) {
-        FindBusChangesController.changeConnectionArray = changeConnectionArray;
+        FindBusWithChangeController.changeConnectionArray = changeConnectionArray;
     }
 }

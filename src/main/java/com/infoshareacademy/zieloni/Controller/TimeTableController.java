@@ -63,7 +63,6 @@ public class TimeTableController {
                     }
                 } else if (level == 3) {
                     try {
-
                         level = TimeTableView.showTimesForBusStop(Integer.valueOf(text));
                     } catch (Exception e) {
                         System.out.println("Musisz wpisać liczbę");

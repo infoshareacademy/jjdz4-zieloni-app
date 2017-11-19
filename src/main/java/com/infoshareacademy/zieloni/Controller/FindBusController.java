@@ -7,7 +7,6 @@ import com.infoshareacademy.zieloni.Model.RecordVariantDTO;
 
 import java.util.ArrayList;
 
-
 public class FindBusController {
 
     private static String initialBusStop;

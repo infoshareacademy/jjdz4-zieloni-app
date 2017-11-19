@@ -53,13 +53,6 @@ public class TimeTableView {
     }
 
     public static int selectVariant(String txt) {
-        /*sprawdzam czy wpisany z klawiatury tekst to numer autobusu
-         *
-         * isExist 0-nie istnieje 1-istnieje
-         * id na której pozycji w bazie
-         *  return new int[]{isExist, id};
-         *
-         */
         int id = IsBusExist.check(txt)[1];
         level = 2;
         System.out.println("########################################################################################");
@@ -143,12 +136,16 @@ public class TimeTableView {
 
         String type = busDB.get(id).getTypeOfTransport();
         String busNr = busDB.get(selectedBus).getBusNumber();
+        /*tworze string buildera któy bedzie wyświetlał wszystkie godziny odjazdów z danego przystanka*/
         StringBuilder timeTableView = new StringBuilder();
         int counter = 1;
+
+        /*courseRecord zawiera godziny odjazdu z pętli i wariant*/
         for (int i = 0; i < courseRecord.size(); i++) {
             int minutes = 0;
             String symbolCourseX0_XX = courseRecord.get(i).getCourseX0_XX();
 
+            /*trzeba policzyć ile minut trzeba dodac aby orztymac czas na a wybranym przystanku */
             for (int j = 0; j < street; j++) {
                 try {
                     minutes += Integer.valueOf(map.get(symbolCourseX0_XX).get(j));
@@ -156,7 +153,9 @@ public class TimeTableView {
                     minutes += 1;
                 }
             }
+
             try {
+
                 if (courseRecord.get(i).getCourseX0_XX().split("X")[0].equals("")) {
                     timeTableView.append(FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes) + " | ");
                     if (counter % 10 == 0) {
