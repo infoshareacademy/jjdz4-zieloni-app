@@ -8,52 +8,44 @@ import com.infoshareacademy.zieloni.Model.RecordVariantDTO;
 
 import java.util.ArrayList;
 
-
 public class FindBusChangesController {
-    private static String start_BusStop;
-    private static String end_BusStop;
+    private static String initialBusStop;
+    private static String finalBusStop;
 
     /* Lista z wszystkimi autobusami które zawierają przystanek początkowy*/
-    private static ArrayList<ProposedBusDTO> startBusArray = new ArrayList<>();
+    private static ArrayList<ProposedBusDTO> busesContainInitialStop = new ArrayList<>();
 
     /* Lista z wszystkimi autobusami które zawierają przystanek końcowy */
-    private static ArrayList<ProposedBusDTO> endBusArray = new ArrayList<>();
+    private static ArrayList<ProposedBusDTO> busesContainFinalStop = new ArrayList<>();
 
-    /*Lista wszystkich mozliwych przesiadek  miedzy startBusStop a endBusStop*/
+    /*Lista wszystkich mozliwych przesiadek  dla initialStop i inalStop*/
     private static ArrayList<ChangeConnectionDTO> changeConnectionArray = new ArrayList<>();
 
 
     /**
-     * @param startBusStop - przystanek początkowy
-     * @param endBusStop   - przystanek końcowy
+     * @param initialStop - przystanek początkowy
+     * @param finalStop   - przystanek końcowy
      */
-    public static void search(String startBusStop, String endBusStop) {
+    public static void search(String initialStop, String finalStop) {
 
-        end_BusStop = endBusStop;
-        start_BusStop = startBusStop;
+        finalBusStop = finalStop;
+        initialBusStop = initialStop;
 
         /* baza wszystkich autobusów*/
         ArrayList<BusDTO> busDB = BusDataBase.DB;
 
         for (int i = 0; i < busDB.size(); i++) {
-            checkBusForVariant(i, busDB.get(i), start_BusStop, startBusArray, 1);
-            checkBusForVariant(i, busDB.get(i), start_BusStop, startBusArray, 2);
-            checkBusForVariant(i, busDB.get(i), end_BusStop, endBusArray, 1);
-            checkBusForVariant(i, busDB.get(i), end_BusStop, endBusArray, 2);
+            checkBusForVariant(i, busDB.get(i), initialBusStop, busesContainInitialStop, 1);
+            checkBusForVariant(i, busDB.get(i), initialBusStop, busesContainInitialStop, 2);
+            checkBusForVariant(i, busDB.get(i), finalBusStop, busesContainFinalStop, 1);
+            checkBusForVariant(i, busDB.get(i), finalBusStop, busesContainFinalStop, 2);
         }
 
-         /*wszystkie autobusy kótre w swoim rozkładzie zawieraja startBusStop*/
-        ArrayList<ProposedBusDTO> busArr_start = startBusArray;
+        for (int i = 0; i < busesContainInitialStop.size(); i++) {
 
-        /*wszystkie autobusy kótre w swoim rozkładzie zawieraja endBusStop*/
-        ArrayList<ProposedBusDTO> busArr_end = endBusArray;
+            for (int j = 0; j < busesContainFinalStop.size(); j++) {
 
-
-        for (int i = 0; i < busArr_start.size(); i++) {
-
-            for (int j = 0; j < busArr_end.size(); j++) {
-
-                connectionBusStop(busArr_start.get(i), busArr_end.get(j));
+                connectionBusStop(busesContainInitialStop.get(i), busesContainFinalStop.get(j));
             }
         }
     }
@@ -75,7 +67,6 @@ public class FindBusChangesController {
 
         int index = -1;
 
-
         for (int z = 0; z < busStops.size(); z++) {
             String busStop = busStops.get(z).getNameOfBusStop();
             if (busStop.equals(itContainBusStop)) {
@@ -95,37 +86,48 @@ public class FindBusChangesController {
 
 
     /* porównujemy liste z autobusami zawierjącymi przystanek początkowy  z autobusami zawierającymi przystane koncowy i sprawdzamy czy maja przystanki wspólne*/
-    private static void connectionBusStop(ProposedBusDTO b0, ProposedBusDTO b1) {
+    private static void connectionBusStop(ProposedBusDTO bus_containInitStop, ProposedBusDTO bus_containFinalStop) {
 
+        /* sprawdzam czy autobus zawierajacy przystanek poczatkowy
+        i autobus zawierajacy przystankek koncowy to przypadkiem nie ten sam autobus*/
 
-        if (!b0.getBus().getBusNumber().toString().equals(b1.getBus().getBusNumber().toString())) {
+        if (!bus_containInitStop.getBus().getBusNumber().toString().equals(bus_containFinalStop.getBus().getBusNumber().toString())) {
 
-            int variant = b0.getVairiant();
+            /*spawdzam jaki jest wariant proponowanego autobusu*/
+            int variant = bus_containInitStop.getVairiant();
+
+            /* pobieram liste przystanków z odpowiedniego wariantu dla autobusu b0*/
             ArrayList<RecordVariantDTO> listBusStop;
-            if (b0.getVairiant() == 1) {
-                listBusStop = b0.getBus().getBusStops_v1();
+            if (bus_containInitStop.getVairiant() == 1) {
+                listBusStop = bus_containInitStop.getBus().getBusStops_v1();
             } else {
-                listBusStop = b0.getBus().getBusStops_v2();
+                listBusStop = bus_containInitStop.getBus().getBusStops_v2();
             }
 
-            for (int i = b0.getBusStopIndex(); i < listBusStop.size(); i++) {
-                int variant1 = b1.getVairiant();
+            for (int i = bus_containInitStop.getBusStopIndex(); i < listBusStop.size(); i++) {
+                /*spawdzam wariant dla autobusu z przystankami koncowymi*/
+                int variant1 = bus_containFinalStop.getVairiant();
                 ArrayList<RecordVariantDTO> listBusStop1;
-                if (b1.getVairiant() == 1) {
-                    listBusStop1 = b1.getBus().getBusStops_v1();
+                if (bus_containFinalStop.getVairiant() == 1) {
+                    listBusStop1 = bus_containFinalStop.getBus().getBusStops_v1();
                 } else {
-                    listBusStop1 = b1.getBus().getBusStops_v2();
+                    listBusStop1 = bus_containFinalStop.getBus().getBusStops_v2();
                 }
-                for (int j = 0; j < b1.getBusStopIndex(); j++) {
+
+                for (int j = 0; j < bus_containFinalStop.getBusStopIndex(); j++) {
+                    /*jeśli przystanek znajduje sie zarówno na trasie jednego i drugiego autobusu to mamy przesiadkę*/
                     if (listBusStop.get(i).getNameOfBusStop().equals(listBusStop1.get(j).getNameOfBusStop())) {
+
+                        /*Tworzymy obiekt z informacjami o połaczeniu z przesiadkami*/
                         ChangeConnectionDTO change = new ChangeConnectionDTO();
-                        change.setBus0(b0.getBus());
-                        change.setBus1(b1.getBus());
+                        change.setBus0(bus_containInitStop.getBus());
+                        change.setBus1(bus_containFinalStop.getBus());
                         change.setConnectionBusStop(listBusStop.get(i).getNameOfBusStop());
                         change.setVairiant0(variant);
                         change.setVairiant1(variant1);
-                        changeConnectionArray.add(change);
 
+                        /*dodajemy go do tablicy wszystkich proponowanych przesiadek*/
+                        changeConnectionArray.add(change);
                     }
                 }
             }

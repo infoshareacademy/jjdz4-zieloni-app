@@ -19,7 +19,6 @@ import java.util.jar.JarFile;
  * Sprawdza do której kategorii należą pliki w podfolderach  tzn czy jest to opis, kurs, czy wariant
  * Tworzy obiekt typu FilePathDTO który zawiera absolutne ściezki do poszczególnych plików w danym folderze
  *
- * @author Michal Stasiński
  * @see FilePathDTO
  */
 

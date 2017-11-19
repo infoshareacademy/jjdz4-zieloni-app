@@ -9,7 +9,6 @@ import java.util.ArrayList;
 /**
  * Read csv file line by line an put in into an arrayList.
  *
- * @author Michal Stasiński
  * @return ArrayList of records that are lines of text from a csv file
  */
 

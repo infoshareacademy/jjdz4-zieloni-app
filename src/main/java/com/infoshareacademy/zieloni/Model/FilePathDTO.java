@@ -8,7 +8,6 @@ import lombok.Setter;
  * Model dla scieżki która prowdzi do poszczególnych pilków w folderze rozklady_2015-09-08_13.43.01
  *
  * @see  com.infoshareacademy.zieloni.Loaders.PathFinder
- * @author Michał Stasiński
  */
 /*
  * id - 124_20150905

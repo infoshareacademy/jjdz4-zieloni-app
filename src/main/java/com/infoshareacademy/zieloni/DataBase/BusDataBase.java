@@ -10,9 +10,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Map;
 
-/**
- * @author Michał Stasiński
- */
 /*Klasa w której tworzymy baze danych wszystkich autobusów*/
 
 public class BusDataBase {

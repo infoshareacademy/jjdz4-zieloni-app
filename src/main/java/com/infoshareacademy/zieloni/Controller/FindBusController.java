@@ -10,21 +10,21 @@ import java.util.ArrayList;
 
 public class FindBusController {
 
-    private static String start_BusStop;
-    private static String end_BusStop;
+    private static String initialBusStop;
+    private static String finalBusStop;
 
     /*Lista z proponowanymi autobusami*/
     private static ArrayList<ProposedBusDTO> proposedBusArr;
 
 
     /**
-     * @param startBusStop - przystanek początkowy
-     * @param endBusStop   - przystanek końcowy
+     * @param initialStop - przystanek początkowy
+     * @param finalStop   - przystanek końcowy
      */
-    public static void search(String startBusStop, String endBusStop) {
+    public static void search(String initialStop, String finalStop) {
 
-        end_BusStop = endBusStop;
-        start_BusStop = startBusStop;
+        finalBusStop = finalStop;
+        initialBusStop = initialStop;
         proposedBusArr = new ArrayList<>();
 
         /*baza wszystkich autobusów*/
@@ -52,10 +52,10 @@ public class FindBusController {
         for (int z = 0; z < busStops.size(); z++) {
 
             String busStop = busStops.get(z).getNameOfBusStop();
-            if (busStop.equals(start_BusStop)) {
+            if (busStop.equals(initialBusStop)) {
                 find_startBusStop_index = z;
             }
-            if (busStop.equals(end_BusStop)) {
+            if (busStop.equals(finalBusStop)) {
                 find_endBusStop_index = z;
             }
         }
