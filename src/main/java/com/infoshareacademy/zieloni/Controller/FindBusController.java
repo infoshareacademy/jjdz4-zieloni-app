@@ -45,26 +45,26 @@ public class FindBusController {
             busStops = busDTO.getBusStops_v2();
         }
 
-        int find_startBusStop_index = -1;
-        int find_endBusStop_index = -1;
+        int find_initialStop_index = -1;
+        int find_finalStop_index = -1;
 
         for (int z = 0; z < busStops.size(); z++) {
 
             String busStop = busStops.get(z).getNameOfBusStop();
             if (busStop.equals(initialBusStop)) {
-                find_startBusStop_index = z;
+                find_initialStop_index = z;
             }
             if (busStop.equals(finalBusStop)) {
-                find_endBusStop_index = z;
+                find_finalStop_index = z;
             }
         }
 
-        if (find_startBusStop_index < find_endBusStop_index && find_startBusStop_index > -1) {
+        if (find_initialStop_index < find_finalStop_index && find_initialStop_index > -1) {
 
             ProposedBusDTO proposedBus = new ProposedBusDTO();
             proposedBus.setId(id);
             proposedBus.setBus(busDTO);
-            proposedBus.setBusStopIndex(find_startBusStop_index);
+            proposedBus.setBusStopIndex(find_initialStop_index);
             proposedBus.setVairiant(variant);
             proposedBusArr.add(proposedBus);
             //TimeTableView.showTimesForBusStop(id,find_startBusStop_index,variant);
