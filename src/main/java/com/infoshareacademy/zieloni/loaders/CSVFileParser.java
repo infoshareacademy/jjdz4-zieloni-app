@@ -1,24 +1,18 @@
-package com.infoshareacademy.zieloni.Loaders;
+package com.infoshareacademy.zieloni.loaders;
 
-import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
-import com.infoshareacademy.zieloni.Model.ExtraTableCsvDTO;
-import com.infoshareacademy.zieloni.Model.RecordVariantDTO;
+import com.infoshareacademy.zieloni.model.RecordCourseDTO;
+import com.infoshareacademy.zieloni.model.ExtraTableCsvDTO;
+import com.infoshareacademy.zieloni.model.RecordVariantDTO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CSVFileParser {
 
 
-    public static ArrayList<ExtraTableCsvDTO> formatCSVToTimeTableWithExtraInfoRecords(ArrayList<String> stringArray) {
-
-        /**
-         * this method get file tabela.csv(converted to ArrayList<String>) from  resource\rozklady_2015-09-08_13.43.01
-         * and set value to @see ExtraTableCsvDTO object
-         *
-         * @return array with ExtraTableCsvDTO objects
-         */
+    public static List<ExtraTableCsvDTO> formatCSVToTimeTableWithExtraInfoRecords(List<String> stringArray) {
 
         ArrayList<ExtraTableCsvDTO> parseRecordsArray = new ArrayList<ExtraTableCsvDTO>();
 
@@ -41,22 +35,7 @@ public class CSVFileParser {
         return parseRecordsArray;
     }
 
-    public static ArrayList<RecordVariantDTO> formatVarinatCSV(ArrayList<String> stringArray) {
-
-        /**
-         * @param this method get other files csv (converted to ArrayList<String>) from resource\rozklady_2015-09-08_13.43.01
-         * and set value to RecordVariantDTO object
-         * @return array with RecordVariantDTO objects
-         *
-         *
-         * Zwraca pojedynczy rekord (z trzech pierwszych kolumn) bez headera
-         *
-         * 11;Flagi;Gmina;Nazwa;X5(00:00-29:59);X6(00:00-29:59);X7(00:00-29:59);X8(00:00-29:59);X9(00:00-29:59);X10(00:00-29:59);X11(00:00-29:59)
-         * 1;B,P(203);ZTM;Zaspa;;;0;0;;;
-         * 2;P(2091);ZTM;Kołobrzeska;;;1;1;;;
-         * 3;P(2093);ZTM;Chłopska - Obrońców Wybrzeża;;;2;2;;;
-         */
-
+    public static List<RecordVariantDTO> formatVarinatCSV(List<String> stringArray) {
 
         ArrayList<RecordVariantDTO> parseRecordsArray = new ArrayList<>();
         String[] header = stringArray.get(0).split("\\;");
@@ -76,29 +55,15 @@ public class CSVFileParser {
     }
 
 
-    public static Map<String, ArrayList<String>> columns_X0XX_Map(ArrayList<String> stringArray) {
+    public static Map<String, List<String>> columns_X0XX_Map(List<String> stringArray) {
 
-        /**
-         * plik zkonczony warianty.csv
-         *
-         * Od 4 kolumny(tu X5) sprawdza ile jest kolumn -
-         * Każda kolumna wrzucana jest do HasMAp  <String, ArrayList<String>> gdzie string to klucz X0,X2...X11  a ArrayList<String> to wysztkie minuty w kolumnie
-         *
-         * 11;Flagi;Gmina;Nazwa;X5(00:00-29:59);X6(00:00-29:59);X7(00:00-29:59);X8(00:00-29:59);X9(00:00-29:59);X10(00:00-29:59);X11(00:00-29:59)
-         *
-         * 1;B,P(203);ZTM;Zaspa;;;0;0;;;
-         * 2;P(2091);ZTM;Kołobrzeska;;;1;1;;;
-         * 3;P(2093);ZTM;Chłopska - Obrońców Wybrzeża;;;2;2;;;
-         */
-
-
-        ArrayList<ArrayList<String>> columns_X0XX = new ArrayList<>();
+       List<List<String>> columns_X0XX = new ArrayList<>();
         String[] lengthRecord = stringArray.get(0).split("\\;");
 
-        Map<String, ArrayList<String>> mapa = new HashMap<String, ArrayList<String>>();
+        Map<String, List<String>> mapa = new HashMap<>();
 
         for (int i = 4; i < lengthRecord.length; i++) {
-            columns_X0XX.add(new ArrayList<String>());
+            columns_X0XX.add(new ArrayList<>());
         }
 
         String[] header = stringArray.get(0).split("\\;");
@@ -124,17 +89,7 @@ public class CSVFileParser {
     }
 
 
-    public static ArrayList<RecordCourseDTO> formatCourseCSV(ArrayList<String> stringArray) {
-
-        /**
-         * 99;Dni powszednie;#EEEEEE
-            04:29;X0;;
-            05:11;X0;;
-            05:31;X0;;
-
-            departureTime -  04:29
-            courseX0_XX -  X0
-         */
+    public static List<RecordCourseDTO> formatCourseCSV(List<String> stringArray) {
 
 
         ArrayList<RecordCourseDTO> parseRecordsArray = new ArrayList<>();
@@ -144,7 +99,7 @@ public class CSVFileParser {
             RecordCourseDTO parseRecord = new RecordCourseDTO();
             try {
                 parseRecord.setDepartureTime(records[0]);
-                parseRecord.setCourseX0_XX(records[1]);
+                parseRecord.setTypeOfCourse(records[1]);
             } catch (Exception e) {
                 System.out.println("Brakuje rekordu dla " + i);
             }

@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.Utils;
+package com.infoshareacademy.zieloni.utils;
 
 import java.util.ArrayList;
 

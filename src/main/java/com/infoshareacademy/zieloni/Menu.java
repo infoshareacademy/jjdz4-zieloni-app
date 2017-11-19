@@ -1,14 +1,14 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.Controller.FindBusWithChangeController;
-import com.infoshareacademy.zieloni.Controller.TimeTableController;
-import com.infoshareacademy.zieloni.DataBase.BusDataBase;
+import com.infoshareacademy.zieloni.controller.FindBusWithChangeController;
+import com.infoshareacademy.zieloni.controller.TimeTableController;
+import com.infoshareacademy.zieloni.database.BusDataBase;
 import net.fortuna.ical4j.data.ParserException;
 
 import java.io.IOException;
 import java.text.ParseException;
 
-import com.infoshareacademy.zieloni.Controller.FindBusController;
+import com.infoshareacademy.zieloni.controller.FindBusController;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -29,8 +29,10 @@ public class Menu {
                     displayEvents(events);
                     break;
                 case "2":
-                    /*Rozkład Jazdy*/
-                    if (BusDataBase.DB.size() > 0) {
+
+                    System.out.println(BusDataBase.getBusDataBase().size());
+
+                    if (BusDataBase.getBusDataBase().size() > 0) {
                         TimeTableController.show();
                     } else {
                         //logger.fatal("Baza danych jest pusta");

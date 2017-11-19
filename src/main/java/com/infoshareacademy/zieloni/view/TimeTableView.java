@@ -1,18 +1,17 @@
-package com.infoshareacademy.zieloni.View;
+package com.infoshareacademy.zieloni.view;
 
-import com.infoshareacademy.zieloni.Model.BusDTO;
-import com.infoshareacademy.zieloni.Model.RecordCourseDTO;
-import com.infoshareacademy.zieloni.Utils.FormatTime;
-import com.infoshareacademy.zieloni.Utils.IsBusExist;
+import com.infoshareacademy.zieloni.database.BusDataBase;
+import com.infoshareacademy.zieloni.model.BusDTO;
+import com.infoshareacademy.zieloni.model.RecordCourseDTO;
+import com.infoshareacademy.zieloni.utils.FormatTime;
+import com.infoshareacademy.zieloni.utils.IsBusExist;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-
-import static com.infoshareacademy.zieloni.DataBase.BusDataBase.DB;
 
 public class TimeTableView {
 
-    private static final ArrayList<BusDTO> busDB = DB;
+    private static final List<BusDTO> busDB = BusDataBase.getBusDataBase();
     private static int level = 0;
     private static int selectedBus = -1;
     private static int street = -1;
@@ -111,8 +110,8 @@ public class TimeTableView {
         if (busStopIndex > -1 && busStopIndex < busStopArrSize) {
 
             level = 4;
-            ArrayList<RecordCourseDTO> courseRecord = null;
-            Map<String, ArrayList<String>> map = null;
+            List<RecordCourseDTO> courseRecord = null;
+            Map<String, List<String>> map = null;
 
             if (variant == 1) {
                 courseRecord = busDB.get(selectedBus).getCourseRecords_v1();
@@ -132,7 +131,7 @@ public class TimeTableView {
         }
     }
 
-    private static void timeTableStringBuilder(ArrayList<RecordCourseDTO> courseRecord, Map<String, ArrayList<String>> map, String busStopName, Integer id) {
+    private static void timeTableStringBuilder(List<RecordCourseDTO> courseRecord, Map<String, List<String>> map, String busStopName, Integer id) {
 
         String type = busDB.get(id).getTypeOfTransport();
         String busNr = busDB.get(selectedBus).getBusNumber();
@@ -143,12 +142,12 @@ public class TimeTableView {
         /*courseRecord zawiera godziny odjazdu z pętli i wariant*/
         for (int i = 0; i < courseRecord.size(); i++) {
             int minutes = 0;
-            String symbolCourseX0_XX = courseRecord.get(i).getCourseX0_XX();
+            String symbolOfCourse = courseRecord.get(i).getTypeOfCourse();
 
             /*trzeba policzyć ile minut trzeba dodac aby orztymac czas na a wybranym przystanku */
             for (int j = 0; j < street; j++) {
                 try {
-                    minutes += Integer.valueOf(map.get(symbolCourseX0_XX).get(j));
+                    minutes += Integer.valueOf(map.get(symbolOfCourse).get(j));
                 } catch (Exception e) {
                     minutes += 1;
                 }
@@ -156,7 +155,7 @@ public class TimeTableView {
 
             try {
 
-                if (courseRecord.get(i).getCourseX0_XX().split("X")[0].equals("")) {
+                if (courseRecord.get(i).getTypeOfCourse().split("X")[0].equals("")) {
                     timeTableView.append(FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes) + " | ");
                     if (counter % 10 == 0) {
                         timeTableView.append("\n");
@@ -166,7 +165,7 @@ public class TimeTableView {
                     counter = 1;
                     timeTableView.append("\n");
                     timeTableView.append("--------------------------------------------------------------------------------\n");
-                    timeTableView.append("                                 " + courseRecord.get(i).getCourseX0_XX() + "\n");
+                    timeTableView.append("                                 " + courseRecord.get(i).getTypeOfCourse() + "\n");
                     timeTableView.append("--------------------------------------------------------------------------------\n");
                 }
             } catch (Exception e) {

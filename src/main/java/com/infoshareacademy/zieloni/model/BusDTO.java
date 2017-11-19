@@ -1,6 +1,7 @@
-package com.infoshareacademy.zieloni.Model;
+package com.infoshareacademy.zieloni.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import lombok.Getter;
@@ -14,28 +15,28 @@ public class BusDTO {
 
     @Getter
     @Setter
-    private ArrayList<RecordVariantDTO> busStops_v1;
+    private List<RecordVariantDTO> busStops_v1;
 
     @Getter
     @Setter
-    private ArrayList<RecordVariantDTO> busStops_v2;
+    private List<RecordVariantDTO> busStops_v2;
 
 
     @Getter
     @Setter
-    private ArrayList<RecordCourseDTO> courseRecords_v1;
+    private List<RecordCourseDTO> courseRecords_v1;
 
     @Getter
     @Setter
-    private ArrayList<RecordCourseDTO> courseRecords_v2;
+    private List<RecordCourseDTO> courseRecords_v2;
 
     @Getter
     @Setter
-    private Map<String, ArrayList<String>> columnsMap_v1;
+    private Map<String, List<String>> columnsMap_v1;
 
     @Getter
     @Setter
-    private Map<String, ArrayList<String>> columnsMap_v2;
+    private Map<String, List<String>> columnsMap_v2;
 
 
     @Getter

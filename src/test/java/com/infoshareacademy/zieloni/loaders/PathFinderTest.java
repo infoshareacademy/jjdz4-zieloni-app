@@ -1,6 +1,6 @@
-package com.infoshareacademy.zieloni.Loaders;
+package com.infoshareacademy.zieloni.loaders;
 
-import com.infoshareacademy.zieloni.Model.FilePathDTO;
+import com.infoshareacademy.zieloni.model.FilePathDTO;
 import org.junit.Test;
 
 import java.util.ArrayList;

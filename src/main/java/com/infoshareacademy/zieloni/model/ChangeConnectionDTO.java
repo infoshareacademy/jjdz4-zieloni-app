@@ -1,17 +1,8 @@
-package com.infoshareacademy.zieloni.Model;
+package com.infoshareacademy.zieloni.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
-
-/**
- * Model dla przesiadki
- * bus0 -autobus którym zaczynamy podróż
- * variant0 -wariant jaki został wybrany dla bus0
- * bus1 -autobus którym konczymy podróż
- * variant1 -wariant jaki został wybrany dla bus1
- * connectionBusStop- wspólny przystanek na którym następuje przesiadka
- */
 
 public class ChangeConnectionDTO {
     @Getter

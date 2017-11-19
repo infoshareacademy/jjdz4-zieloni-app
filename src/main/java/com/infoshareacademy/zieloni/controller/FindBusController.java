@@ -1,33 +1,29 @@
-package com.infoshareacademy.zieloni.Controller;
+package com.infoshareacademy.zieloni.controller;
 
-import com.infoshareacademy.zieloni.DataBase.BusDataBase;
-import com.infoshareacademy.zieloni.Model.BusDTO;
-import com.infoshareacademy.zieloni.Model.ProposedBusDTO;
-import com.infoshareacademy.zieloni.Model.RecordVariantDTO;
+import com.infoshareacademy.zieloni.database.BusDataBase;
+import com.infoshareacademy.zieloni.model.BusDTO;
+import com.infoshareacademy.zieloni.model.ProposedBusDTO;
+import com.infoshareacademy.zieloni.model.RecordVariantDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FindBusController {
 
     private static String initialBusStop;
     private static String finalBusStop;
-
-    /*Lista z proponowanymi autobusami*/
     private static ArrayList<ProposedBusDTO> proposedBusArr;
 
+    private FindBusController() {
+    }
 
-    /**
-     * @param initialStop - przystanek początkowy
-     * @param finalStop   - przystanek końcowy
-     */
     public static void search(String initialStop, String finalStop) {
 
         finalBusStop = finalStop;
         initialBusStop = initialStop;
         proposedBusArr = new ArrayList<>();
 
-        /*baza wszystkich autobusów*/
-        ArrayList<BusDTO> busDB = BusDataBase.DB;
+        List<BusDTO> busDB = BusDataBase.getBusDataBase();
 
         for (int i = 0; i < busDB.size(); i++) {
             checkBusForVariant(i, busDB.get(i), 1);
@@ -35,49 +31,45 @@ public class FindBusController {
         }
     }
 
-    /*spawdzamy czy rozkład jazdy danego autobusu zawiera przystanek poczatkowy i koncowy*/
     private static void checkBusForVariant(int id, BusDTO busDTO, int variant) {
 
-        ArrayList<RecordVariantDTO> busStops;
+        List<RecordVariantDTO> busStops;
         if (variant == 1) {
             busStops = busDTO.getBusStops_v1();
         } else {
             busStops = busDTO.getBusStops_v2();
         }
 
-        int find_initialStop_index = -1;
-        int find_finalStop_index = -1;
+        int findInitialStopIndex = -1;
+        int findFinalStopIndex = -1;
 
         for (int z = 0; z < busStops.size(); z++) {
 
             String busStop = busStops.get(z).getNameOfBusStop();
             if (busStop.equals(initialBusStop)) {
-                find_initialStop_index = z;
+                findInitialStopIndex = z;
             }
             if (busStop.equals(finalBusStop)) {
-                find_finalStop_index = z;
+                findFinalStopIndex = z;
             }
         }
 
-        if (find_initialStop_index < find_finalStop_index && find_initialStop_index > -1) {
+        if (findInitialStopIndex < findFinalStopIndex && findInitialStopIndex > -1) {
 
             ProposedBusDTO proposedBus = new ProposedBusDTO();
             proposedBus.setId(id);
             proposedBus.setBus(busDTO);
-            proposedBus.setBusStopIndex(find_initialStop_index);
+            proposedBus.setBusStopIndex(findInitialStopIndex);
             proposedBus.setVairiant(variant);
             proposedBusArr.add(proposedBus);
-            //TimeTableView.showTimesForBusStop(id,find_startBusStop_index,variant);
+
         }
     }
 
-    public static ArrayList<ProposedBusDTO> getProposedBusArr() {
+    public static List<ProposedBusDTO> getProposedBusArr() {
         return proposedBusArr;
     }
 
-    public static void setProposedBusArr(ArrayList<ProposedBusDTO> proposedBus) {
-        FindBusController.proposedBusArr = proposedBus;
-    }
 
 }
 

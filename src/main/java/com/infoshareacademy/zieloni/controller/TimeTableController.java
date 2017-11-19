@@ -1,8 +1,8 @@
-package com.infoshareacademy.zieloni.Controller;
+package com.infoshareacademy.zieloni.controller;
 
 import com.infoshareacademy.zieloni.Menu;
-import com.infoshareacademy.zieloni.Utils.IsBusExist;
-import com.infoshareacademy.zieloni.View.TimeTableView;
+import com.infoshareacademy.zieloni.utils.IsBusExist;
+import com.infoshareacademy.zieloni.view.TimeTableView;
 import net.fortuna.ical4j.data.ParserException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,16 +11,13 @@ import java.io.IOException;
 import java.text.ParseException;
 
 
-/* mechanika przechodzenia menu miedzy widokami opcji 2 -"Rozkład jazdy"*/
 public class TimeTableController {
 
     private static int level = 1;
     private static Logger logger = LogManager.getLogger(TimeTableController.class.getName());
 
-    public static void show() throws ParseException, ParserException, IOException {
-        System.out.println("show");
+    public static void show()  {
         String text;
-        //TimeTableView.startMenu();
         TimeTableView.selectBus();
 
         while (Menu.scanner.hasNextLine()) {

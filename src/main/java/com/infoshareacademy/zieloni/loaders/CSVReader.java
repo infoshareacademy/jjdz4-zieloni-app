@@ -1,43 +1,42 @@
-package com.infoshareacademy.zieloni.Loaders;
+package com.infoshareacademy.zieloni.loaders;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-/**
- * Read csv file line by line an put in into an arrayList.
- *
- * @return ArrayList of records that are lines of text from a csv file
- */
+import java.util.List;
 
 public class CSVReader {
-    /**
-     * @param path an absolute URL giving the base location of the csv file (PathFinder)
-     * @return ArrayList of records - record is single line of text from a csv file
-     */
-    public static ArrayList<String> readCSVfileAndConvertToRecordsArray(String path) {
+
+    private CSVReader() { }
+
+    private static Logger logger = LogManager.getLogger(CSVReader.class.getName());
 
 
-        ArrayList<String> records = new ArrayList<>();
+    public static List<String> readCSVfileAndConvertToRecordsArray(String path) {
+
+        List<String> records = new ArrayList<>();
         String line = "";
         try {
 
             InputStream activitiesStream = CSVReader.class.getClassLoader().getResourceAsStream(path);
             BufferedReader br = new BufferedReader(new InputStreamReader(activitiesStream, "windows-1250"));
             while ((line = br.readLine()) != null) {
-
-                records.add(line.toString());
+                records.add(line);
             }
 
             br.close();
+
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.info("problem z plikiem" + e);
+
         }
 
         return records;
-
     }
 }
 

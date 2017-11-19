@@ -1,11 +1,11 @@
-package com.infoshareacademy.zieloni.Model;
+package com.infoshareacademy.zieloni.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Entity - data from tablela.csv
- * Model dla informacji zawartych w pilku tabela.csv
+ * model dla informacji zawartych w pilku tabela.csv
  *
  * @author Michal Stasiński
  */

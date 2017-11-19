@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.DataBase.BusDataBase;
+import com.infoshareacademy.zieloni.database.BusDataBase;
 import net.fortuna.ical4j.data.ParserException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,8 +18,8 @@ public class App {
 
         logger.info("Start aplikacji");
 
-        /*tworzymy baze danych*/
-        BusDataBase.DB = BusDataBase.createDataBase();
+
+        BusDataBase.createDataBase();
 
 
         startMenu();
