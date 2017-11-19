@@ -96,7 +96,7 @@ public class FindBusChangesController {
             /*spawdzam jaki jest wariant proponowanego autobusu*/
             int variant = bus_containInitStop.getVairiant();
 
-            /* pobieram liste przystanków z odpowiedniego wariantu dla autobusu b0*/
+            /* pobieram liste przystanków z odpowiedniego wariantu dla autobusu bus_containInitStop*/
             ArrayList<RecordVariantDTO> listBusStop;
             if (bus_containInitStop.getVairiant() == 1) {
                 listBusStop = bus_containInitStop.getBus().getBusStops_v1();
@@ -105,8 +105,9 @@ public class FindBusChangesController {
             }
 
             for (int i = bus_containInitStop.getBusStopIndex(); i < listBusStop.size(); i++) {
-                /*spawdzam wariant dla autobusu z przystankami koncowymi*/
+                /*spawdzam wariant dla autobusu bus_containFinalStop*/
                 int variant1 = bus_containFinalStop.getVairiant();
+
                 ArrayList<RecordVariantDTO> listBusStop1;
                 if (bus_containFinalStop.getVairiant() == 1) {
                     listBusStop1 = bus_containFinalStop.getBus().getBusStops_v1();
