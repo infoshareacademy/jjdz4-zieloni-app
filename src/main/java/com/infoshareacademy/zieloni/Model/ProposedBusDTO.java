@@ -8,7 +8,7 @@ import lombok.Setter;
 public class ProposedBusDTO {
     @Getter
     @Setter
-    private int id;
+    private int id; //na której pozycji znajduje sie autobus w bazie danych
 
     @Getter
     @Setter
@@ -16,10 +16,9 @@ public class ProposedBusDTO {
 
     @Getter
     @Setter
-    private int vairiant;
+    private int vairiant; //wariant jaki został wybrany dla proponowanego autobusu
 
     @Getter
     @Setter
-    private int busStopIndex;
-
+    private int busStopIndex;//jak daleko przystanek poczatkowy znajduje sie od pętli autobusowej
 }

@@ -2,6 +2,12 @@ package com.infoshareacademy.zieloni.Utils;
 
 import static com.infoshareacademy.zieloni.DataBase.BusDataBase.DB;
 
+ /*sprawdzam czy wpisany z klawiatury tekst to numer autobusu
+ *
+ * isExist 0-nie istnieje 1-istnieje
+ * id na której pozycji w bazie
+ *
+ */
 
 public class IsBusExist {
 

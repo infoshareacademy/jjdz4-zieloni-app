@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.Controller.FindBusChangesController;
+import com.infoshareacademy.zieloni.Controller.FindBusWithChangeController;
 import com.infoshareacademy.zieloni.Controller.TimeTableController;
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import net.fortuna.ical4j.data.ParserException;
@@ -13,14 +13,15 @@ import com.infoshareacademy.zieloni.Controller.FindBusController;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-class Menu {
+public class Menu {
+    public static Scanner scanner = new Scanner(System.in);
 
     static void startMenu() throws ParseException, ParserException, IOException, InterruptedException {
         Events events = new Events();
         events.loadEvents();
 
         displayMainMenu();
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             switch (scanner.nextLine().toLowerCase()) {
                 case "1":
@@ -93,15 +94,17 @@ class Menu {
                     if (FindBusController.getProposedBusArr().size() > 0) {
                         String busNr = FindBusController.getProposedBusArr().get(0).getBus().getBusNumber();
                         String type = FindBusController.getProposedBusArr().get(0).getBus().getTypeOfTransport();
+
+
                         System.out.println("Proponowany " + type + " nr: " + busNr);
                     } else {
-                        FindBusChangesController.search(events.getEvents().get(i).getLocation(), events.getEvents().get(i + 1).getLocation());
+                        FindBusWithChangeController.search(events.getEvents().get(i).getLocation(), events.getEvents().get(i + 1).getLocation());
 
-                        String type0 = FindBusChangesController.getChangeConnectionArray().get(0).getBus0().getTypeOfTransport();
-                        String type1 = FindBusChangesController.getChangeConnectionArray().get(0).getBus1().getTypeOfTransport();
-                        String busNr0 = FindBusChangesController.getChangeConnectionArray().get(0).getBus0().getBusNumber();
-                        String busNr1 = FindBusChangesController.getChangeConnectionArray().get(0).getBus1().getBusNumber();
-                        String connectionbusStop = FindBusChangesController.getChangeConnectionArray().get(0).getConnectionBusStop();
+                        String type0 = FindBusWithChangeController.getChangeConnectionArray().get(0).getBus0().getTypeOfTransport();
+                        String type1 = FindBusWithChangeController.getChangeConnectionArray().get(0).getBus1().getTypeOfTransport();
+                        String busNr0 = FindBusWithChangeController.getChangeConnectionArray().get(0).getBus0().getBusNumber();
+                        String busNr1 = FindBusWithChangeController.getChangeConnectionArray().get(0).getBus1().getBusNumber();
+                        String connectionbusStop = FindBusWithChangeController.getChangeConnectionArray().get(0).getConnectionBusStop();
                         System.out.println("Proponowany " + type0 + " nr: " + busNr0 + " przesiadka na przystanku " + connectionbusStop + " w " + type1 + " nr " + busNr1);
                     }
 

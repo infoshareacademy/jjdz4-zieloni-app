@@ -1,23 +1,27 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.DataBase.BusDataBase;
 import net.fortuna.ical4j.data.ParserException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.logging.Logger;
 
 import static com.infoshareacademy.zieloni.Menu.startMenu;
 
-/**
- * Hello world!
- */
 public class App {
 
-    Logger logger = Logger.getLogger(App.class.getName());
+    private static Logger logger = LogManager.getLogger(App.class.getName());
 
     public static void main(String[] args) throws ParseException, ParserException, IOException, InterruptedException {
 
-        startMenu();
+        logger.info("Start aplikacji");
 
+        /*tworzymy baze danych*/
+        BusDataBase.DB = BusDataBase.createDataBase();
+
+
+        startMenu();
     }
 }
