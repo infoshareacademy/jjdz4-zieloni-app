@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni.Loaders;
 
-import com.infoshareacademy.zieloni.Model.PathToCsvDTO;
+import com.infoshareacademy.zieloni.Model.FilePathDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,38 +12,31 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
- * read and store (in ArrayList<PathToCsvDTO>) the paths to all csv files from resource/rozklady_2015-09-08_13.43.01
+ * read and store (in ArrayList<FilePathDTO>) the paths to all csv files from resource/rozklady_2015-09-08_13.43.01
  * Assign file path to proper category (opis, wariant, kurs)
- * <p>
  * <p>
  * Ta klasa pobiera folder resource/rozklady_2015-09-08_13.43.01  i przeszukuje podfoldery
  * Sprawdza do której kategorii należą pliki w podfolderach  tzn czy jest to opis, kurs, czy wariant
- * Tworzy obiekt typu PathToCsvDTO który zawiera absolutne ściezki do poszczególnych plików w danym folderze
+ * Tworzy obiekt typu FilePathDTO który zawiera absolutne ściezki do poszczególnych plików w danym folderze
  *
  * @author Michal Stasiński
- * @see PathToCsvDTO
- * <p>
- * " Rozkład obowiązuje                        " + file.getIsValidFrom());
- * " Nazwa folderu :                           " + file.getFolderName());
- * " plik zakonczone na  kursy1.csv:           " + file.getCourse1());
- * " plik zakonczone na  kursy2.csv:           " + file.getCourse2());
- * " plik zakonczone na  opis1.csv:            " + file.getDescription1());
- * " plik zakonczone na  opis2.csv:            " + file.getDescription2());
+ * @see FilePathDTO
  */
 
 public class PathFinder {
 
-    /**
-     * @param @param folder  it is  folder in resource/rozklady_2015-09-08_13.43.01
-     * @return array with paths to all csv files in folder
-     */
     private static Logger logger = LogManager.getLogger(PathFinder.class.getName());
 
-    public static ArrayList<PathToCsvDTO> addAllFilesPathToArrayList(String path) {
+    /**
+     * @param path resource/rozklady_2015-09-08_13.43.01
+     * @return ArrayList<FilePathDTO> array with paths to all csv files in folder
+     */
+
+    public static ArrayList<FilePathDTO> addAllFilesPathToArrayList(String path) {
 
         File folder = new File(PathFinder.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+        /* getProtectionDomain() - odzwierciedla, że ​​dana klasa została załadowana z określonego źródła z określonymi uprawnieniami*/
 
-        System.out.println(PathFinder.class.getProtectionDomain().getCodeSource());
         // DLA JAR jjdz4-zieloni-app/target/planer-cli-1.0-SNAPSHOT-jar-with-dependencies.jar*/
         // DLA IDE znaleziona sicezka jjdz4-zieloni-app\target\classes
 
@@ -85,13 +78,10 @@ public class PathFinder {
 
             InputStream activitiesStream = PathFinder.class.getClassLoader().getResourceAsStream(path);
 
-            /*Klasa Scanner służy do odczytywania danych *
-            useDelimiter -łamie linie po napotkaniu znaku z parametru*/
-
             Scanner scanner = new Scanner(activitiesStream).useDelimiter("\n");
             boolean isHeader = true;
 
-            /*szukamy w głłownym folderze*/
+            /*szukamy w głownym folderze*/
             while (scanner.hasNext()) {
                 String record = scanner.next();
 
@@ -115,13 +105,13 @@ public class PathFinder {
         return assignPathToDTO(directory, files, path);
     }
 
-    private static ArrayList<PathToCsvDTO> assignPathToDTO(Set<String> directory, ArrayList<String> files, String path) {
+    private static ArrayList<FilePathDTO> assignPathToDTO(Set<String> directory, ArrayList<String> files, String path) {
         /* ArrayList ze wszyskimi ścieżkami */
-        ArrayList<PathToCsvDTO> arrayWithFolderPath = new ArrayList<>();
+        ArrayList<FilePathDTO> arrayWithFolderPath = new ArrayList<>();
 
         for (String dir : directory) {
 
-            PathToCsvDTO csvFile = new PathToCsvDTO();
+            FilePathDTO csvFile = new FilePathDTO();
             csvFile.setFolderName(path + "/" + dir);
             csvFile.setId(dir);
             arrayWithFolderPath.add(csvFile);
@@ -156,6 +146,7 @@ public class PathFinder {
                 }
             }
         }
+
         return arrayWithFolderPath;
     }
 }

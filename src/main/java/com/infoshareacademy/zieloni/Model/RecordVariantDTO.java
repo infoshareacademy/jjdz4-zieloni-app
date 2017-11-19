@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- *  Pojedynczy record t tabeli warianty.csv
+ *  record  tabeli warianty.csv
  *
  *  N2;Flagi;Gmina;Nazwa;X3(00:00-29:59);X4(00:00-29:59);X5(00:00-29:59)
  *  1;B,P(125);ZTM;Nowy Port Szaniec Zachodni;;0;0

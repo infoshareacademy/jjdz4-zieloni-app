@@ -26,7 +26,7 @@ public class BusDataBase {
         ArrayList<BusDTO> busDB = new ArrayList<>();
 
         /*znajdujemy wszystkie ścieżki do plików */
-        ArrayList<PathToCsvDTO> filePaths = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");
+        ArrayList<FilePathDTO> filePaths = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");
 
 
         /*sortujemy je względem id*/
@@ -47,7 +47,7 @@ public class BusDataBase {
 
         try {
             for (int i = 0; i < filePaths.size() ; i++) {
-                PathToCsvDTO file = filePaths.get(i);
+                FilePathDTO file = filePaths.get(i);
 
                /* System.out.println("ID :                                      " + file.getId());
                 System.out.println(tabelaCSVArray.get(i).getId());

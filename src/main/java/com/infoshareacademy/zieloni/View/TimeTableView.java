@@ -10,54 +10,49 @@ import java.util.Map;
 
 import static com.infoshareacademy.zieloni.DataBase.BusDataBase.DB;
 
-
 public class TimeTableView {
 
     private static final ArrayList<BusDTO> busDB = DB;
     private static int level = 0;
-    private static int choiceBus = -1;
+    private static int selectedBus = -1;
     private static int street = -1;
     private static int variant = -1;
 
-    public static void startMenu() {
+   /* public static void startMenu() {
         System.out.println("#################################################");
         System.out.println("# Wpisz '1' jeśli chcesz zobaczyć rozkład jazdy #");
         System.out.println("#       Wpisz 'exit' aby wyjść z programu       #");
         System.out.println("#################################################");
-    }
+    }*/
 
-    public static int choiceBus(String text) {
-        if (text.equals("1")) {
-            level = 1;
-            System.out.println("#################################################");
-            System.out.println("#          Wybierz srodek transportu            #");
-            System.out.println("#                                               #");
-            System.out.println("#   Wpisz 'cofnij' aby wrócić do głownego menu  #");
-            System.out.println("#       Wpisz 'exit' aby wyjść z programu       #");
-            System.out.println("#################################################");
+    public static int selectBus() {
+        level = 1;
+        System.out.println("#################################################");
+        System.out.println("#          Wybierz srodek transportu            #");
+        System.out.println("#                                               #");
+        System.out.println("#   Wpisz 'cofnij' aby wrócić do głównego menu  #");
+        System.out.println("#       Wpisz 'exit' aby wyjść z programu       #");
+        System.out.println("#################################################");
 
-            StringBuilder allTransportBoard = new StringBuilder();
-            int counter = 0;
+        StringBuilder allTransportBoard = new StringBuilder();
+        int counter = 0;
 
-            for (int i = -1; i < busDB.size(); i++) {
-                if (counter % 12 == 0) {
-                    allTransportBoard.append("\n");
-                    allTransportBoard.append("__________________________________________________________________\n");
-                    allTransportBoard.append("\n");
-                } else {
-                    allTransportBoard.append(busDB.get(i).getBusNumber() + " | ");
-                }
-                counter++;
+        for (int i = -1; i < busDB.size(); i++) {
+            if (counter % 12 == 0) {
+                allTransportBoard.append("\n");
+                allTransportBoard.append("__________________________________________________________________\n");
+                allTransportBoard.append("\n");
+            } else {
+                allTransportBoard.append(busDB.get(i).getBusNumber() + " | ");
             }
-            System.out.println(allTransportBoard);
-
-        } else {
-            System.out.println("Wpisz 1 lub exit");
+            counter++;
         }
+        System.out.println(allTransportBoard);
+
         return level;
     }
 
-    public static int choiceVariant(String txt) {
+    public static int selectVariant(String txt) {
 
         if (IsBusExist.check(txt)[0] == 1) {
             int integer = IsBusExist.check(txt)[1];
@@ -67,9 +62,9 @@ public class TimeTableView {
             System.out.println("                                                                                        ");
             System.out.println("    Wpisz 1) jeśli chcesz jechać w kierunku: " + busDB.get(integer).getBusStops_v2().get(0).getNameOfBusStop());
             System.out.println("    Wpisz 2) jeśli chcesz jechać w kierunku: " + busDB.get(integer).getBusStops_v1().get(0).getNameOfBusStop());
-            System.out.println("    Wpisz 'cofnij' aby wrócić do głownego menu                                            ");
+            System.out.println("    Wpisz 'cofnij' aby wrócić do głównego menu                                            ");
             System.out.println("########################################################################################");
-            choiceBus = integer;
+            selectedBus = integer;
         } else {
             System.out.println("Nie ma takiego srodka transportu");
         }
@@ -81,20 +76,20 @@ public class TimeTableView {
         if (integer.toString().equals("1") || integer.toString().equals("2")) {
             level = 3;
             System.out.println("#################################################");
-            System.out.println("#       Wybierz nr porzadkowy przystanku        #");
+            System.out.println("#       Wybierz nr porządkowy przystanku        #");
             System.out.println("#       Wpisz 'exit' aby wyjść z programu       #");
-            System.out.println("#   Wpisz 'cofnij' aby wrócić do głownego menu  #");
+            System.out.println("#   Wpisz 'cofnij' aby wrócić do głównego menu  #");
             System.out.println("#################################################");
             variant = integer;
 
             if (integer == 1) {
-                for (int i = 0; i < busDB.get(choiceBus).getBusStops_v1().size(); i++) {
-                    System.out.println(i + ") " + busDB.get(choiceBus).getBusStops_v1().get(i).getNameOfBusStop());
+                for (int i = 0; i < busDB.get(selectedBus).getBusStops_v1().size(); i++) {
+                    System.out.println(i + ") " + busDB.get(selectedBus).getBusStops_v1().get(i).getNameOfBusStop());
                 }
             }
             if (integer == 2) {
-                for (int i = 0; i < busDB.get(choiceBus).getBusStops_v2().size(); i++) {
-                    System.out.println(i + ") " + busDB.get(choiceBus).getBusStops_v2().get(i).getNameOfBusStop());
+                for (int i = 0; i < busDB.get(selectedBus).getBusStops_v2().size(); i++) {
+                    System.out.println(i + ") " + busDB.get(selectedBus).getBusStops_v2().get(i).getNameOfBusStop());
                 }
             }
         } else {
@@ -105,7 +100,7 @@ public class TimeTableView {
 
     public static int showTimesForBusStop(int addBus, Integer addInteger, int addVariant) {
         street = addInteger;
-        choiceBus = addBus;
+        selectedBus = addBus;
         variant = addVariant;
         showTimeTable(street);
         return 0;
@@ -122,10 +117,10 @@ public class TimeTableView {
         String busStopName = "";
 
         if (variant == 1) {
-            busStopArrSize = busDB.get(choiceBus).getBusStops_v1().size();
+            busStopArrSize = busDB.get(selectedBus).getBusStops_v1().size();
         }
         if (variant == 2) {
-            busStopArrSize = busDB.get(choiceBus).getBusStops_v2().size();
+            busStopArrSize = busDB.get(selectedBus).getBusStops_v2().size();
         }
 
         if (integer > -1 && integer < busStopArrSize) {
@@ -135,14 +130,14 @@ public class TimeTableView {
             Map<String, ArrayList<String>> map = null;
 
             if (variant == 1) {
-                courseRecord = busDB.get(choiceBus).getCourseRecords_v1();
-                map = busDB.get(choiceBus).getColumnsMap_v1();
-                busStopName = busDB.get(choiceBus).getBusStops_v1().get(street).getNameOfBusStop().toUpperCase();
+                courseRecord = busDB.get(selectedBus).getCourseRecords_v1();
+                map = busDB.get(selectedBus).getColumnsMap_v1();
+                busStopName = busDB.get(selectedBus).getBusStops_v1().get(street).getNameOfBusStop().toUpperCase();
 
             } else if (variant == 2) {
-                courseRecord = busDB.get(choiceBus).getCourseRecords_v2();
-                map = busDB.get(choiceBus).getColumnsMap_v2();
-                busStopName = busDB.get(choiceBus).getBusStops_v2().get(street).getNameOfBusStop().toUpperCase();
+                courseRecord = busDB.get(selectedBus).getCourseRecords_v2();
+                map = busDB.get(selectedBus).getColumnsMap_v2();
+                busStopName = busDB.get(selectedBus).getBusStops_v2().get(street).getNameOfBusStop().toUpperCase();
             }
 
             timeTableStringBuilder(courseRecord, map, busStopName, integer);
@@ -150,13 +145,12 @@ public class TimeTableView {
         } else {
             System.out.println("Wybierz od 0 do " + (busStopArrSize - 1));
         }
-
     }
 
     private static void timeTableStringBuilder(ArrayList<RecordCourseDTO> courseRecord, Map<String, ArrayList<String>> map, String busStopName, Integer id) {
 
         String type = busDB.get(id).getTypeOfTransport();
-        String busNr = busDB.get(choiceBus).getBusNumber();
+        String busNr = busDB.get(selectedBus).getBusNumber();
         StringBuilder timeTableView = new StringBuilder();
         int counter = 1;
         for (int i = 0; i < courseRecord.size(); i++) {

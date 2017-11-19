@@ -16,7 +16,7 @@ public class ProposedBusDTO {
 
     @Getter
     @Setter
-    private int vairiant; //wariant jaki został wybrany dla prponowanego autobusu
+    private int vairiant; //wariant jaki został wybrany dla proponowanego autobusu
 
     @Getter
     @Setter

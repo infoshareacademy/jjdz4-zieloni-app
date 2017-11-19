@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.text.ParseException;
 
-
 /**
  * @author Michal Stasiński
  */
@@ -23,9 +22,8 @@ public class TimeTableController {
     public static void show() throws ParseException, ParserException, IOException {
         System.out.println("show");
         String text;
-
         //TimeTableView.startMenu();
-        TimeTableView.choiceBus("1");
+        TimeTableView.selectBus();
 
         while (Menu.scanner.hasNextLine()) {
             text = Menu.scanner.nextLine();
@@ -37,14 +35,12 @@ public class TimeTableController {
             if (text.equals("cofnij")) {
                 level = 1;
                 return;
-                //PlanerView.startMenu();
-                // System.out.println(level);
 
             } else {
 
                 if (level == 1) {
                     try {
-                        level = TimeTableView.choiceVariant(text);
+                        level = TimeTableView.selectVariant(text);
                     } catch (Exception e) {
 
                         System.out.println("Wpisz nr srodka transportu");

@@ -21,7 +21,7 @@ import lombok.Setter;
  * variant2 -rozklady_2015-09-08_13.43.01/N13_20140726/N13_20140726warianty2.csv
  */
 
-public class PathToCsvDTO {
+public class FilePathDTO {
 
     @Getter
     @Setter

@@ -1,7 +1,10 @@
 package com.infoshareacademy.zieloni.Controller;
 
 import com.infoshareacademy.zieloni.DataBase.BusDataBase;
-import com.infoshareacademy.zieloni.Model.*;
+import com.infoshareacademy.zieloni.Model.BusDTO;
+import com.infoshareacademy.zieloni.Model.ChangeConnectionDTO;
+import com.infoshareacademy.zieloni.Model.ProposedBusDTO;
+import com.infoshareacademy.zieloni.Model.RecordVariantDTO;
 
 import java.util.ArrayList;
 
