@@ -1,15 +1,9 @@
 package com.infoshareacademy.zieloni.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-
+@Data
 public class RecordCourseDTO {
-    @Getter
-    @Setter
     private String departureTime;
-
-    @Getter
-    @Setter
     private String typeOfCourse;
 }

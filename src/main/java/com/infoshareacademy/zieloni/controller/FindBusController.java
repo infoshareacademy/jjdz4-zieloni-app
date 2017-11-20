@@ -23,7 +23,7 @@ public class FindBusController {
         initialBusStop = initialStop;
         proposedBusArr = new ArrayList<>();
 
-        List<BusDTO> busDB = BusDataBase.getBusDataBase();
+        List<BusDTO> busDB = BusDataBase.getDataBase();
 
         for (int i = 0; i < busDB.size(); i++) {
             checkBusForVariant(i, busDB.get(i), 1);
@@ -35,9 +35,9 @@ public class FindBusController {
 
         List<RecordVariantDTO> busStops;
         if (variant == 1) {
-            busStops = busDTO.getBusStops_v1();
+            busStops = busDTO.getBusStopsV1();
         } else {
-            busStops = busDTO.getBusStops_v2();
+            busStops = busDTO.getBusStopsV2();
         }
 
         int findInitialStopIndex = -1;

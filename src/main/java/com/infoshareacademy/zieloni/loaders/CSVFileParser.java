@@ -3,6 +3,8 @@ package com.infoshareacademy.zieloni.loaders;
 import com.infoshareacademy.zieloni.model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.model.ExtraTableCsvDTO;
 import com.infoshareacademy.zieloni.model.RecordVariantDTO;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,10 +13,14 @@ import java.util.Map;
 
 public class CSVFileParser {
 
+    private CSVFileParser() {
+    }
+
+    private static Logger logger = LogManager.getLogger(CSVFileParser.class.getName());
 
     public static List<ExtraTableCsvDTO> formatCSVToTimeTableWithExtraInfoRecords(List<String> stringArray) {
 
-        ArrayList<ExtraTableCsvDTO> parseRecordsArray = new ArrayList<ExtraTableCsvDTO>();
+        List<ExtraTableCsvDTO> parseRecordsArray = new ArrayList<>();
 
         for (String filter : stringArray) {
             String[] records = filter.split("\\|");
@@ -38,11 +44,9 @@ public class CSVFileParser {
     public static List<RecordVariantDTO> formatVarinatCSV(List<String> stringArray) {
 
         ArrayList<RecordVariantDTO> parseRecordsArray = new ArrayList<>();
-        String[] header = stringArray.get(0).split("\\;");
 
         for (int i = 1; i < stringArray.size(); i++) {
             String[] records = stringArray.get(i).split("\\;");
-
             RecordVariantDTO parseRecord = new RecordVariantDTO();
             parseRecord.setIdVariant(records[0]);
             parseRecord.setFlags(records[1]);
@@ -55,15 +59,14 @@ public class CSVFileParser {
     }
 
 
-    public static Map<String, List<String>> columns_X0XX_Map(List<String> stringArray) {
+    public static Map<String, List<String>> columnsMap(List<String> stringArray) {
 
-       List<List<String>> columns_X0XX = new ArrayList<>();
+        List<List<String>> columns = new ArrayList<>();
         String[] lengthRecord = stringArray.get(0).split("\\;");
-
-        Map<String, List<String>> mapa = new HashMap<>();
+        Map<String, List<String>> map = new HashMap<>();
 
         for (int i = 4; i < lengthRecord.length; i++) {
-            columns_X0XX.add(new ArrayList<>());
+            columns.add(new ArrayList<>());
         }
 
         String[] header = stringArray.get(0).split("\\;");
@@ -74,26 +77,24 @@ public class CSVFileParser {
 
             for (int j = 0; j < lengthRecord.length; j++) {
                 try {
-                    columns_X0XX.get(j).add(records[j + 4]);
+                    if( columns.get(j)!=null)
+                    columns.get(j).add(records[j + 4]);
 
                 } catch (Exception e) {
-
+                    logger.debug("brak rekordu" );
                 }
             }
         }
-        for (int j = 0; j < columns_X0XX.size(); j++) {
-            mapa.put(header[j + 4].replace("(00:00-29:59)", ""), columns_X0XX.get(j));
+        for (int j = 0; j < columns.size(); j++) {
+            map.put(header[j + 4].replace("(00:00-29:59)", ""), columns.get(j));
         }
 
-        return mapa;
+        return map;
     }
 
 
     public static List<RecordCourseDTO> formatCourseCSV(List<String> stringArray) {
-
-
         ArrayList<RecordCourseDTO> parseRecordsArray = new ArrayList<>();
-
         for (int i = 0; i < stringArray.size(); i++) {
             String[] records = stringArray.get(i).split("\\;");
             RecordCourseDTO parseRecord = new RecordCourseDTO();
@@ -101,7 +102,7 @@ public class CSVFileParser {
                 parseRecord.setDepartureTime(records[0]);
                 parseRecord.setTypeOfCourse(records[1]);
             } catch (Exception e) {
-                System.out.println("Brakuje rekordu dla " + i);
+                logger.info("Brakuje rekordu dla " + i);
             }
             parseRecordsArray.add(parseRecord);
         }

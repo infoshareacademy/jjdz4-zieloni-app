@@ -23,7 +23,7 @@ public class FindBusWithChangeController {
         String initialBusStop = initialStop;
         String finalBusStop = finalStop;
 
-        List<BusDTO> busDB = BusDataBase.getBusDataBase();
+        List<BusDTO> busDB = BusDataBase.getDataBase();
 
         for (int i = 0; i < busDB.size(); i++) {
             checkBusForVariant(i, busDB.get(i), initialBusStop, busesContainInitialStop, 1);
@@ -36,7 +36,9 @@ public class FindBusWithChangeController {
 
             for (int j = 0; j < busesContainFinalStop.size(); j++) {
 
-                connectionStop(busesContainInitialStop.get(i), busesContainFinalStop.get(j));
+                if (!busesContainInitialStop.get(i).getBus().getBusNumber().equals(busesContainFinalStop.get(j).getBus().getBusNumber())) {
+                    connectionStop(busesContainInitialStop.get(i), busesContainFinalStop.get(j));
+                }
             }
         }
     }
@@ -50,9 +52,9 @@ public class FindBusWithChangeController {
         List<RecordVariantDTO> busStops;
 
         if (variant == 1) {
-            busStops = busDTO.getBusStops_v1();
+            busStops = busDTO.getBusStopsV1();
         } else {
-            busStops = busDTO.getBusStops_v2();
+            busStops = busDTO.getBusStopsV2();
         }
 
         int index = -1;
@@ -76,39 +78,36 @@ public class FindBusWithChangeController {
 
     private static void connectionStop(ProposedBusDTO busContainInitStop, ProposedBusDTO busContainFinalStop) {
 
-        if (!busContainInitStop.getBus().getBusNumber().equals(busContainFinalStop.getBus().getBusNumber())) {
+        int variant = busContainInitStop.getVairiant();
 
-            int variant = busContainInitStop.getVairiant();
+        List<RecordVariantDTO> listBusStop;
+        if (busContainInitStop.getVairiant() == 1) {
+            listBusStop = busContainInitStop.getBus().getBusStopsV1();
+        } else {
+            listBusStop = busContainInitStop.getBus().getBusStopsV2();
+        }
 
-            List<RecordVariantDTO> listBusStop;
-            if (busContainInitStop.getVairiant() == 1) {
-                listBusStop = busContainInitStop.getBus().getBusStops_v1();
+        for (int i = busContainInitStop.getBusStopIndex(); i < listBusStop.size(); i++) {
+            int variant1 = busContainFinalStop.getVairiant();
+
+            List<RecordVariantDTO> listBusStop1;
+            if (busContainFinalStop.getVairiant() == 1) {
+                listBusStop1 = busContainFinalStop.getBus().getBusStopsV1();
             } else {
-                listBusStop = busContainInitStop.getBus().getBusStops_v2();
+                listBusStop1 = busContainFinalStop.getBus().getBusStopsV2();
             }
 
-            for (int i = busContainInitStop.getBusStopIndex(); i < listBusStop.size(); i++) {
-                int variant1 = busContainFinalStop.getVairiant();
+            for (int j = 0; j < busContainFinalStop.getBusStopIndex(); j++) {
+                if (listBusStop.get(i).getNameOfBusStop().equals(listBusStop1.get(j).getNameOfBusStop())) {
 
-                List<RecordVariantDTO> listBusStop1;
-                if (busContainFinalStop.getVairiant() == 1) {
-                    listBusStop1 = busContainFinalStop.getBus().getBusStops_v1();
-                } else {
-                    listBusStop1 = busContainFinalStop.getBus().getBusStops_v2();
-                }
+                    ChangeConnectionDTO change = new ChangeConnectionDTO();
+                    change.setBus0(busContainInitStop.getBus());
+                    change.setBus1(busContainFinalStop.getBus());
+                    change.setConnectionBusStop(listBusStop.get(i).getNameOfBusStop());
+                    change.setVairiant0(variant);
+                    change.setVairiant1(variant1);
 
-                for (int j = 0; j < busContainFinalStop.getBusStopIndex(); j++) {
-                    if (listBusStop.get(i).getNameOfBusStop().equals(listBusStop1.get(j).getNameOfBusStop())) {
-
-                        ChangeConnectionDTO change = new ChangeConnectionDTO();
-                        change.setBus0(busContainInitStop.getBus());
-                        change.setBus1(busContainFinalStop.getBus());
-                        change.setConnectionBusStop(listBusStop.get(i).getNameOfBusStop());
-                        change.setVairiant0(variant);
-                        change.setVairiant1(variant1);
-
-                        changeConnectionArray.add(change);
-                    }
+                    changeConnectionArray.add(change);
                 }
             }
         }

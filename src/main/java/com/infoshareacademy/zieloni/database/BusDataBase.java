@@ -19,14 +19,14 @@ public class BusDataBase {
     private BusDataBase() {
     }
 
-    public static List<BusDTO> getBusDataBase() {
-        return busDataBase;
+    public static List<BusDTO> getDataBase() {
+        return dataBase;
     }
 
-    private static List<BusDTO> busDataBase;
+    private static List<BusDTO> dataBase;
 
     public static List<BusDTO> createDataBase() {
-        busDataBase = new ArrayList<>();
+        dataBase = new ArrayList<>();
 
         List<FilePathDTO> filePaths = PathFinder.addAllFilesPathToArrayList("rozklady_2015-09-08_13.43.01");
 
@@ -46,33 +46,33 @@ public class BusDataBase {
         });
 
         try {
-            for (int i = 0; i < filePaths.size() ; i++) {
+            for (int i = 0; i < filePaths.size(); i++) {
                 FilePathDTO file = filePaths.get(i);
 
                 List<String> variant1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant1());
                 List<RecordVariantDTO> variant1 = CSVFileParser.formatVarinatCSV(variant1RecordArray);
                 List<String> course1RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getCourse1());
                 List<RecordCourseDTO> course1 = CSVFileParser.formatCourseCSV(course1RecordArray);
-                Map<String, List<String>> map1 = CSVFileParser.columns_X0XX_Map(variant1RecordArray);
+                Map<String, List<String>> map1 = CSVFileParser.columnsMap(variant1RecordArray);
 
                 List<String> variant2RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getVariant2());
                 List<RecordVariantDTO> variant2 = CSVFileParser.formatVarinatCSV(variant2RecordArray);
                 List<String> course2RecordArray = CSVReader.readCSVfileAndConvertToRecordsArray(file.getCourse2());
                 List<RecordCourseDTO> course2 = CSVFileParser.formatCourseCSV(course2RecordArray);
-                Map<String, List<String>> map2 = CSVFileParser.columns_X0XX_Map(variant2RecordArray);
+                Map<String, List<String>> map2 = CSVFileParser.columnsMap(variant2RecordArray);
 
 
                 BusDTO bus = new BusDTO();
 
-                bus.setBusStops_v1(variant1);
-                bus.setBusStops_v2(variant2);
-                bus.setCourseRecords_v1(course1);
-                bus.setCourseRecords_v2(course2);
-                bus.setColumnsMap_v1(map1);
-                bus.setColumnsMap_v2(map2);
+                bus.setBusStopsV1(variant1);
+                bus.setBusStopsV2(variant2);
+                bus.setCourseRecordsV1(course1);
+                bus.setCourseRecordsV2(course2);
+                bus.setColumnsMapV1(map1);
+                bus.setColumnsMapV2(map2);
                 bus.setBusNumber(file.getId().split("_")[0]);
                 bus.setTypeOfTransport(tabelaCSVArray.get(i).getTypeOfTransport());
-                busDataBase.add(bus);
+                dataBase.add(bus);
             }
 
             logger.info("Dane zostały  załadowane");
@@ -80,7 +80,7 @@ public class BusDataBase {
         } catch (Exception e) {
             logger.fatal("Brak folderu z danymi");
         }
-        return busDataBase;
+        return dataBase;
     }
 }
 

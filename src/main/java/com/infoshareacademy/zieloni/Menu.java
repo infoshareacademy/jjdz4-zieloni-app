@@ -30,9 +30,9 @@ public class Menu {
                     break;
                 case "2":
 
-                    System.out.println(BusDataBase.getBusDataBase().size());
+                    System.out.println(BusDataBase.getDataBase().size());
 
-                    if (BusDataBase.getBusDataBase().size() > 0) {
+                    if (BusDataBase.getDataBase().size() > 0) {
                         TimeTableController.show();
                     } else {
                         //logger.fatal("Baza danych jest pusta");

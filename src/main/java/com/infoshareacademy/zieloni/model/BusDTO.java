@@ -1,48 +1,19 @@
 package com.infoshareacademy.zieloni.model;
 
-import java.util.ArrayList;
+import lombok.Data;
+
 import java.util.List;
 import java.util.Map;
 
-import lombok.Getter;
-import lombok.Setter;
-
+@Data
 public class BusDTO {
 
-    @Getter
-    @Setter
     private String busNumber;
-
-    @Getter
-    @Setter
-    private List<RecordVariantDTO> busStops_v1;
-
-    @Getter
-    @Setter
-    private List<RecordVariantDTO> busStops_v2;
-
-
-    @Getter
-    @Setter
-    private List<RecordCourseDTO> courseRecords_v1;
-
-    @Getter
-    @Setter
-    private List<RecordCourseDTO> courseRecords_v2;
-
-    @Getter
-    @Setter
-    private Map<String, List<String>> columnsMap_v1;
-
-    @Getter
-    @Setter
-    private Map<String, List<String>> columnsMap_v2;
-
-
-    @Getter
-    @Setter
+    private List<RecordVariantDTO> busStopsV1;
+    private List<RecordVariantDTO> busStopsV2;
+    private List<RecordCourseDTO> courseRecordsV1;
+    private List<RecordCourseDTO> courseRecordsV2;
+    private Map<String, List<String>> columnsMapV1;
+    private Map<String, List<String>> columnsMapV2;
     private String typeOfTransport;
-
-
-
 }

@@ -11,18 +11,12 @@ import java.util.Map;
 
 public class TimeTableView {
 
-    private static final List<BusDTO> busDB = BusDataBase.getBusDataBase();
+    private static final List<BusDTO> busDB = BusDataBase.getDataBase();
     private static int level = 0;
     private static int selectedBus = -1;
     private static int street = -1;
     private static int variant = -1;
 
-   /* public static void startMenu() {
-        System.out.println("#################################################");
-        System.out.println("# Wpisz '1' jeśli chcesz zobaczyć rozkład jazdy #");
-        System.out.println("#       Wpisz 'exit' aby wyjść z programu       #");
-        System.out.println("#################################################");
-    }*/
 
     public static int selectBus() {
         level = 1;
@@ -57,8 +51,8 @@ public class TimeTableView {
         System.out.println("########################################################################################");
         System.out.println("         Wybrałeś " + busDB.get(id).getTypeOfTransport() + " nr " + busDB.get(id).getBusNumber());
         System.out.println("                                                                                        ");
-        System.out.println("    Wpisz 1) jeśli chcesz jechać w kierunku: " + busDB.get(id).getBusStops_v2().get(0).getNameOfBusStop());
-        System.out.println("    Wpisz 2) jeśli chcesz jechać w kierunku: " + busDB.get(id).getBusStops_v1().get(0).getNameOfBusStop());
+        System.out.println("    Wpisz 1) jeśli chcesz jechać w kierunku: " + busDB.get(id).getBusStopsV2().get(0).getNameOfBusStop());
+        System.out.println("    Wpisz 2) jeśli chcesz jechać w kierunku: " + busDB.get(id).getBusStopsV1().get(0).getNameOfBusStop());
         System.out.println("    Wpisz 'cofnij' aby wrócić do głównego menu                                            ");
         System.out.println("########################################################################################");
         selectedBus = id;
@@ -77,13 +71,13 @@ public class TimeTableView {
         TimeTableView.variant = variant;
 
         if (variant == 1) {
-            for (int i = 0; i < busDB.get(selectedBus).getBusStops_v1().size(); i++) {
-                System.out.println(i + ") " + busDB.get(selectedBus).getBusStops_v1().get(i).getNameOfBusStop());
+            for (int i = 0; i < busDB.get(selectedBus).getBusStopsV1().size(); i++) {
+                System.out.println(i + ") " + busDB.get(selectedBus).getBusStopsV1().get(i).getNameOfBusStop());
             }
         }
         if (variant == 2) {
-            for (int i = 0; i < busDB.get(selectedBus).getBusStops_v2().size(); i++) {
-                System.out.println(i + ") " + busDB.get(selectedBus).getBusStops_v2().get(i).getNameOfBusStop());
+            for (int i = 0; i < busDB.get(selectedBus).getBusStopsV2().size(); i++) {
+                System.out.println(i + ") " + busDB.get(selectedBus).getBusStopsV2().get(i).getNameOfBusStop());
             }
         }
 
@@ -101,10 +95,10 @@ public class TimeTableView {
         String busStopName = "";
 
         if (variant == 1) {
-            busStopArrSize = busDB.get(selectedBus).getBusStops_v1().size();
+            busStopArrSize = busDB.get(selectedBus).getBusStopsV1().size();
         }
         if (variant == 2) {
-            busStopArrSize = busDB.get(selectedBus).getBusStops_v2().size();
+            busStopArrSize = busDB.get(selectedBus).getBusStopsV2().size();
         }
 
         if (busStopIndex > -1 && busStopIndex < busStopArrSize) {
@@ -114,14 +108,14 @@ public class TimeTableView {
             Map<String, List<String>> map = null;
 
             if (variant == 1) {
-                courseRecord = busDB.get(selectedBus).getCourseRecords_v1();
-                map = busDB.get(selectedBus).getColumnsMap_v1();
-                busStopName = busDB.get(selectedBus).getBusStops_v1().get(street).getNameOfBusStop().toUpperCase();
+                courseRecord = busDB.get(selectedBus).getCourseRecordsV1();
+                map = busDB.get(selectedBus).getColumnsMapV1();
+                busStopName = busDB.get(selectedBus).getBusStopsV1().get(street).getNameOfBusStop().toUpperCase();
 
             } else if (variant == 2) {
-                courseRecord = busDB.get(selectedBus).getCourseRecords_v2();
-                map = busDB.get(selectedBus).getColumnsMap_v2();
-                busStopName = busDB.get(selectedBus).getBusStops_v2().get(street).getNameOfBusStop().toUpperCase();
+                courseRecord = busDB.get(selectedBus).getCourseRecordsV2();
+                map = busDB.get(selectedBus).getColumnsMapV2();
+                busStopName = busDB.get(selectedBus).getBusStopsV2().get(street).getNameOfBusStop().toUpperCase();
             }
 
             timeTableStringBuilder(courseRecord, map, busStopName, busStopIndex);

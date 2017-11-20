@@ -1,27 +1,12 @@
 package com.infoshareacademy.zieloni.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-
+@Data
 public class ChangeConnectionDTO {
-    @Getter
-    @Setter
     private BusDTO bus0;
-
-    @Getter
-    @Setter
     private int vairiant0;
-
-    @Getter
-    @Setter
     private String connectionBusStop;
-
-    @Getter
-    @Setter
     private BusDTO bus1;
-
-    @Getter
-    @Setter
     private int vairiant1;
 }
