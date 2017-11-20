@@ -170,6 +170,6 @@ public class TimeTableView {
         }
         System.out.println("________________________________________________________________________________\n");
         System.out.println("                     Rozkład " + type + " nr " + busNr + " na ulicy " + busStopName);
-        logger.info(timeTableView);
+        System.out.println(timeTableView);
     }
 }

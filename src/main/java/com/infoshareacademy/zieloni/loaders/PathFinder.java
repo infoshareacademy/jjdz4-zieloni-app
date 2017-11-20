@@ -61,11 +61,7 @@ public class PathFinder {
             jar = new JarFile(folder);
             final Enumeration<JarEntry> entries = jar.entries();
             while (entries.hasMoreElements()) {
-                final String name = entries.nextElement().getName();
-                if (name.startsWith(path + "/")) { //filter according to the path
-                    addToDirectory(directory, name.split("/")[1]);
-                    addToFiles(files, name.split("/")[2]);
-                }
+                switchDirectoryAndFiles(path, directory, files, entries);
             }
         } catch (IOException e) {
             logger.warn("Run with JAR file-jar loading problem !!!" + e);
@@ -73,20 +69,23 @@ public class PathFinder {
         }
     }
 
-    private static void addToFiles(List<String> files, String name) {
-        try {
-            files.add(name);
+    private static void switchDirectoryAndFiles(String path, Set<String> directory, List<String> files, Enumeration<JarEntry> entries) {
+        final String name = entries.nextElement().getName();
+        if (name.startsWith(path + "/")) {
 
-        } catch (Exception e) {
-            logger.debug("Trafił ponownie na folder");
-        }
-    }
+            try {
+                directory.add(name.split("/")[1]);
+            } catch (Exception e) {
+                logger.warn("Run with JAR file - problem with add item to Set<String> directory " + e);
+            }
 
-    private static void addToDirectory(Set<String> directory, String name) {
-        try {
-            directory.add(name);
-        } catch (Exception e) {
-            logger.warn("Run with JAR file - problem with add item to Set<String> directory " + e);
+            try {
+                files.add(name.split("/")[2]);
+
+            } catch (Exception e) {
+                logger.debug("Trafił ponownie na folder");
+            }
+
         }
     }
 
