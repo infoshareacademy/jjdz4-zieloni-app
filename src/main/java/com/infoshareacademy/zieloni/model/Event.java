@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.Model;
+package com.infoshareacademy.zieloni.model;
 
 import lombok.Getter;
 
