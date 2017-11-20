@@ -8,6 +8,8 @@ import org.apache.logging.log4j.Logger;
 
 
 public class TimeTableController {
+    private TimeTableController() {
+    }
 
     private static int level = 1;
     private static Logger logger = LogManager.getLogger(TimeTableController.class.getName());

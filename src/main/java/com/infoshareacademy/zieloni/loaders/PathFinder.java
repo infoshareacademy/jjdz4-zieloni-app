@@ -11,7 +11,10 @@ import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+@SuppressWarnings({"squid:S1075", "squid:S2095"})
 public class PathFinder {
+    private PathFinder() {
+    }
 
     private static Logger logger = LogManager.getLogger(PathFinder.class.getName());
 

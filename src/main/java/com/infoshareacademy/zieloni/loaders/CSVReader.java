@@ -12,12 +12,13 @@ import java.util.List;
 
 public class CSVReader {
 
-    private CSVReader() { }
+    private CSVReader() {
+    }
 
     private static Logger logger = LogManager.getLogger(CSVReader.class.getName());
 
 
-    public static List<String> readCSVfileAndConvertToRecordsArray(String path) {
+    public static List<String> convertFileToRecordsArray(String path) {
 
         List<String> records = new ArrayList<>();
         String line = "";
@@ -28,7 +29,6 @@ public class CSVReader {
             while ((line = br.readLine()) != null) {
                 records.add(line);
             }
-
             br.close();
 
         } catch (IOException e) {

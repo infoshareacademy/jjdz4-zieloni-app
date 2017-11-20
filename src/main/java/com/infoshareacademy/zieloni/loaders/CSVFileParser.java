@@ -74,14 +74,13 @@ public class CSVFileParser {
         for (int i = 1; i < stringArray.size(); i++) {
             String[] records = stringArray.get(i).split("\\;");
 
-
             for (int j = 0; j < lengthRecord.length; j++) {
                 try {
-                    if( columns.get(j)!=null)
-                    columns.get(j).add(records[j + 4]);
+                    if (columns.get(j) != null)
+                        columns.get(j).add(records[j + 4]);
 
                 } catch (Exception e) {
-                    logger.debug("brak rekordu" );
+                    logger.debug("brak rekordu");
                 }
             }
         }

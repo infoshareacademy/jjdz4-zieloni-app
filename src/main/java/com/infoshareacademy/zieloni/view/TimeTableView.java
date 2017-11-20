@@ -5,18 +5,23 @@ import com.infoshareacademy.zieloni.model.BusDTO;
 import com.infoshareacademy.zieloni.model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.utils.FormatTime;
 import com.infoshareacademy.zieloni.utils.IsBusExist;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings({"squid:S106", "squid:S1192"})
 public class TimeTableView {
+    private TimeTableView() {
+    }
 
     private static final List<BusDTO> busDB = BusDataBase.getDataBase();
     private static int level = 0;
     private static int selectedBus = -1;
     private static int street = -1;
     private static int variant = -1;
-
+    private static Logger logger = LogManager.getLogger(TimeTableView.class.getName());
 
     public static int selectBus() {
         level = 1;
@@ -129,16 +134,13 @@ public class TimeTableView {
 
         String type = busDB.get(id).getTypeOfTransport();
         String busNr = busDB.get(selectedBus).getBusNumber();
-        /*tworze string buildera któy bedzie wyświetlał wszystkie godziny odjazdów z danego przystanka*/
         StringBuilder timeTableView = new StringBuilder();
         int counter = 1;
 
-        /*courseRecord zawiera godziny odjazdu z pętli i wariant*/
         for (int i = 0; i < courseRecord.size(); i++) {
             int minutes = 0;
             String symbolOfCourse = courseRecord.get(i).getTypeOfCourse();
 
-            /*trzeba policzyć ile minut trzeba dodac aby orztymac czas na a wybranym przystanku */
             for (int j = 0; j < street; j++) {
                 try {
                     minutes += Integer.valueOf(map.get(symbolOfCourse).get(j));
@@ -163,11 +165,11 @@ public class TimeTableView {
                     timeTableView.append("--------------------------------------------------------------------------------\n");
                 }
             } catch (Exception e) {
-
+                logger.info("Rozkład jazdy sie nie wyświetlił");
             }
         }
         System.out.println("________________________________________________________________________________\n");
         System.out.println("                     Rozkład " + type + " nr " + busNr + " na ulicy " + busStopName);
-        System.out.println(timeTableView);
+        logger.info(timeTableView);
     }
 }
