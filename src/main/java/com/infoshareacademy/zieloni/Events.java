@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.Model.Event;
+import com.infoshareacademy.zieloni.model.Event;
 import lombok.Getter;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
