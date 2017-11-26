@@ -1,32 +1,42 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.controller.FindBusWithChangeController;
 import com.infoshareacademy.zieloni.controller.TimeTableController;
 import com.infoshareacademy.zieloni.database.BusDataBase;
+import com.infoshareacademy.zieloni.model.Event;
 import net.fortuna.ical4j.data.ParserException;
 
 import java.io.IOException;
 import java.text.ParseException;
-
-import com.infoshareacademy.zieloni.controller.FindBusController;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
 
-public class Menu {
-    public static Scanner scanner = new Scanner(System.in);
+import static com.infoshareacademy.zieloni.utils.ConsoleTools.clearConsole;
+
+class Menu {
+
+    private static Events events = new Events();
+    private static LocalDate selectedDate = null;
+    private static Event selectedEvent = null;
+    private static Event nextEvent = null;
+
+    private Menu() {
+    }
 
     static void startMenu() throws ParseException, ParserException, IOException, InterruptedException {
-        Events events = new Events();
         events.loadEvents();
 
         displayMainMenu();
-        //Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             switch (scanner.nextLine().toLowerCase()) {
                 case "1":
-//                    displayDatesWithEvents(events);
-                    displayEvents(events);
+                    getDateFromUser();
+                    getEventFromUser();
+                    //TODO wywołaj metodę szukającą dojazdu
+
+                    displayMainMenu();
                     break;
                 case "2":
 
@@ -50,117 +60,104 @@ public class Menu {
         }
     }
 
-    static void displayMainMenu() {
+    private static void displayMainMenu() {
         clearConsole();
-        System.out.println("*** PLANER CLI ***");
+        System.out.println("***** PLANER CLI v0.1 *****");
+        System.out.println();
+        System.out.println("Liczba wydarzeń w bazie: " + events.getCounter());
         System.out.println();
         System.out.println("1\tWyświetl dni z wydarzeniami");
         System.out.println("2\tWyświetl rozkład jazdy");
-//        System.out.println("3\tWczytaj plik z kalendarzem");
         System.out.println("EXIT\tWyjście z programu");
         System.out.println();
         System.out.print("Wpisz polecenie: ");
     }
 
+    private static void getDateFromUser() {
+        Set<LocalDate> keys = events.getEvents().keySet();
+        LocalDate[] daysWithEvents = keys.toArray(new LocalDate[keys.size()]);
 
-    /**
-     * Clears linux console
-     */
-    static void clearConsole() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
-    /**
-     * Displays all events passed in a collection
-     *
-     * @param events collection of events to display
-     */
-    static void displayEvents(Events events) throws InterruptedException {
-        if (events.getEvents().size() != 0) {
-
-            clearConsole();
-            System.out.println("Znaleziono: " + events.getEvents().size() + " wydarzeń:");
-
-            for (int i = 0; i < events.getEvents().size(); i++) {
-                System.out.println("-----------------------------------------------------");
-                System.out.println("Wydarzenie nr: " + i + 1);
-                System.out.println("Początek wydarzenia: \t" + events.getEvents().get(i).getStartTime().toString().replace("T", ", "));
-                System.out.println("Koniec wydarzenia: \t" + events.getEvents().get(i).getEndTime().toString().replace("T", ", "));
-                System.out.println("Miejsce wydarzenia: \t" + events.getEvents().get(i).getLocation());
-                System.out.println("Opis wydarzenia: \t" + events.getEvents().get(i).getSummary());
-                if (i + 1 < events.getEvents().size()) {
-                    FindBusController.search(events.getEvents().get(i).getLocation(), events.getEvents().get(i + 1).getLocation());
-                    System.out.println("------------------------------------------------------\n");
-
-                    if (FindBusController.getProposedBusArr().size() > 0) {
-                        String busNr = FindBusController.getProposedBusArr().get(0).getBus().getBusNumber();
-                        String type = FindBusController.getProposedBusArr().get(0).getBus().getTypeOfTransport();
-
-
-                        System.out.println("Proponowany " + type + " nr: " + busNr);
-                    } else {
-                        FindBusWithChangeController.search(events.getEvents().get(i).getLocation(), events.getEvents().get(i + 1).getLocation());
-
-                        String type0 = FindBusWithChangeController.getChangeConnectionArray().get(0).getBus0().getTypeOfTransport();
-                        String type1 = FindBusWithChangeController.getChangeConnectionArray().get(0).getBus1().getTypeOfTransport();
-                        String busNr0 = FindBusWithChangeController.getChangeConnectionArray().get(0).getBus0().getBusNumber();
-                        String busNr1 = FindBusWithChangeController.getChangeConnectionArray().get(0).getBus1().getBusNumber();
-                        String connectionbusStop = FindBusWithChangeController.getChangeConnectionArray().get(0).getConnectionBusStop();
-                        System.out.println("Proponowany " + type0 + " nr: " + busNr0 + " przesiadka na przystanku " + connectionbusStop + " w " + type1 + " nr " + busNr1);
-                    }
-
-                } else {
-                    System.out.println("To jest ostatnie wydarzenie");
-                }
-            }
-
-            /*int i = 1;
-            for (Event event: events.getEvents()) {
-                System.out.println("-----------------------------------------------------");
-                System.out.println("Wydarzenie nr: " + i);
-                System.out.println("Początek wydarzenia: \t" + event.getStartTime().toString().replace("T", ", "));
-                System.out.println("Koniec wydarzenia: \t" + event.getEndTime().toString().replace("T", ", "));
-                System.out.println("Miejsce wydarzenia: \t" + event.getLocation());
-                System.out.println("Opis wydarzenia: \t" + event.getSummary());
-                i++;
-            }*/
-        } else {
-            System.out.println("\n" +
-                    "\u001B[31m" +
-                    "Nie znaleziono żadnego wydarzenia!" +
-                    "\u001B[0m" +
-                    "\n");
-            Thread.sleep(3000);
-        }
-    }
-
-    /**
-     * Display
-     *
-     * @param events - kolekcja wydarzeń z których wyświetlamy daty wydarzeń
-     */
-    static void displayDatesWithEvents(Events events) {
-        System.out.println("Masz zaplanowane wydarzenia w dniach:");
-        LocalDate eventDays[] = events.getEventDays().toArray(new LocalDate[(events.getEventDays().size())]);
-//        for (LocalDate ld : events.getEventDays()) {
-//            System.out.println(i++ + ". " + ld + " (" + ld.getDayOfWeek() + ")");
-        for (int i = 0; i < eventDays.length; i++) {
-            System.out.println(i + 1 + "\t" + eventDays[i] + " (" + eventDays[i].getDayOfWeek() + ")");
-        }
-        System.out.println("UP\tPowrót do menu głównego");
-        System.out.println();
-        System.out.print("Wpisz polecenie: ");
+        displayDatesWithEventsMenu(daysWithEvents);
 
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
-            switch (scanner.nextLine()) {
+            String command = scanner.nextLine().toLowerCase();
 
-                case "UP":
-                    return;
-                default:
-                    break;
+            if (command.equals("up")) {
+                selectedDate = null;
+                return;
+            }
+            Integer selectedNumber = null;
+            try {
+                selectedNumber = Integer.parseInt(command) - 1;
+            } catch (NumberFormatException e) {
+                displayDatesWithEventsMenu(daysWithEvents);
+                continue;
+            }
+            if ((selectedNumber >= 0) && (selectedNumber < daysWithEvents.length)) {
+                selectedDate = daysWithEvents[selectedNumber];
+                return;
+            } else {
+                displayDatesWithEventsMenu(daysWithEvents);
             }
         }
+    }
+
+    private static void displayDatesWithEventsMenu(LocalDate[] daysWithEvents) {
+        clearConsole();
+        System.out.println("Masz zaplanowane wydarzenia w dniach:\n");
+        for (int i = 0; i < daysWithEvents.length; i++) {
+            System.out.println(i + 1 + ".\t" + daysWithEvents[i] +
+                    " [" + events.getEvents().get(daysWithEvents[i]).size() + "]");
+        }
+        System.out.println("UP\tPowrót do menu głównego");
+        System.out.println();
+        System.out.print("Wybierz dzień: ");
+    }
+
+    private static void getEventFromUser() {
+        if (selectedDate == null) return;
+
+        ArrayList<Event> eventsInSelectedDate = events.getEvents().get(selectedDate);
+
+        displayEventsFromDate(eventsInSelectedDate);
+
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String command = scanner.nextLine().toLowerCase();
+            if (command.equals("up")) {
+                selectedDate = null;
+                return;
+            }
+            Integer selectedNumber = null;
+            try {
+                selectedNumber = Integer.parseInt(command) - 1;
+            } catch (NumberFormatException e) {
+                displayEventsFromDate(eventsInSelectedDate);
+                continue;
+            }
+            if ((selectedNumber >= 0) && (selectedNumber < eventsInSelectedDate.size())) {
+                selectedEvent = eventsInSelectedDate.get(selectedNumber);
+                nextEvent = selectedNumber + 1 < eventsInSelectedDate.size() ? eventsInSelectedDate.get(selectedNumber + 1) : null;
+                return;
+            } else {
+                displayEventsFromDate(eventsInSelectedDate);
+            }
+        }
+    }
+
+    private static void displayEventsFromDate(ArrayList<Event> eventsFromDate) {
+        clearConsole();
+        System.out.println("W dniu: " + selectedDate + " masz zaplanowane wydarzenia:\n");
+        for (int i = 0; i < eventsFromDate.size(); i++) {
+            System.out.println(i + 1 + ".\tPoczątek:\t" + eventsFromDate.get(i).getStartTime().toLocalTime());
+            System.out.println("\tKoniec:\t\t" + eventsFromDate.get(i).getEndTime().toLocalTime());
+            System.out.println("\tOpis:\t\t" + eventsFromDate.get(i).getSummary());
+            System.out.println("\tMiejsce:\t" + eventsFromDate.get(i).getLocation());
+            System.out.println("----------------------------------------");
+        }
+        System.out.println("UP\tPowrót do menu głównego");
+        System.out.println();
+        System.out.print("Wybierz wydarzenie: ");
     }
 }

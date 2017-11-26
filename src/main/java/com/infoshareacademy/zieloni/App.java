@@ -12,9 +12,9 @@ public class App {
 
     public static void main(String[] args) throws ParseException, ParserException, IOException, InterruptedException {
 
+
         BusDataBase database = new BusDataBase();
         database.createDataBase();
-
 
         startMenu();
     }
