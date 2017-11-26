@@ -1,11 +1,10 @@
 package com.infoshareacademy.zieloni.controller;
 
-import com.infoshareacademy.zieloni.Menu;
 import com.infoshareacademy.zieloni.utils.IsBusExist;
 import com.infoshareacademy.zieloni.view.TimeTableView;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import java.util.Scanner;
 
 public class TimeTableController {
     private TimeTableController() {
@@ -17,8 +16,9 @@ public class TimeTableController {
     public static void show() {
         String text;
         TimeTableView.selectBus();
-        while (Menu.scanner.hasNextLine()) {
-            text = Menu.scanner.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            text = scanner.nextLine();
             if (text.equals("exit")) {
                 logger.info("koniec");
                 break;
