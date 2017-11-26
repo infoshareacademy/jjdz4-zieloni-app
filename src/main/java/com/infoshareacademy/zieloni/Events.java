@@ -7,6 +7,7 @@ import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Property;
 import net.fortuna.ical4j.model.component.CalendarComponent;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,39 +15,24 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
+import static com.infoshareacademy.zieloni.utils.ConsoleTools.*;
 
 class Events {
 
+    @Getter
+    private Map<LocalDate, ArrayList<Event>> events = new TreeMap<>();
+    @Getter
+    private Integer counter = 0;
 
-    @Getter private ArrayList<Event> events = new ArrayList<>();
-
-    /**
-     * Set keeps dates with Events
-     */
-    private Set<LocalDate> eventDays = new HashSet<>();
-
-//    ArrayList<Event> getEvents() {
-//        return events;
-//    }
-
-    Set<LocalDate> getEventDays() {
-        return eventDays;
-    }
-
+    // TODO Dodaj logowanie poniższych wyjątków
     void loadEvents() throws ParserException, ParseException, InterruptedException {
         FileInputStream icalFile = null;
         try {
             icalFile = new FileInputStream("kalendarz.ics");
         } catch (FileNotFoundException e) {
-            System.out.println("\n" +
-                    "\u001B[31m" +
-                    "Kalendarz - brak pliku z wydarzeniami!" +
-                    "\u001B[0m" +
-                    "\n");
-            Thread.sleep(3000);
+            printAlert("Kalendarz - brak pliku z wydarzeniami!");
             return;
         }
         CalendarBuilder builder = new CalendarBuilder();
@@ -54,23 +40,13 @@ class Events {
         try {
             calendar = builder.build(icalFile);
         } catch (IOException e) {
-            System.out.println("\n" +
-                    "\u001B[31m" +
-                    "Kalendarz - Błąd systemu I/O!" +
-                    "\u001B[0m" +
-                    "\n");
-            Thread.sleep(3000);
+            printAlert("Kalendarz - Błąd systemu I/O!");
             return;
         } catch (ParserException p) {
-            System.out.println("\n" +
-                    "\u001B[31m" +
-                    "Kalendarz - nieprawidłowy format danych!" +
-                    "\u001B[0m" +
-                    "\n");
-            Thread.sleep(3000);
+            printAlert("Kalendarz - nieprawidłowy format danych!");
             return;
         }
-
+        // TODO Dodaj logowanie ilości wczytanych wydarzeń z kalendarza
         for (CalendarComponent calendarComponent : calendar.getComponents()) {
             String eventStart = (String.valueOf(calendarComponent.getProperty(Property.DTSTART).getValue().replace("T", "").replace("Z", "")));
             String eventEnd = (String.valueOf(calendarComponent.getProperty(Property.DTEND).getValue().replace("T", "").replace("Z", "")));
@@ -78,13 +54,28 @@ class Events {
             String eventUID = (String.valueOf(calendarComponent.getProperty(Property.UID).getValue()));
             String eventSummary = (String.valueOf(calendarComponent.getProperty(Property.SUMMARY).getValue()));
             add(eventStart, eventEnd, eventUID, eventLocation, eventSummary);
+            counter++;
         }
     }
 
-    private void add(String startTime, String endTime, String uid, String location, String summary) throws ParseException {
+    private void add(String startTime, String endTime, String uid, String location, String summary) {
         LocalDateTime sT = LocalDateTime.parse(startTime, DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
         LocalDateTime eT = LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-        events.add(new Event(sT, eT, uid, location, summary));
-        eventDays.add(sT.toLocalDate()); // Zbieramy daty w których pojawiają się Wydarzenia
+        LocalDate stDateKey = sT.toLocalDate();
+
+        if (events.containsKey(sT.toLocalDate())) {
+            // Dodajemy wydarzenie do ArrayListy, gdy już w tym samym dniu jest inne wydarzenie
+            ArrayList<Event> eD = events.get(stDateKey);
+            eD.add(new Event(sT, eT, uid, location, summary));
+
+            // Sortowanie wg godziny rozpoczęcia wydarzenia
+            eD.sort((e1, e2) -> e1.getStartTime().compareTo(e2.getStartTime()));
+            events.put(stDateKey, eD);
+        } else {
+            // Tworzymy nową arrayListę gdy w dniu nie ma jeszcze wydarzeń
+            ArrayList<Event> eD = new ArrayList<>();
+            eD.add(new Event(sT, eT, uid, location, summary));
+            events.put(stDateKey, eD);
+        }
     }
 }
