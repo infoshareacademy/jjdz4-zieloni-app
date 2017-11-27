@@ -152,7 +152,7 @@ public class TimeTableView {
             try {
 
                 if (courseRecord.get(i).getTypeOfCourse().split("X")[0].equals("")) {
-                    timeTableView.append(FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes) + " | ");
+                    //timeTableView.append(FormatTime.dateFromTo(courseRecord.get(i).getDepartureTime() + " " + minutes) + " | ");
                     if (counter % 10 == 0) {
                         timeTableView.append("\n");
                     }
