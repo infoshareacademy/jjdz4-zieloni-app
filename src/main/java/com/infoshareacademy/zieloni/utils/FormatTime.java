@@ -1,53 +1,41 @@
 package com.infoshareacademy.zieloni.utils;
 
-import java.util.ArrayList;
+
 
 public class FormatTime {
-
-    private static Integer m;
-
-    private static Integer ddd;
-    private static Integer wynik;
-    private static String Ost;
-    private static String Ost1;
-
-    public static String dateFromTo(String a) {
-        ArrayList<Integer> timeStringInt = new ArrayList<>();
+    private FormatTime() {
+    }
 
 
-        for (int i = 0; i < a.length(); i++) {
-            if (Character.isDigit(a.charAt(i))) {
-                String num = "";
 
-                while (i < a.length() && Character.isDigit(a.charAt(i))) {
-                    num += a.charAt(i++);
+    public String dateFromTo(String a) {
 
-                }
-                timeStringInt.add(Integer.parseInt(num));
-            }
-        }
+        Integer allTime;
+        String hoursInString;
+        String minutsInString;
+        String numer = a.replace("+", ":");
+        String[] numer1 = numer.split(":");
+        Integer.valueOf(String.valueOf(numer1[0]));
+        allTime = (Integer.valueOf(String.valueOf(numer1[2])) + Integer.valueOf(String.valueOf(numer1[1])) + (Integer.valueOf(String.valueOf(numer1[0])) * 60));
 
-        m = (timeStringInt.get(1) + timeStringInt.get(2) + (timeStringInt.get(0) * 60));
+        if ((allTime / 60) >= 24) {
+            hoursInString = String.valueOf((allTime / 60) - 24);
+            minutsInString = String.valueOf(allTime % 60);
 
-        if ((m / 60) >= 24) {
-            wynik = (m / 60) - 24;
-            ddd = (m % 60);
-            Ost = String.valueOf(wynik);
-            Ost1 = String.valueOf(ddd);
         } else {
-            wynik = (m / 60);
-            ddd = (m % 60);
-            Ost1 = String.valueOf(ddd);
-            Ost = String.valueOf(wynik);
+            hoursInString = String.valueOf(allTime / 60);
+            minutsInString = String.valueOf(allTime % 60);
+
         }
 
-        if (Ost.length() < 2) {
-            Ost = "0" + Ost;
+        if (hoursInString.length() < 2) {
+            hoursInString = "0" + hoursInString;
         }
-        if (Ost1.length() < 2) {
-            Ost1 = "0" + Ost1;
+        if (minutsInString.length() < 2) {
+            minutsInString = "0" + minutsInString;
         }
-        return (Ost + ":" + Ost1);
+        return (hoursInString + ":" + minutsInString);
+
     }
 }
 
