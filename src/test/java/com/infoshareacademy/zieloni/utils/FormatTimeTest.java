@@ -33,21 +33,21 @@ public class FormatTimeTest {
    @Test
     public void formatTime_test0() throws Exception {
         System.out.println("test0");
-        String result = FormatTime.dateFromTo("27:00 + 74");
+        String result = FormatTime.dateFromTo("27:00+74");
         assertEquals("04:14", result);
     }
 
     @Test
     public void  formatTime_test1() throws Exception {
         System.out.println("test1");
-        String result = FormatTime.dateFromTo("27:90 + 74");
+        String result = FormatTime.dateFromTo("27:90+74");
         assertEquals("05:44", result);
     }
 
     @Test
     public void  formatTime_test2() throws Exception {
         System.out.println("test2");
-        String result = FormatTime.dateFromTo("24:00 + 0");
+        String result = FormatTime.dateFromTo("24:00+0");
         assertEquals("00:00", result);
     }
 
@@ -63,7 +63,7 @@ public class FormatTimeTest {
     @Test
     public void  formatTime_test3() throws Exception {
         System.out.println("test3");
-        String result = FormatTime.dateFromTo("08:00 + 10");
+        String result = FormatTime.dateFromTo("08:00+10");
        assertThat(result).contains("08:10");
 
     }
@@ -71,7 +71,7 @@ public class FormatTimeTest {
     @Test
     public void  formatTime_test4() throws Exception {
         System.out.println("test3");
-        String result = FormatTime.dateFromTo("00:00 + 1440");
+        String result = FormatTime.dateFromTo("00:00+1440");
         assertThat(result).contains("00:00");
 
     }

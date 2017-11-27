@@ -8,15 +8,19 @@ public class FormatTime {
 
 
 
-    public String dateFromTo(String a) {
+    public static String dateFromTo(String a) {
 
         Integer allTime;
         String hoursInString;
         String minutsInString;
         String numer = a.replace("+", ":");
         String[] numer1 = numer.split(":");
-        Integer.valueOf(String.valueOf(numer1[0]));
-        allTime = (Integer.valueOf(String.valueOf(numer1[2])) + Integer.valueOf(String.valueOf(numer1[1])) + (Integer.valueOf(String.valueOf(numer1[0])) * 60));
+
+
+
+
+        allTime = (Integer.valueOf((numer1[2])) + Integer.valueOf((numer1[1])) + (Integer.valueOf((numer1[0])) * 60));
+
 
         if ((allTime / 60) >= 24) {
             hoursInString = String.valueOf((allTime / 60) - 24);
