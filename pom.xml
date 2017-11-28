@@ -2,24 +2,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.infoshareacademy.zieloni</groupId>
-    <artifactId>planer-cli</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>planer-parent</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>planer-cli</name>
+    <name>planer-parent</name>
     <url>http://maven.apache.org</url>
+
+    <modules>
+        <module>planer-cli</module>
+    </modules>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.mnode.ical4j/ical4j -->
         <dependency>
             <groupId>org.mnode.ical4j</groupId>
             <artifactId>ical4j</artifactId>
             <version>2.1.0</version>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-csv</artifactId>
@@ -40,8 +43,6 @@
             <artifactId>lombok</artifactId>
             <version>1.16.12</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -52,7 +53,6 @@
             <artifactId>log4j-core</artifactId>
             <version>2.9.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-1.2-api</artifactId>
@@ -64,14 +64,12 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.7.0</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -91,30 +89,6 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <archive>
-                                <manifest>
-                                    <mainClass>
-                                        com.infoshareacademy.zieloni.App
-                                    </mainClass>
-                                </manifest>
-                            </archive>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
