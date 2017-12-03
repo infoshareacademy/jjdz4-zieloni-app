@@ -16,7 +16,7 @@ public class TimeLimiter {
         LocalTime startEventTime = startEvent.minusMinutes(10);
         int street = proposedBus.getBusStopIndex();
 
-        System.out.println("Proponowany  srodek transportu " + proposedBus.getBus().getTypeOfTransport() + " nr:  " + proposedBus.getBus().getBusNumber());
+        System.out.println("Proponowany srodek transportu " + proposedBus.getBus().getTypeOfTransport() + " nr:  " + proposedBus.getBus().getBusNumber());
 
         Map<String, List<String>> map = null;
 
