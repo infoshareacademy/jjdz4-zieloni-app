@@ -1,5 +1,6 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.controller.FindBusController;
 import com.infoshareacademy.zieloni.controller.TimeTableController;
 import com.infoshareacademy.zieloni.database.BusDataBase;
 import com.infoshareacademy.zieloni.model.Event;
@@ -39,17 +40,16 @@ class Menu {
                     getEventFromUser();
                     selectedEvent.getLocation();
 
-                    com.infoshareacademy.zieloni.controller.FindBusController.search(selectedEvent.getLocation().toString(), nextEvent.getLocation().toString());
-                    com.infoshareacademy.zieloni.controller.FindBusController.getProposedBusArr().get(0);
-
+                    FindBusController.search(selectedEvent.getLocation().toString(), nextEvent.getLocation().toString());
                     LocalTime endEventTime = selectedEvent.getEndTime().toLocalTime();
                     LocalTime startEventTime = nextEvent.getStartTime().toLocalTime();
 
-                    ProposedBusDTO bus = com.infoshareacademy.zieloni.controller.FindBusController.getProposedBusArr().get(0);
-
-
-
-                    TimeLimiter showTime = new TimeLimiter(endEventTime, startEventTime, bus);
+                    if (FindBusController.getProposedBusArr().size() > 0) {
+                        ProposedBusDTO bus = FindBusController.getProposedBusArr().get(0);
+                        TimeLimiter showTime = new TimeLimiter(endEventTime, startEventTime, bus);
+                    }else{
+                        FindBusController.search(selectedEvent.getLocation().toString(), nextEvent.getLocation().toString());
+                    }
 
                     displayMainMenu();
                     break;
