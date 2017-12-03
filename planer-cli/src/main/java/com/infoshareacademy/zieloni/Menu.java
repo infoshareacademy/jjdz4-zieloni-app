@@ -3,11 +3,14 @@ package com.infoshareacademy.zieloni;
 import com.infoshareacademy.zieloni.controller.TimeTableController;
 import com.infoshareacademy.zieloni.database.BusDataBase;
 import com.infoshareacademy.zieloni.model.Event;
+import com.infoshareacademy.zieloni.model.ProposedBusDTO;
+import com.infoshareacademy.zieloni.utils.TimeLimiter;
 import net.fortuna.ical4j.data.ParserException;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
@@ -34,7 +37,19 @@ class Menu {
                 case "1":
                     getDateFromUser();
                     getEventFromUser();
-                    //TODO wywołaj metodę szukającą dojazdu
+                    selectedEvent.getLocation();
+
+                    com.infoshareacademy.zieloni.controller.FindBusController.search(selectedEvent.getLocation().toString(), nextEvent.getLocation().toString());
+                    com.infoshareacademy.zieloni.controller.FindBusController.getProposedBusArr().get(0);
+
+                    LocalTime endEventTime = selectedEvent.getEndTime().toLocalTime();
+                    LocalTime startEventTime = nextEvent.getStartTime().toLocalTime();
+
+                    ProposedBusDTO bus = com.infoshareacademy.zieloni.controller.FindBusController.getProposedBusArr().get(0);
+
+
+
+                    TimeLimiter showTime = new TimeLimiter(endEventTime, startEventTime, bus);
 
                     displayMainMenu();
                     break;

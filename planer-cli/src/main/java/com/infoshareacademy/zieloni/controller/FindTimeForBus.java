@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.Controller;
+package com.infoshareacademy.zieloni.controller;
 
 public class FindTimeForBus {
 
