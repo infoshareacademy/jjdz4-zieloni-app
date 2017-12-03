@@ -1,13 +1,19 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.controller.FindBusController;
+import com.infoshareacademy.zieloni.controller.FindBusWithChangeController;
 import com.infoshareacademy.zieloni.controller.TimeTableController;
 import com.infoshareacademy.zieloni.database.BusDataBase;
+import com.infoshareacademy.zieloni.model.ChangeConnectionDTO;
 import com.infoshareacademy.zieloni.model.Event;
+import com.infoshareacademy.zieloni.model.ProposedBusDTO;
+import com.infoshareacademy.zieloni.utils.TimeLimiter;
 import net.fortuna.ical4j.data.ParserException;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
@@ -34,8 +40,28 @@ class Menu {
                 case "1":
                     getDateFromUser();
                     getEventFromUser();
-                    //TODO wywołaj metodę szukającą dojazdu
 
+
+                    if (nextEvent != null) {
+                        FindBusController.search(selectedEvent.getLocation().toString(), nextEvent.getLocation().toString());
+                        LocalTime endEventTime = selectedEvent.getEndTime().toLocalTime();
+                        LocalTime startEventTime = nextEvent.getStartTime().toLocalTime();
+
+
+                        if (FindBusController.getProposedBusArr().size() > 0) {
+                            ProposedBusDTO bus = FindBusController.getProposedBusArr().get(0);
+                            TimeLimiter showTime = new TimeLimiter(endEventTime, startEventTime, bus);
+                        } else {
+                            FindBusWithChangeController.search(selectedEvent.getLocation().toString(), nextEvent.getLocation().toString());
+
+                            ChangeConnectionDTO bus = FindBusWithChangeController.getChangeConnectionArray().get(0);
+                            System.out.println("Proponowanie połacznie  to  " + bus.getBus0().getTypeOfTransport() +
+                                    " nr : " + bus.getBus0().getBusNumber() + " przesiadka na przystanku " + bus.getConnectionBusStop()
+                                    + " w " + bus.getBus1().getTypeOfTransport() + " nr : " + bus.getBus1().getBusNumber());
+                        }
+                    } else {
+                        System.out.println("To ostatnie wydarznie");
+                    }
                     displayMainMenu();
                     break;
                 case "2":

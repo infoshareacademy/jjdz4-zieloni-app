@@ -5,33 +5,60 @@ import com.infoshareacademy.zieloni.model.RecordCourseDTO;
 
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings({"squid:S106", "squid:S1192"})
 public class TimeLimiter {
+
     public TimeLimiter(LocalTime endEvent, LocalTime startEvent, ProposedBusDTO proposedBus) {
+
         LocalTime endEventTime = endEvent.minusMinutes(30);
         LocalTime startEventTime = startEvent.minusMinutes(10);
-        List<RecordCourseDTO> corse;
+        int street = proposedBus.getBusStopIndex();
+
+        System.out.println("Proponowany srodek transportu " + proposedBus.getBus().getTypeOfTransport() + " nr:  " + proposedBus.getBus().getBusNumber());
+
+        Map<String, List<String>> map = null;
+
+        List<RecordCourseDTO> course;
         if (proposedBus.getVairiant() == 1) {
 
-            corse = proposedBus.getBus().getCourseRecordsV1();
+            course = proposedBus.getBus().getCourseRecordsV1();
+            map = proposedBus.getBus().getColumnsMapV1();
         } else {
-            corse = proposedBus.getBus().getCourseRecordsV2();
+            course = proposedBus.getBus().getCourseRecordsV2();
+            map = proposedBus.getBus().getColumnsMapV2();
+
         }
-        for (int i = 0; i < corse.size(); i++) {
-            String time = corse.get(i).getDepartureTime();
+
+        for (int i = 0; i < course.size(); i++) {
+
+            String symbolOfCourse = course.get(i).getTypeOfCourse();
+            int minutes = 0;
+            for (int j = 0; j < street; j++) {
+                try {
+                    minutes += Integer.valueOf(map.get(symbolOfCourse).get(j));
+                } catch (Exception e) {
+                    minutes += 1;
+                }
+            }
+
+            String time = course.get(i).getDepartureTime();
 
             if (time.equals("99")) {
                 System.out.println("\n");
-                System.out.println(corse.get(i).getTypeOfCourse() + "\n");
-                System.out.println("-------------------------------------\n");
+                System.out.println("-------------------------------------");
+                System.out.println(course.get(i).getTypeOfCourse());
             } else {
-                boolean isInRange = (LocalTime.parse(time).isAfter(endEventTime)) && (startEventTime.isBefore(LocalTime.parse(time)));
+                String time1 = FormatTime.dateFromTo(course.get(i).getDepartureTime() + "+" + minutes);
+
+                boolean isInRange = (LocalTime.parse(time1).isAfter(endEventTime)) && (LocalTime.parse(time1).isBefore(startEventTime));
                 if (isInRange) {
-                    System.out.printf(String.format("%s | ", corse.get(i).getDepartureTime()));
+                    System.out.printf(String.format("%s | ", time1));
                 }
             }
         }
+        System.out.println("\n");
 
     }
 
