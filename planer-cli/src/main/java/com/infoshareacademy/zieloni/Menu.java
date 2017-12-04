@@ -9,6 +9,8 @@ import com.infoshareacademy.zieloni.model.Event;
 import com.infoshareacademy.zieloni.model.ProposedBusDTO;
 import com.infoshareacademy.zieloni.utils.TimeLimiter;
 import net.fortuna.ical4j.data.ParserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -20,6 +22,7 @@ import java.util.Set;
 
 import static com.infoshareacademy.zieloni.utils.ConsoleTools.clearConsole;
 
+@SuppressWarnings({"squid:S106"})
 class Menu {
 
     private static Events events = new Events();
@@ -31,6 +34,8 @@ class Menu {
     }
 
     static void startMenu() throws ParseException, ParserException, IOException, InterruptedException {
+        final Logger logger = LoggerFactory.getLogger(Menu.class.getName());
+
         events.loadEvents();
 
         displayMainMenu();
@@ -62,6 +67,7 @@ class Menu {
                     } else {
                         System.out.println("To ostatnie wydarznie");
                     }
+                    Thread.sleep(10000);
                     displayMainMenu();
                     break;
                 case "2":
@@ -71,13 +77,14 @@ class Menu {
                     if (BusDataBase.getDataBase().size() > 0) {
                         TimeTableController.show();
                     } else {
-                        //logger.fatal("Baza danych jest pusta");
+                        logger.error("Baza danych jest pusta");
                     }
                     displayMainMenu();
                     break;
                 case "3":
                     break;
                 case "exit":
+                    logger.debug("Użytkownik zakończył działanie aplikacji PLANER-CLI");
                     return;
                 default:
                     displayMainMenu();
@@ -88,7 +95,7 @@ class Menu {
 
     private static void displayMainMenu() {
         clearConsole();
-        System.out.println("***** PLANER CLI v0.1 *****");
+        System.out.println("***** PLANER CLI v0.2 *****");
         System.out.println();
         System.out.println("Liczba wydarzeń w bazie: " + events.getCounter());
         System.out.println();
@@ -100,7 +107,7 @@ class Menu {
     }
 
     private static void getDateFromUser() {
-        Set<LocalDate> keys = events.getEvents().keySet();
+        Set<LocalDate> keys = events.getEventsDB().keySet();
         LocalDate[] daysWithEvents = keys.toArray(new LocalDate[keys.size()]);
 
         displayDatesWithEventsMenu(daysWithEvents);
@@ -134,7 +141,7 @@ class Menu {
         System.out.println("Masz zaplanowane wydarzenia w dniach:\n");
         for (int i = 0; i < daysWithEvents.length; i++) {
             System.out.println(i + 1 + ".\t" + daysWithEvents[i] +
-                    " [" + events.getEvents().get(daysWithEvents[i]).size() + "]");
+                    " [" + events.getEventsDB().get(daysWithEvents[i]).size() + "]");
         }
         System.out.println("UP\tPowrót do menu głównego");
         System.out.println();
@@ -144,7 +151,7 @@ class Menu {
     private static void getEventFromUser() {
         if (selectedDate == null) return;
 
-        ArrayList<Event> eventsInSelectedDate = events.getEvents().get(selectedDate);
+        ArrayList<Event> eventsInSelectedDate = events.getEventsDB().get(selectedDate);
 
         displayEventsFromDate(eventsInSelectedDate);
 

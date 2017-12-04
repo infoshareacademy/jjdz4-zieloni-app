@@ -5,12 +5,19 @@
         <Console name="Console">
             <PatternLayout pattern=" %d{HH:mm:ss} %level %logger - %msg %n"/>
         </Console>
-
-
+        <File name="MyFile" fileName="logs/app.log">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss} %level %logger - %msg%n</Pattern>
+            </PatternLayout>
+        </File>
+        <Async name="Async">
+            <AppenderRef ref="MyFile"/>
+        </Async>
     </Appenders>
     <Loggers>
         <Root level="INFO">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="MyFile"/>
         </Root>
     </Loggers>
 </Configuration>

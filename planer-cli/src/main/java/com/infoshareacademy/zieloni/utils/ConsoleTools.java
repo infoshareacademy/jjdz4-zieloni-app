@@ -1,5 +1,6 @@
 package com.infoshareacademy.zieloni.utils;
 
+@SuppressWarnings({"squid:S106"})
 public class ConsoleTools {
 
     private ConsoleTools() {

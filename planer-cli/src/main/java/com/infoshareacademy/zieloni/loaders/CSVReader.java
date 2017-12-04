@@ -1,7 +1,7 @@
 package com.infoshareacademy.zieloni.loaders;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class CSVReader {
     private CSVReader() {
     }
 
-    private static Logger logger = LogManager.getLogger(CSVReader.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(CSVReader.class.getName());
 
 
     public static List<String> convertFileToRecordsArray(String path) {
