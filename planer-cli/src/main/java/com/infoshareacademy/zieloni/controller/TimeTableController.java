@@ -2,8 +2,8 @@ package com.infoshareacademy.zieloni.controller;
 
 import com.infoshareacademy.zieloni.utils.IsBusExist;
 import com.infoshareacademy.zieloni.view.TimeTableView;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Scanner;
 
 public class TimeTableController {
@@ -11,7 +11,7 @@ public class TimeTableController {
     }
 
     private static int level = 1;
-    private static Logger logger = LogManager.getLogger(TimeTableController.class.getName());
+    private static Logger logger = LoggerFactory.getLogger(TimeTableController.class.getName());
 
     public static void show() {
         String text;

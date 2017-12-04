@@ -3,8 +3,8 @@ package com.infoshareacademy.zieloni.loaders;
 import com.infoshareacademy.zieloni.model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.model.ExtraTableCsvDTO;
 import com.infoshareacademy.zieloni.model.RecordVariantDTO;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class CSVFileParser {
     private CSVFileParser() {
     }
 
-    private static Logger logger = LogManager.getLogger(CSVFileParser.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(CSVFileParser.class.getName());
 
     public static List<ExtraTableCsvDTO> formatCSVToTimeTableWithExtraInfoRecords(List<String> stringArray) {
 

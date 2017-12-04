@@ -5,8 +5,8 @@ import com.infoshareacademy.zieloni.model.BusDTO;
 import com.infoshareacademy.zieloni.model.RecordCourseDTO;
 import com.infoshareacademy.zieloni.utils.FormatTime;
 import com.infoshareacademy.zieloni.utils.IsBusExist;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class TimeTableView {
     private static int selectedBus = -1;
     private static int street = -1;
     private static int variant = -1;
-    private static Logger logger = LogManager.getLogger(TimeTableView.class.getName());
+    private static Logger logger = LoggerFactory.getLogger(TimeTableView.class.getName());
 
     public static int selectBus() {
         level = 1;
