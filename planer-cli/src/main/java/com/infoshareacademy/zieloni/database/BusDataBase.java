@@ -72,7 +72,7 @@ public class BusDataBase {
             logger.info("Dane zostały załadowane");
 
         } catch (Exception e) {
-            logger.error("Brak folderu z danymi");
+            logger.error("Brak folderu z danymi", e);
         }
         return dataBase;
     }

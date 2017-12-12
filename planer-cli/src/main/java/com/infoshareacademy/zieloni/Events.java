@@ -35,7 +35,7 @@ class Events {
             logger.debug("Wczytywanie pliku iCal z kalendarzem zainicjowane");
             icalFile = new FileInputStream("kalendarz.ics");
         } catch (FileNotFoundException e) {
-            logger.error("Wczytywanie pliku iCal zakończone niepowodzeniem - brak pliku!");
+            logger.error("Wczytywanie pliku iCal zakończone niepowodzeniem - brak pliku!", e);
             printAlert("Kalendarz - brak pliku z wydarzeniami!");
             return;
         }
@@ -44,11 +44,11 @@ class Events {
         try {
             calendar = builder.build(icalFile);
         } catch (IOException e) {
-            logger.error("Wczytywanie pliku iCal zakończone niepowodzeniem - błąd systemu I/O!");
+            logger.error("Wczytywanie pliku iCal zakończone niepowodzeniem - błąd systemu I/O!", e);
             printAlert("Kalendarz - Błąd systemu I/O!");
             return;
         } catch (ParserException p) {
-            logger.error("Wczytywanie pliku iCal zakończone niepowodzeniem - nieprawidłowy format danych!");
+            logger.error("Wczytywanie pliku iCal zakończone niepowodzeniem - nieprawidłowy format danych!", p);
             printAlert("Kalendarz - nieprawidłowy format danych!");
             return;
         }
