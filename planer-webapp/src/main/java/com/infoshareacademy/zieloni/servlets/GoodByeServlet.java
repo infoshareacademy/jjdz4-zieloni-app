@@ -1,5 +1,7 @@
 package com.infoshareacademy.zieloni.servlets;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,9 @@ import java.io.PrintWriter;
 
 @WebServlet("/good-bye-servlet")
 public class GoodByeServlet extends HttpServlet {
+    @PersistenceContext(unitName = "pUnit")
+    EntityManager entiti;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
