@@ -21,7 +21,7 @@ import java.util.*;
 
 import static com.infoshareacademy.zieloni.utils.ConsoleTools.*;
 
-class Events {
+public class Events {
 
     @Getter
     private Map<LocalDate, ArrayList<Event>> eventsDB = new TreeMap<>();
