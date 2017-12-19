@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "getUserByLogin", query = "from User u where u.login=:login"),
-        @NamedQuery(name = "getAll", query = "from User")
-})
+//@NamedQueries({
+  //      @NamedQuery(name = "getUserByLogin", query = "from User u where u.email_as_login=:login"),
+    //    @NamedQuery(name = "getAll", query = "from User")
+//}
+//)
 public class User {
 
     public User() {
@@ -23,16 +24,11 @@ public class User {
 
     private String surname;
 
-    private String login;
+    private String email_as_login;
 
-    private int age;
 
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "phone_id")
-    private List<Phone> phones = new ArrayList<>();
+
 
     public String getName() {
         return name;
@@ -50,20 +46,12 @@ public class User {
         this.surname = surname;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail_as_login() {
+        return email_as_login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public void setEmail_as_login(String login) {
+        this.email_as_login = login;
     }
 
     public int getId() {
@@ -74,21 +62,7 @@ public class User {
         this.id = id;
     }
 
-    public Gender getGender() {
-        return gender;
-    }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public List<Phone> getPhones() {
-        return phones;
-    }
-
-    public void setPhones(List<Phone> phones) {
-        this.phones = phones;
-    }
 
     @Override
     public String toString() {
@@ -96,10 +70,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", login='" + login + '\'' +
-                ", age=" + age +
-                ", gender=" + gender +
-                ", phones=" + phones +
+                ", login='" + email_as_login + '\'' +
                 '}';
     }
 }
