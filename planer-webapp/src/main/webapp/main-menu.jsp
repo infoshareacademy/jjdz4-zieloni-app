@@ -24,7 +24,7 @@
                         <c:otherwise>
                             <div class="blackshape">
                                 <form class="form-signin" method="post" action="/registration">
-                                    <button class="btn btn-lg btn-primary btn-block" type="submit" name="edit_button" value="statistics">Statystyki</button>
+                                    <button class="btn btn-lg btn-primary btn-block" type="submit" name="statistics_button" value="statistics">Statystyki</button>
                                 </form>
                             </div>
                         </c:otherwise>

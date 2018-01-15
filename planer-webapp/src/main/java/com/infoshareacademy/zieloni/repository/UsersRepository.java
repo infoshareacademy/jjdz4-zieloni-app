@@ -2,7 +2,6 @@ package com.infoshareacademy.zieloni.repository;
 
 
 import com.infoshareacademy.zieloni.domain.Users;
-import org.hibernate.SessionFactory;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -14,8 +13,6 @@ public class UsersRepository {
 
     @PersistenceContext(unitName = "pUnit")
     private EntityManager entityManager;
-    private static SessionFactory factory;
-
 
     public boolean addUser(Users user) {
         entityManager.persist(user);

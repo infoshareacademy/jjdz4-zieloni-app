@@ -39,7 +39,7 @@
     </table>
 
     <form class="form-signin" method="post" action="/registration">
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="edit_button" value="closeStatistics">Wróć
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="statistics_button" value="close_statistics">Wróć
         </button>
     </form>
 </div>
