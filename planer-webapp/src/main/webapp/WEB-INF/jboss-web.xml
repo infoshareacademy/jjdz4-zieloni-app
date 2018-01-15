@@ -5,4 +5,5 @@
       http://www.jboss.com/xml/ns/javaee
       http://www.jboss.org/j2ee/schema/jboss-web_11_0.xsd" version="11.0">
     <context-root>/</context-root>
+    <security-domain>PlanerSecurityDomain</security-domain>
 </jboss-web>
