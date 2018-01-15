@@ -2,7 +2,7 @@ package com.infoshareacademy.zieloni.servlets;
 
 import com.infoshareacademy.zieloni.dao.UsersRepositoryDao;
 import com.infoshareacademy.zieloni.domain.Users;
-import com.infoshareacademy.zieloni.services.IRegistrationService;
+import com.infoshareacademy.zieloni.services.IAddUserService;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -16,31 +16,32 @@ import java.io.IOException;
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
     private static final String OPEN_STATISTICS_USER = "statisticsUser";
+    private static final String OPEN_BUS_SCHEDULE = "openBusSchedule";
 
     @EJB
-    IRegistrationService registrationService;
+    IAddUserService registrationService;
 
     @EJB
     UsersRepositoryDao usersRepositoryDao;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         init(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         init(req, resp);
-
     }
 
     private void init(HttpServletRequest req, HttpServletResponse resp) {
-        showStatistic(req);
-        removeUser(req);
-        registrationService.init(req, resp);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
 
+        choiceView(req);
+        removeUser(req);
+        setUserList(req);
+        registrationService.init(req, resp);
+
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
         try {
             requestDispatcher.forward(req, resp);
         } catch (Exception e) {
@@ -49,8 +50,18 @@ public class RegistrationServlet extends HttpServlet {
 
     }
 
-    private void showStatistic(HttpServletRequest req) {
+    private void setUserList(HttpServletRequest req) {
         try {
+            req.setAttribute("userList", usersRepositoryDao.getUsersList());
+        } catch (Exception e) {
+            log(" brak userów");
+        }
+    }
+
+
+    private void choiceView(HttpServletRequest req) {
+        try {
+            req.getSession().setAttribute(OPEN_BUS_SCHEDULE, req.getParameter("statistics_button").equals("busSchedule"));
             req.getSession().setAttribute(OPEN_STATISTICS_USER, req.getParameter("statistics_button").equals("statistics"));
         } catch (Exception e) {
             log("statistics_button nie został jeszcze wciśniety");
