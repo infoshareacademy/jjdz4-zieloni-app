@@ -19,7 +19,7 @@ public class RegistrationServlet extends HttpServlet {
     private static final String OPEN_BUS_SCHEDULE = "openBusSchedule";
 
     @EJB
-    IAddUserService registrationService;
+    IAddUserService addUserService;
 
     @EJB
     UsersRepositoryDao usersRepositoryDao;
@@ -39,7 +39,7 @@ public class RegistrationServlet extends HttpServlet {
         choiceView(req);
         removeUser(req);
         setUserList(req);
-        registrationService.init(req, resp);
+        addUserService.init(req, resp);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
         try {
