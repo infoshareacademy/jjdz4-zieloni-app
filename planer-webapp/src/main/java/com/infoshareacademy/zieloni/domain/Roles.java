@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
+@Table(name = "roles")
 public class Roles implements Serializable {
 
     @Id
