@@ -36,10 +36,19 @@ public class RegistrationServlet extends HttpServlet {
 
     private void init(HttpServletRequest req, HttpServletResponse resp) {
 
-        choiceView(req);
-        removeUser(req);
+        String menu_selected_item = (String) req.getParameter("statistics_button");
+
+        if (menu_selected_item == null) {
+            addUserService.init(req, resp);
+        } else {
+            req.getSession().setAttribute(OPEN_BUS_SCHEDULE, menu_selected_item.equals("busSchedule"));
+            req.getSession().setAttribute(OPEN_STATISTICS_USER, menu_selected_item.equals("statistics"));
+        }
+
+        if (req.getParameter("remove") != null) {
+            removeUser(req);
+        }
         setUserList(req);
-        addUserService.init(req, resp);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
         try {
@@ -59,22 +68,19 @@ public class RegistrationServlet extends HttpServlet {
     }
 
 
-    private void choiceView(HttpServletRequest req) {
-        try {
-            req.getSession().setAttribute(OPEN_BUS_SCHEDULE, req.getParameter("statistics_button").equals("busSchedule"));
-            req.getSession().setAttribute(OPEN_STATISTICS_USER, req.getParameter("statistics_button").equals("statistics"));
-        } catch (Exception e) {
-            log("statistics_button nie został jeszcze wciśniety");
-        }
-    }
+   /* private void selectView(HttpServletRequest req) {
+        String menu_selected_item = (String) req.getParameter("statistics_button");
+
+        req.getSession().setAttribute(OPEN_BUS_SCHEDULE, menu_selected_item.equals("busSchedule"));
+        req.getSession().setAttribute(OPEN_STATISTICS_USER, menu_selected_item.equals("statistics"));
+
+    }*/
 
     private void removeUser(HttpServletRequest req) {
 
-        if (req.getParameter("remove") != null) {
-            log(Integer.parseInt(req.getParameter("remove")) + " klikniety remove " + req.getParameter("remove"));
-            int id = Integer.parseInt(req.getParameter("remove"));
-            Users removedUser = usersRepositoryDao.getUserById(id);
-            usersRepositoryDao.removeUser(removedUser);
-        }
+        log(Integer.parseInt(req.getParameter("remove")) + " klikniety remove " + req.getParameter("remove"));
+        int id = Integer.parseInt(req.getParameter("remove"));
+        Users removedUser = usersRepositoryDao.getUserById(id);
+        usersRepositoryDao.removeUser(removedUser);
     }
 }

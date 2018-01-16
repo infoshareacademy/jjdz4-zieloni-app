@@ -3,7 +3,7 @@
     <form class="form-signin" method="post" action="/registration">
         <br>
         <div style="color: #26d20d;">
-            <h4>${headerText}</h4>
+            <h4>Dodałeś nowego użytkownika</h4>
         </div>
         <br>
         <div>imię:&nbsp ${user.name}</div>
