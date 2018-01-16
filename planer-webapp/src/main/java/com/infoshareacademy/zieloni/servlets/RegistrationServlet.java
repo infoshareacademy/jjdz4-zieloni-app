@@ -67,15 +67,6 @@ public class RegistrationServlet extends HttpServlet {
         }
     }
 
-
-   /* private void selectView(HttpServletRequest req) {
-        String menu_selected_item = (String) req.getParameter("statistics_button");
-
-        req.getSession().setAttribute(OPEN_BUS_SCHEDULE, menu_selected_item.equals("busSchedule"));
-        req.getSession().setAttribute(OPEN_STATISTICS_USER, menu_selected_item.equals("statistics"));
-
-    }*/
-
     private void removeUser(HttpServletRequest req) {
 
         log(Integer.parseInt(req.getParameter("remove")) + " klikniety remove " + req.getParameter("remove"));
