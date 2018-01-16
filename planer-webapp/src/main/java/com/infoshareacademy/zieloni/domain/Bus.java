@@ -2,7 +2,9 @@ package com.infoshareacademy.zieloni.domain;
 
 import javax.persistence.*;
 
+
 @Entity
+@Table(name = "bus")
 public class Bus {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

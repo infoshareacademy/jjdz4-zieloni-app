@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
+@Table(name = "users")
 @NamedQueries({
         @NamedQuery(name = "getUserByLogin", query = "from Users u where u.login=:login"),
         @NamedQuery(name = "getAll", query = "from Users"),
