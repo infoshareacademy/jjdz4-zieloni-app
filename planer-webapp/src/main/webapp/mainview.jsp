@@ -22,7 +22,7 @@
                             <%@ include file="statistics.jsp" %>
                         </c:when>
                         <c:when test="${sessionScope.openBusSchedule == true}">
-                            <%@ include file="timeSchedule.jsp" %>
+                            <%@ include file="timeschedule.jsp" %>
                         </c:when>
                         <c:otherwise>
                             <%@ include file="submenu.jsp" %>
