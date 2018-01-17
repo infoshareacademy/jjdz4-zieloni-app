@@ -13,6 +13,7 @@ public class RemoveUserServlet extends ShowPageViewServlet {
     @Override
     void start(HttpServletRequest req, HttpServletResponse resp) {
         removeUser(req);
+        setUserList(req);
         showPageView(req, resp, "/index.jsp");
     }
 
