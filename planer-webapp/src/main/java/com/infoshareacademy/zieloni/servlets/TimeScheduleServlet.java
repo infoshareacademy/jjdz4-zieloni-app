@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/time-schedule")
 public class TimeScheduleServlet extends ShowPageViewServlet {
 
-
     @Override
     void start(HttpServletRequest req, HttpServletResponse resp) {
         resetViewState(req);
