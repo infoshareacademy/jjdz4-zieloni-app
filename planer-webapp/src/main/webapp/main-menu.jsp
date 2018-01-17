@@ -18,19 +18,22 @@
             <c:choose>
                 <c:when test="${sessionScope.isLogged == true}">
                     <c:choose>
-                        <c:when test="${sessionScope.statisticsUser == true}">
+                        <c:when test="${sessionScope.openStatistics == true}">
                             <%@ include file="statistics.jsp" %>
+                        </c:when>
+                        <c:when test="${sessionScope.openBusSchedule == true}">
+                            <%@ include file="timeSchedule.jsp" %>
                         </c:when>
                         <c:otherwise>
                             <div class="blackshape">
-                                <form class="form-signin" method="post" action="/registration">
+                                <form class="form-signin" method="post" action="/statistic">
                                     <button class="btn btn-lg btn-primary btn-block" type="submit"
-                                            name="statistics_button" value="statistics">Statystyki
+                                            name="menu_button" value="">Statystyki
                                     </button>
                                 </form>
-                                <form class="form-signin" method="post" action="/registration">
+                                <form class="form-signin" method="post" action="/time-schedule">
                                     <button class="btn btn-lg btn-primary btn-block" type="submit"
-                                            name="statistics_button" value="busSchedule">Rozkład jazdy
+                                            name="menu_button" value="">Rozkład jazdy
                                     </button>
                                 </form>
                             </div>

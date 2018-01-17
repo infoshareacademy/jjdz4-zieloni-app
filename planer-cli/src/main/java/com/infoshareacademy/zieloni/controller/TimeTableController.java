@@ -28,12 +28,12 @@ public class TimeTableController {
                 return;
 
             } else {
-                swithToLevel(text);
+                switchToLevel(text);
             }
         }
     }
 
-    private static void swithToLevel(String text) {
+    private static void switchToLevel(String text) {
         if (level == 1) {
             levelOne(text);
         } else if (level == 2) {

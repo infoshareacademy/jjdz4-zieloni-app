@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div class="blackshape">
-    <form class="form-signin" method="post" action="/registration">
+    <form class="form-signin" method="post" action="/add-user">
         <h2 class="form-signin-heading">${headerText}</h2>
         <br>
         <br>
