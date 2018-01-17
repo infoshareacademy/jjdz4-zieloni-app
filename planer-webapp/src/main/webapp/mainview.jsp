@@ -25,18 +25,7 @@
                             <%@ include file="timeSchedule.jsp" %>
                         </c:when>
                         <c:otherwise>
-                            <div class="blackshape">
-                                <form class="form-signin" method="post" action="/statistic">
-                                    <button class="btn btn-lg btn-primary btn-block" type="submit"
-                                            name="menu_button" value="">Statystyki
-                                    </button>
-                                </form>
-                                <form class="form-signin" method="post" action="/time-schedule">
-                                    <button class="btn btn-lg btn-primary btn-block" type="submit"
-                                            name="menu_button" value="">Rozkład jazdy
-                                    </button>
-                                </form>
-                            </div>
+                            <%@ include file="submenu.jsp" %>
                         </c:otherwise>
                     </c:choose>
 
