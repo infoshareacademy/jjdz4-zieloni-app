@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<div class="blackshape" style="width: 800px;">
+<div class="blackshape" style="width: 800px; height: 500px;">
     <h3>STATYSTYKI</h3>
     <table class="table table-dark">
         <thead>

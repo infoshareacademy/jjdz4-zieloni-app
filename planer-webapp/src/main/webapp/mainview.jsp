@@ -21,8 +21,11 @@
                         <c:when test="${sessionScope.openStatistics == true}">
                             <%@ include file="statistics.jsp" %>
                         </c:when>
-                        <c:when test="${sessionScope.openBusSchedule == true}">
+                        <c:when test="${sessionScope.openBusSchedule == true && busNr == null}">
                             <%@ include file="timeschedule.jsp" %>
+                        </c:when>
+                        <c:when test="${busNr !=null}">
+                            <%@ include file="choicedirection.jsp" %>
                         </c:when>
                         <c:otherwise>
                             <%@ include file="submenu.jsp" %>

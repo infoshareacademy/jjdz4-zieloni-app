@@ -1,46 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<div class="blackshape" style="width: 800px;">
+<div class="blackshape" style="width: 800px; height: 600px;">
     <h3>Rozkład jazdy</h3>
-
-    <table class="table table-dark">
-        <thead>
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">imię</th>
-            <th scope="col">nazwisko</th>
-            <th scope="col">login</th>
-            <th scope="col">wiek</th>
-            <th scope="col">płeć</th>
-            <th scope="col">ile razy edytowany</th>
-            <th scope="col">rola</th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="user" items="${userList}">
-            <form method="post" action="/remove-user">
-                <tr <c:if test="${user.gender.toString()=='MAN'}">style="background-color: rgba(98,189,255,0.51);"</c:if>>
-
-                    <td><c:out value="${user.id}"/></td>
-                    <td><c:out value="${user.name}"/></td>
-                    <td><c:out value="${user.surname}"/></td>
-                    <td><c:out value="${user.login}"/></td>
-                    <td><c:out value="${user.age}"/></td>
-                    <td><c:out value="${user.gender}"/></td>
-                    <td><c:out value="${user.statistic.editUserCounter}"/></td>
-                    <td><c:out value="${user.role.userRole}"/></td>
-                    <td>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" name="remove" value="${user.id}"><img src="svg/ic_delete_forever_white_24px.svg"/></button>
-                    </td>
-
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table id="myTable" class="table table-fixedheader table-dark">
+                <thead>
+                <tr>
+                    <th width="10%" scope="col"></th>
+                    <th width="20%" scope="col">Numer</th>
+                    <th width="50%" scope="col">Typ</th>
+                    <th width="20%"scope="col">usuń</th>
                 </tr>
+                </thead>
+                <tbody style="height:400px">
+
+                <c:forEach var="bus" items="${busList}" varStatus="index">
+                    <form method="post" action="/time-schedule">
+                        <tr>
+                            <td width="10%"> <c:out value="${index.count}"/></td>
+                            <td width="20%"><c:out value="${bus.getBusNumber()}"/></td>
+                            <td width="50%"><c:out value="${bus.getTypeOfTransport()}"/></td>
+                            <td width="20%">
+                                <button type="submit" name="busNr" value="${index.count}">wybierz</button>
+                            </td>
+
+                        </tr>
+                    </form>
+                </c:forEach>
+                </tbody>
+            </table>
+            <form class="form-signin" method="post" action="/main-menu">
+                <button class="btn btn-lg btn-primary btn-block" type="submit" >Wróć</button>
             </form>
-        </c:forEach>
-        </tbody>
-    </table>
-
-
-    <form class="form-signin" method="post" action="/main-menu">
-        <button class="btn btn-lg btn-primary btn-block" type="submit" >Wróć</button>
-    </form>
+        </div>
+    </div>
 </div>
