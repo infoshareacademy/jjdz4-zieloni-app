@@ -6,7 +6,7 @@
                 name="menu_button" value="">Statystyki
         </button>
     </form>
-    <form class="form-signin" method="post" action="/time-schedule">
+    <form class="form-signin" method="post" action="/time-table">
         <button class="btn btn-lg btn-primary btn-block" type="submit"
                 name="menu_button" value="">Rozkład jazdy
         </button>

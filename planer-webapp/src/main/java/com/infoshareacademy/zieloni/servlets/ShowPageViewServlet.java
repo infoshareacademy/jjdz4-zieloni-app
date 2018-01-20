@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-abstract class ShowPageViewServlet extends HttpServlet {
+public abstract class ShowPageViewServlet extends HttpServlet {
 
     @EJB
     UsersRepositoryDao usersRepositoryDao;
 
-    abstract void start(HttpServletRequest req, HttpServletResponse resp);
+    public abstract void start(HttpServletRequest req, HttpServletResponse resp);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,15 +27,17 @@ abstract class ShowPageViewServlet extends HttpServlet {
         start(req, resp);
     }
 
-    public static final String OPEN_BUS_SCHEDULE = "openBusSchedule";
-    public static final String OPEN_STATISTICS_USER = "openStatistics";
+    public static final String SHOW_TIME_TABLE = "showTimetable";
+    public static final String SHOW_STATISTICS_USER = "showStatistics";
+    public static final String SHOW_BUS_STOPS= "busStops";
+    public static final String BUS_ID = "bus_id";
 
-    void resetViewState(HttpServletRequest req) {
-        req.getSession().setAttribute(OPEN_STATISTICS_USER, false);
-        req.getSession().setAttribute(OPEN_BUS_SCHEDULE, false);
+    public void resetViewState(HttpServletRequest req) {
+        //req.getSession().setAttribute(SHOW_STATISTICS_USER, false);
+      //  req.getSession().setAttribute(SHOW_TIME_TABLE, false);
     }
 
-    void setUserList(HttpServletRequest req) {
+    public void setUserList(HttpServletRequest req) {
         try {
             req.setAttribute("userList", usersRepositoryDao.getUsersList());
         } catch (Exception e) {
@@ -43,7 +45,7 @@ abstract class ShowPageViewServlet extends HttpServlet {
         }
     }
 
-    void showPageView(HttpServletRequest req, HttpServletResponse resp, String path) {
+    public void showPageView(HttpServletRequest req, HttpServletResponse resp, String path) {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(path);
         try {
             requestDispatcher.forward(req, resp);

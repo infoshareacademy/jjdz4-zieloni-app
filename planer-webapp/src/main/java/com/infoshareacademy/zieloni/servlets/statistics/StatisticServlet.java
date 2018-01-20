@@ -1,4 +1,6 @@
-package com.infoshareacademy.zieloni.servlets;
+package com.infoshareacademy.zieloni.servlets.statistics;
+
+import com.infoshareacademy.zieloni.servlets.ShowPageViewServlet;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +11,7 @@ public class StatisticServlet extends ShowPageViewServlet {
 
 
     @Override
-    void start(HttpServletRequest req, HttpServletResponse resp) {
+    public void start(HttpServletRequest req, HttpServletResponse resp) {
         resetViewState(req);
         setUserList(req);
         showStatistics(req, resp);
@@ -17,7 +19,7 @@ public class StatisticServlet extends ShowPageViewServlet {
 
 
     private void showStatistics(HttpServletRequest req, HttpServletResponse resp) {
-        req.getSession().setAttribute(OPEN_STATISTICS_USER, true);
+        req.setAttribute(SHOW_STATISTICS_USER, true);
         showPageView(req, resp, "/index.jsp");
     }
 }

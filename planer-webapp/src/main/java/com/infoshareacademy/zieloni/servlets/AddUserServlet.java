@@ -15,7 +15,7 @@ public class AddUserServlet extends ShowPageViewServlet {
 
 
     @Override
-    void start(HttpServletRequest req, HttpServletResponse resp) {
+    public void start(HttpServletRequest req, HttpServletResponse resp) {
         addUserService.init(req, resp);
         showPageView(req, resp, "/index.jsp");
 

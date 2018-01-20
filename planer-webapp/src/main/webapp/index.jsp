@@ -40,7 +40,7 @@
         <%@ include file="navbar.jsp" %>
     </div>
     <div class="main-box">
-        <%@ include file="mainview.jsp" %>
+        <%@ include file="main-view.jsp" %>
     </div>
 </body>
 </html>

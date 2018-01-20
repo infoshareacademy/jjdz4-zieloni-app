@@ -15,7 +15,7 @@
                 <tbody style="height:400px">
 
                 <c:forEach var="bus" items="${busList}" varStatus="index">
-                    <form method="post" action="/time-schedule">
+                    <form method="post" action="/direct-selector">
                         <tr>
                             <td width="10%"> <c:out value="${index.count}"/></td>
                             <td width="20%"><c:out value="${bus.getBusNumber()}"/></td>

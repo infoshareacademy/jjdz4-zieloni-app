@@ -18,14 +18,17 @@
             <c:choose>
                 <c:when test="${sessionScope.isLogged == true}">
                     <c:choose>
-                        <c:when test="${sessionScope.openStatistics == true}">
+                        <c:when test="${showStatistics}">
                             <%@ include file="statistics.jsp" %>
                         </c:when>
-                        <c:when test="${sessionScope.openBusSchedule == true && busNr == null}">
-                            <%@ include file="timeschedule.jsp" %>
+                        <c:when test="${showTimetable}">
+                            <%@ include file="timetable.jsp" %>
                         </c:when>
-                        <c:when test="${busNr !=null}">
-                            <%@ include file="choicedirection.jsp" %>
+                        <c:when test="${busNr!=null}">
+                            <%@ include file="direction-selector.jsp" %>
+                        </c:when>
+                        <c:when test="${busStops}">
+                            <%@ include file="show-bus-stops.jsp" %>
                         </c:when>
                         <c:otherwise>
                             <%@ include file="submenu.jsp" %>

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MainMenuServlet extends ShowPageViewServlet {
 
     @Override
-    void start(HttpServletRequest req, HttpServletResponse resp) {
+    public void start(HttpServletRequest req, HttpServletResponse resp) {
         resetViewState(req);
         showPageView(req, resp, "/index.jsp");
     }
