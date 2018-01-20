@@ -14,7 +14,7 @@
                 <tbody style="height:400px">
 
                 <c:forEach var="busStop" items="${busStopList}" varStatus="index">
-                    <form method="post" action="">
+                    <form method="post" action="/show-time-table">
                         <tr>
                             <td width="10%"><c:out value="${index.count}"/></td>
                             <td width="70%"><c:out value="${busStop.getNameOfBusStop()}"/></td>

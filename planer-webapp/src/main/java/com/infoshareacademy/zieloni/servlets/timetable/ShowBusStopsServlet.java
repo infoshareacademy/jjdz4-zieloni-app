@@ -30,7 +30,7 @@ public class ShowBusStopsServlet extends ShowPageViewServlet {
             }
             req.setAttribute("busStopList", busStopList);
         }
-
+        req.getSession().setAttribute(DIRECTION_VARIANT,variant);
         req.setAttribute(SHOW_BUS_STOPS, true);
         showPageView(req, resp, "/index.jsp");
 

@@ -29,12 +29,13 @@ public abstract class ShowPageViewServlet extends HttpServlet {
 
     public static final String SHOW_TIME_TABLE = "showTimetable";
     public static final String SHOW_STATISTICS_USER = "showStatistics";
-    public static final String SHOW_BUS_STOPS= "busStops";
+    public static final String SHOW_BUS_STOPS = "busStops";
     public static final String BUS_ID = "bus_id";
+    public static final String DIRECTION_VARIANT = "variant";
 
     public void resetViewState(HttpServletRequest req) {
         //req.getSession().setAttribute(SHOW_STATISTICS_USER, false);
-      //  req.getSession().setAttribute(SHOW_TIME_TABLE, false);
+        //  req.getSession().setAttribute(SHOW_TIME_TABLE, false);
     }
 
     public void setUserList(HttpServletRequest req) {

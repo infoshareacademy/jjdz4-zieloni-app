@@ -22,7 +22,7 @@
                             <%@ include file="statistics.jsp" %>
                         </c:when>
                         <c:when test="${showTimetable}">
-                            <%@ include file="timetable.jsp" %>
+                            <%@ include file="time-table-base.jsp" %>
                         </c:when>
                         <c:when test="${busNr!=null}">
                             <%@ include file="direction-selector.jsp" %>
