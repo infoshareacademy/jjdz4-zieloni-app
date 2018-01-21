@@ -21,8 +21,11 @@
                         <c:when test="${showStatistics}">
                             <%@ include file="statistics.jsp" %>
                         </c:when>
-                        <c:when test="${showTimetable}">
+                        <c:when test="${showTimeTableBase}">
                             <%@ include file="time-table-base.jsp" %>
+                        </c:when>
+                        <c:when test="${showTimeTable}">
+                            <%@ include file="show-time-table.jsp" %>
                         </c:when>
                         <c:when test="${busNr!=null}">
                             <%@ include file="direction-selector.jsp" %>

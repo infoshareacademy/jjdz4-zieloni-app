@@ -123,18 +123,21 @@ public class TimeTableView {
                 busStopName = busDB.get(selectedBus).getBusStopsV2().get(street).getNameOfBusStop().toUpperCase();
             }
 
-            timeTableStringBuilder(courseRecord, map, busStopName, busStopIndex);
+            timeTableStringBuilder(courseRecord, map, busStopName, busStopIndex, selectedBus);
 
         } else {
             System.out.println("Wybierz od 0 do " + (busStopArrSize - 1));
         }
     }
 
-    private static void timeTableStringBuilder(List<RecordCourseDTO> courseRecord, Map<String, List<String>> map, String busStopName, Integer id) {
+    public static StringBuilder timeTableStringBuilder(List<RecordCourseDTO> courseRecord, Map<String, List<String>> map, String busStopName, Integer street, int selectedBus) {
 
-        String type = busDB.get(id).getTypeOfTransport();
+        String type = busDB.get(selectedBus).getTypeOfTransport();
         String busNr = busDB.get(selectedBus).getBusNumber();
         StringBuilder timeTableView = new StringBuilder();
+        timeTableView.append("\n");
+        timeTableView.append("                     Rozkład " + type + " nr " + busNr + " na ulicy " + busStopName);
+        timeTableView.append("\n");
         int counter = 1;
 
         for (int i = 0; i < courseRecord.size(); i++) {
@@ -168,8 +171,8 @@ public class TimeTableView {
                 logger.info("Rozkład jazdy sie nie wyświetlił");
             }
         }
-        System.out.println("________________________________________________________________________________\n");
-        System.out.println("                     Rozkład " + type + " nr " + busNr + " na ulicy " + busStopName);
+
         System.out.println(timeTableView);
+        return timeTableView;
     }
 }

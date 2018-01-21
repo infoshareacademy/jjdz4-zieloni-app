@@ -32,7 +32,7 @@ public class TimeTableBaseServlet extends ShowPageViewServlet {
     }
 
     private void showTimeSchedule(HttpServletRequest req, HttpServletResponse resp) {
-        req.setAttribute(SHOW_TIME_TABLE, true);
+        req.setAttribute(TIME_TABLE_BASE, true);
         showPageView(req, resp, "/index.jsp");
     }
 }
