@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="blackshape">
-    <form id="reg_form" class="form-signin" method="post" action="/registration">
+    <form id="reg_form" class="form-signin" method="post" action="/add-user">
         <c:choose>
             <c:when test="${headerText== null}">
                 <h2 class="form-signin-heading">Utwórz nowe konto</h2>

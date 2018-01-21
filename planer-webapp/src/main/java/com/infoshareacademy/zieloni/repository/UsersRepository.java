@@ -34,7 +34,6 @@ public class UsersRepository {
     public boolean removeUser(Users user) {
         Users removedUser = entityManager.find(Users.class, user.getId());
         entityManager.remove(removedUser);
-        // entityManager.remove(entityManager.contains(user) ? user : entityManager.merge(user));
         return true;
     }
 

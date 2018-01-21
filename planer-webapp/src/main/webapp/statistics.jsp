@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<div class="blackshape" style="width: 800px;">
+<div class="blackshape" style="width: 800px; height: 500px;">
     <h3>STATYSTYKI</h3>
     <table class="table table-dark">
         <thead>
@@ -17,7 +17,7 @@
         </thead>
         <tbody>
         <c:forEach var="user" items="${userList}">
-            <form method="post" action="/registration">
+            <form method="post" action="/remove-user">
                 <tr <c:if test="${user.gender.toString()=='MAN'}">style="background-color: rgba(98,189,255,0.51);"</c:if>>
 
                     <td><c:out value="${user.id}"/></td>
@@ -38,8 +38,7 @@
         </tbody>
     </table>
 
-    <form class="form-signin" method="post" action="/registration">
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="statistics_button" value="close_statistics">Wróć
-        </button>
+    <form class="form-signin" method="post" action="/main-menu">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" >Wróć</button>
     </form>
 </div>
