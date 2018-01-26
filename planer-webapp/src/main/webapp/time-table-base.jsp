@@ -6,7 +6,7 @@
             <table id="myTable" class="table table-fixedheader table-dark">
                 <thead>
                 <tr>
-                    <th width="10%" scope="col"></th>
+                    <th width="10%" scope="col">id</th>
                     <th width="20%" scope="col">Numer</th>
                     <th width="50%" scope="col">Typ</th>
                     <th width="20%"scope="col">usuń</th>

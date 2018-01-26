@@ -14,6 +14,7 @@ public class RemoveUserServlet extends ShowPageViewServlet {
     public void start(HttpServletRequest req, HttpServletResponse resp) {
         removeUser(req);
         setUserList(req);
+        req.setAttribute(SHOW_STATISTICS_USER, true);
         showPageView(req, resp, "/index.jsp");
     }
 

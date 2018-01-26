@@ -1,15 +1,18 @@
 package com.infoshareacademy.zieloni.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
 @Table(name = "events")
 public class Events {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(nullable=false, unique=true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, unique = true)
     private Long id;
 
     private LocalDateTime startTime; // Czas rozpoczęcia wydarzenia
@@ -22,44 +25,4 @@ public class Events {
 
     private String summary; // Opis wydarzenia
 
-
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
 }
