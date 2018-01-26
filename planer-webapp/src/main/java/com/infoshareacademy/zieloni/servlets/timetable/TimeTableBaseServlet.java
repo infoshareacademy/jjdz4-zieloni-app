@@ -19,7 +19,6 @@ public class TimeTableBaseServlet extends ShowPageViewServlet {
         resetViewState(req);
         setBusList(req);
         showTimeSchedule(req, resp);
-
     }
 
     void setBusList(HttpServletRequest req) {
