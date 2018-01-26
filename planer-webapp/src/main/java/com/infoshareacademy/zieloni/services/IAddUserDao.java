@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Local
-public interface IAddUserService {
+public interface IAddUserDao {
 
     void init(HttpServletRequest req, HttpServletResponse resp);
 

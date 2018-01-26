@@ -1,9 +1,8 @@
 package com.infoshareacademy.zieloni.services;
 
-import com.infoshareacademy.zieloni.domain.Roles;
-import com.infoshareacademy.zieloni.domain.Statistic;
-import com.infoshareacademy.zieloni.domain.Users;
-import com.infoshareacademy.zieloni.repository.UsersRepository;
+import com.infoshareacademy.zieloni.model.Roles;
+import com.infoshareacademy.zieloni.model.Statistic;
+import com.infoshareacademy.zieloni.model.Users;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @Stateless
-public class AddUserServiceBean extends ValidationForm implements IAddUserService {
+public class AddUserService extends ValidationForm implements IAddUserDao {
 
     @EJB
-    private UsersRepository usersRepositoryDao;
+    private IUsersDao usersRepositoryDao;
     private static String registrationLevel = "sessionSignInLevel";
-    private final Logger logger = LoggerFactory.getLogger(AddUserServiceBean.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(AddUserService.class.getName());
     private Users user;
 
     @Override

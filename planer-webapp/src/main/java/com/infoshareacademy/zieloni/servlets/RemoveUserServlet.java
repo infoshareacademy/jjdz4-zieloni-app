@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni.servlets;
 
-import com.infoshareacademy.zieloni.domain.Users;
+import com.infoshareacademy.zieloni.model.Users;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -1,6 +1,4 @@
-package com.infoshareacademy.zieloni.domain;
-
-import lombok.Getter;
+package com.infoshareacademy.zieloni.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

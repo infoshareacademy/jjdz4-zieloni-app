@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni.servlets;
 
-import com.infoshareacademy.zieloni.dao.UsersRepositoryDao;
+import com.infoshareacademy.zieloni.services.IUsersDao;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -13,7 +13,7 @@ import java.io.IOException;
 public abstract class ShowPageViewServlet extends HttpServlet {
 
     @EJB
-    UsersRepositoryDao usersRepositoryDao;
+    IUsersDao usersRepositoryDao;
 
     public abstract void start(HttpServletRequest req, HttpServletResponse resp);
 

@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.domain;
+package com.infoshareacademy.zieloni.model;
 
 import javax.persistence.*;
 
