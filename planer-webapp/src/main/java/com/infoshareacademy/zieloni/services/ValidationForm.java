@@ -1,8 +1,7 @@
 package com.infoshareacademy.zieloni.services;
 
-import com.infoshareacademy.zieloni.domain.Gender;
-import com.infoshareacademy.zieloni.domain.Users;
-import com.infoshareacademy.zieloni.repository.UsersRepository;
+import com.infoshareacademy.zieloni.model.Gender;
+import com.infoshareacademy.zieloni.model.Users;
 import com.infoshareacademy.zieloni.utils.TextFormatUtil;
 import org.jboss.crypto.CryptoUtil;
 import org.slf4j.Logger;
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 abstract class ValidationForm {
 
     @EJB
-    private UsersRepository usersRepositoryDao;
+    private IUsersDao usersRepositoryDao;
 
     private static String error = "errorMessage";
     private static String registrationLevel = "sessionSignInLevel";

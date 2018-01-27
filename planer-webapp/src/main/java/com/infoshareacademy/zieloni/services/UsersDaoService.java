@@ -1,15 +1,20 @@
-package com.infoshareacademy.zieloni.repository;
+package com.infoshareacademy.zieloni.services;
 
 
-import com.infoshareacademy.zieloni.domain.Users;
+import com.infoshareacademy.zieloni.model.Users;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
-public class UsersRepository {
+public class UsersDaoService implements IUsersDao {
+
+    @EJB
+    private IUsersDao usersRepository;
 
     @PersistenceContext(unitName = "pUnit")
     private EntityManager entityManager;
@@ -51,5 +56,12 @@ public class UsersRepository {
         return entityManager.createNamedQuery("getAll").getResultList();
     }
 
-
+    @Override
+    public List<String> getUsersNames() {
+        List<String> usersNames = new ArrayList<>();
+        for (Users user : getUsersList()) {
+            usersNames.add(user.getName());
+        }
+        return usersNames;
+    }
 }

@@ -1,13 +1,13 @@
-package com.infoshareacademy.zieloni.dao;
+package com.infoshareacademy.zieloni.services;
 
-import com.infoshareacademy.zieloni.domain.Users;
+import com.infoshareacademy.zieloni.model.Users;
 
 import javax.ejb.Local;
 import java.util.List;
 
 
 @Local
-public interface UsersRepositoryDao {
+public interface IUsersDao {
 
     boolean addUser(Users user);
 
@@ -20,4 +20,6 @@ public interface UsersRepositoryDao {
     Users getUserByLogin(String login);
 
     List<Users> getUsersList();
+
+    List<String> getUsersNames();
 }

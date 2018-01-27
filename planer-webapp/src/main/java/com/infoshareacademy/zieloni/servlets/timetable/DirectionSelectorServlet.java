@@ -34,5 +34,4 @@ public class DirectionSelectorServlet extends ShowPageViewServlet {
         showPageView(req, resp, "/index.jsp");
     }
 
-
 }

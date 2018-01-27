@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/statistic")
 public class StatisticServlet extends ShowPageViewServlet {
 
-
     @Override
     public void start(HttpServletRequest req, HttpServletResponse resp) {
         resetViewState(req);

@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni.servlets;
 
-import com.infoshareacademy.zieloni.services.IAddUserService;
+import com.infoshareacademy.zieloni.services.IAddUserDao;
 
 import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AddUserServlet extends ShowPageViewServlet {
 
     @EJB
-    IAddUserService addUserService;
+    IAddUserDao addUserService;
 
 
     @Override

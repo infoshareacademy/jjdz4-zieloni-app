@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni.servlets;
 
-import com.infoshareacademy.zieloni.domain.Users;
+import com.infoshareacademy.zieloni.model.Users;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +14,7 @@ public class RemoveUserServlet extends ShowPageViewServlet {
     public void start(HttpServletRequest req, HttpServletResponse resp) {
         removeUser(req);
         setUserList(req);
+        req.setAttribute(SHOW_STATISTICS_USER, true);
         showPageView(req, resp, "/index.jsp");
     }
 
