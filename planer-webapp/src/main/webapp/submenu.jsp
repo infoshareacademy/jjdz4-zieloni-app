@@ -11,9 +11,13 @@
                 name="menu_button" value="">Rozkład jazdy
         </button>
     </form>
-    <form class="form-signin" method="post" action="">
+    <form class="form-signin" method="post" action="/calendar">
         <button class="btn btn-lg btn-primary btn-block" type="submit"
                 name="menu_button" value="">Kalendarz</button>
+    </form>
+    <form class="form-signin" method="post" action="/about">
+        <button class="btn btn-lg btn-primary btn-block" type="submit"
+                name="menu_button" value="">O nas</button>
     </form>
 
 </div>
