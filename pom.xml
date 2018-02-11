@@ -11,6 +11,7 @@
     <modules>
         <module>planer-cli</module>
         <module>planer-webapp</module>
+        <module>planer-inwigilator</module>
     </modules>
 
     <properties>
