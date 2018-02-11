@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 
 public class ServletInitializer extends HttpServlet {
 
+    @Override
     public void init() throws ServletException {
         log("************");
         log("*** Servlet Initialized successfully--bus database is load ***..");

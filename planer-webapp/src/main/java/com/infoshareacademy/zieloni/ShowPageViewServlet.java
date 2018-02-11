@@ -38,8 +38,6 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     }
 
     public void resetViewState(HttpServletRequest req) {
-        //req.getSession().setAttribute(SHOW_STATISTICS_USER, false);
-        //  req.getSession().setAttribute(TIME_TABLE_BASE, false);
     }
 
     public void setUserList(HttpServletRequest req) {
