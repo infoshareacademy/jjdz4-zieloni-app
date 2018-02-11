@@ -26,19 +26,19 @@
                         </c:when>
 
                         <c:when test="${showStatistics}">
-                            <%@ include file="statistics.jsp" %>
+                            <%@ include file="statistics/statistics.jsp" %>
                         </c:when>
                         <c:when test="${showTimeTableBase}">
-                            <%@ include file="time-table-base.jsp" %>
+                            <%@ include file="timetable/time-table-base.jsp" %>
                         </c:when>
                         <c:when test="${showTimeTable}">
-                            <%@ include file="show-time-table.jsp" %>
+                            <%@ include file="timetable/show-time-table.jsp" %>
                         </c:when>
                         <c:when test="${busNr!=null}">
-                            <%@ include file="direction-selector.jsp" %>
+                            <%@ include file="timetable/direction-selector.jsp" %>
                         </c:when>
                         <c:when test="${busStops}">
-                            <%@ include file="show-bus-stops.jsp" %>
+                            <%@ include file="timetable/show-bus-stops.jsp" %>
                         </c:when>
                         <c:otherwise>
                             <%@ include file="submenu.jsp" %>
@@ -47,7 +47,7 @@
 
                 </c:when>
                 <c:otherwise>
-                    <%@ include file="registration.jsp" %>
+                    <%@ include file="registration/registration.jsp" %>
 
                 </c:otherwise>
             </c:choose>

@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>ServletInitializer</servlet-name>
-        <servlet-class>com.infoshareacademy.zieloni.servlets.ServletInitializer</servlet-class>
+        <servlet-class>com.infoshareacademy.zieloni.timetable.ServletInitializer</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
