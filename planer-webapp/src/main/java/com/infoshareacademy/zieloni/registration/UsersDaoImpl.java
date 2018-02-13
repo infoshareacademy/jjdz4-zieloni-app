@@ -1,7 +1,7 @@
 package com.infoshareacademy.zieloni.registration;
 
 
-import com.infoshareacademy.zieloni.registration.model.Users;
+import com.infoshareacademy.zieloni.registration.model.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,12 +16,12 @@ public class UsersDaoImpl implements UsersDao {
     @PersistenceContext(unitName = "pUnit")
     private EntityManager entityManager;
 
-    public boolean addUser(Users user) {
+    public boolean addUser(User user) {
         entityManager.persist(user);
         return true;
     }
 
-    public boolean editUser(Users user) {
+    public boolean editUser(User user) {
         entityManager.createNamedQuery("updateUser")
                 .setParameter("id", user.getId())
                 .setParameter("name", user.getName())
@@ -33,30 +33,30 @@ public class UsersDaoImpl implements UsersDao {
         return true;
     }
 
-    public boolean removeUser(Users user) {
-        Users removedUser = entityManager.find(Users.class, user.getId());
+    public boolean removeUser(User user) {
+        User removedUser = entityManager.find(User.class, user.getId());
         entityManager.remove(removedUser);
         return true;
     }
 
-    public Users getUserById(int id) {
-        return entityManager.find(Users.class, id);
+    public User getUserById(int id) {
+        return entityManager.find(User.class, id);
     }
 
-    public Users getUserByLogin(String login) {
-        return (Users) entityManager.createNamedQuery("getUserByLogin")
+    public User getUserByLogin(String login) {
+        return (User) entityManager.createNamedQuery("getUserByLogin")
                 .setParameter("login", login)
                 .getSingleResult();
     }
 
-    public List<Users> getUsersList() {
+    public List<User> getUsersList() {
         return entityManager.createNamedQuery("getAll").getResultList();
     }
 
     @Override
     public List<String> getUsersNames() {
         List<String> usersNames = new ArrayList<>();
-        for (Users user : getUsersList()) {
+        for (User user : getUsersList()) {
             usersNames.add(user.getName());
         }
         return usersNames;

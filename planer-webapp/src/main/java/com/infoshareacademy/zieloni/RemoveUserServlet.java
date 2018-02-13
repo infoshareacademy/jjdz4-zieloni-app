@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.registration.model.Users;
+import com.infoshareacademy.zieloni.registration.model.User;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class RemoveUserServlet extends ShowPageViewServlet {
     private void removeUser(HttpServletRequest req) {
         log(Integer.parseInt(req.getParameter(REMOVE_USER)) + " klikniety remove " + req.getParameter(REMOVE_USER));
         int id = Integer.parseInt(req.getParameter(REMOVE_USER));
-        Users removedUser = usersRepositoryDao.getUserById(id);
+        User removedUser = usersRepositoryDao.getUserById(id);
         usersRepositoryDao.removeUser(removedUser);
     }
 }

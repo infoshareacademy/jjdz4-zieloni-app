@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni.statistics;
 
-import com.infoshareacademy.zieloni.registration.model.Users;
+import com.infoshareacademy.zieloni.registration.model.User;
 import com.infoshareacademy.zieloni.statistics.model.Statistic;
 
 import javax.ejb.Stateless;
@@ -19,7 +19,7 @@ public class StatisticsServiceImpl implements StatisticsService {
                 .getSingleResult();
     }
 
-    public void updateStatisticsByUser(Users user) {
+    public void updateStatisticsByUser(User user) {
         entityManager.createNamedQuery("updateStatistic")
                 .setParameter("id", user.getId())
                 .executeUpdate();

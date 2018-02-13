@@ -2,7 +2,7 @@ package com.infoshareacademy.zieloni.registration;
 
 import com.infoshareacademy.zieloni.statistics.model.Statistic;
 import com.infoshareacademy.zieloni.registration.model.Roles;
-import com.infoshareacademy.zieloni.registration.model.Users;
+import com.infoshareacademy.zieloni.registration.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,9 +31,9 @@ public class RegistrationServiceImpl extends ValidationForm implements Registrat
     public void addNewUser(HttpServletRequest req, String login) {
         int step = 1;
 
-        Users user = null;
+        User user = null;
         if (req.getSession().getAttribute("user") == null) {
-            user = new Users();
+            user = new User();
             req.getSession().setAttribute("user", user);
         }
         nextStep(req, step, login);
@@ -52,12 +52,12 @@ public class RegistrationServiceImpl extends ValidationForm implements Registrat
             req.getSession().setAttribute("user", null);
         }
 
-        Users user = (Users) req.getSession().getAttribute("user");
+        User user = (User) req.getSession().getAttribute("user");
         switchMethods(req, step, user, login);
 
     }
 
-    public void switchMethods(HttpServletRequest req, int step, Users user, String loggedUser) {
+    public void switchMethods(HttpServletRequest req, int step, User user, String loggedUser) {
         if (step == 1) {
             req.getSession().setAttribute(registrationLevel, step);
         } else if (step == 2) {
@@ -70,7 +70,7 @@ public class RegistrationServiceImpl extends ValidationForm implements Registrat
     }
 
     @Override
-    public void addToDataBase(HttpServletRequest req, Users user, String loggedUser) {
+    public void addToDataBase(HttpServletRequest req, User user, String loggedUser) {
 
         Roles role = new Roles();
         role.setUserRole("user");
@@ -92,6 +92,7 @@ public class RegistrationServiceImpl extends ValidationForm implements Registrat
         }
         req.getSession().setAttribute(registrationLevel, 4);
     }
+
 
 }
 

@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni.registration;
 
-import com.infoshareacademy.zieloni.registration.model.Users;
+import com.infoshareacademy.zieloni.registration.model.User;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -9,17 +9,17 @@ import java.util.List;
 @Local
 public interface UsersDao {
 
-    boolean addUser(Users user);
+    boolean addUser(User user);
 
-    boolean editUser(Users user);
+    boolean editUser(User user);
 
-    boolean removeUser(Users user);
+    boolean removeUser(User user);
 
-    Users getUserById(int id);
+    User getUserById(int id);
 
-    Users getUserByLogin(String login);
+    User getUserByLogin(String login);
 
-    List<Users> getUsersList();
+    List<User> getUsersList();
 
     List<String> getUsersNames();
 }

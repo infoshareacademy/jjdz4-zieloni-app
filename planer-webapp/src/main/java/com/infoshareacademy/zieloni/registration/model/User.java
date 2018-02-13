@@ -10,12 +10,12 @@ import java.io.Serializable;
 @Entity
 @Table(name = "users")
 @NamedQueries({
-        @NamedQuery(name = "getUserByLogin", query = "from Users u where u.login=:login"),
-        @NamedQuery(name = "getAll", query = "from Users"),
-        @NamedQuery(name = "updateUser", query = "update Users u  set u.name =:name, u.surname=:surname, u.age=:age, u.gender=:gender where u.id=:id"),
+        @NamedQuery(name = "getUserByLogin", query = "from User u where u.login=:login"),
+        @NamedQuery(name = "getAll", query = "from User"),
+        @NamedQuery(name = "updateUser", query = "update User u  set u.name =:name, u.surname=:surname, u.age=:age, u.gender=:gender where u.id=:id"),
 })
 
-public class Users implements Serializable {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni.statistics.model;
 
-import com.infoshareacademy.zieloni.registration.model.Users;
+import com.infoshareacademy.zieloni.registration.model.User;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,7 +24,7 @@ public class Statistic implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private Users user;
+    private User user;
 
     @Column
     private int editUserCounter;
