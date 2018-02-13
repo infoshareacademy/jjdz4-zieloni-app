@@ -1,7 +1,7 @@
 package com.infoshareacademy.zieloni.registration;
 
 import com.infoshareacademy.zieloni.registration.model.Gender;
-import com.infoshareacademy.zieloni.registration.model.Users;
+import com.infoshareacademy.zieloni.registration.model.User;
 import com.infoshareacademy.zieloni.utils.TextFormatUtil;
 import org.jboss.crypto.CryptoUtil;
 import org.slf4j.Logger;
@@ -19,19 +19,19 @@ abstract class ValidationForm {
     private static String registrationLevel = "sessionSignInLevel";
     private static final String NAME = "name";
     private static final String SURNAME = "surname";
-    private static final String GENDER = "gender";
+    private static final String GENDER_PARAMETER = "gender";
     private final Logger logger = LoggerFactory.getLogger(ValidationForm.class.getName());
 
-    abstract void addToDataBase(HttpServletRequest req, Users user, String loggedUser);
+    abstract void addToDataBase(HttpServletRequest req, User user, String loggedUser);
 
-    protected void validationNameSurname(HttpServletRequest req, Users user, String loggedUser) {
+    protected void validationNameSurname(HttpServletRequest req, User user, String loggedUser) {
         logger.info("validationNameSurname");
 
         String nameInput = req.getParameter(NAME);
         String surnameInput = req.getParameter(SURNAME);
 
         if (loggedUser != null && user == null) {
-            user = new Users();
+            user = new User();
         }
 
         req.getSession().setAttribute("user", user);
@@ -56,7 +56,7 @@ abstract class ValidationForm {
         req.setAttribute(SURNAME, surnameInput);
     }
 
-    protected void validationEmailPassword(HttpServletRequest req, Users user) {
+    protected void validationEmailPassword(HttpServletRequest req, User user) {
         req.getSession().setAttribute(registrationLevel, 2);
 
         String email = req.getParameter("email");
@@ -84,10 +84,10 @@ abstract class ValidationForm {
 
     }
 
-    protected void validationAgeGender(HttpServletRequest req, Users user, String loggedUser) {
+    protected void validationAgeGender(HttpServletRequest req, User user, String loggedUser) {
         logger.info("validationAgeGender");
 
-        String gender = req.getParameter(GENDER);
+        String gender = req.getParameter(GENDER_PARAMETER);
         String err0 = "Wpisz poprawnie wiek";
         String err1 = "Wybierz płeć";
 
@@ -96,12 +96,12 @@ abstract class ValidationForm {
 
         try {
             age = Integer.parseInt(req.getParameter("age"));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             logger.info("Błednie wpisany wiek" + e);
         }
 
         req.setAttribute("age", age);
-        req.setAttribute(GENDER, gender);
+        req.setAttribute(GENDER_PARAMETER, gender);
 
         if (age <= 0) {
             req.setAttribute(error, err0);
@@ -117,8 +117,8 @@ abstract class ValidationForm {
     }
 
 
-    private void setUserGender(HttpServletRequest req, Users user) {
-        String gender = req.getParameter(GENDER);
+    private void setUserGender(HttpServletRequest req, User user) {
+        String gender = req.getParameter(GENDER_PARAMETER);
         if ("MAN".equals(gender)) {
             user.setGender(Gender.MAN);
         } else if ("WOMAN".equals(gender)) {

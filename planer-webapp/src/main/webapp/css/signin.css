@@ -133,7 +133,7 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td {
     text-align: center;
     padding-bottom: 30px;
     text-shadow: 4px 4px 4px rgb(0, 0, 0);
-    font: normal 46px/normal Bebas Neue, Gadget, sans-serif;
+    font: normal 46px/normal Trebuchet MS, Gadget, sans-serif;
     color: rgb(255, 255, 255);
 }
 
@@ -144,10 +144,13 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td {
     text-align: center;
     border-top: 10px;
     border-bottom: 100px;
-    font: normal 46px/normal Bebas Neue, Gadget, sans-serif;
+    font: normal 46px/normal Trebuchet MS, Gadget, sans-serif;
     padding-bottom: 50px;
 }
 
+.error{
+    color: #ff2600;
+}
 .center-in_column {
     min-width: 100px;
     margin-left: auto;
@@ -156,7 +159,7 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td {
     text-align: center;
     border-top: 10px;
     border-bottom: 10px;
-    font: normal 46px/normal Bebas Neue, Gadget, sans-serif;
+    font: normal 46px/normal Trebuchet MS, Gadget, sans-serif;
     padding-bottom: 20px;
 }
 
@@ -196,7 +199,7 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td {
     outline: none;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    font: normal 16px/normal Bebas Neue, Gadget, sans-serif;
+    font: normal 16px/normal Trebuchet MS, Gadget, sans-serif;
     color: rgb(255, 255, 255);
     text-decoration: none;
     text-align: center;
