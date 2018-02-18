@@ -1,6 +1,7 @@
 package com.infoshareacademy.zieloni.registration;
 
 
+
 import com.infoshareacademy.zieloni.registration.model.User;
 
 import javax.ejb.Stateless;
@@ -61,4 +62,10 @@ public class UsersDaoImpl implements UsersDao {
         }
         return usersNames;
     }
+
+   /* @Override
+    public Roles role_group(String login) {
+        return (Roles) entityManager.createNamedQuery("role_group").getSingleResult();
+        //return null;
+    }*/
 }

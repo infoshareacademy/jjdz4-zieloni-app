@@ -8,6 +8,11 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "roles")
+@NamedQueries({
+        @NamedQuery(name= "role_group", query = "from User u join Roles  r on r.user =u.role where u.login=:login"),
+
+})
+
 public class Roles implements Serializable {
 
     @Id
