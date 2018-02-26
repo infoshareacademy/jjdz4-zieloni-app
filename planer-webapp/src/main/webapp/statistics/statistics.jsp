@@ -19,7 +19,7 @@
         <tbody>
         <c:forEach var="user" items="${userList}">
             <form method="post" action="/edit-user">
-                <td <c:if test="${user.gender.toString()=='MAN'}">style="background-color: rgba(98,189,255,0.51);"</c:if>>
+                <td <c:if test="${user.gender.toString()=='WOMEN'}">style="background-color: rgba(98,189,255,0.51);"</c:if>>
 
                     <td><c:out value="${user.id}"/></td>
                     </td>
