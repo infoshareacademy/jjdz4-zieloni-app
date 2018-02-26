@@ -23,23 +23,25 @@
 
                     <td><c:out value="${user.id}"/>
                     </td>
-                    <td><c:out value="${user.name}"/>
-                        <input type="text" class="form-control" placeholder="imie" name="name" autofocus value="${user.name}"></td>
-                    <td><c:out value="${user.surname}"/>
-                        <input type="text" class="form-control" placeholder="imie" name="name" autofocus value="${user.surname}"></td>
-                    <td><c:out value="${user.login}"/>
-                        <input type="text" class="form-control" placeholder="imie" name="name" autofocus value="${user.login}"></td>
-                    <td><c:out value="${user.age}"/>
-                        <input type="text" class="form-control" placeholder="imie" name="name" autofocus value="${user.age}"></td>
-                    <td><c:out value="${user.gender}"/>
-                        <input type="text" class="form-control" placeholder="imie" name="name" autofocus value="${user.gender}"></td>
+                    <%--<td><c:out value="${user.name}"/>--%>
+                       <td> <input type="text" class="form-control" placeholder="imie" name="name" autofocus value="${user.name}"></td>
+                   <%-- <td><c:out value="${user.surname}"/>--%>
+                <td> <input type="text" class="form-control" placeholder="nazwisko" name="name" autofocus value="${user.surname}"></td>
+                    <%--<td><c:out value="${user.login}"/>--%>
+                <td>    <input type="text" class="form-control" placeholder="login" name="name" autofocus value="${user.login}"></td>
+                  <%--  <td><c:out value="${user.age}"/>--%>
+                <td>    <input type="text" class="form-control" placeholder="wiek" name="name" autofocus value="${user.age}"></td>
+                   <%-- <td><c:out value="${user.gender}"/>--%>
+                <td>    <input type="text" class="form-control" placeholder="plec" name="name" autofocus value="${user.gender}"></td>
                     <td><c:out value="${user.statistic.editUserCounter}"/></td>
-                    <td><c:out value="${user.role.userRole}"/>
-                        <input type="text" class="form-control" placeholder="imie" name="name" autofocus value="${user.role.userRole}"></td>
-                    <td>
+                   <%-- <td><c:out value="${user.role.userRole}"/>--%>
+                <td>    <input type="text" class="form-control" placeholder="rola" name="name" autofocus value="${user.role.userRole}"></td>
+              <%--  <form method="post" action="/remove-user">--%>
+                <td>
                       <%--  <a href="/remove-user?id=<button class="btn btn-lg btn-primary btn-block" type="submit" name="remove" value="${user.id}"><img src="../svg/ic_delete_forever_white_24px.svg"/></button></a>--%>
-                    <%--<a href="/remove-user?id=${user.id}"><button class="btn btn-lg btn-primary btn-block" type="submit" name="remove" value="${user.id}"><img src="../svg/ic_delete_forever_white_24px.svg"/></button></a>--%>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" name="remove" value="${user.id}"><img src="../svg/ic_delete_forever_white_24px.svg"/></button></td>
+                    <a href="/remove-user?id=${user.id}"><button class="btn btn-lg btn-primary btn-block" type="submit" name="remove" value="${user.id}"><img src="../svg/ic_delete_forever_white_24px.svg"/></button></a>
+                        <%--<button class="btn btn-lg btn-primary btn-block" type="submit" name="remove" value="${user.id}"><img src="../svg/ic_delete_forever_white_24px.svg"/></button></td>--%>
+               <%-- </form>--%>
               <td>      <button class="btn btn-lg btn-primary btn-block" type="submit" name="edit" value="${user.id}"><img src="../svg/ic_border_color_black_24px.svg"/></button></td>
 
                 </tr>
