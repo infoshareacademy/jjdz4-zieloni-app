@@ -21,7 +21,7 @@
             <form method="post" action="/edit-user">
                 <td <c:if test="${user.gender.toString()=='MAN'}">style="background-color: rgba(98,189,255,0.51);"</c:if>>
 
-                    <td><c:out value="${user.id}"/>
+                    <td><c:out value="${user.id}"/></td>
                     </td>
                     <%--<td><c:out value="${user.name}"/>--%>
                        <td> <input type="text" class="form-control" placeholder="imie" name="name" autofocus value="${user.name}"></td>
@@ -43,6 +43,7 @@
                         <%--<button class="btn btn-lg btn-primary btn-block" type="submit" name="remove" value="${user.id}"><img src="../svg/ic_delete_forever_white_24px.svg"/></button></td>--%>
                <%-- </form>--%>
               <td>      <button class="btn btn-lg btn-primary btn-block" type="submit" name="edit" value="${user.id}"><img src="../svg/ic_border_color_black_24px.svg"/></button></td>
+
 
                 </tr>
             </form>
