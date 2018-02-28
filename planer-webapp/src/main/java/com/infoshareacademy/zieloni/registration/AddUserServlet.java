@@ -1,6 +1,7 @@
 package com.infoshareacademy.zieloni.registration;
 
 import com.infoshareacademy.zieloni.ShowPageViewServlet;
+import com.infoshareacademy.zieloni.statistics.model.Statistic;
 
 import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,8 @@ public class AddUserServlet extends ShowPageViewServlet {
     @Override
     public void start(HttpServletRequest req, HttpServletResponse resp) {
         addUserService.init(req);
+        Statistic statistic = new Statistic();
+        statistic.setEditUserCounter(0);
         showPageView(req, resp, "/index.jsp");
 
     }

@@ -15,7 +15,7 @@ public class UsersDaoImpl implements UsersDao {
 
     @PersistenceContext(unitName = "pUnit")
     private EntityManager entityManager;
-
+    private static final String EDIT_USER= "edit";
     public boolean addUser(User user) {
         entityManager.persist(user);
         return true;

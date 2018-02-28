@@ -42,6 +42,26 @@ public class User implements Serializable {
             mappedBy = "user")
     private Statistic statistic;
 
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", login='" + login + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+
+                '}';
+    }
 }
