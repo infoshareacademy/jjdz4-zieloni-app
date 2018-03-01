@@ -1,6 +1,7 @@
 package com.infoshareacademy.zieloni;
 
 import com.infoshareacademy.zieloni.registration.UsersDao;
+import com.infoshareacademy.zieloni.timetable.BusPromotionDao;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -20,9 +21,14 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public static final String SHOW_BUS_STOPS = "busStops";
     public static final String BUS_ID = "bus_id";
     public static final String DIRECTION_VARIANT = "variant";
+    private static final String BUS_PROMOTION = "promotion";
+    private static final String NAME = "name";
+    private static final String STATUS = "status";
+    private static final String TYPE = "type";
 
     @EJB
     UsersDao usersRepositoryDao;
+    BusPromotionDao busPromotionDao;
 
 
     public abstract void start(HttpServletRequest req, HttpServletResponse resp);
@@ -56,4 +62,22 @@ public abstract class ShowPageViewServlet extends HttpServlet {
             log("problem with page: " + e);
         }
     }
+
+    public void setBusList(HttpServletRequest req) {
+        try {
+            req.setAttribute("BusList", busPromotionDao.getBusList());
+        } catch (Exception e) {
+            log(" brak Autobusu");
+        }
+    }
+    public void showPageView1(HttpServletRequest req, HttpServletResponse resp) {
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
+        try {
+            requestDispatcher.forward(req, resp);
+        } catch (Exception e) {
+            log("problem with page: " + e);
+        }
+    }
+
+
 }
