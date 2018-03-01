@@ -65,7 +65,7 @@ public abstract class ShowPageViewServlet extends HttpServlet {
 
     public void setBusList(HttpServletRequest req) {
         try {
-            req.setAttribute("BusList", busPromotionDao.getBusList());
+            req.setAttribute("buslist", busPromotionDao.getBusList());
         } catch (Exception e) {
             log(" brak Autobusu");
         }

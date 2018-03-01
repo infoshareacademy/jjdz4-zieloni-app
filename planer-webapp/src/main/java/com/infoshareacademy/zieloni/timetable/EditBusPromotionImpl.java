@@ -3,10 +3,11 @@ package com.infoshareacademy.zieloni.timetable;
 
 import com.infoshareacademy.zieloni.timetable.model.Bus;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-
+@Stateless
 public class EditBusPromotionImpl implements BusPromotionDao {
 
 
@@ -27,11 +28,11 @@ public class EditBusPromotionImpl implements BusPromotionDao {
         }
 
     @Override
-    public Bus getBusById(int id) {
-        {
-            return entityManager.find(Bus.class, id);
-        }
+    public Bus getBusById(Long id) {
+        return entityManager.find(Bus.class, id);
     }
+
+
 
     @Override
     public List<Bus> getBusList() {

@@ -11,6 +11,6 @@ public interface BusPromotionDao {
 
     boolean editBusPromotion(Bus bus);
 
-    Bus getBusById(int id);
+    Bus getBusById(Long id);
     List<Bus> getBusList();
 }
