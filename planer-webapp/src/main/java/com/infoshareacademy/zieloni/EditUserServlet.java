@@ -16,7 +16,6 @@ public class EditUserServlet extends ShowPageViewServlet {
     private static final String AGE = "age";
     private static final String GENDER_PARAMETER = "gender";
 
-
     @Override
     public void start(HttpServletRequest req, HttpServletResponse resp) {
         editUser(req);

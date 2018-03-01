@@ -22,24 +22,16 @@
                 <tr
                         <c:if test="${user.gender.toString()=='MAN'}">style="background-color: rgba(98,189,255,0.51);"</c:if>>
 
-
-                    <td><input type="text" class="form-control" placeholder="id" name="id" autofocus
-                               value="${user.id}"></td>
-
-
+                    <td><input type="text" class="form-control" placeholder="id" name="id" autofocus value="${user.id}">
+                    </td>
                     <td><input type="text" class="form-control" placeholder="imie" name="name" autofocus
                                value="${user.name}"></td>
-
                     <td><input type="text" class="form-control" placeholder="nazwisko" name="surname" autofocus
                                value="${user.surname}"></td>
-
                     <td><input type="text" class="form-control" placeholder="login" name="login" autofocus
                                value="${user.login}"></td>
-
                     <td><input type="text" class="form-control" placeholder="wiek" name="age" autofocus
                                value="${user.age}"></td>
-
-
                     <c:if test="${user.gender.toString()=='MAN'}">
                         <td><select name="gender" size="1" autofocus>
                             <option VALUE="MAN">MAN</option>
@@ -52,23 +44,15 @@
                             <option VALUE="MAN">MAN</option>
                         </select></td>
                     </c:if>
-
-
-                    <td><input type="text" class="form-control" placeholder="rola" name="userRole" autofocus
-                               value="${user.role.userRole}"></td>
-
+                    <td><input type="text" class="form-control" placeholder="rola" name="userRole"
+                               autofocusvalue="${user.role.userRole}"></td>
                     <td>
-                        /ic_delete_forever_white_24px.svg"/></button></a>--%>
-                        <a href="/remove-user?id=${user.id}">
-                            <button class="btn btn-lg btn-primary btn-block" type="submit" name="remove"
-                                    value="${user.id}">
-                                <img src="../svg/ic_delete_forever_white_24px.svg"/></button>
+                        <a href="/remove-user?remove=${user.id}">
+                            <img src="../svg/ic_delete_forever_white_24px.svg"/>
                         </a>
-
                     <td>
                         <button class="btn btn-lg btn-primary btn-block" type="submit" name="edit" value="${user.id}">
-                            <img
-                                    src="../svg/ic_border_color_black_24px.svg"/></button>
+                            <img src="../svg/ic_border_color_black_24px.svg"/></button>
                     </td>
                 </tr>
             </form>
