@@ -13,7 +13,11 @@
 
         </c:when>
     </c:choose>
-
+    <form class="form-signin" method="post" action="/rest-api-raport">
+        <button class="btn btn-lg btn-primary btn-block" type="submit"
+                name="menu_button" value="">Raport
+        </button>
+    </form>
 
     <form class="form-signin" method="post" action="/time-table">
         <button class="btn btn-lg btn-primary btn-block" type="submit"
