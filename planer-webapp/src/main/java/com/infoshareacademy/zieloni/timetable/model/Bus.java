@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name = "bus")
+
 @NamedQueries({
         @NamedQuery(name = "getBusByName", query = "from Bus b where b.name=:name"),
         @NamedQuery(name = "getAllBus", query = "from Bus"),

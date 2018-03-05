@@ -10,7 +10,7 @@
                         name="menu_button" value="">Statystyki
                 </button>
             </form>
-            <form class="form-signin" method="post" action="/bus-promotion">
+            <form class="form-signin" method="post" action="/bus-promotion1">
                 <button class="btn btn-lg btn-primary btn-block" type="submit"
                         name="menu_button" value="">Autobusy Promo
                 </button>
