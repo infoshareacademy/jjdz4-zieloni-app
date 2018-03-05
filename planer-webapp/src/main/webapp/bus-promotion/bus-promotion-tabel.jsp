@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <table class="table table-dark">
+  <%--  <div style="width: 1500px;  height:600px; overflow: auto; font-size: 20px">--%>
     <thead>
     <tr>
         <th scope="col">id</th>
@@ -10,9 +11,10 @@
 
     </tr>
     </thead>
-    <tbody>
+    <tbody style="width: 1200px; height: 550px; overflow: auto;">
+
     <c:forEach var="bus" items="${buslist}">
-        <form method="post" action="/bus-promotion1">
+        <form method="post" action="/edit-bus">
             <tr style="background-color: rgba(98,189,255,0.51);">
 
                 <td>${bus.id}</td>
@@ -44,5 +46,7 @@
             </tr>
         </form>
     </c:forEach>
+
     </tbody>
+    <%--</div>--%>
 </table>
