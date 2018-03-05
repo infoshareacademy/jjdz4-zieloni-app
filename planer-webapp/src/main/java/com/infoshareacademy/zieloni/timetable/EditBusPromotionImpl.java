@@ -13,7 +13,7 @@ public class EditBusPromotionImpl implements BusPromotionDao {
 
     @PersistenceContext(unitName = "pUnit")
     private EntityManager entityManager;
-    private static final String BUS_PROMOTION= "promotion";
+    //private static final String BUS_PROMOTION_id= "promotion";
     @Override
     public boolean editBusPromotion(Bus bus) {
 

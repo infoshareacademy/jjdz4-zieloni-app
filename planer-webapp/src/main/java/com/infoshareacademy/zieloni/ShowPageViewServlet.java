@@ -60,14 +60,7 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     }
 
 
-    public void showPageView1(HttpServletRequest req, HttpServletResponse resp) {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
-        try {
-            requestDispatcher.forward(req, resp);
-        } catch (Exception e) {
-            log("problem with page: " + e);
-        }
-    }
+
 
 
 }

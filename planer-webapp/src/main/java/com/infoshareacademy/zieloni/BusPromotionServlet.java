@@ -18,7 +18,7 @@ public class BusPromotionServlet extends ShowPageViewBus {
     @EJB
     private
     BusPromotionDao promotionDao;
-    private static final String BUS_PROMOTION = "promotion";
+    private static final String BUS_PROMOTION= "promotion";
     private static final String NAME = "name";
     private static final String STATUS = "status";
     private static final String TYPE = "type";
@@ -27,26 +27,29 @@ public class BusPromotionServlet extends ShowPageViewBus {
 
 
     private void showStatistics(HttpServletRequest req, HttpServletResponse resp) {
-        req.setAttribute(BUS_PROMOTION, true);
-        showPageView(req, resp, "/index.jsp");
+        req.setAttribute(BUS_PROMOTION_id, true);
+        setBusList(req);
+        showPageView1(req, resp,"/index.jsp");
+
     }
 
     @Override
     public void start1(HttpServletRequest req, HttpServletResponse resp) {
+
+        resetViewState(req);
         showStatistics(req, resp);
-       // getBusList(req);
-      //  editBus1(req);
-      setBusList(req);
-        showPageView1(req, resp);
+   // getBusList(req);
+       editBus1(req);
+     // setBusList(req);
+        //showPageView1(req, resp,"/index.jsp");
+        //promotionDao.getBusList();
     }
 
     private void editBus1(HttpServletRequest req) {
+// Bus bus=new Bus();
 
-      //  Bus bus=new Bus();
 
-       // promotionDao.getBusList();
-
-        log(Integer.parseInt(req.getParameter(BUS_PROMOTION)) + " klikniety edycja BUS " + req.getParameter(BUS_PROMOTION));
+        log(Integer.parseInt(req.getParameter(BUS_PROMOTION_id)) + " klikniety edycja BUS " + req.getParameter(BUS_PROMOTION_id));
         Long id = Long.valueOf(Integer.parseInt(req.getParameter(BUS_PROMOTION)));
         String name = String.valueOf(req.getParameter(NAME));
         String status = String.valueOf(req.getParameter(STATUS));
@@ -59,7 +62,6 @@ public class BusPromotionServlet extends ShowPageViewBus {
 
         promotionDao.editBusPromotion(editBus);
     }
-
 
 }
 

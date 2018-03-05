@@ -13,13 +13,12 @@ import java.io.IOException;
 
 public abstract class ShowPageViewBus extends HttpServlet {
 
-    private static final String BUS_PROMOTION = "promotion";
+    static final String BUS_PROMOTION_id= "showBusPromotion";
     private static final String NAME = "name";
     private static final String STATUS = "status";
     private static final String TYPE = "type";
 
     @EJB
-
     BusPromotionDao busPromotionDao;
 
 
@@ -28,6 +27,7 @@ public abstract class ShowPageViewBus extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         start1(req, resp);
+
     }
 
     @Override
@@ -40,14 +40,14 @@ public abstract class ShowPageViewBus extends HttpServlet {
 
 
 
-    public void showPageView(HttpServletRequest req, HttpServletResponse resp, String path) {
+    /*public void showPageView(HttpServletRequest req, HttpServletResponse resp, String path) {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(path);
         try {
             requestDispatcher.forward(req, resp);
         } catch (Exception e) {
             log("problem with page: " + e);
         }
-    }
+    }*/
 
     public void setBusList(HttpServletRequest req) {
         try {
@@ -56,8 +56,8 @@ public abstract class ShowPageViewBus extends HttpServlet {
             log(" brak Autobusu");
         }
     }
-    public void showPageView1(HttpServletRequest req, HttpServletResponse resp) {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
+    public void showPageView1(HttpServletRequest req, HttpServletResponse resp, String path ) {
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher (path);
         try {
             requestDispatcher.forward(req, resp);
         } catch (Exception e) {
