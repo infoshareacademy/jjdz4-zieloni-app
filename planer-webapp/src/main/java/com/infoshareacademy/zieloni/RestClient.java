@@ -20,7 +20,7 @@ public class RestClient {
 
     //private final static String API_URL = "https://restcountries.eu/rest/v2/";
 
-    private final static String API_URL = " https://localhost:8081/planer-inwigilator/";
+    private final static String API_URL = "http://localhost:8081/planer-inwigilator/";
 
     private Response getResponse(String sb) {
         Client client = ClientBuilder.newClient();
@@ -48,10 +48,10 @@ public class RestClient {
 
 
         final Response response = getResponse(API_URL + "users/");
-       // List<User> restResponse = checkStatusIsOK(response);
+        List<User> restResponse = checkStatusIsOK(response);
 
       //  return restCountryResponse.get(0).getBorders();
-        System.out.println("TEST"+response);
+        System.out.println("TEST"+restResponse);
 
     }
 
