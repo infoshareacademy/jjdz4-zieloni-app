@@ -14,12 +14,12 @@
                 </thead>
                 <tbody style="height:400px">
 
-                <c:forEach var="bus" items="${busList}" varStatus="index">
-                    <form method="post" action="/direct-selector">
+                <c:forEach var="user" items="${clientUser}" varStatus="index">
+                    <form method="post" action="">
                         <tr>
-                            <td width="10%"><c:out value="${index.count}"/></td>
-                            <td width="20%"><c:out value="${bus.getBusNumber()}"/></td>
-                            <td width="50%"><c:out value="${bus.getTypeOfTransport()}"/></td>
+                            <td width="10%"><c:out value="${user.id}"/></td>
+                            <td width="20%"><c:out value="${user.name}"/></td>
+                            <td width="50%"><c:out value="${user.surname}"/></td>
                             <td width="20%">
                                 <button type="submit" name="busNr" value="${index.count}">wybierz</button>
                             </td>

@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.dto;
+package com.infoshareacademy.zieloni.raport.dto;
 
 
 import lombok.Data;

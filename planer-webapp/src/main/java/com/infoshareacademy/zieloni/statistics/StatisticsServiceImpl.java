@@ -13,16 +13,16 @@ public class StatisticsServiceImpl implements StatisticsService {
     @PersistenceContext(unitName = "pUnit")
     private EntityManager entityManager;
 
+    @Override
     public Statistic getStatisticsByLogin(String login) {
         return (Statistic) entityManager.createNamedQuery("getStatisticsByLogin")
                 .setParameter("login", login)
                 .getSingleResult();
     }
-
+    @Override
     public void updateStatisticsByUser(User user) {
         entityManager.createNamedQuery("updateStatistic")
                 .setParameter("id", user.getId())
                 .executeUpdate();
     }
-
 }

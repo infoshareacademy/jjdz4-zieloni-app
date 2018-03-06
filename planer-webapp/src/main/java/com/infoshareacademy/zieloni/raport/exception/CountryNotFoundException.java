@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.exception;
+package com.infoshareacademy.zieloni.raport.exception;
 
 public class CountryNotFoundException extends RuntimeException {
     public CountryNotFoundException(String message) {

@@ -20,6 +20,7 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public static final String SHOW_BUS_STOPS = "busStops";
     public static final String BUS_ID = "bus_id";
     public static final String DIRECTION_VARIANT = "variant";
+    public static final String RAPORT = "showRaport";
 
     @EJB
     UsersDao usersRepositoryDao;

@@ -25,6 +25,13 @@
                             <%@ include file="under-constraction-page.jsp" %>
                         </c:when>
 
+                        <c:when test="${ showRaport}">
+                            <%@ include file="raport/raport.jsp" %>
+                        </c:when>
+                        <c:when test="${showStatistics}">
+                            <%@ include file="statistics/statistics.jsp" %>
+                        </c:when>
+
                         <c:when test="${showStatistics}">
                             <%@ include file="statistics/statistics.jsp" %>
                         </c:when>

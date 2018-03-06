@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.dto;
+package com.infoshareacademy.zieloni.raport.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
