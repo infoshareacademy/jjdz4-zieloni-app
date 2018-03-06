@@ -1,7 +1,5 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.registration.model.Gender;
-import com.infoshareacademy.zieloni.registration.model.User;
 import com.infoshareacademy.zieloni.timetable.model.Bus;
 
 import javax.servlet.annotation.WebServlet;
@@ -10,23 +8,21 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/edit-bus")
-public class EditBusServlet extends ShowPageViewBus {
-    private static final String BUS_PROMOTION= "promotion";
+public class EditBusServlet extends ShowPageViewServlet {
+    private static final String BUS_PROMOTION = "promotion";
     private static final String NAME = "name";
     private static final String STATUS = "status";
     private static final String TYPE = "type";
+
     @Override
-    public void start1(HttpServletRequest req, HttpServletResponse resp) {
-        editBus1(req);
+    public void start(HttpServletRequest req, HttpServletResponse resp) {
+        editBus(req);
         setBusList(req);
-        req.setAttribute(BUS_PROMOTION_id,true);
-        showPageView1(req,resp,"/index.jsp");
+        req.setAttribute(BUS_PROMOTION_id, true);
+        showPageView(req, resp, "/index.jsp");
     }
 
-
-    private void editBus1(HttpServletRequest req) {
- //Bus bus=new Bus();
-
+    private void editBus(HttpServletRequest req) {
 
         log(Integer.parseInt(req.getParameter(BUS_PROMOTION)) + " klikniety edycja BUS " + req.getParameter(BUS_PROMOTION));
         Long id = Long.valueOf(Integer.parseInt(req.getParameter(BUS_PROMOTION)));
@@ -39,8 +35,6 @@ public class EditBusServlet extends ShowPageViewBus {
         editBus.setType(type);
         busPromotionDao.editBusPromotion(editBus);
     }
-
-
 }
 
 

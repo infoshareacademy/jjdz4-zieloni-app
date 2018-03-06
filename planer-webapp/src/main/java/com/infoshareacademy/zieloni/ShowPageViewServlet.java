@@ -21,7 +21,10 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public static final String SHOW_BUS_STOPS = "busStops";
     public static final String BUS_ID = "bus_id";
     public static final String DIRECTION_VARIANT = "variant";
+    public static final String BUS_PROMOTION_id = "showBusPromotion";
 
+    @EJB
+    BusPromotionDao busPromotionDao;
 
     @EJB
     UsersDao usersRepositoryDao;
@@ -42,6 +45,15 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public void resetViewState(HttpServletRequest req) {
     }
 
+
+    public void setBusList(HttpServletRequest req) {
+        try {
+            req.setAttribute("buslist", busPromotionDao.getBusList());
+        } catch (Exception e) {
+            log(" brak Autobusu");
+        }
+    }
+
     public void setUserList(HttpServletRequest req) {
         try {
             req.setAttribute("userList", usersRepositoryDao.getUsersList());
@@ -58,9 +70,4 @@ public abstract class ShowPageViewServlet extends HttpServlet {
             log("problem with page: " + e);
         }
     }
-
-
-
-
-
 }
