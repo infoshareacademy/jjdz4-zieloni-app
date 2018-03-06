@@ -5,7 +5,7 @@
 
     <form id="reg_form" class="form-signin" method="post" action="/add-user">
         <div class="form-group">
-            <h2 class="form-signin-heading">Utwórz nowe konto</h2>
+            <h3 class="form-signin-heading">Utwórz nowe konto</h3>
 
             <c:choose>
                 <c:when test="${errorMessage != null}">
