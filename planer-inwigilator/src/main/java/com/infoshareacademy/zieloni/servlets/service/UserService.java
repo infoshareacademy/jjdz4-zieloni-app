@@ -1,12 +1,12 @@
 package com.infoshareacademy.zieloni.servlets.service;
 
-
-import com.infoshareacademy.zieloni.servlets.model.Credentials;
+import com.infoshareacademy.zieloni.servlets.UsersDao;
 import com.infoshareacademy.zieloni.servlets.model.User;
 import com.infoshareacademy.zieloni.servlets.model.UserStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -24,40 +24,26 @@ public class UserService {
     @Context
     private UriInfo uriInfo;
 
+    @EJB
+    UsersDao usersRepositoryDao;
+
     @Inject
     private UserStore userStore;
 
     public UserService() {
     }
 
-    @GET
-    @Path("/hello/{name}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response sayHello(@PathParam("name") String name) {
-        LOG.info("Saying hello to {}!", name);
-
-        LOG.info("Absolute Path: {}", uriInfo.getAbsolutePath());
-        LOG.info("Base URI: {}", uriInfo.getBaseUri());
-        LOG.info("Path Parameters: {}", uriInfo.getPathParameters());
-
-        return Response.ok("Saying hello to " + name + "!").build();
-    }
-
-    @GET
-    @Path("/agent")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response getUserAgent(@HeaderParam("user-agent") String userAgent) {
-        LOG.info("User agent: {}", userAgent);
-
-        return Response.ok(userAgent).build();
-    }
 
     @GET
     @Path("/users")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsers() {
 
-        Collection<User> users = userStore.getBase().values();
+       /* Collection<User> users = userStore.getBase().values();
+        if (users.isEmpty()) {
+            return Response.noContent().build();
+        }*/
+        Collection<User> users =  usersRepositoryDao.getUsersList();
         if (users.isEmpty()) {
             return Response.noContent().build();
         }
@@ -91,28 +77,8 @@ public class UserService {
         return Response.ok(html).build();
     }
 
-    @POST
-    @Path("/authenticate")
-    public Response authenticate(@FormParam("username") String username,
-                                 @FormParam("password") String password) {
 
-        if (userStore.authenticate(username, password)) {
-            return Response.ok().build();
-        }
-
-        return Response.status(Response.Status.FORBIDDEN).build();
-    }
-
-    @POST
-    @Path("/authenticate")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response authenticate(Credentials credentials) {
-        LOG.info("Credentials: {}", credentials);
-
-        return authenticate(credentials.getUser(), credentials.getPassword());
-    }
-
-    @POST
+    /*@POST
     @Path("/user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -123,11 +89,11 @@ public class UserService {
 
         userStore.add(new User(user.getName(),
                 user.getSurname(),
-                newId,
-                user.getCredentials()));
+                newId
+        ));
 
         return getUsers();
-    }
+    }*/
 
     @PUT
     @Path("/user")

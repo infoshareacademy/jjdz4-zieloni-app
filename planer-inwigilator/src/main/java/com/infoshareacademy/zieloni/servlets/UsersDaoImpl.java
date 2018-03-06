@@ -13,10 +13,10 @@ import java.util.List;
 @Stateless
 public class UsersDaoImpl implements UsersDao {
 
+    private static final String EDIT_USER = "edit";
 
     @PersistenceContext(unitName = "pUnit")
     private EntityManager entityManager;
-    private static final String EDIT_USER = "edit";
 
     public boolean addUser(User user) {
         entityManager.persist(user);

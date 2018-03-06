@@ -9,7 +9,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 public class User {
 
     private int id;
-    private String  name;
-    private String  surname;
-    private Credentials  credentials;;
+    private String name;
+    private String surname;
+    private int logCounter;
 }

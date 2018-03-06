@@ -20,17 +20,14 @@ public class UserStore {
     }
 
     public UserStore() {
-        LOG.info("initializing user store");
-        base = new HashMap<Integer, User>();
+       /* base = new HashMap<Integer, User>();
 
-        User user1 = new User("Adam", "Iksinski", 1,
-            new Credentials("adam", "haslo123"));
 
-        User user2 = new User("Karol", "Ygrekowski", 2,
-            new Credentials("karoly", "123456"));
+        User user1 = new User("Adam", "Iksinski", 1);
+        User user2 = new User("Karol", "Ygrekowski", 2 );
 
         base.put(user1.getId(), user1);
-        base.put(user2.getId(), user2);
+        base.put(user2.getId(), user2);*/
     }
 
     public int getNewId() {
@@ -51,10 +48,4 @@ public class UserStore {
         return Optional.ofNullable(base.get(id));
     }
 
-    public boolean authenticate(String username, String password) {
-        return base.values().stream()
-                .map(User::getCredentials)
-                .anyMatch(c -> c.getUser().equals(username)
-                    && c.getPassword().equals(password));
-    }
 }
