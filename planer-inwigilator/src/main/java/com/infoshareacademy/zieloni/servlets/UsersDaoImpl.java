@@ -1,7 +1,8 @@
-package com.infoshareacademy.zieloni.registration;
+package com.infoshareacademy.zieloni.servlets;
 
 
-import com.infoshareacademy.zieloni.registration.model.User;
+
+import com.infoshareacademy.zieloni.servlets.model.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,8 +28,6 @@ public class UsersDaoImpl implements UsersDao {
                 .setParameter("id", user.getId())
                 .setParameter("name", user.getName())
                 .setParameter("surname", user.getSurname())
-                .setParameter("age", user.getAge())
-                .setParameter("gender", user.getGender())
                 .executeUpdate();
 
         return true;

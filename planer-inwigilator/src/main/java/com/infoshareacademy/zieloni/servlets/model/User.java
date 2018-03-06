@@ -1,13 +1,19 @@
 package com.infoshareacademy.zieloni.servlets.model;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Data
+@Entity
+@Table(name = "user")
 public class User {
-
-    private String name;
-
-    private String surname;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, unique = true)
     private int id;
-
+    private String name;
+    private String surname;
     private Credentials credentials;
 
     public User(String name, String surname, int id, Credentials credentials) {
@@ -15,31 +21,6 @@ public class User {
         this.surname = surname;
         this.id = id;
         this.credentials = credentials;
-    }
-
-    public User() {
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public Credentials getCredentials() {
-        return credentials;
-    }
-
-    @Override
-    public String toString() {
-        return name + " " + surname;
     }
 
 }

@@ -23,6 +23,8 @@ public class TimeTableBaseServlet extends ShowPageViewServlet {
 
     void setBusList(HttpServletRequest req) {
 
+
+
         try {
             req.setAttribute("busList", BusDataBase.getDataBase());
         } catch (Exception e) {
