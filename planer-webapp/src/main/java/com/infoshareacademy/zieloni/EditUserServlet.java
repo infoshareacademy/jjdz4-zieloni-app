@@ -29,7 +29,6 @@ public class EditUserServlet extends ShowPageViewServlet {
 
         log(Integer.parseInt(req.getParameter(EDIT_USER)) + " klikniety edit " + req.getParameter(EDIT_USER));
         int id = Integer.parseInt(req.getParameter(EDIT_USER));
-        //req.getSession().setAttribute("gender", req.getParameter("gender"));
 
         String name = String.valueOf(req.getParameter(NAME));
         String surname = String.valueOf(req.getParameter(SURNAME));

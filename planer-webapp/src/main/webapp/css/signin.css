@@ -187,6 +187,7 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td {
     /* -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
      box-sizing: border-box;*/
+
     padding-top: 50px;
     width: 540px;
     height: 400px;
