@@ -55,11 +55,12 @@ public class UserService {
     @Path("/user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUser(@QueryParam("id") Integer id) {
-        Optional<User> user = userStore.findById(id);
+
+        LOG.info("WITAJ GET USER");
+        Optional<User> user = Optional.ofNullable(usersRepositoryDao.getUserById(id));
         if (user.isPresent()) {
             return Response.ok(user.get()).build();
         }
-
         //return Response.status(404).build();
         return Response.status(Response.Status.NOT_FOUND).build();
     }
@@ -78,22 +79,22 @@ public class UserService {
     }
 
 
-    /*@POST
+    @POST
     @Path("/user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addUser(User user) {
+        LOG.info("WITAJ" +user);
 
-        int newId = userStore.getNewId();
-        LOG.info("New ID: {}", newId);
+        User newUser = new User();
 
-        userStore.add(new User(user.getName(),
-                user.getSurname(),
-                newId
-        ));
+        newUser.setLogCounter(user.getLogCounter());
+        newUser.setName(user.getName());
+        newUser.setSurname(user.getSurname());
+        usersRepositoryDao.addUser(newUser);
+        return Response.ok(newUser).build();
 
-        return getUsers();
-    }*/
+    }
 
     @PUT
     @Path("/user")
