@@ -1,6 +1,7 @@
 package com.infoshareacademy.zieloni;
 
 import com.infoshareacademy.zieloni.registration.UsersDao;
+import com.infoshareacademy.zieloni.timetable.BusPromotionDao;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -43,6 +44,14 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     }
 
     public void resetViewState(HttpServletRequest req) {
+    }
+
+    public void setBusList(HttpServletRequest req) {
+        try {
+            req.setAttribute("buslist", busPromotionDao.getBusList());
+        } catch (Exception e) {
+            log(" brak Autobusu");
+        }
     }
 
     public void setUserList(HttpServletRequest req) {

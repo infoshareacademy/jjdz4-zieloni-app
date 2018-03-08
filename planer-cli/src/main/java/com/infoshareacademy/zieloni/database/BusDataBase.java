@@ -66,6 +66,8 @@ public class BusDataBase {
                 bus.setColumnsMapV2(map2);
                 bus.setBusNumber(file.getId().split("_")[0]);
                 bus.setTypeOfTransport(tabelaCSVArray.get(i).getTypeOfTransport());
+
+              //  System.out.println("INSERT INTO bus (id,name,type,status) VALUES (null,'"+bus.getBusNumber()+"','"+bus.getTypeOfTransport()+"',"+"'0');");
                 dataBase.add(bus);
             }
 
