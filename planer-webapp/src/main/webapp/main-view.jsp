@@ -34,7 +34,12 @@
 
                         <c:when test="${showStatistics}">
                             <%@ include file="statistics/statistics.jsp" %>
+
                         </c:when>
+                        <c:when test="${showBusPromotion}">
+                            <%@ include file="bus-promotion/bus-promotion.jsp" %>
+                        </c:when>
+
                         <c:when test="${showTimeTableBase}">
                             <%@ include file="timetable/time-table-base.jsp" %>
                         </c:when>
