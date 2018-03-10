@@ -1,5 +1,6 @@
 package com.infoshareacademy.zieloni.auth;
 
+import com.infoshareacademy.zieloni.raport.RestClient;
 import com.infoshareacademy.zieloni.registration.UsersDao;
 import com.infoshareacademy.zieloni.registration.model.Roles;
 import com.infoshareacademy.zieloni.registration.model.User;
@@ -34,6 +35,8 @@ public class SignInServlet extends HttpServlet {
         try {
             signIn(req, resp);
             req.getSession().setAttribute("user", null);
+            RestClient client = new RestClient();
+            client.infoAboutUserActivity("LOG_IN");
         } catch (Exception e) {
             log("problem with log-in " + e);
         }

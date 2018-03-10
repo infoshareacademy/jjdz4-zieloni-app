@@ -1,6 +1,7 @@
 package com.infoshareacademy.zieloni.auth;
 
 import com.infoshareacademy.zieloni.ShowPageViewServlet;
+import com.infoshareacademy.zieloni.raport.RestClient;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ public class LogoutServlet extends ShowPageViewServlet {
             req.logout();
             req.getSession().invalidate();
             log("LOGOUT" + req.getSession().getAttribute("loggedUser"));
+            RestClient client = new RestClient();
+            client.infoAboutUserActivity("LOG_OUT");
             resetViewState(req);
             resp.sendRedirect("/index.jsp");
         } catch (Exception e) {

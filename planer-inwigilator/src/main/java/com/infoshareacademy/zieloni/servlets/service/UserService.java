@@ -13,6 +13,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -39,11 +41,7 @@ public class UserService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsers() {
 
-       /* Collection<User> users = userStore.getBase().values();
-        if (users.isEmpty()) {
-            return Response.noContent().build();
-        }*/
-        Collection<User> users =  usersRepositoryDao.getUsersList();
+        Collection<User> users = usersRepositoryDao.getUsersList();
         if (users.isEmpty()) {
             return Response.noContent().build();
         }
@@ -84,13 +82,18 @@ public class UserService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addUser(User user) {
-        LOG.info("WITAJ" +user);
+
+        LOG.info("WITAJ" + user);
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter myFormatter = DateTimeFormatter.ofPattern("MM dd, yyyy - HH:mm");
+        String formattedDateTime = now.format(myFormatter); // 03 01, 2017 - 12:45
 
         User newUser = new User();
 
-        newUser.setLogCounter(user.getLogCounter());
         newUser.setName(user.getName());
         newUser.setSurname(user.getSurname());
+        newUser.setLogTime(formattedDateTime);
         usersRepositoryDao.addUser(newUser);
         return Response.ok(newUser).build();
 
@@ -102,8 +105,9 @@ public class UserService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateUser(User user) {
 
-        if (userStore.getBase().containsKey(user.getId())) {
-            userStore.getBase().put(user.getId(), user);
+        LOG.info("WITAJ user.getId() " + user.getId());
+        if (usersRepositoryDao.getUserById(user.getId()) != null) {
+            usersRepositoryDao.editUser(user);
             return Response.ok(user).build();
         }
 

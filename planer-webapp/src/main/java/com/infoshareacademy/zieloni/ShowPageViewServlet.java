@@ -30,7 +30,6 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     @EJB
     UsersDao usersRepositoryDao;
 
-
     public abstract void start(HttpServletRequest req, HttpServletResponse resp);
 
     @Override

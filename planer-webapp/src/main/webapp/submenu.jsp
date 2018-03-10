@@ -21,6 +21,12 @@
                 </button>
             </form>
 
+            <form class="form-signin" method="post" action="/createRestUser">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">TEST
+                </button>
+            </form>
+
         </c:when>
     </c:choose>
 
