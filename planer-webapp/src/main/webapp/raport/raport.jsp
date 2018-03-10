@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div class="blackshape" style="width: 800px; height: 600px;">
-    <h3>Rozkład jazdy</h3>
+    <h3>Raport aktywności</h3>
     <div class="panel panel-default">
         <div class="panel-body">
             <table id="myTable" class="table table-fixedheader table-dark">

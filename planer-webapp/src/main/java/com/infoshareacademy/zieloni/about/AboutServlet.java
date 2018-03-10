@@ -13,6 +13,7 @@ public class AboutServlet extends ShowPageViewServlet {
     public void start(HttpServletRequest req, HttpServletResponse resp) {
         resetViewState(req);
         showCalendar(req, resp);
+        setInfoAboutActivity(req, resp,"O nas");
     }
 
 

@@ -1,6 +1,8 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.raport.RestClient;
 import com.infoshareacademy.zieloni.registration.UsersDao;
+import com.infoshareacademy.zieloni.registration.model.User;
 import com.infoshareacademy.zieloni.timetable.BusPromotionDao;
 
 import javax.ejb.EJB;
@@ -42,6 +44,15 @@ public abstract class ShowPageViewServlet extends HttpServlet {
         start(req, resp);
     }
 
+    public User getUserByLogin(String login) {
+        try {
+            return usersRepositoryDao.getUserByLogin(login);
+        } catch (Exception e) {
+            log(" brak userów");
+            return null;
+        }
+    }
+
     public void resetViewState(HttpServletRequest req) {
     }
 
@@ -68,5 +79,13 @@ public abstract class ShowPageViewServlet extends HttpServlet {
         } catch (Exception e) {
             log("problem with page: " + e);
         }
+    }
+
+    public void setInfoAboutActivity(HttpServletRequest req, HttpServletResponse resp, String activity) {
+
+        String email = req.getSession().getAttribute("loggedUser").toString();
+        User user = getUserByLogin(email);
+        RestClient client = new RestClient();
+        client.infoAboutUserActivity(user, activity);
     }
 }

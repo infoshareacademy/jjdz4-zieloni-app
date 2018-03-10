@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User {
+public class UserActivity {
 
     private int id;
     private String name;

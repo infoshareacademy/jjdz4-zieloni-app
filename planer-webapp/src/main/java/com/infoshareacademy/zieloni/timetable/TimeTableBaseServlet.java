@@ -19,11 +19,10 @@ public class TimeTableBaseServlet extends ShowPageViewServlet {
         resetViewState(req);
         setBusList(req);
         showTimeSchedule(req, resp);
+        setInfoAboutActivity(req, resp,"Rozkład Jazdy");
     }
 
     public void setBusList(HttpServletRequest req) {
-
-
 
         try {
             req.setAttribute("busList", BusDataBase.getDataBase());

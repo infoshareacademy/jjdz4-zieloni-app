@@ -1,12 +1,12 @@
 package com.infoshareacademy.zieloni.raport;
 
-import com.infoshareacademy.zieloni.raport.dto.User;
+import com.infoshareacademy.zieloni.raport.dto.UserActivity;
 import com.infoshareacademy.zieloni.raport.exception.CountryNotFoundException;
+import com.infoshareacademy.zieloni.registration.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -31,9 +31,9 @@ public class RestClient {
         return response;
     }
 
-    private List<User> checkStatusIsOK(Response response) {
+    private List<UserActivity> checkStatusIsOK(Response response) {
         if (response.getStatus() == Status.OK.getStatusCode()) {
-            List<User> restCountryResponse = response.readEntity(new GenericType<List<User>>() {
+            List<UserActivity> restCountryResponse = response.readEntity(new GenericType<List<UserActivity>>() {
             });
             response.close();
             return restCountryResponse;
@@ -44,22 +44,21 @@ public class RestClient {
     }
 
 
-    public List<User> getUserList() {
+    public List<UserActivity> getUserList() {
 
         final Response response = getResponse(API_URL + "users/");
-        List<User> restResponse = checkStatusIsOK(response);
+        List<UserActivity> restResponse = checkStatusIsOK(response);
         return restResponse;
     }
 
-    public void infoAboutUserActivity(String activity) {
+    public void infoAboutUserActivity(User user, String activity) {
 
         String address = API_URL + "user";
 
         JSONObject obj = new JSONObject();
-        obj.put("id", 5);
-        obj.put("name", "ffdff");
-        obj.put("surname", "Kowalski");
-        obj.put(" activity",  activity);
+        obj.put("name", user.getName());
+        obj.put("surname",user.getSurname());
+        obj.put("activity",  activity);
 
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(address);

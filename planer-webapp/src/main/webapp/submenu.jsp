@@ -7,26 +7,19 @@
         <c:when test="${sessionScope.role.equals('admin')}">
             <form class="form-signin" method="post" action="/statistic">
                 <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Statystyki
+                        name="menu_button" value="">Lista użytkowników
                 </button>
             </form>
             <form class="form-signin" method="post" action="/rest-api-raport">
                 <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Raport
+                        name="menu_button" value="">Raport aktywności
                 </button>
             </form>
             <form class="form-signin" method="post" action="/bus-promotion">
                 <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Autobusy Promo
+                        name="menu_button" value="">Promocja
                 </button>
             </form>
-
-            <form class="form-signin" method="post" action="/createRestUser">
-                <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">TEST
-                </button>
-            </form>
-
         </c:when>
     </c:choose>
 
@@ -38,11 +31,13 @@
     </form>
     <form class="form-signin" method="post" action="/calendar">
         <button class="btn btn-lg btn-primary btn-block" type="submit"
-                name="menu_button" value="">Kalendarz</button>
+                name="menu_button" value="">Kalendarz
+        </button>
     </form>
     <form class="form-signin" method="post" action="/about">
         <button class="btn btn-lg btn-primary btn-block" type="submit"
-                name="menu_button" value="">O nas</button>
+                name="menu_button" value="">O nas
+        </button>
     </form>
 
 </div>

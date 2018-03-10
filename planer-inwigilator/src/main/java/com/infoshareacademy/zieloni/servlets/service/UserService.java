@@ -94,6 +94,8 @@ public class UserService {
         newUser.setName(user.getName());
         newUser.setSurname(user.getSurname());
         newUser.setLogTime(formattedDateTime);
+        newUser.setActivity(user.getActivity());
+
         usersRepositoryDao.addUser(newUser);
         return Response.ok(newUser).build();
 
