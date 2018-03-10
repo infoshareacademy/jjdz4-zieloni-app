@@ -58,6 +58,7 @@ public class RestClient {
         JSONObject obj = new JSONObject();
         obj.put("name", user.getName());
         obj.put("surname",user.getSurname());
+        obj.put("login",user.getLogin());
         obj.put("activity",  activity);
 
         Client client = ClientBuilder.newClient();

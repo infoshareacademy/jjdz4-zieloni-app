@@ -1,7 +1,5 @@
 package com.infoshareacademy.zieloni.servlets;
 
-
-
 import com.infoshareacademy.zieloni.servlets.model.User;
 
 import javax.ejb.Stateless;

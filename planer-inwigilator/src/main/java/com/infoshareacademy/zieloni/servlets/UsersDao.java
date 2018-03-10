@@ -6,7 +6,6 @@ import com.infoshareacademy.zieloni.servlets.model.User;
 import javax.ejb.Local;
 import java.util.List;
 
-
 @Local
 public interface UsersDao {
 

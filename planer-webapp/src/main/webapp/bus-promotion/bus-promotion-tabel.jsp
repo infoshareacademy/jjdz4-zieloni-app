@@ -17,8 +17,8 @@
             <tr style="background-color: rgba(98,189,255,0.51);">
 
                 <td width="10%">${bus.id}</td>
-                <td width="20%"><input type="text" class="form-control" name="name" value="${bus.name}"></td>
-                <td width="30%"><input type="text" class="form-control" name="type" value="${bus.type}"></td>
+                <td width="20%">${bus.name}</td>
+                <td width="30%">${bus.type}</td>
 
                 <c:if test="${bus.status.toString()=='1'}">
                     <td width="20%"><select name="status" size="1">

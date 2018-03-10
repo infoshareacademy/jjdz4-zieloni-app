@@ -21,23 +21,23 @@
                 </button>
             </form>
         </c:when>
+        <c:otherwise>
+
+            <form class="form-signin" method="post" action="/time-table">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Rozkład jazdy
+                </button>
+            </form>
+            <form class="form-signin" method="post" action="/calendar">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Kalendarz
+                </button>
+            </form>
+            <form class="form-signin" method="post" action="/about">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">O nas
+                </button>
+            </form>
+        </c:otherwise>
     </c:choose>
-
-
-    <form class="form-signin" method="post" action="/time-table">
-        <button class="btn btn-lg btn-primary btn-block" type="submit"
-                name="menu_button" value="">Rozkład jazdy
-        </button>
-    </form>
-    <form class="form-signin" method="post" action="/calendar">
-        <button class="btn btn-lg btn-primary btn-block" type="submit"
-                name="menu_button" value="">Kalendarz
-        </button>
-    </form>
-    <form class="form-signin" method="post" action="/about">
-        <button class="btn btn-lg btn-primary btn-block" type="submit"
-                name="menu_button" value="">O nas
-        </button>
-    </form>
-
 </div>

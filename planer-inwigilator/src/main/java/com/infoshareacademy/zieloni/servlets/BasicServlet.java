@@ -23,8 +23,4 @@ public class BasicServlet extends HttpServlet{
         writer.println("</html>");
 
     }
-
-
-
-
 }

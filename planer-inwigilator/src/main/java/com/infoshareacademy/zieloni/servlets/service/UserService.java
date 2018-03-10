@@ -2,12 +2,10 @@ package com.infoshareacademy.zieloni.servlets.service;
 
 import com.infoshareacademy.zieloni.servlets.UsersDao;
 import com.infoshareacademy.zieloni.servlets.model.User;
-import com.infoshareacademy.zieloni.servlets.model.UserStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -28,9 +26,6 @@ public class UserService {
 
     @EJB
     UsersDao usersRepositoryDao;
-
-    @Inject
-    private UserStore userStore;
 
     public UserService() {
     }
@@ -86,7 +81,7 @@ public class UserService {
         LOG.info("WITAJ" + user);
 
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter myFormatter = DateTimeFormatter.ofPattern("MM dd, yyyy - HH:mm");
+        DateTimeFormatter myFormatter = DateTimeFormatter.ofPattern("MM, dd, yyyy - HH:mm:ss");
         String formattedDateTime = now.format(myFormatter); // 03 01, 2017 - 12:45
 
         User newUser = new User();
@@ -94,6 +89,7 @@ public class UserService {
         newUser.setName(user.getName());
         newUser.setSurname(user.getSurname());
         newUser.setLogTime(formattedDateTime);
+        newUser.setLogin(user.getLogin());
         newUser.setActivity(user.getActivity());
 
         usersRepositoryDao.addUser(newUser);
@@ -116,7 +112,7 @@ public class UserService {
         return Response.status(Response.Status.NOT_FOUND).build();
     }
 
-    @DELETE
+   /* @DELETE
     @Path("/user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteUser(@QueryParam("id") Integer id) {
@@ -127,5 +123,5 @@ public class UserService {
         }
 
         return Response.status(Response.Status.NOT_FOUND).build();
-    }
+    }*/
 }

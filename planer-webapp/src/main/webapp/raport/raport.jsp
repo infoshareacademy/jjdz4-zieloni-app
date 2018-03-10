@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<div class="blackshape" style="width: 800px; height: 600px;">
+<div class="blackshape" style="width: 1200px; height: 600px;">
     <h3>Raport aktywności</h3>
     <div class="panel panel-default">
         <div class="panel-body">
             <table id="myTable" class="table table-fixedheader table-dark">
                 <thead>
                 <tr>
-                    <th width="10%" scope="col">id</th>
-                    <th width="20%" scope="col">Numer</th>
-                    <th width="50%" scope="col">Typ</th>
-                    <th width="20%" scope="col">wybierz</th>
+                    <th width="30%" scope="col">Login</th>
+                    <th width="20%" scope="col">Czas</th>
+                    <th width="20%" scope="col">Aktywność</th>
+                    <th width="15%" scope="col">Imię</th>
+                    <th width="15%" scope="col">Nazwisko</th>
                 </tr>
                 </thead>
                 <tbody style="height:400px">
@@ -17,12 +18,12 @@
                 <c:forEach var="user" items="${clientUser}" varStatus="index">
                     <form method="post" action="">
                         <tr>
-                            <td width="10%"><c:out value="${user.id}"/></td>
-                            <td width="20%"><c:out value="${user.name}"/></td>
-                            <td width="50%"><c:out value="${user.surname}"/></td>
-                            <td width="20%">
-                                <button type="submit" name="busNr" value="${index.count}">wybierz</button>
-                            </td>
+                            <td width="30%"><c:out value="${user.login}"/></td>
+                            <td width="20%"><c:out value="${user.logTime}"/></td>
+                            <td width="20%"><c:out value="${user.activity}"/></td>
+                            <td width="15%"><c:out value="${user.name}"/></td>
+                            <td width="15%"><c:out value="${user.surname}"/></td>
+
 
                         </tr>
                     </form>
