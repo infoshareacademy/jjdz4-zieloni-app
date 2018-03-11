@@ -49,13 +49,14 @@ public class UserService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUser(@QueryParam("id") Integer id) {
 
-        LOG.info("WITAJ GET USER");
         Optional<User> user = Optional.ofNullable(usersRepositoryDao.getUserById(id));
-        if (user.isPresent()) {
-            return Response.ok(user.get()).build();
+
+        if (!user.isPresent()) {
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
-        //return Response.status(404).build();
-        return Response.status(Response.Status.NOT_FOUND).build();
+
+        return Response.ok(user.get()).build();
+
     }
 
     @GET
@@ -111,17 +112,4 @@ public class UserService {
 
         return Response.status(Response.Status.NOT_FOUND).build();
     }
-
-   /* @DELETE
-    @Path("/user")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteUser(@QueryParam("id") Integer id) {
-
-        if (userStore.getBase().containsKey(id)) {
-            userStore.getBase().remove(id);
-            return getUsers();
-        }
-
-        return Response.status(Response.Status.NOT_FOUND).build();
-    }*/
 }

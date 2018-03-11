@@ -47,8 +47,8 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public User getUserByLogin(String login) {
         try {
             return usersRepositoryDao.getUserByLogin(login);
-        } catch (Exception e) {
-            log(" brak userów");
+        } catch (NullPointerException e) {
+            log("nie znaleziono uzytkownika o podanym logine " + e);
             return null;
         }
     }
@@ -57,19 +57,11 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     }
 
     public void setBusList(HttpServletRequest req) {
-        try {
             req.setAttribute("buslist", busPromotionDao.getBusList());
-        } catch (Exception e) {
-            log(" brak Autobusu");
-        }
     }
 
     public void setUserList(HttpServletRequest req) {
-        try {
             req.setAttribute("userList", usersRepositoryDao.getUsersList());
-        } catch (Exception e) {
-            log(" brak userów");
-        }
     }
 
     public void showPageView(HttpServletRequest req, HttpServletResponse resp, String path) {

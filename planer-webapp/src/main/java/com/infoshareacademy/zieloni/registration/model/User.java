@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.registration.model;
+    package com.infoshareacademy.zieloni.registration.model;
 
 import com.infoshareacademy.zieloni.statistics.model.Statistic;
 import lombok.Data;

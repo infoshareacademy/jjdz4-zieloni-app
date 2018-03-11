@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class UsersDaoImpl implements UsersDao {
@@ -54,12 +55,4 @@ public class UsersDaoImpl implements UsersDao {
         return entityManager.createNamedQuery("getAll").getResultList();
     }
 
-    @Override
-    public List<String> getUsersNames() {
-        List<String> usersNames = new ArrayList<>();
-        for (User user : getUsersList()) {
-            usersNames.add(user.getName());
-        }
-        return usersNames;
-    }
 }

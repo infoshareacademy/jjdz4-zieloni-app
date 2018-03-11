@@ -5,7 +5,6 @@ import com.infoshareacademy.zieloni.servlets.model.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -51,12 +50,5 @@ public class UsersDaoImpl implements UsersDao {
         return entityManager.createNamedQuery("getAll").getResultList();
     }
 
-    @Override
-    public List<String> getUsersNames() {
-        List<String> usersNames = new ArrayList<>();
-        for (User user : getUsersList()) {
-            usersNames.add(user.getName());
-        }
-        return usersNames;
-    }
+
 }

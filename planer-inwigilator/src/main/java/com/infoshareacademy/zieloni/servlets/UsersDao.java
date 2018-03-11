@@ -21,5 +21,4 @@ public interface UsersDao {
 
     List<User> getUsersList();
 
-    List<String> getUsersNames();
 }

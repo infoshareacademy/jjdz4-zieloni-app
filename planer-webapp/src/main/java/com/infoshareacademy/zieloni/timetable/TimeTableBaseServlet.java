@@ -22,14 +22,17 @@ public class TimeTableBaseServlet extends ShowPageViewServlet {
         setInfoAboutActivity(req, resp,"Rozkład Jazdy");
     }
 
+   /* @Override
     public void setBusList(HttpServletRequest req) {
 
         try {
-            req.setAttribute("busList", BusDataBase.getDataBase());
+            //req.setAttribute("busList", BusDataBase.getDataBase());
+           // req.setAttribute("busList", busPromotionDao);
+
         } catch (Exception e) {
             log(" nie pobrałem bazy danych");
         }
-    }
+    }*/
 
     private void showTimeSchedule(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute(TIME_TABLE_BASE, true);
