@@ -20,6 +20,17 @@
                         name="menu_button" value="">Promocja
                 </button>
             </form>
+
+            <form class="form-signin" method="post" action="/piechart">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Wykres aktywności
+                </button>
+            </form>
+            <form class="form-signin" method="post" action="/columnchart">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Podział ze względu na wiek
+                </button>
+            </form>
         </c:when>
         <c:otherwise>
 
