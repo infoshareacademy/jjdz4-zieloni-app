@@ -10,6 +10,7 @@ public class PieChartsServlet extends ShowPageViewServlet {
 
     private void showCharts(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute(SHOW_PIE_CHART, true);
+
         showPageView(req, resp, "/index.jsp");
     }
 
