@@ -18,7 +18,7 @@ public class ColumnChartServlet extends ShowPageViewServlet {
 
         actualData = new HashMap<String, String>();
 
-        actualData.put("Teenage", "1");
+        actualData.put("Teenage", "100");
         actualData.put("Adult", "14");
         actualData.put("Mid-age", "10");
         actualData.put("Senior", "49");

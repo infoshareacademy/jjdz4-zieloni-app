@@ -59,7 +59,7 @@ public class UserService {
 
     }
 
-    @GET
+    /*@GET
     @Path("/login")
     @Produces(MediaType.TEXT_HTML)
     public Response getLoginForm() {
@@ -70,7 +70,7 @@ public class UserService {
                 "    </form>";
 
         return Response.ok(html).build();
-    }
+    }*/
 
 
     @POST
