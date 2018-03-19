@@ -41,7 +41,12 @@
             </form>
             <form class="form-signin" method="post" action="/events">
                 <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Kalendarz
+                        name="menu_button" value="">Wydarzenia
+                </button>
+            </form>
+            <form class="form-signin" method="post" action="/Addevents">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Dodaj Wydarzenie
                 </button>
             </form>
             <form class="form-signin" method="post" action="/about">

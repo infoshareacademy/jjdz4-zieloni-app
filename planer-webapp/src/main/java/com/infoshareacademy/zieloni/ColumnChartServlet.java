@@ -14,7 +14,7 @@ public class ColumnChartServlet extends ShowPageViewServlet {
 
     private void showCharts(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute(SHOW_COLUMN_CHART, true);
-        showPageView(req, resp, "/index.jsp");
+
 
         actualData = new HashMap<String, String>();
 
@@ -22,7 +22,7 @@ public class ColumnChartServlet extends ShowPageViewServlet {
         actualData.put("Adult", "14");
         actualData.put("Mid-age", "10");
         actualData.put("Senior", "49");
-
+        showPageView(req, resp, "/index.jsp");
     }
 
     @Override
