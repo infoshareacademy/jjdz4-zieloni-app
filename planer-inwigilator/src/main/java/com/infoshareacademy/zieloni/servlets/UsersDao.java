@@ -5,6 +5,7 @@ import com.infoshareacademy.zieloni.servlets.model.User;
 
 import javax.ejb.Local;
 import java.util.List;
+import java.util.Optional;
 
 @Local
 public interface UsersDao {
@@ -15,9 +16,9 @@ public interface UsersDao {
 
     boolean removeUser(User user);
 
-    User getUserById(int id);
+    Optional<User> getUserById(int id);
 
-    User getUserByLogin(String login);
+    Optional<User> getUserByLogin(String login);
 
     List<User> getUsersList();
 

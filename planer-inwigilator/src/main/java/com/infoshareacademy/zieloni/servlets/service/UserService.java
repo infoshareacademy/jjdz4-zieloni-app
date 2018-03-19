@@ -48,9 +48,7 @@ public class UserService {
     @Path("/user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUser(@QueryParam("id") Integer id) {
-
-        Optional<User> user = Optional.ofNullable(usersRepositoryDao.getUserById(id));
-
+        Optional<User> user = usersRepositoryDao.getUserById(id);
         if (!user.isPresent()) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -77,9 +75,9 @@ public class UserService {
     @Path("/user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addUser(User user) {
+    public Response addUserActivity(User user) {
 
-        LOG.info("WITAJ" + user);
+        LOG.info("aktywność uzytkownik został dodany" + user);
 
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter myFormatter = DateTimeFormatter.ofPattern("MM, dd, yyyy - HH:mm:ss");
@@ -104,12 +102,11 @@ public class UserService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateUser(User user) {
 
-        LOG.info("WITAJ user.getId() " + user.getId());
-        if (usersRepositoryDao.getUserById(user.getId()) != null) {
-            usersRepositoryDao.editUser(user);
-            return Response.ok(user).build();
+        if (usersRepositoryDao.getUserById(user.getId()) == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        return Response.status(Response.Status.NOT_FOUND).build();
+        usersRepositoryDao.editUser(user);
+        return Response.ok(user).build();
     }
 }

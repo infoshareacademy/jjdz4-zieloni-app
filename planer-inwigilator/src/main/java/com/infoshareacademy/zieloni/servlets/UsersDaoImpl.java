@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 
 @Stateless
 public class UsersDaoImpl implements UsersDao {
@@ -36,19 +37,19 @@ public class UsersDaoImpl implements UsersDao {
         return true;
     }
 
-    public User getUserById(int id) {
-        return entityManager.find(User.class, id);
+    public Optional<User> getUserById(int id) {
+        Optional<User> user = Optional.ofNullable(entityManager.find(User.class, id));
+        return user;
     }
 
-    public User getUserByLogin(String login) {
-        return (User) entityManager.createNamedQuery("getUserByLogin")
+    public Optional<User> getUserByLogin(String login) {
+        Optional<User> user = (Optional<User>) entityManager.createNamedQuery("getUserByLogin")
                 .setParameter("login", login)
                 .getSingleResult();
+        return user;
     }
 
     public List<User> getUsersList() {
         return entityManager.createNamedQuery("getAll").getResultList();
     }
-
-
 }
