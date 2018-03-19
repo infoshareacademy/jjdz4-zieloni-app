@@ -1,7 +1,7 @@
-package com.infoshareacademy.zieloni.servlets.service;
+package com.infoshareacademy.zieloni.api.service;
 
-import com.infoshareacademy.zieloni.servlets.UsersDao;
-import com.infoshareacademy.zieloni.servlets.model.User;
+import com.infoshareacademy.zieloni.api.UsersDao;
+import com.infoshareacademy.zieloni.api.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +28,6 @@ public class UserService {
 
     public UserService() {
     }
-
 
     @GET
     @Path("/users")

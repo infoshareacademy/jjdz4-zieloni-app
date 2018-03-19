@@ -19,8 +19,8 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public static final String SHOW_TIME_TABLE = "showTimeTable";
     public static final String SHOW_CALENDAR = "showCalendar";
     public static final String SHOW_ABOUT = "showAbout";
-    public static final String SHOW_PIE_CHART = "showPieChart";
-    public static final String SHOW_COLUMN_CHART = "showColumnChart";
+    public static final String SHOW_CHART_DEPENDING_ON_GENDER = "chartDependingOnGender";
+    public static final String SHOW_CHART_DEPENDING_ON_AGE = "chartDependingOnAge";
     public static final String SHOW_STATISTICS_USER = "showStatistics";
     public static final String SHOW_BUS_STOPS = "busStops";
     public static final String BUS_ID = "bus_id";

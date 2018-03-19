@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.servlets;
+package com.infoshareacademy.zieloni.api;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

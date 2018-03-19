@@ -1,9 +1,8 @@
-package com.infoshareacademy.zieloni.servlets.model;
+package com.infoshareacademy.zieloni.api.model;
 
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -15,6 +14,7 @@ import java.time.LocalDateTime;
         @NamedQuery(name = "teenage", query = "select  login from User u  where u.age >=15 and u.age <19 and u.activity='LOG_IN'"),
         @NamedQuery(name = "adult", query = "select  login from User u  where u.age >=19 and u.age <60 and u.activity='LOG_IN'"),
         @NamedQuery(name = "senior", query = "select  login from User u  where u.age >=60 and u.activity='LOG_IN' ")
+
 })
 public class User {
     @Id

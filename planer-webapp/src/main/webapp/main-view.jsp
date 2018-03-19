@@ -45,11 +45,11 @@
                         <c:when test="${busStops}">
                             <%@ include file="timetable/show-bus-stops.jsp" %>
                         </c:when>
-                        <c:when test="${showPieChart}">
-                            <%@ include file="charts/pie-chart.jsp" %>
+                        <c:when test="${chartDependingOnGender}">
+                            <%@ include file="charts/chart_activity_depending_on_gender.jsp" %>
                         </c:when>
-                        <c:when test="${showColumnChart}">
-                            <%@ include file="charts/column-chart.jsp" %>
+                        <c:when test="${chartDependingOnAge}">
+                            <%@ include file="charts/chart_activity_depending_on_age.jsp" %>
                         </c:when>
                         <c:otherwise>
                             <%@ include file="submenu.jsp" %>

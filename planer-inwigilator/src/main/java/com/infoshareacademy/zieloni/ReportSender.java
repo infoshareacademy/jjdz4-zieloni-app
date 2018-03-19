@@ -19,7 +19,7 @@ public class ReportSender {
     @Schedule(minute = "*/2",
             hour = "*",
             info = "2MinScheduler",
-            persistent = false )
+            persistent = false)
     public void sendMail() {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -32,7 +32,7 @@ public class ReportSender {
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("wtrymigaraport","inwigilator123");
+                        return new PasswordAuthentication("wtrymigaraport", "inwigilator123");
                     }
                 });
 

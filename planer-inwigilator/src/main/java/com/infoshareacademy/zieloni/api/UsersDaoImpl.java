@@ -1,6 +1,6 @@
-package com.infoshareacademy.zieloni.servlets;
+package com.infoshareacademy.zieloni.api;
 
-import com.infoshareacademy.zieloni.servlets.model.User;
+import com.infoshareacademy.zieloni.api.model.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

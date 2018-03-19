@@ -21,14 +21,14 @@
                 </button>
             </form>
 
-            <form class="form-signin" method="post" action="/columnchart">
+            <form class="form-signin" method="post" action="/chartActivityDependingOnAge">
                 <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Wykres aktywności
+                        name="menu_button" value="">Aktywność użytkowników ze względu na wiek
                 </button>
             </form>
-            <form class="form-signin" method="post" action="/piechart">
+            <form class="form-signin" method="post" action="/chartActivityDependingOnGender">
                 <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Podział ze względu na wiek
+                        name="menu_button" value="">Aktywność użytkowników ze względu na płeć
                 </button>
             </form>
         </c:when>
@@ -49,6 +49,8 @@
                         name="menu_button" value="">O nas
                 </button>
             </form>
+
+
         </c:otherwise>
     </c:choose>
 </div>

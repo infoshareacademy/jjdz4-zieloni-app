@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.servlets;
+package com.infoshareacademy.zieloni.api;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +21,5 @@ public class BasicServlet extends HttpServlet{
         writer.println("<h2>Widzę cię...ęę hęęęę...</h2>");
         writer.println("</body>");
         writer.println("</html>");
-
     }
 }

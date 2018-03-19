@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@WebServlet("/columnchart")
-public class ColumnChartServlet extends ShowPageViewServlet {
+@WebServlet("/chartActivityDependingOnAge")
+public class ChartActivityDependingOnAge extends ShowPageViewServlet {
     public static Map<String, String> actualData;
 
     private void showCharts(HttpServletRequest req, HttpServletResponse resp) {
@@ -21,7 +21,7 @@ public class ColumnChartServlet extends ShowPageViewServlet {
         String adultSize;
         String seniorSize;
 
-        req.setAttribute(SHOW_COLUMN_CHART, true);
+        req.setAttribute(SHOW_CHART_DEPENDING_ON_AGE, true);
         RestClient client = new RestClient();
         actualData = new HashMap<String, String>();
 
