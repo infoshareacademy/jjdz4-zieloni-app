@@ -16,7 +16,6 @@ public class StatisticServlet extends ShowPageViewServlet {
         showStatistics(req, resp);
     }
 
-
     private void showStatistics(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute(SHOW_STATISTICS_USER, true);
         showPageView(req, resp, "/index.jsp");

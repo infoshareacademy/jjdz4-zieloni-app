@@ -7,31 +7,48 @@
         <c:when test="${sessionScope.role.equals('admin')}">
             <form class="form-signin" method="post" action="/statistic">
                 <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Statystyki
+                        name="menu_button" value="">Lista użytkowników
+                </button>
+            </form>
+            <form class="form-signin" method="post" action="/rest-api-raport">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Raport aktywności
                 </button>
             </form>
             <form class="form-signin" method="post" action="/bus-promotion">
                 <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Autobusy Promo
+                        name="menu_button" value="">Promocja
                 </button>
             </form>
 
+            <form class="form-signin" method="post" action="/columnchart">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Wykres aktywności
+                </button>
+            </form>
+            <form class="form-signin" method="post" action="/piechart">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Podział ze względu na wiek
+                </button>
+            </form>
         </c:when>
+        <c:otherwise>
+
+            <form class="form-signin" method="post" action="/time-table">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Rozkład jazdy
+                </button>
+            </form>
+            <form class="form-signin" method="post" action="/events">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Kalendarz
+                </button>
+            </form>
+            <form class="form-signin" method="post" action="/about">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">O nas
+                </button>
+            </form>
+        </c:otherwise>
     </c:choose>
-
-
-    <form class="form-signin" method="post" action="/time-table">
-        <button class="btn btn-lg btn-primary btn-block" type="submit"
-                name="menu_button" value="">Rozkład jazdy
-        </button>
-    </form>
-    <form class="form-signin" method="post" action="/calendar">
-        <button class="btn btn-lg btn-primary btn-block" type="submit"
-                name="menu_button" value="">Kalendarz</button>
-    </form>
-    <form class="form-signin" method="post" action="/about">
-        <button class="btn btn-lg btn-primary btn-block" type="submit"
-                name="menu_button" value="">O nas</button>
-    </form>
-
 </div>

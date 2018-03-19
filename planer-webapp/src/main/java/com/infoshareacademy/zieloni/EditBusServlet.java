@@ -26,13 +26,13 @@ public class EditBusServlet extends ShowPageViewServlet {
 
         log(Integer.parseInt(req.getParameter(BUS_PROMOTION)) + " klikniety edycja BUS " + req.getParameter(BUS_PROMOTION));
         Long id = Long.valueOf(Integer.parseInt(req.getParameter(BUS_PROMOTION)));
-        String name = String.valueOf(req.getParameter(NAME));
+        // String name = String.valueOf(req.getParameter(NAME));
         String status = String.valueOf(req.getParameter(STATUS));
-        String type = String.valueOf(req.getParameter(TYPE));
+        //String type = String.valueOf(req.getParameter(TYPE));
         Bus editBus = busPromotionDao.getBusById(id);
-        editBus.setName(name);
+        // editBus.setName(name);
         editBus.setStatus(status);
-        editBus.setType(type);
+        //editBus.setType(type);
         busPromotionDao.editBusPromotion(editBus);
     }
 }

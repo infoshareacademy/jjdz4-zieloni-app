@@ -13,6 +13,7 @@ import java.util.Map;
 
 @WebServlet("/show-time-table")
 public class ShowTimeTable extends ShowPageViewServlet {
+
     @Override
     public void start(HttpServletRequest req, HttpServletResponse resp) {
         Integer busStopId = null;

@@ -1,6 +1,8 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.raport.RestClient;
 import com.infoshareacademy.zieloni.registration.UsersDao;
+import com.infoshareacademy.zieloni.registration.model.User;
 import com.infoshareacademy.zieloni.timetable.BusPromotionDao;
 
 import javax.ejb.EJB;
@@ -17,6 +19,8 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public static final String SHOW_TIME_TABLE = "showTimeTable";
     public static final String SHOW_CALENDAR = "showCalendar";
     public static final String SHOW_ABOUT = "showAbout";
+    public static final String SHOW_PIE_CHART = "showPieChart";
+    public static final String SHOW_COLUMN_CHART = "showColumnChart";
     public static final String SHOW_STATISTICS_USER = "showStatistics";
     public static final String SHOW_BUS_STOPS = "busStops";
     public static final String BUS_ID = "bus_id";
@@ -25,10 +29,10 @@ public abstract class ShowPageViewServlet extends HttpServlet {
 
     @EJB
     BusPromotionDao busPromotionDao;
+    public static final String RAPORT = "showRaport";
 
     @EJB
     UsersDao usersRepositoryDao;
-
 
     public abstract void start(HttpServletRequest req, HttpServletResponse resp);
 
@@ -42,24 +46,24 @@ public abstract class ShowPageViewServlet extends HttpServlet {
         start(req, resp);
     }
 
+    public User getUserByLogin(String login) {
+        try {
+            return usersRepositoryDao.getUserByLogin(login);
+        } catch (NullPointerException e) {
+            log("nie znaleziono uzytkownika o podanym logine " + e);
+            return null;
+        }
+    }
+
     public void resetViewState(HttpServletRequest req) {
     }
 
-
     public void setBusList(HttpServletRequest req) {
-        try {
             req.setAttribute("buslist", busPromotionDao.getBusList());
-        } catch (Exception e) {
-            log(" brak Autobusu");
-        }
     }
 
     public void setUserList(HttpServletRequest req) {
-        try {
             req.setAttribute("userList", usersRepositoryDao.getUsersList());
-        } catch (Exception e) {
-            log(" brak userów");
-        }
     }
 
     public void showPageView(HttpServletRequest req, HttpServletResponse resp, String path) {
@@ -69,5 +73,13 @@ public abstract class ShowPageViewServlet extends HttpServlet {
         } catch (Exception e) {
             log("problem with page: " + e);
         }
+    }
+
+    public void setInfoAboutActivity(HttpServletRequest req, HttpServletResponse resp, String activity) {
+
+        String email = req.getSession().getAttribute("loggedUser").toString();
+        User user = getUserByLogin(email);
+        RestClient client = new RestClient();
+        client.infoAboutUserActivity(user, activity);
     }
 }

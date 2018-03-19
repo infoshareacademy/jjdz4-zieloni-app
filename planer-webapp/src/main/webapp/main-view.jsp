@@ -24,15 +24,15 @@
                         <c:when test="${showAbout}">
                             <%@ include file="under-constraction-page.jsp" %>
                         </c:when>
-
+                        <c:when test="${ showRaport}">
+                            <%@ include file="raport/raport.jsp" %>
+                        </c:when>
                         <c:when test="${showStatistics}">
                             <%@ include file="statistics/statistics.jsp" %>
-
                         </c:when>
                         <c:when test="${showBusPromotion}">
                             <%@ include file="bus-promotion/bus-promotion.jsp" %>
                         </c:when>
-
                         <c:when test="${showTimeTableBase}">
                             <%@ include file="timetable/time-table-base.jsp" %>
                         </c:when>
@@ -44,6 +44,12 @@
                         </c:when>
                         <c:when test="${busStops}">
                             <%@ include file="timetable/show-bus-stops.jsp" %>
+                        </c:when>
+                        <c:when test="${showPieChart}">
+                            <%@ include file="charts/pie-chart.jsp" %>
+                        </c:when>
+                        <c:when test="${showColumnChart}">
+                            <%@ include file="charts/column-chart.jsp" %>
                         </c:when>
                         <c:otherwise>
                             <%@ include file="submenu.jsp" %>
