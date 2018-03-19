@@ -46,20 +46,8 @@ public class UsersDaoImpl implements UsersDao {
         return true;
     }
 
-    public boolean removeUser(User user) {
-        User removedUser = entityManager.find(User.class, user.getId());
-        entityManager.remove(removedUser);
-        return true;
-    }
-
     public Optional<User> getUserById(int id) {
         return Optional.ofNullable(entityManager.find(User.class, id));
-    }
-
-    public Optional<User> getUserByLogin(String login) {
-        return (Optional<User>) entityManager.createNamedQuery("getUserByLogin")
-                .setParameter("login", login)
-                .getSingleResult();
     }
 
     public List<User> getAgeGroup(String age_group) {

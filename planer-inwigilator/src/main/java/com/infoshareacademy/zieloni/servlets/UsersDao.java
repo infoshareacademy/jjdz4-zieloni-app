@@ -14,11 +14,7 @@ public interface UsersDao {
 
     boolean editUser(User user);
 
-    boolean removeUser(User user);
-
     Optional<User> getUserById(int id);
-
-    Optional<User> getUserByLogin(String login);
 
     List<User> getAgeGroup(String age_group);
 

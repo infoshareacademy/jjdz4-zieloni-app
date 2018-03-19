@@ -48,15 +48,12 @@ public class UserService {
     @Path("/users/{age_group}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAgeGroup(@PathParam("age_group") String age_group) {
-
         List<User> group = usersRepositoryDao.getAgeGroup(age_group);
 
         if (group.isEmpty()) {
             return Response.noContent().build();
         }
-
         return Response.ok(group).build();
-
     }
 
 
@@ -64,28 +61,14 @@ public class UserService {
     @Path("/user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUser(@QueryParam("id") Integer id) {
+
         Optional<User> user = usersRepositoryDao.getUserById(id);
         if (!user.isPresent()) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-
         return Response.ok(user.get()).build();
 
     }
-
-    /*@GET
-    @Path("/login")
-    @Produces(MediaType.TEXT_HTML)
-    public Response getLoginForm() {
-        String html = "<form action=\"authenticate\" method=\"POST\">\n" +
-                "      <input type=\"text\" name=\"username\"/><br/>\n" +
-                "      <input type=\"password\" name=\"password\"/><br/>\n" +
-                "      <input type=\"Submit\"/>\n" +
-                "    </form>";
-
-        return Response.ok(html).build();
-    }*/
-
 
     @POST
     @Path("/user")
@@ -93,7 +76,7 @@ public class UserService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addUserActivity(User user) {
 
-        LOG.info("aktywność uzytkownik został dodany" + user);
+        LOG.info("aktywność uzytkownik została dodana" + user);
 
         usersRepositoryDao.addUser(user);
         return Response.ok(user).build();
@@ -109,7 +92,6 @@ public class UserService {
         if (usersRepositoryDao.getUserById(user.getId()) == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-
         usersRepositoryDao.editUser(user);
         return Response.ok(user).build();
     }
