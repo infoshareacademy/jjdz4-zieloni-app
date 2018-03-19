@@ -11,9 +11,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Path("/")
@@ -43,6 +42,23 @@ public class UserService {
 
         return Response.ok(users).build();
     }
+
+
+    @GET
+    @Path("/users/{age_group}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAgeGroup(@PathParam("age_group") String age_group) {
+
+        List<User> group = usersRepositoryDao.getAgeGroup(age_group);
+
+        if (group.isEmpty()) {
+            return Response.noContent().build();
+        }
+
+        return Response.ok(group).build();
+
+    }
+
 
     @GET
     @Path("/user")
@@ -79,20 +95,8 @@ public class UserService {
 
         LOG.info("aktywność uzytkownik został dodany" + user);
 
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter myFormatter = DateTimeFormatter.ofPattern("MM, dd, yyyy - HH:mm:ss");
-        String formattedDateTime = now.format(myFormatter); // 03 01, 2017 - 12:45
-
-        User newUser = new User();
-
-        newUser.setName(user.getName());
-        newUser.setSurname(user.getSurname());
-        newUser.setLogTime(formattedDateTime);
-        newUser.setLogin(user.getLogin());
-        newUser.setActivity(user.getActivity());
-
-        usersRepositoryDao.addUser(newUser);
-        return Response.ok(newUser).build();
+        usersRepositoryDao.addUser(user);
+        return Response.ok(user).build();
 
     }
 
@@ -109,4 +113,5 @@ public class UserService {
         usersRepositoryDao.editUser(user);
         return Response.ok(user).build();
     }
+
 }

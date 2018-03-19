@@ -20,6 +20,8 @@ public interface UsersDao {
 
     Optional<User> getUserByLogin(String login);
 
+    List<User> getAgeGroup(String age_group);
+
     List<User> getUsersList();
 
 }

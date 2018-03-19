@@ -23,4 +23,5 @@ public class UserActivity {
     private String logTime;
     private String activity;
     private String login;
+    private int age;
 }
