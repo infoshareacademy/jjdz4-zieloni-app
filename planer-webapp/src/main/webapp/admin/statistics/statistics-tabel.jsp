@@ -23,6 +23,7 @@
                 <td width="15%"><input type="text" class="form-control" name="surname" value="${user.surname}"></td>
                 <td width="15%"><input type="text" class="form-control" name="login" value="${user.login}"></td>
                 <td width="10%"><input type="text" class="form-control" name="age" value="${user.age}"></td>
+
                 <c:if test="${user.gender.toString()=='MAN'}">
                     <td width="10%"><select name="gender" size="1" autofocus>
                         <option VALUE="MAN">MAN</option>
@@ -35,6 +36,7 @@
                         <option VALUE="MAN">MAN</option>
                     </select></td>
                 </c:if>
+
                 <td width="10%"><input type="text" class="form-control" placeholder="rola" name="userRole" autofocus
                                        value="${user.role.userRole}"></td>
                 <td width="10%">

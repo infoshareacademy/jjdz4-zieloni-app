@@ -39,24 +39,28 @@
             </div>
         </c:when>
         <c:otherwise>
+            <h3>Menu</h3>
+            <div id="admin_menu">
+                <form method="post" action="/time-table">
+                    <button class="button-ms" type="submit"
+                            name="menu_button" value=""><img src="../svg/ic_forward_white_24px.svg" width="34" height="34"/><span
+                            class="menu_text">Rozkład jazdy</span>
+                    </button>
+                </form>
+                <form method="post" action="/events">
+                    <button class="button-ms" type="submit"
+                            name="menu_button" value=""><img src="../svg/ic_forward_white_24px.svg" width="34" height="34"/><span
+                            class="menu_text">kalendarz</span>
+                    </button>
+                </form>
+                <form method="post" action="/about">
+                    <button class="button-ms" type="submit"
+                            name="menu_button" value=""><img src="../svg/ic_forward_white_24px.svg" width="34" height="34"/><span
+                            class="menu_text">o nas</span>
+                    </button>
+                </form>
 
-            <form class="form-signin" method="post" action="/time-table">
-                <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Rozkład jazdy
-                </button>
-            </form>
-            <form class="form-signin" method="post" action="/events">
-                <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Kalendarz
-                </button>
-            </form>
-            <form class="form-signin" method="post" action="/about">
-                <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">O nas
-                </button>
-            </form>
-
-
+            </div>
         </c:otherwise>
     </c:choose>
 </div>
