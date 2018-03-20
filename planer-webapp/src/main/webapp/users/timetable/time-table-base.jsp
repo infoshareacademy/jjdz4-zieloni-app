@@ -16,10 +16,13 @@
 
                 <c:forEach var="bus" items="${buslist}" varStatus="index">
                     <form method="post" action="/direct-selector">
-                        <tr <c:if test="${bus.getStatus().toString()=='1'}">style="background-color: rgba(98,189,255,0.51);"</c:if>>
+                        <tr>
                             <td width="10%"><c:out value="${index.count}"/></td>
                             <td width="20%"><c:out value="${bus.getName()}"/></td>
-                            <td width="50%"><c:out value="${bus.getType()}"/></td>
+                            <td width="50%"><c:out value="${bus.getType()}"/><c:if
+                                    test="${bus.getStatus().toString()=='1'}"><img style=" margin-left: 10px;"
+                                                                                   src="../svg/percentage.svg"
+                                                                                   width="34" height="34"/></c:if></td>
                             <td width="20%">
                                 <button type="submit" name="busNr" value="${index.count}">wybierz</button>
                             </td>
