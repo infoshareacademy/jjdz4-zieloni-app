@@ -26,7 +26,9 @@
               <%--  <td width="10%">${events.id}</td>--%>
                 <td width="20%">${events.startTime}</td>
                 <td width="20%">${events.endTime}</td>
-                <td width="30%">${events.location}</td>
+                  <select name=${busstop.location} size="1" autofocus>
+                  </select>
+                <td width="30%">${busstop.location}</td>
                 <td width="30%">${events.summary}</td>
 
 
