@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni.registration;
 
-import com.infoshareacademy.zieloni.statistics.model.Statistic;
+import com.infoshareacademy.zieloni.admin.statistics.model.Statistic;
 import com.infoshareacademy.zieloni.registration.model.Roles;
 import com.infoshareacademy.zieloni.registration.model.User;
 import org.slf4j.Logger;
@@ -16,8 +16,6 @@ public class RegistrationServiceImpl extends ValidationForm implements Registrat
 
     @EJB
     private UsersDao usersRepositoryDao;
-
-
     private static String registrationLevel = "sessionSignInLevel";
     private final Logger logger = LoggerFactory.getLogger(RegistrationServiceImpl.class.getName());
 

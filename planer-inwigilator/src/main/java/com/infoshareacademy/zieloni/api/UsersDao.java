@@ -16,7 +16,7 @@ public interface UsersDao {
 
     Optional<User> getUserById(int id);
 
-    List<User> getAgeGroup(String age_group);
+    List<User> getAgeGroup(String ageGroup);
 
     List<User> getUsersList();
 

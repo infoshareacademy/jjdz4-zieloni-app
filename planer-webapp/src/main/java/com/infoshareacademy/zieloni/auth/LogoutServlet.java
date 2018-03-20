@@ -1,15 +1,10 @@
 package com.infoshareacademy.zieloni.auth;
 
 import com.infoshareacademy.zieloni.ShowPageViewServlet;
-import com.infoshareacademy.zieloni.raport.RestClient;
-import com.infoshareacademy.zieloni.registration.UsersDao;
-import com.infoshareacademy.zieloni.registration.model.User;
 
-import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.Principal;
 
 @WebServlet("/logout")
 public class LogoutServlet extends ShowPageViewServlet {
@@ -21,7 +16,7 @@ public class LogoutServlet extends ShowPageViewServlet {
 
             log("LOGOUT" + req.getSession().getAttribute("loggedUser"));
 
-            setInfoAboutActivity(req, resp,"LOG_OUT");
+            setInfoAboutActivity(req, "LOG_OUT");
             req.logout();
             req.getSession().invalidate();
 
@@ -32,5 +27,4 @@ public class LogoutServlet extends ShowPageViewServlet {
             log("problem with logout " + e);
         }
     }
-
 }

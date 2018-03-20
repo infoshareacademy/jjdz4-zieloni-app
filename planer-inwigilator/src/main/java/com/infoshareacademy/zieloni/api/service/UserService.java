@@ -18,7 +18,7 @@ import java.util.Optional;
 @Path("/")
 public class UserService {
 
-    private Logger LOG = LoggerFactory.getLogger(UserService.class);
+    private Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Context
     private UriInfo uriInfo;
@@ -27,6 +27,7 @@ public class UserService {
     UsersDao usersRepositoryDao;
 
     public UserService() {
+        //constructor
     }
 
     @GET
@@ -46,8 +47,8 @@ public class UserService {
     @GET
     @Path("/users/{age_group}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAgeGroup(@PathParam("age_group") String age_group) {
-        List<User> group = usersRepositoryDao.getAgeGroup(age_group);
+    public Response getAgeGroup(@PathParam("age_group") String ageGroup) {
+        List<User> group = usersRepositoryDao.getAgeGroup(ageGroup);
 
         if (group.isEmpty()) {
             return Response.noContent().build();
@@ -75,7 +76,7 @@ public class UserService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addUserActivity(User user) {
 
-        LOG.info("aktywność uzytkownik została dodana" + user);
+        logger.info("aktywność uzytkownik została dodana {0}", user);
 
         usersRepositoryDao.addUser(user);
         return Response.ok(user).build();
@@ -88,7 +89,7 @@ public class UserService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateUser(User user) {
 
-        if (usersRepositoryDao.getUserById(user.getId()) == null) {
+        if (usersRepositoryDao.getUserById(user.getId()).isPresent()) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         usersRepositoryDao.editUser(user);

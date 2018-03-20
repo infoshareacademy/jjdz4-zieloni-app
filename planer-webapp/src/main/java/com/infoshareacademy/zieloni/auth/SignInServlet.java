@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni.auth;
 
-import com.infoshareacademy.zieloni.raport.RestClient;
+import com.infoshareacademy.zieloni.admin.raport.RestClient;
 import com.infoshareacademy.zieloni.registration.UsersDao;
 import com.infoshareacademy.zieloni.registration.model.User;
 

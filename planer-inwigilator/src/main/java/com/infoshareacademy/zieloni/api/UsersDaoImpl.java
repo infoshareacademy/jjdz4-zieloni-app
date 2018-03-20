@@ -13,13 +13,10 @@ import java.util.Optional;
 @Stateless
 public class UsersDaoImpl implements UsersDao {
 
-    private static final String EDIT_USER = "edit";
-
     @PersistenceContext(unitName = "pUnit")
     private EntityManager entityManager;
 
     public boolean addUser(User user) {
-
 
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter myFormatter = DateTimeFormatter.ofPattern("MM, dd, yyyy - HH:mm:ss");
@@ -31,7 +28,9 @@ public class UsersDaoImpl implements UsersDao {
         newUser.setLogTime(formattedDateTime);
         newUser.setLogin(user.getLogin());
         newUser.setAge(user.getAge());
+        newUser.setGender(user.getGender());
         newUser.setActivity(user.getActivity());
+
         entityManager.persist(newUser);
         return true;
     }
@@ -50,8 +49,8 @@ public class UsersDaoImpl implements UsersDao {
         return Optional.ofNullable(entityManager.find(User.class, id));
     }
 
-    public List<User> getAgeGroup(String age_group) {
-        return entityManager.createNamedQuery(age_group).getResultList();
+    public List<User> getAgeGroup(String ageGroup) {
+        return entityManager.createNamedQuery(ageGroup).getResultList();
     }
 
     public List<User> getUsersList() {

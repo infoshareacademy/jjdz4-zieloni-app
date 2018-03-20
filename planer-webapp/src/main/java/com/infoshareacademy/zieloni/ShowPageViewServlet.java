@@ -1,9 +1,9 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.raport.RestClient;
+import com.infoshareacademy.zieloni.admin.raport.RestClient;
 import com.infoshareacademy.zieloni.registration.UsersDao;
 import com.infoshareacademy.zieloni.registration.model.User;
-import com.infoshareacademy.zieloni.timetable.BusPromotionDao;
+import com.infoshareacademy.zieloni.users.timetable.BusPromotionDao;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -75,7 +75,7 @@ public abstract class ShowPageViewServlet extends HttpServlet {
         }
     }
 
-    public void setInfoAboutActivity(HttpServletRequest req, HttpServletResponse resp, String activity) {
+    public void setInfoAboutActivity(HttpServletRequest req, String activity) {
 
         String email = req.getSession().getAttribute("loggedUser").toString();
         User user = getUserByLogin(email);

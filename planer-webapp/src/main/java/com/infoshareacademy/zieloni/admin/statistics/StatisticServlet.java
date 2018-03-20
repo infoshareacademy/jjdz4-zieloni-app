@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.events;
+package com.infoshareacademy.zieloni.admin.statistics;
 
 import com.infoshareacademy.zieloni.ShowPageViewServlet;
 
@@ -6,17 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/events")
-public class EventsServlet extends ShowPageViewServlet {
+@WebServlet("/statistic")
+public class StatisticServlet extends ShowPageViewServlet {
 
     @Override
     public void start(HttpServletRequest req, HttpServletResponse resp) {
         resetViewState(req);
-        showCalendar(req, resp);
+        setUserList(req);
+        showStatistics(req, resp);
     }
 
-    private void showCalendar(HttpServletRequest req, HttpServletResponse resp) {
-        req.setAttribute(SHOW_CALENDAR, true);
+    private void showStatistics(HttpServletRequest req, HttpServletResponse resp) {
+        req.setAttribute(SHOW_STATISTICS_USER, true);
         showPageView(req, resp, "/index.jsp");
     }
 }
