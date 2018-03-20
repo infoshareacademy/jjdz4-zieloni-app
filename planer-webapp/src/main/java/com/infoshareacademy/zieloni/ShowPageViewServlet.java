@@ -1,5 +1,5 @@
 package com.infoshareacademy.zieloni;
-
+import com.infoshareacademy.zieloni.events.BusStopDao;
 import com.infoshareacademy.zieloni.events.EventsDao;
 import com.infoshareacademy.zieloni.events.model.BusStop;
 import com.infoshareacademy.zieloni.raport.RestClient;
@@ -36,10 +36,13 @@ public abstract class ShowPageViewServlet extends HttpServlet {
 
     @EJB
     UsersDao usersRepositoryDao;
+
     @EJB
     EventsDao eventsDao;
+
     @EJB
-    BusStop busStop;
+    BusStopDao busStopDao;
+
     public abstract void start(HttpServletRequest req, HttpServletResponse resp);
 
     @Override
@@ -64,6 +67,9 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public void resetViewState(HttpServletRequest req) {
     }
 
+    public void getBusStopList(HttpServletRequest req) {
+        req.setAttribute("street", busStopDao.getBusstopList());
+    }
     public void setBusList(HttpServletRequest req) {
             req.setAttribute("buslist", busPromotionDao.getBusList());
     }

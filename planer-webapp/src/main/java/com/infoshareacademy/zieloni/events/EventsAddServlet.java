@@ -24,6 +24,8 @@ private void addEvents(HttpServletRequest req){
 }
     private void showCalendar(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute(ADD_CALENDAR, true);
+        getBusStopList();BusStopList(req);
+        req.setAttribute(LOCATIN,true);
         //req.setAttribute(LOCATIN, true);
         showPageView(req, resp, "/index.jsp");
     }

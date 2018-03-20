@@ -3,6 +3,7 @@ package com.infoshareacademy.zieloni.events.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,13 +14,14 @@ import java.time.LocalDateTime;
         @NamedQuery(name = "getAllBusstop", query = "from BusStop"),
 
 })
-public class BusStop {
+public class BusStop implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Long id;
-    private String street; // UID
+
+    private String street;
 
 
 }

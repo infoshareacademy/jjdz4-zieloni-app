@@ -22,6 +22,6 @@ public interface EventsDao {
     Events getEventsByLogin(String login);
 
     List<Events> getEventsList();
-    List <BusStop> getBusstopList();
+
 
 }

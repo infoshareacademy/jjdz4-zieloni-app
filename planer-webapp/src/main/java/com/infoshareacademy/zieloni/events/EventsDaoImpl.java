@@ -3,8 +3,6 @@ package com.infoshareacademy.zieloni.events;
 
 import com.infoshareacademy.zieloni.events.model.BusStop;
 import com.infoshareacademy.zieloni.events.model.Events;
-import com.infoshareacademy.zieloni.registration.UsersDao;
-import com.infoshareacademy.zieloni.registration.model.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -52,9 +50,5 @@ public class EventsDaoImpl implements EventsDao {
         return entityManager.createNamedQuery("getAllEvents").getResultList();
     }
 
-    @Override
-    public List<BusStop> getBusstopList() {
-        return entityManager.createNamedQuery("getAllBusstop").getResultList();
 
-    }
 }
