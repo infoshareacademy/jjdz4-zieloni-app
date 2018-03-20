@@ -1,7 +1,7 @@
 package com.infoshareacademy.zieloni.events;
 
 import com.infoshareacademy.zieloni.ShowPageViewServlet;
-
+import com.infoshareacademy.zieloni.ShowPageViewServlet;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,10 +19,12 @@ public class EventsAddServlet extends ShowPageViewServlet {
     }
 
 private void addEvents(HttpServletRequest req){
-    //log(Integer.parseInt(req.getParameter(BUS_PROMOTION)) + " klikniety edycja BUS " + req.getParameter(BUS_PROMOTION));
+
+        //log(Integer.parseInt(req.getParameter(BUS_PROMOTION)) + " klikniety edycja BUS " + req.getParameter(BUS_PROMOTION));
 }
     private void showCalendar(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute(ADD_CALENDAR, true);
+        //req.setAttribute(LOCATIN, true);
         showPageView(req, resp, "/index.jsp");
     }
 }

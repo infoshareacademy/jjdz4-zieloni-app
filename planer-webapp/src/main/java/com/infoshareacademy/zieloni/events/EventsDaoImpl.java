@@ -1,6 +1,7 @@
 package com.infoshareacademy.zieloni.events;
 
 
+import com.infoshareacademy.zieloni.events.model.BusStop;
 import com.infoshareacademy.zieloni.events.model.Events;
 import com.infoshareacademy.zieloni.registration.UsersDao;
 import com.infoshareacademy.zieloni.registration.model.User;
@@ -16,7 +17,6 @@ public class EventsDaoImpl implements EventsDao {
 
     @PersistenceContext(unitName = "pUnit")
     private EntityManager entityManager;
-    private static final String EDIT_USER = "edit";
 
 
     @Override
@@ -48,7 +48,13 @@ public class EventsDaoImpl implements EventsDao {
     }
 
     @Override
-    public List<User> getEventsList() {
+    public List<Events> getEventsList() {
         return entityManager.createNamedQuery("getAllEvents").getResultList();
+    }
+
+    @Override
+    public List<BusStop> getBusstopList() {
+        return entityManager.createNamedQuery("getAllBusstop").getResultList();
+
     }
 }

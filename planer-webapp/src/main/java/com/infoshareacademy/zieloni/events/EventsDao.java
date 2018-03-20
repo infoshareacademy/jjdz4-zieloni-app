@@ -1,5 +1,6 @@
 package com.infoshareacademy.zieloni.events;
 
+import com.infoshareacademy.zieloni.events.model.BusStop;
 import com.infoshareacademy.zieloni.events.model.Events;
 import com.infoshareacademy.zieloni.registration.model.User;
 
@@ -20,6 +21,7 @@ public interface EventsDao {
 
     Events getEventsByLogin(String login);
 
-    List<User> getEventsList();
+    List<Events> getEventsList();
+    List <BusStop> getBusstopList();
 
 }

@@ -1,5 +1,7 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.events.EventsDao;
+import com.infoshareacademy.zieloni.events.model.BusStop;
 import com.infoshareacademy.zieloni.raport.RestClient;
 import com.infoshareacademy.zieloni.registration.UsersDao;
 import com.infoshareacademy.zieloni.registration.model.User;
@@ -34,7 +36,10 @@ public abstract class ShowPageViewServlet extends HttpServlet {
 
     @EJB
     UsersDao usersRepositoryDao;
-
+    @EJB
+    EventsDao eventsDao;
+    @EJB
+    BusStop busStop;
     public abstract void start(HttpServletRequest req, HttpServletResponse resp);
 
     @Override
