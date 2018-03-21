@@ -21,6 +21,7 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public static final String SHOW_TIME_TABLE = "showTimeTable";
     public static final String SHOW_CALENDAR = "showCalendar";
     public static final String ADD_CALENDAR = "addCalendar";
+    public static final String LOCATION = "location";
     public static final String SHOW_ABOUT = "showAbout";
     public static final String SHOW_PIE_CHART = "showPieChart";
     public static final String SHOW_COLUMN_CHART = "showColumnChart";
@@ -67,8 +68,9 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public void resetViewState(HttpServletRequest req) {
     }
 
-    public void getBusStopList(HttpServletRequest req) {
-        req.setAttribute("street", busStopDao.getBusstopList());
+    public void   getBusStopList1(HttpServletRequest req) {
+       // return busStopDao.getBusstopList();
+         req.setAttribute("location", busStopDao.getBusstopList());
     }
     public void setBusList(HttpServletRequest req) {
             req.setAttribute("buslist", busPromotionDao.getBusList());

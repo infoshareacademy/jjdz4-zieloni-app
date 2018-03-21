@@ -22,12 +22,12 @@
     </div>
     <div class="form-group">
 
-        <label for="location">Lokalizacja</label>
-
+      <%--  <label for="location">Lokalizacja</label>
+--%>
           <select name="location" size="1" autofocus>
 <c:forEach var="busstop" items="${location}}">
        <%--  $ulica=  "${busstop.street.toString()}" --%>
-    <option value=${busstop.street}>"${busstop.street}"</option>
+    <option value=${busstop.street}></option>
 </c:forEach>
         </select>
        <%-- <input type="datetime-local" class="form-control" name="location" id="location" placeholder="dd/mm/yyyy hh:mm:ss" value="${stopTime}">--%>

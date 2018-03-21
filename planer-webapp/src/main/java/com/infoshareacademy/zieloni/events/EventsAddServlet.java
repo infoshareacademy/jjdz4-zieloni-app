@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class EventsAddServlet extends ShowPageViewServlet {
     private static final String START_TIME = "start_time";
     private static final String STOP_TIME = "stop_time";
-    private static final String LOCATIN = "location";
+    private static final String LOCATIN = "street";
     //private static final String TYPE = "type";
     @Override
     public void start(HttpServletRequest req, HttpServletResponse resp) {
@@ -24,7 +24,7 @@ private void addEvents(HttpServletRequest req){
 }
     private void showCalendar(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute(ADD_CALENDAR, true);
-        getBusStopList();BusStopList(req);
+        getBusStopList1(req);
         req.setAttribute(LOCATIN,true);
         //req.setAttribute(LOCATIN, true);
         showPageView(req, resp, "/index.jsp");
