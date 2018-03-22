@@ -77,7 +77,6 @@ public class UserService {
     public Response addUserActivity(User user) {
 
         logger.info("aktywność uzytkownik została dodana {0}", user);
-
         usersRepositoryDao.addUser(user);
         return Response.ok(user).build();
 
