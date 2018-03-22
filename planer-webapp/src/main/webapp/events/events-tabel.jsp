@@ -26,13 +26,9 @@
               <%--  <td width="10%">${events.id}</td>--%>
                 <td width="20%">${events.startTime}</td>
                 <td width="20%">${events.endTime}</td>
-                  <select name=${busstop.location} size="1" autofocus>
-                  </select>
-                <td width="30%">${busstop.location}</td>
-                <td width="30%">${events.summary}</td>
-
-
-                <td width="20%">
+                  <td width="20%">${events.location}</td>
+                  <td width="30%">${events.summary}</td>
+                  <td width="10%">
                     <button class="btn btn-lg btn-primary btn-block" type="submit" name="events" value="${events.id}"
                             style="background: rgba(98,189,255,0);border-color: rgba(98,189,255,0)">
                         <img src="../svg/ic_border_color_black_24px.svg"/></button>
