@@ -1,5 +1,6 @@
-package com.infoshareacademy.zieloni;
+package com.infoshareacademy.zieloni.admin.promotion;
 
+import com.infoshareacademy.zieloni.ShowPageViewServlet;
 import com.infoshareacademy.zieloni.users.timetable.model.Bus;
 
 import javax.servlet.annotation.WebServlet;

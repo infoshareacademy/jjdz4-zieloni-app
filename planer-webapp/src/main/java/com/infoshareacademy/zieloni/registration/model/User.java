@@ -1,6 +1,6 @@
     package com.infoshareacademy.zieloni.registration.model;
 
-import com.infoshareacademy.zieloni.admin.statistics.model.Statistic;
+import com.infoshareacademy.zieloni.admin.statistic.model.Statistic;
 import lombok.Data;
 
 import javax.persistence.*;

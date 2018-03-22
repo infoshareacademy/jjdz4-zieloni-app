@@ -1,5 +1,6 @@
-package com.infoshareacademy.zieloni;
+package com.infoshareacademy.zieloni.admin.statistic;
 
+import com.infoshareacademy.zieloni.ShowPageViewServlet;
 import com.infoshareacademy.zieloni.registration.model.User;
 
 import javax.servlet.annotation.WebServlet;

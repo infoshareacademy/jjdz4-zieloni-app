@@ -1,7 +1,7 @@
 package com.infoshareacademy.zieloni.registration;
 
 import com.infoshareacademy.zieloni.ShowPageViewServlet;
-import com.infoshareacademy.zieloni.admin.statistics.model.Statistic;
+import com.infoshareacademy.zieloni.admin.statistic.model.Statistic;
 
 import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;

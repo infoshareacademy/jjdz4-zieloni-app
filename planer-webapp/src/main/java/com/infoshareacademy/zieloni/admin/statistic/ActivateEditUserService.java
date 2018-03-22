@@ -1,8 +1,6 @@
-package com.infoshareacademy.zieloni;
+package com.infoshareacademy.zieloni.admin.statistic;
 
-import com.infoshareacademy.zieloni.admin.statistics.StatisticsService;
-import com.infoshareacademy.zieloni.admin.statistics.model.Statistic;
-import com.infoshareacademy.zieloni.registration.model.Gender;
+import com.infoshareacademy.zieloni.ShowPageViewServlet;
 import com.infoshareacademy.zieloni.registration.model.User;
 
 import javax.ejb.EJB;
@@ -26,12 +24,16 @@ public class ActivateEditUserService extends ShowPageViewServlet {
         showPageView(req, resp, "/index.jsp");
     }
 
+    public void setUserList(HttpServletRequest req) {
+        req.setAttribute("userList", usersRepositoryDao.getUsersList());
+    }
+
     private void activateEditUser(HttpServletRequest req) {
 
         int id = Integer.parseInt(req.getParameter(ISEDIT_USER));
         User editUser = usersRepositoryDao.getUserById(id);
 
-        statistic.updateStatisticsByUser(editUser,1);
+        statistic.updateStatisticsByUser(editUser, 1);
         usersRepositoryDao.editUser(editUser);
     }
 }

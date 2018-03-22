@@ -1,6 +1,6 @@
 package com.infoshareacademy.zieloni.registration;
 
-import com.infoshareacademy.zieloni.admin.statistics.model.Statistic;
+import com.infoshareacademy.zieloni.admin.statistic.model.Statistic;
 import com.infoshareacademy.zieloni.registration.model.Roles;
 import com.infoshareacademy.zieloni.registration.model.User;
 import org.slf4j.Logger;

@@ -1,8 +1,8 @@
-package com.infoshareacademy.zieloni.admin.statistics;
+package com.infoshareacademy.zieloni.admin.statistic;
 
 
 import com.infoshareacademy.zieloni.registration.model.User;
-import com.infoshareacademy.zieloni.admin.statistics.model.Statistic;
+import com.infoshareacademy.zieloni.admin.statistic.model.Statistic;
 
 import javax.ejb.Local;
 

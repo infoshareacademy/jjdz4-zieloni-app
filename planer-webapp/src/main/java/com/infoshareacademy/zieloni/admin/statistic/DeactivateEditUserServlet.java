@@ -1,7 +1,6 @@
-package com.infoshareacademy.zieloni;
+package com.infoshareacademy.zieloni.admin.statistic;
 
-import com.infoshareacademy.zieloni.admin.statistics.StatisticsService;
-import com.infoshareacademy.zieloni.admin.statistics.model.Statistic;
+import com.infoshareacademy.zieloni.ShowPageViewServlet;
 import com.infoshareacademy.zieloni.registration.model.Gender;
 import com.infoshareacademy.zieloni.registration.model.User;
 
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/edit-user")
-public class EditUserServlet extends ShowPageViewServlet {
+public class DeactivateEditUserServlet extends ShowPageViewServlet {
     private static final String EDIT_USER = "edit";
     private static final String NAME = "name";
     private static final String SURNAME = "surname";
@@ -22,6 +21,7 @@ public class EditUserServlet extends ShowPageViewServlet {
     @EJB
     StatisticsService statistic;
 
+
     @Override
     public void start(HttpServletRequest req, HttpServletResponse resp) {
         editUser(req);
@@ -29,6 +29,10 @@ public class EditUserServlet extends ShowPageViewServlet {
 
         req.setAttribute(SHOW_STATISTICS_USER, true);
         showPageView(req, resp, "/index.jsp");
+    }
+
+    public void setUserList(HttpServletRequest req) {
+        req.setAttribute("userList", usersRepositoryDao.getUsersList());
     }
 
     private void editUser(HttpServletRequest req) {

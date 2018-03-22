@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.admin.statistics;
+package com.infoshareacademy.zieloni.admin.statistic;
 
 import com.infoshareacademy.zieloni.ShowPageViewServlet;
 
