@@ -27,13 +27,13 @@
                 <form method="post" action="/chartActivityDependingOnAge">
                     <button class="button-ms" type="submit"
                             name="menu_button" value=""><img src="../svg/pie-chart.svg" width="34" height="34"/><span
-                            class="menu_text">Wykres aktywności ze wzglęgu wiek</span>
+                            class="menu_text">Wykres aktywności ze względu  na wiek</span>
                     </button>
                 </form>
                 <form method="post" action="/chartActivityDependingOnGender">
                     <button class="button-ms" type="submit"
                             name="menu_button" value=""><img src="../svg/bar-chart.svg" width="34" height="34"/><span
-                            class="menu_text">Wykres aktywność ze wzglęgu płeć</span>
+                            class="menu_text">Wykres aktywność ze względu na płeć</span>
                     </button>
                 </form>
             </div>

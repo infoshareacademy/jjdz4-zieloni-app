@@ -20,9 +20,10 @@ public class StatisticsServiceImpl implements StatisticsService {
                 .getSingleResult();
     }
     @Override
-    public void updateStatisticsByUser(User user) {
+    public void updateStatisticsByUser(User user,int num) {
         entityManager.createNamedQuery("updateStatistic")
                 .setParameter("id", user.getId())
+                .setParameter("num", num)
                 .executeUpdate();
     }
 }

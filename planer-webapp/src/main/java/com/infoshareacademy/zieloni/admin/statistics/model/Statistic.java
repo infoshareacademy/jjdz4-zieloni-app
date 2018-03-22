@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 @NamedQuery(name = "selectAllStatistics", query = "from Statistic")
 @NamedQuery(name = "getStatisticsByLogin", query = "from Statistic s  where s.user.login=:login")
-@NamedQuery(name = "updateStatistic", query = "update Statistic s set s.editUserCounter = s.editUserCounter+1  where  s.user.id=:id")
+@NamedQuery(name = "updateStatistic", query = "update Statistic s set s.editUserCounter =:num  where  s.user.id=:id")
 
 
 public class Statistic implements Serializable {

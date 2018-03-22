@@ -10,5 +10,5 @@ import javax.ejb.Local;
 public interface StatisticsService {
 
     Statistic getStatisticsByLogin(String login);
-    void updateStatisticsByUser(User user);
+    void updateStatisticsByUser(User user,int num);
 }

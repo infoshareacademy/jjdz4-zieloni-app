@@ -14,7 +14,7 @@
 
     <c:forEach var="bus" items="${buslist}">
         <form method="post" action="/edit-bus">
-            <tr style="background-color: rgba(98,189,255,0.51);">
+            <tr>
 
                 <td width="10%">${bus.id}</td>
                 <td width="20%">${bus.name}</td>
@@ -36,7 +36,7 @@
                 <td width="20%">
                     <button class="btn btn-lg btn-primary btn-block" type="submit" name="promotion" value="${bus.id}"
                             style="background: rgba(98,189,255,0);border-color: rgba(98,189,255,0)">
-                        <img src="../../svg/ic_border_color_black_24px.svg"/></button>
+                        <img src="../../svg/ic_forward_white_24px.svg"/></button>
                 </td>
 
             </tr>

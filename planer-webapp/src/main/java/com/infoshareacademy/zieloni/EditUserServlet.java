@@ -1,8 +1,11 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.admin.statistics.StatisticsService;
+import com.infoshareacademy.zieloni.admin.statistics.model.Statistic;
 import com.infoshareacademy.zieloni.registration.model.Gender;
 import com.infoshareacademy.zieloni.registration.model.User;
 
+import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +18,9 @@ public class EditUserServlet extends ShowPageViewServlet {
     private static final String SURNAME = "surname";
     private static final String AGE = "age";
     private static final String GENDER_PARAMETER = "gender";
+
+    @EJB
+    StatisticsService statistic;
 
     @Override
     public void start(HttpServletRequest req, HttpServletResponse resp) {
@@ -40,6 +46,9 @@ public class EditUserServlet extends ShowPageViewServlet {
         editUser.setSurname(surname);
         editUser.setAge(age);
         editUser.setGender(gender);
+
+        statistic.updateStatisticsByUser(editUser, 0);
+
 
         usersRepositoryDao.editUser(editUser);
     }
