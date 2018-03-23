@@ -1,3 +1,3 @@
-INSERT INTO Planer.events (endTime, location, startTime, summary, uid, login) VALUES ('2017-06-08 07:00:00', 'Jelitkowo', '2017-06-08 09:00:00', 'katownia', '1', 'a1@wp.pl');
-INSERT INTO Planer.events (endTime, location, startTime, summary, uid, login) VALUES ('2017-06-08 10:00:00', 'Kołobrzeska', '2017-06-08 12:00:00', 'ciocia Krysia', '2', 'a1@wp.pl');
-INSERT INTO Planer.events (endTime, location, startTime, summary, uid, login) VALUES ('2017-06-08 16:00:00', 'Jelitkowo', '2017-06-08 18:00:00', 'koncert', '3', 'a1@wp.pl');
+UPDATE Planer.events SET endTime = '2017-06-08 07:00:00', location = 'Jelitkowo', login = 'a1@wp.pl', startTime = '2017-06-08 09:00:00', summary = 'katownia', uid = '1' WHERE id = 1;
+UPDATE Planer.events SET endTime = '2017-06-08 10:00:00', location = 'Kołobrzeska', login = 'a1@wp.pl', startTime = '2017-06-08 12:00:00', summary = 'ciocia Krysia', uid = '2' WHERE id = 2;
+UPDATE Planer.events SET endTime = '2017-06-08 16:00:00', location = 'Jelitkowo', login = 'a1@wp.pl', startTime = '2017-06-08 18:00:00', summary = 'koncert', uid = '3' WHERE id = 3;
