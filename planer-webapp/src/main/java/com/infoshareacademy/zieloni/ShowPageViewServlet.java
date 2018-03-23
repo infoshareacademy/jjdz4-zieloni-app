@@ -1,7 +1,7 @@
 package com.infoshareacademy.zieloni;
+
 import com.infoshareacademy.zieloni.events.BusStopDao;
 import com.infoshareacademy.zieloni.events.EventsDao;
-import com.infoshareacademy.zieloni.events.model.BusStop;
 import com.infoshareacademy.zieloni.raport.RestClient;
 import com.infoshareacademy.zieloni.registration.UsersDao;
 import com.infoshareacademy.zieloni.registration.model.User;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public abstract class ShowPageViewServlet extends HttpServlet {
-
+    private static Events events = new Events();
     public static final String TIME_TABLE_BASE = "showTimeTableBase";
     public static final String SHOW_TIME_TABLE = "showTimeTable";
     public static final String SHOW_CALENDAR = "showCalendar";
@@ -69,18 +69,21 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public void resetViewState(HttpServletRequest req) {
     }
 
-    public void   getBusStopList1(HttpServletRequest req) {
-       // return busStopDao.getBusstopList();
-         req.setAttribute("location", busStopDao.getBusstopList());
+    public void getBusStopList1(HttpServletRequest req) {
+        // return busStopDao.getBusstopList();
+      //  req.setAttribute("location", events.getEventsDB()/*busStopDao.getBusstopList()*/);
     }
+
     public void setBusList(HttpServletRequest req) {
-            req.setAttribute("buslist", busPromotionDao.getBusList());
+        req.setAttribute("buslist", busPromotionDao.getBusList());
     }
 
     public void setUserList(HttpServletRequest req) {
-            req.setAttribute("userList", usersRepositoryDao.getUsersList());
+        req.setAttribute("userList", usersRepositoryDao.getUsersList());
     }
+
     public void setBuSstoplist(HttpServletRequest req) {
+
         req.setAttribute("eventslist", eventsDao.getEventsList());
     }
 

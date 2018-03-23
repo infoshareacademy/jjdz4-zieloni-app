@@ -1,0 +1,3 @@
+INSERT INTO Planer.events (endTime, location, startTime, summary, uid, login) VALUES ('2017-06-08 07:00:00', 'Jelitkowo', '2017-06-08 09:00:00', 'katownia', '1', 'a1@wp.pl');
+INSERT INTO Planer.events (endTime, location, startTime, summary, uid, login) VALUES ('2017-06-08 10:00:00', 'Kołobrzeska', '2017-06-08 12:00:00', 'ciocia Krysia', '2', 'a1@wp.pl');
+INSERT INTO Planer.events (endTime, location, startTime, summary, uid, login) VALUES ('2017-06-08 16:00:00', 'Jelitkowo', '2017-06-08 18:00:00', 'koncert', '3', 'a1@wp.pl');

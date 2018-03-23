@@ -7,7 +7,7 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<form action="/Addevents" method="post">
+<form action="/Addeve" method="post">
     <div class="form-group">
 
         <label for="start_time">Start time</label>

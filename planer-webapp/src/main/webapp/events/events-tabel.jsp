@@ -10,10 +10,11 @@
     <thead>
     <tr>
         <%--<th width="10%" scope="col">id</th>--%>
-        <th width="20%" scope="col">Data  start</th>
-        <th width="20%" scope="col">Data  stop</th>
-        <th width="30%" scope="col">Lokalizacja / ulica</th>
-        <th width="30%" scope="col">Opis</th>
+        <th width="20%" scope="col">Data start</th>
+        <th width="20%" scope="col">Data stop</th>
+        <th width="20%" scope="col">Lokalizacja</th>
+        <th width="15%" scope="col">Opis</th>
+        <th width="25%" scope="col">Polaczenie</th>
 
     </tr>
     </thead>
@@ -23,15 +24,23 @@
         <form method="post" action="/events">
             <tr style="background-color: rgba(98,189,255,0.51);">
 
-              <%--  <td width="10%">${events.id}</td>--%>
-                <td width="20%">${events.startTime}</td>
-                <td width="20%">${events.endTime}</td>
-                  <td width="20%">${events.location}</td>
-                  <td width="30%">${events.summary}</td>
-                  <td width="10%">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" name="events" value="${events.id}"
-                            style="background: rgba(98,189,255,0);border-color: rgba(98,189,255,0)">
-                        <img src="../svg/ic_border_color_black_24px.svg"/></button>
+                <td
+                <td width="18%">
+                    <%@taglib uri="http://example.com/functions" prefix="f" %>
+
+                    <p> ${f:formatLocalDateTime(events.startTime, 'dd.MM.yyyy, hh:mm')}</p></td>
+                <td width="18%">
+                    <%@taglib uri="http://example.com/functions" prefix="f" %>
+
+                    <p> ${f:formatLocalDateTime(events.endTime, 'dd.MM.yyyy, hh:mm')}</p></td>
+                    <%--<td width="18%">${dataFormatJsp.events.endTime}</td>--%>
+                <td width="20%">${events.location}</td>
+                <td width="15%">${events.summary}</td>
+                <td width="25%">
+                    <button type="submit" name="trasa" value="${events.id}}">wybierz</button>
+                        <%-- <button class="btn btn-lg btn-primary btn-block" type="submit" name="events" value="${events.id}"
+                                 style="background: rgba(98,189,255,0);border-color: rgba(98,189,255,0)">
+                             <img src="../svg/ic_border_color_black_24px.svg"/></button>--%>
                 </td>
 
             </tr>
