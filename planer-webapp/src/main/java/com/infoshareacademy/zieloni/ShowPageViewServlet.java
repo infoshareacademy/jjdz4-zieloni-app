@@ -30,6 +30,7 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public static final String DIRECTION_VARIANT = "variant";
     public static final String BUS_PROMOTION_id = "showBusPromotion";
     public static final String EVENTS_LIST = "eventslist";
+    public static final String SUGGESTED_BUS = "suggestedBus";
 
 
     public static final String RAPORT = "showRaport";
@@ -41,7 +42,7 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     protected UsersDao usersRepositoryDao;
 
     @EJB
-    EventsDao eventsDao;
+    protected EventsDao eventsDao;
 
     @EJB
     BusStopDao busStopDao;
@@ -78,7 +79,7 @@ public abstract class ShowPageViewServlet extends HttpServlet {
             req.setAttribute("userList", usersRepositoryDao.getUsersList());
     }
 
-    public void setBuSstoplist(HttpServletRequest req) {
+    public void setBusStopList(HttpServletRequest req) {
 
         req.setAttribute("eventslist", eventsDao.getEventsList());
     }

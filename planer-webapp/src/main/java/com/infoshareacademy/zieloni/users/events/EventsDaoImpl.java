@@ -34,7 +34,9 @@ public class EventsDaoImpl implements EventsDao {
 
     @Override
     public Events getEventsById(int id) {
-        return null;
+        return (Events) entityManager.createNamedQuery("getEventsById")
+                .setParameter("id", id)
+                .getSingleResult();
     }
 
     @Override

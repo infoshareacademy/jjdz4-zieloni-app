@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "events")
 @NamedQueries({
         @NamedQuery(name = "getEventsByLogin", query = "from Events u where u.login=:login"),
+        @NamedQuery(name = "getEventsById", query = "from Events u where u.id=:id"),
         @NamedQuery(name = "getAllEvents", query = "from Events"),
         @NamedQuery(name = "updateEvents", query = "update Events u  set u.startTime =:startTime, u.endTime=:endTime, u.uid=:uid, u.location=:location, u.summary=:summary,u.login=:login where " +
                 "(u.id=:id)"),

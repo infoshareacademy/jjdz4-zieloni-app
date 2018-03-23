@@ -15,7 +15,7 @@ public interface EventsDao {
 
     boolean removeEvents(Events events);
 
-   Events getEventsById(int id);
+    Events getEventsById(int id);
 
     Events getEventsByLogin(String login);
 

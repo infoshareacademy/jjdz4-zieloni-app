@@ -13,7 +13,7 @@
     <tbody style="height: 400px;">
 
     <c:forEach var="events" items="${eventslist}">
-        <form method="post" action="/events">
+        <form method="post" action="/suggestedBusServlet">
             <tr>
                 <td width="20%">
                     <%@taglib uri="http://example.com/functions" prefix="f" %>
@@ -24,7 +24,7 @@
                 <td width="20%">${events.location}</td>
                 <td width="15%">${events.summary}</td>
                 <td width="25%">
-                    <button type="submit" name="trasa" value="${events.id}}">wybierz</button>
+                    <button type="submit" name="eventId" value="${events.id}">wybierz</button>
                 </td>
 
             </tr>

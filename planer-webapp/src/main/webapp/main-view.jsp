@@ -21,6 +21,9 @@
                         <c:when test="${showCalendar}">
                             <%@ include file="users/events/events.jsp" %>
                         </c:when>
+                        <c:when test="${suggestedBus}">
+                            <%@ include file="users/events/suggestedbus.jsp" %>
+                        </c:when>
                         <c:when test="${addCalendar}">
                             <%@ include file="users/events/eventsAdd.jsp" %>
                         </c:when>
