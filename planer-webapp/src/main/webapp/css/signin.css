@@ -167,16 +167,25 @@ table.table-fixedheader > thead tr th, table.table-fixedheader > tbody tr td {
     padding-bottom: 20px;
 }
 
+svg {
+    fill: #ff0000;
+}
+
+.menu_text {
+    margin: 40px;
+}
+
 .button-ms {
-    min-width: 250px;
-    background-color: #1689ff;
+    min-width: 550px;
+    background-color: rgba(0, 0, 0, 0.0);
     border: none;
     color: white;
-    padding: 15px 32px;
-    text-align: center;
+    padding: 10px 10px;
+    margin-bottom: 5px;
+    text-align: left;
     text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
+
+    font-size: 18px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }

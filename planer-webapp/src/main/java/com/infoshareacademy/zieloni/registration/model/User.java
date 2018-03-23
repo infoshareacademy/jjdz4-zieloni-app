@@ -1,6 +1,6 @@
     package com.infoshareacademy.zieloni.registration.model;
 
-import com.infoshareacademy.zieloni.statistics.model.Statistic;
+import com.infoshareacademy.zieloni.admin.statistic.model.Statistic;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "getUserByLogin", query = "from User u where u.login=:login"),
         @NamedQuery(name = "getAll", query = "from User"),
-        @NamedQuery(name = "updateUser", query = "update User u  set u.name =:name, u.surname=:surname, u.age=:age, u.gender=:gender where u.id=:id"),
+        @NamedQuery(name = "updateUser", query = "update User u   set u.name =:name, u.surname=:surname, u.age=:age, u.gender=:gender where u.id=:id"),
 })
 
 public class User implements Serializable {
