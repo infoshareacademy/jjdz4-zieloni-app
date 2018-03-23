@@ -26,6 +26,10 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public static final String BUS_ID = "bus_id";
     public static final String DIRECTION_VARIANT = "variant";
     public static final String BUS_PROMOTION_id = "showBusPromotion";
+    public static final String EVENTS_LIST = "eventslist";
+
+    @EJB
+    BusPromotionDao busPromotionDao;
     public static final String RAPORT = "showRaport";
 
     @EJB
@@ -33,6 +37,12 @@ public abstract class ShowPageViewServlet extends HttpServlet {
 
     @EJB
     protected UsersDao usersRepositoryDao;
+
+    @EJB
+    EventsDao eventsDao;
+
+    @EJB
+    BusStopDao busStopDao;
 
     public abstract void start(HttpServletRequest req, HttpServletResponse resp);
 
@@ -58,12 +68,22 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public void resetViewState(HttpServletRequest req) {
     }
 
+    public void getBusStopList1(HttpServletRequest req) {
+        // return busStopDao.getBusstopList();
+      //  req.setAttribute("location", events.getEventsDB()/*busStopDao.getBusstopList()*/);
+    }
+
     public void setBusList(HttpServletRequest req) {
-        req.setAttribute("buslist", busPromotionDao.getBusList());
+            req.setAttribute("buslist", busPromotionDao.getBusList());
     }
 
     public void setUserList(HttpServletRequest req) {
-        req.setAttribute("userList", usersRepositoryDao.getUsersList());
+            req.setAttribute("userList", usersRepositoryDao.getUsersList());
+    }
+
+    public void setBuSstoplist(HttpServletRequest req) {
+
+        req.setAttribute("eventslist", eventsDao.getEventsList());
     }
 
     public void showPageView(HttpServletRequest req, HttpServletResponse resp, String path) {

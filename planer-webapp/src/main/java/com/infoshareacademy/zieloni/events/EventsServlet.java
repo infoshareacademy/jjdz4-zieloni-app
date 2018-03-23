@@ -12,6 +12,7 @@ public class EventsServlet extends ShowPageViewServlet {
     @Override
     public void start(HttpServletRequest req, HttpServletResponse resp) {
         resetViewState(req);
+        setBuSstoplist(req);
         showCalendar(req, resp);
     }
 

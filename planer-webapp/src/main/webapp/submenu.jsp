@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="blackshape">
+
+
     <c:choose>
         <c:when test="${sessionScope.role.equals('admin')}">
             <h3>Panel Administracyjny</h3>
@@ -61,6 +63,27 @@
                 </form>
 
             </div>
+
+            <form class="form-signin" method="post" action="/time-table">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Rozkład jazdy
+                </button>
+            </form>
+            <form class="form-signin" method="post" action="/events">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Wydarzenia
+                </button>
+            </form>
+            <form class="form-signin" method="post" action="/Addevents">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">Dodaj Wydarzenie
+                </button>
+            </form>
+            <form class="form-signin" method="post" action="/about">
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="menu_button" value="">O nas
+                </button>
+            </form>
         </c:otherwise>
     </c:choose>
 </div>
