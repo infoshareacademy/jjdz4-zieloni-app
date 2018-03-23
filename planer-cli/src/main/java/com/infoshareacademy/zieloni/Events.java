@@ -29,7 +29,7 @@ public class Events {
     private Integer counter = 0;
     private final Logger logger = LoggerFactory.getLogger(Events.class.getName());
 
-    void loadEvents() throws ParserException, ParseException, InterruptedException {
+    public void loadEvents() throws ParserException, ParseException, InterruptedException {
         FileInputStream icalFile = null;
         try {
             logger.debug("Wczytywanie pliku iCal z kalendarzem zainicjowane");
