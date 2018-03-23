@@ -1,6 +1,8 @@
 package com.infoshareacademy.zieloni;
 
 import com.infoshareacademy.zieloni.admin.raport.RestClient;
+import com.infoshareacademy.zieloni.users.events.BusStopDao;
+import com.infoshareacademy.zieloni.users.events.EventsDao;
 import com.infoshareacademy.zieloni.registration.UsersDao;
 import com.infoshareacademy.zieloni.registration.model.User;
 import com.infoshareacademy.zieloni.users.timetable.BusPromotionDao;
@@ -18,6 +20,7 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public static final String TIME_TABLE_BASE = "showTimeTableBase";
     public static final String SHOW_TIME_TABLE = "showTimeTable";
     public static final String SHOW_CALENDAR = "showCalendar";
+    public static final String ADD_CALENDAR = "addCalendar";
     public static final String SHOW_ABOUT = "showAbout";
     public static final String SHOW_CHART_DEPENDING_ON_GENDER = "chartDependingOnGender";
     public static final String SHOW_CHART_DEPENDING_ON_AGE = "chartDependingOnAge";
@@ -28,8 +31,7 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public static final String BUS_PROMOTION_id = "showBusPromotion";
     public static final String EVENTS_LIST = "eventslist";
 
-    @EJB
-    BusPromotionDao busPromotionDao;
+
     public static final String RAPORT = "showRaport";
 
     @EJB
@@ -66,11 +68,6 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     }
 
     public void resetViewState(HttpServletRequest req) {
-    }
-
-    public void getBusStopList1(HttpServletRequest req) {
-        // return busStopDao.getBusstopList();
-      //  req.setAttribute("location", events.getEventsDB()/*busStopDao.getBusstopList()*/);
     }
 
     public void setBusList(HttpServletRequest req) {

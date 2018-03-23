@@ -1,8 +1,7 @@
-package com.infoshareacademy.zieloni.events;
+package com.infoshareacademy.zieloni.users.events;
 
 
-import com.infoshareacademy.zieloni.events.model.BusStop;
-import com.infoshareacademy.zieloni.events.model.Events;
+import com.infoshareacademy.zieloni.users.events.model.Events;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

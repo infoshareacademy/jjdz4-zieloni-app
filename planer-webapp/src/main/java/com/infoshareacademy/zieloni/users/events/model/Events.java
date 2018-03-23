@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.events.model;
+package com.infoshareacademy.zieloni.users.events.model;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
-package com.infoshareacademy.zieloni.events;
+package com.infoshareacademy.zieloni.users.events;
 
 import com.infoshareacademy.zieloni.ShowPageViewServlet;
-import com.infoshareacademy.zieloni.ShowPageViewServlet;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +24,7 @@ private void addEvents(HttpServletRequest req){
 }
     private void showCalendar(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute(ADD_CALENDAR, true);
-        getBusStopList1(req);
+        //getBusStopList1(req);
         req.setAttribute(LOCATIN,true);
         //req.setAttribute(LOCATIN, true);
         showPageView(req, resp, "/index.jsp");

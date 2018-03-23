@@ -52,7 +52,7 @@
                 <form method="post" action="/events">
                     <button class="button-ms" type="submit"
                             name="menu_button" value=""><img src="../svg/settings-4.svg" width="34" height="34"/><span
-                            class="menu_text">Kalendarz</span>
+                            class="menu_text">Wydarzenia</span>
                     </button>
                 </form>
                 <form method="post" action="/about">
@@ -63,27 +63,6 @@
                 </form>
 
             </div>
-
-            <form class="form-signin" method="post" action="/time-table">
-                <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Rozkład jazdy
-                </button>
-            </form>
-            <form class="form-signin" method="post" action="/events">
-                <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Wydarzenia
-                </button>
-            </form>
-            <form class="form-signin" method="post" action="/Addevents">
-                <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">Dodaj Wydarzenie
-                </button>
-            </form>
-            <form class="form-signin" method="post" action="/about">
-                <button class="btn btn-lg btn-primary btn-block" type="submit"
-                        name="menu_button" value="">O nas
-                </button>
-            </form>
         </c:otherwise>
     </c:choose>
 </div>

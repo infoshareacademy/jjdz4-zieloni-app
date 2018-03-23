@@ -1,10 +1,9 @@
-package com.infoshareacademy.zieloni.events.model;
+package com.infoshareacademy.zieloni.users.events.model;
 
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Entity
 @Data

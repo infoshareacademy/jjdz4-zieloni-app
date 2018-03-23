@@ -19,10 +19,10 @@
                 <c:when test="${sessionScope.isLogged == true}">
                     <c:choose>
                         <c:when test="${showCalendar}">
-                            <%@ include file="events/events.jsp" %>
+                            <%@ include file="users/events/events.jsp" %>
                         </c:when>
                         <c:when test="${addCalendar}">
-                            <%@ include file="events/eventsAdd.jsp" %>
+                            <%@ include file="users/events/eventsAdd.jsp" %>
                         </c:when>
                         <c:when test="${showAbout}">
                             <%@ include file="under-constraction-page.jsp" %>

@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.events;
+package com.infoshareacademy.zieloni.users.events;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

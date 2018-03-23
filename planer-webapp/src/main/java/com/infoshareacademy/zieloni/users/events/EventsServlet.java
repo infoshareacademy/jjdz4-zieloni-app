@@ -1,4 +1,4 @@
-package com.infoshareacademy.zieloni.events;
+package com.infoshareacademy.zieloni.users.events;
 
 import com.infoshareacademy.zieloni.ShowPageViewServlet;
 
