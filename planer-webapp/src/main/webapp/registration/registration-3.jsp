@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div class="blackshape">
     <form class="form-signin" method="post" action="/add-user">
-        <h2 class="form-signin-heading">Utwórz nowe konto</h2>
+        <h3 class="form-signin-heading">Utwórz nowe konto</h3>
         <c:if test="${errorMessage != null}">
             <div class="error">${errorMessage}</div>
         </c:if>

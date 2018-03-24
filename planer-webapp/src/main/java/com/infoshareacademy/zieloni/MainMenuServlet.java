@@ -1,7 +1,5 @@
 package com.infoshareacademy.zieloni;
 
-import com.infoshareacademy.zieloni.ShowPageViewServlet;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,7 +1,11 @@
 package com.infoshareacademy.zieloni;
 
+import com.infoshareacademy.zieloni.admin.raport.RestClient;
+import com.infoshareacademy.zieloni.users.events.BusStopDao;
+import com.infoshareacademy.zieloni.users.events.EventsDao;
 import com.infoshareacademy.zieloni.registration.UsersDao;
-import com.infoshareacademy.zieloni.timetable.BusPromotionDao;
+import com.infoshareacademy.zieloni.registration.model.User;
+import com.infoshareacademy.zieloni.users.timetable.BusPromotionDao;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -16,19 +20,32 @@ public abstract class ShowPageViewServlet extends HttpServlet {
     public static final String TIME_TABLE_BASE = "showTimeTableBase";
     public static final String SHOW_TIME_TABLE = "showTimeTable";
     public static final String SHOW_CALENDAR = "showCalendar";
+    public static final String ADD_CALENDAR = "addCalendar";
     public static final String SHOW_ABOUT = "showAbout";
+    public static final String SHOW_CHART_DEPENDING_ON_GENDER = "chartDependingOnGender";
+    public static final String SHOW_CHART_DEPENDING_ON_AGE = "chartDependingOnAge";
     public static final String SHOW_STATISTICS_USER = "showStatistics";
     public static final String SHOW_BUS_STOPS = "busStops";
     public static final String BUS_ID = "bus_id";
     public static final String DIRECTION_VARIANT = "variant";
     public static final String BUS_PROMOTION_id = "showBusPromotion";
+    public static final String EVENTS_LIST = "eventslist";
+    public static final String SUGGESTED_BUS = "suggestedBus";
+
+
+    public static final String RAPORT = "showRaport";
 
     @EJB
-    BusPromotionDao busPromotionDao;
+    protected BusPromotionDao busPromotionDao;
 
     @EJB
-    UsersDao usersRepositoryDao;
+    protected UsersDao usersRepositoryDao;
 
+    @EJB
+    protected EventsDao eventsDao;
+
+    @EJB
+    BusStopDao busStopDao;
 
     public abstract void start(HttpServletRequest req, HttpServletResponse resp);
 
@@ -42,24 +59,29 @@ public abstract class ShowPageViewServlet extends HttpServlet {
         start(req, resp);
     }
 
+    public User getUserByLogin(String login) {
+        try {
+            return usersRepositoryDao.getUserByLogin(login);
+        } catch (NullPointerException e) {
+            log("nie znaleziono uzytkownika o podanym logine " + e);
+            return null;
+        }
+    }
+
     public void resetViewState(HttpServletRequest req) {
     }
 
-
     public void setBusList(HttpServletRequest req) {
-        try {
             req.setAttribute("buslist", busPromotionDao.getBusList());
-        } catch (Exception e) {
-            log(" brak Autobusu");
-        }
     }
 
     public void setUserList(HttpServletRequest req) {
-        try {
             req.setAttribute("userList", usersRepositoryDao.getUsersList());
-        } catch (Exception e) {
-            log(" brak userów");
-        }
+    }
+
+    public void setBusStopList(HttpServletRequest req) {
+
+        req.setAttribute("eventslist", eventsDao.getEventsList());
     }
 
     public void showPageView(HttpServletRequest req, HttpServletResponse resp, String path) {
@@ -69,5 +91,13 @@ public abstract class ShowPageViewServlet extends HttpServlet {
         } catch (Exception e) {
             log("problem with page: " + e);
         }
+    }
+
+    public void setInfoAboutActivity(HttpServletRequest req, String activity) {
+
+        String email = req.getSession().getAttribute("loggedUser").toString();
+        User user = getUserByLogin(email);
+        RestClient client = new RestClient();
+        client.infoAboutUserActivity(user, activity);
     }
 }

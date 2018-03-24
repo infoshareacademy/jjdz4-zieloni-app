@@ -1,7 +1,7 @@
 package com.infoshareacademy.zieloni.auth;
 
+import com.infoshareacademy.zieloni.admin.raport.RestClient;
 import com.infoshareacademy.zieloni.registration.UsersDao;
-import com.infoshareacademy.zieloni.registration.model.Roles;
 import com.infoshareacademy.zieloni.registration.model.User;
 
 import javax.ejb.EJB;
@@ -34,6 +34,7 @@ public class SignInServlet extends HttpServlet {
         try {
             signIn(req, resp);
             req.getSession().setAttribute("user", null);
+
         } catch (Exception e) {
             log("problem with log-in " + e);
         }
@@ -51,10 +52,14 @@ public class SignInServlet extends HttpServlet {
 
     private void signIn(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+
+
             req.login(req.getParameter("email"), req.getParameter("password"));
             User user = getUserByLogin(req.getParameter("email"));
-            req.getSession().setAttribute("role",user.getRole().getUserRole());
+            req.getSession().setAttribute("role", user.getRole().getUserRole());
 
+            RestClient client = new RestClient();
+            client.infoAboutUserActivity(user, "LOG_IN");
 
         } catch (ServletException e) {
             req.setAttribute("errorMessageSignIn", "Podałeś błędny login lub hasło");
