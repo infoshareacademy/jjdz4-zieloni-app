@@ -20,13 +20,17 @@ public class PathFinder {
 
     public static List<FilePathDTO> addAllFilesPathToArrayList(String path) {
 
+        logger.info("PathFinder | PATH: {}", path);
+
         File folder = new File(PathFinder.class.getProtectionDomain().getCodeSource().getLocation().getPath());
         Set<String> directory = new HashSet<>();
         List<String> files = new ArrayList<>();
 
         if (folder.isFile()) {
+            logger.info("PathFinder | runWithJar");
             runWithJar(path, folder, directory, files);
         } else {
+            logger.info("PathFinder | runWithIDE");
             runWithIDE(path, directory, files);
         }
         return assignPathToDTO(directory, files, path);
@@ -60,11 +64,14 @@ public class PathFinder {
         try {
             jar = new JarFile(folder);
             final Enumeration<JarEntry> entries = jar.entries();
+
             while (entries.hasMoreElements()) {
+                logger.info("PathFinder | runWithJar | entry found");
+
                 switchDirectoryAndFiles(path, directory, files, entries);
             }
         } catch (IOException e) {
-            logger.warn("Run with JAR file-jar loading problem !!!" + e);
+            logger.warn("Run with JAR file-jar loading problem !!!", e);
 
         }
     }
@@ -76,7 +83,7 @@ public class PathFinder {
             try {
                 directory.add(name.split("/")[1]);
             } catch (Exception e) {
-                logger.warn("Run with JAR file - problem with add item to Set<String> directory " + e);
+                logger.warn("Run with JAR file - problem with add item to Set<String> directory ", e);
             }
 
             try {
@@ -90,6 +97,7 @@ public class PathFinder {
     }
 
     private static List<FilePathDTO> assignPathToDTO(Set<String> directory, List<String> files, String path) {
+        logger.info("PathFinder | assignPathToDTO | files: {} | path: {}", files.size(), path);
         List<FilePathDTO> arrayWithFolderPath = new ArrayList<>();
 
         for (String dir : directory) {
