@@ -4,7 +4,6 @@ import com.infoshareacademy.zieloni.ShowPageViewServlet;
 import com.infoshareacademy.zieloni.controller.FindBusController;
 import com.infoshareacademy.zieloni.controller.FindBusWithChangeController;
 import com.infoshareacademy.zieloni.model.ChangeConnectionDTO;
-import com.infoshareacademy.zieloni.model.Event;
 import com.infoshareacademy.zieloni.model.ProposedBusDTO;
 import com.infoshareacademy.zieloni.users.events.model.Events;
 import com.infoshareacademy.zieloni.utils.TimeLimiter;
@@ -22,6 +21,8 @@ public class SuggestedBusServlet extends ShowPageViewServlet {
         String txt = "nie ma  propozycji - programista się nie popisał ... szybko robił  i ślepe zrobił";
         int eventId = Integer.parseInt(req.getParameter("eventId"));
         req.setAttribute(SUGGESTED_BUS, true);
+
+
         Events selectedEvent = eventsDao.getEventsList().get(eventId-1);
         Events nextEvent = eventsDao.getEventsList().get(eventId);
         FindBusController.search(selectedEvent.getLocation(), nextEvent.getLocation());
@@ -43,8 +44,8 @@ public class SuggestedBusServlet extends ShowPageViewServlet {
 
                 ChangeConnectionDTO bus = FindBusWithChangeController.getChangeConnectionArray().get(0);
                 txt = ("Proponowanie połacznie  to  " + bus.getBus0().getTypeOfTransport() +
-                        " nr : " + bus.getBus0().getBusNumber() +"<br/>"+ " przesiadka na przystanku " + bus.getConnectionBusStop()
-                        +"<br/>"+ " w " + bus.getBus1().getTypeOfTransport() + " nr : " + bus.getBus1().getBusNumber());
+                        " nr : " + bus.getBus0().getBusNumber() + "<br/>" + " przesiadka na przystanku " + bus.getConnectionBusStop()
+                        + "<br/>" + " w " + bus.getBus1().getTypeOfTransport() + " nr : " + bus.getBus1().getBusNumber());
             }
         }
         req.setAttribute("textInfo", txt);

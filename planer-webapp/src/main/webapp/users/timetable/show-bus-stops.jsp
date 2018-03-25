@@ -8,7 +8,7 @@
                 <tr>
                     <th width="10%" scope="col">nr</th>
                     <th width="70%" scope="col">przystanek</th>
-                    <th width="20%" scope="col">usuń</th>
+                    <th width="20%" scope="col">wybierz</th>
                 </tr>
                 </thead>
                 <tbody style="height:400px">
@@ -27,7 +27,7 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <form class="form-signin" method="post" action="/main-menu">
+            <form class="form-signin" method="post" action="/time-table">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Wróć</button>
             </form>
         </div>
