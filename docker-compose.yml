@@ -1,42 +1,42 @@
-version: '2'
+version: '2.2'
 services:
   jjdz4-planer-webapp-db:
     container_name: "jjdz4-planer-webapp-db"
     image: mysql:latest
     environment:
       - MYSQL_DATABASE=Planer
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
+      - MYSQL_USER=zieloni
+      - MYSQL_PASSWORD=zieloni1
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - 3307:3306
+      - 4082:3306
   jjdz4-planer-inwigilator-db:
     container_name: "jjdz4-planer-inwigilator-db"
     image: mysql:latest
     environment:
       - MYSQL_DATABASE=Inwigilator
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
+      - MYSQL_USER=zieloni
+      - MYSQL_PASSWORD=zieloni1
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - 3308:3306
+      - 4083:3306
   jjdz4-planer-webapp:
     container_name: "jjdz4-planer-webapp"
     build: .
     environment:
       - MYSQL_URI=jjdz4-planer-webapp-db:3306
       - MYSQL_DATABASE=Planer
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
+      - MYSQL_USER=zieloni
+      - MYSQL_PASSWORD=zieloni1
       - DATASOURCE_NAME=java:/Planer
       - MYSQL_API_URI=jjdz4-planer-inwigilator-db:3306
       - MYSQL_API_DATABASE=Inwigilator
-      - MYSQL_API_USER=root
-      - MYSQL_API_PASSWORD=root
+      - MYSQL_API_USER=zieloni
+      - MYSQL_API_PASSWORD=zieloni1
       - DATASOURCE_API_NAME=java:/Inwigilator
     ports:
-      - 8080:8080
-      - 9990:9990
+      - 4080:8080
+      - 4081:9990
     depends_on:
       - jjdz4-planer-webapp-db
       - jjdz4-planer-inwigilator-db

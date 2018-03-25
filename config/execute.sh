@@ -66,7 +66,8 @@ run-batch
 EOF
 
 # Deploy the WAR
-cp /opt/jboss/wildfly/config/*.war $JBOSS_HOME/$JBOSS_MODE/deployments/
+cp /opt/jboss/wildfly/config/planer-inwigilator.war $JBOSS_HOME/$JBOSS_MODE/deployments/
+cp /opt/jboss/wildfly/config/planer-webapp.war $JBOSS_HOME/$JBOSS_MODE/deployments/
 
 echo "=> Shutting down WildFly"
 if [ "$JBOSS_MODE" = "standalone" ]; then
