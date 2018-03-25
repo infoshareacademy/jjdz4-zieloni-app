@@ -23,8 +23,8 @@ public class SuggestedBusServlet extends ShowPageViewServlet {
         req.setAttribute(SUGGESTED_BUS, true);
 
 
-        Events selectedEvent = eventsDao.getEventsList().get(eventId);
-        Events nextEvent = eventsDao.getEventsList().get(eventId+1);
+        Events selectedEvent = eventsDao.getEventsList().get(eventId-1);
+        Events nextEvent = eventsDao.getEventsList().get(eventId);
         FindBusController.search(selectedEvent.getLocation(), nextEvent.getLocation());
 
 
