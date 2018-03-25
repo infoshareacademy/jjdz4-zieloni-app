@@ -19,7 +19,7 @@ import java.util.List;
 
 public class RestClient {
 
-    private static String url = "http://localhost:8081/planer-inwigilator/";
+    private static String url = "http://localhost:4080/planer-inwigilator/";
     private final Logger logger = LoggerFactory.getLogger(RestClient.class.getName());
 
     private Response getResponse(String sb) {
