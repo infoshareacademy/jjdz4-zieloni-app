@@ -28,7 +28,7 @@
                             <%@ include file="users/events/eventsAdd.jsp" %>
                         </c:when>
                         <c:when test="${showAbout}">
-                            <%@ include file="under-constraction-page.jsp" %>
+                            <%@ include file="users/about/about.jsp" %>
                         </c:when>
                         <c:when test="${ showRaport}">
                             <%@ include file="admin/raport/raport.jsp" %>
